@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Austin MLJC"
+  title: "Austin ML Journal Club"
   navbar:
     right:
       - about.qmd
