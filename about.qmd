@@ -2,17 +2,11 @@
 title: "About"
 about:
   template: solana
-  # links:
-    # - icon: twitter
-    #   text: Twitter
-    #   href: https://twitter.com
-    # - icon: linkedin
-    #   text: LinkedIn
-    #   href: https://linkedin.com
-    # - icon: github
-    #   text: Github
-    #   href: https://github.com/AustinMLJournalClub/
-
 ---
 
-Member introduction
+## [Hongsup Shin](https://www.linkedin.com/in/hongsupshin/)
+Hongsup is the organizer of the Austin ML Journal Club. He organizes the club meetings, and maintains the blog and the journal club GitHub repository. 
+
+He currently works as a Principal ML Research Engineer at Arm. Until recently, he also volunteered at Texas Justice Initiative, a criminal justice non-profit in Austin. His background is computational neuroscience and behavioral ecology. 
+
+## [Kathrine (Kate) Behrman](https://www.linkedin.com/in/kate-behrman/)
