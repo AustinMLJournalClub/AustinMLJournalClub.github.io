@@ -1,6 +1,7 @@
 ---
 title: "Why ML Journal Club"
 author: "Hongsup Shin"
+description: Welcome to our journal club! I talk about why I organized an in-person journal club with my fellow ML practitioner friends in Austin, TX. 
 date: "2022-10-17"
 categories: [news]
 ---

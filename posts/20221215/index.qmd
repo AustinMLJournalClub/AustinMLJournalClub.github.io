@@ -3,6 +3,7 @@ title: "Zero-Shot Text-to-Image Generation"
 author: "Hongsup Shin"
 date: "2022-12-15"
 image: "Fig 8.png"
+description: There is so much hype in generative AI. But how does it actually work? We discuss OpenAI's DALL-E paper to understand model architecture but more importantly, whether their model validation is solid and reasonable.
 categories: [paper]
 ---
 
