@@ -17,6 +17,6 @@ title: "Tips"
 
 ## Blogging
 - Presenters are welcome to write a blog post about the paper they presented. 
-- You can write about about anything in the post as long as it captures some of our discussion during the meeting.
+- You can write about anything in the post as long as it captures some of our discussion during the meeting.
 - **Blogging is optional**. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together.
 
