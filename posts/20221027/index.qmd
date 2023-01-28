@@ -7,7 +7,11 @@ description: Garbage in, garbage out. It seems like a lot of people in the ML co
 categories: [paper]
 ---
 
-We had our first meeting on Oct 27, 2022. [Athula](https://www.linkedin.com/in/athula-pudhiyidath/), [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Kate](https://www.linkedin.com/in/kate-behrman/), and [Saina](https://www.linkedin.com/in/saina199/) participated. Hongsup presented the paper [*“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI*](https://research.google/pubs/pub49953/). 
+:::{.callout-note}
+- Paper: [*“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI*](https://research.google/pubs/pub49953/)
+- Presenter: [Hongsup](https://www.linkedin.com/in/hongsupshin/)
+- Attendees: [Athula](https://www.linkedin.com/in/athula-pudhiyidath/), [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Kate](https://www.linkedin.com/in/kate-behrman/), and [Saina](https://www.linkedin.com/in/saina199/)
+:::
 
 ## Why this paper
 Many ML articles exist but few talk about how the sausage gets made. They are often based on toy or clean benchmark datasets, which are quite different from what we get in real world. That's why I enjoy reading survey papers. They interview people in the field like us and try to address common pain points to find a broader picture.

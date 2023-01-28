@@ -7,7 +7,11 @@ description: There is so much hype in generative AI. But how does it actually wo
 categories: [paper]
 ---
 
-For our second meeting, [Hannah](https://www.linkedin.com/in/hannah-peeler-a4751bb2/), [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Joel](https://www.linkedin.com/in/joelafriyie/), and [Steve](https://www.linkedin.com/in/steve-sebastian/) participated. Hongsup presented the paper [*Zero-Shot Text-to-Image Generation*](https://arxiv.org/abs/2102.12092). For our discussion, see the <font color="blue">Discussion</font> section.
+:::{.callout-note}
+- Paper: [*Zero-Shot Text-to-Image Generation*](https://arxiv.org/abs/2102.12092)
+- Presenter: [Hongsup](https://www.linkedin.com/in/hongsupshin/)
+- Attendees: [Hannah](https://www.linkedin.com/in/hannah-peeler-a4751bb2/), [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Joel](https://www.linkedin.com/in/joelafriyie/), and [Steve](https://www.linkedin.com/in/steve-sebastian/)
+:::
 
 ## Why this paper
 Generative AI has a lot of hype in ML community these days. OpenAI's DALL·E, GPT-3, and ChatGPT are good examples. And there's also stable diffusion. Since they all have public API, not just ML practitioners but general public can use the models to generate texts or images, which creates even bigger hype around generative AI. 
