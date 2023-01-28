@@ -187,5 +187,33 @@
     "title": "Austin ML Journal Club",
     "section": "5: Enhancing the reproducibility",
     "text": "5: Enhancing the reproducibility\n\nFirst of all, this paper feels very redundant. This section also.\nAgain, these are good recommendations but maybe a big ask? (We were being realistic.)\nPrivacy concern is another thing to think about. If we violate privacy when we have to disclose so much about data and distribution to prove the absence of data leakage, how would we resolve this conflict?\nWe learned about the presence of CodeOcean (pretty cool effort)."
+  },
+  {
+    "objectID": "readme.html",
+    "href": "readme.html",
+    "title": "Tips",
+    "section": "",
+    "text": "We meet every last Thursday of the month between 6 pm and 8 pm.\nWe are flexible about where we meet. Hongsup has been hosting the meetings so far and he can provide his place for future meetings as a backup."
+  },
+  {
+    "objectID": "readme.html#presentation",
+    "href": "readme.html#presentation",
+    "title": "Tips",
+    "section": "Presentation",
+    "text": "Presentation\n\nWe take turns to present a paper.\nIt doesn’t have to be a paper. It can be a blog post, newspaper article, or even package documentation. We can also use the journal club as a brainstorming session if the presenter wants to discuss a specific work problem they want to talk about."
+  },
+  {
+    "objectID": "readme.html#communication",
+    "href": "readme.html#communication",
+    "title": "Tips",
+    "section": "Communication",
+    "text": "Communication\n\nAll correspondence happens in our Slack channel.\nPresenters should give others at least 2 weeks to read the paper.\nPlease send a message on Slack about whether you can come next time at least a week before the meeting."
+  },
+  {
+    "objectID": "readme.html#blogging",
+    "href": "readme.html#blogging",
+    "title": "Tips",
+    "section": "Blogging",
+    "text": "Blogging\n\nPresenters are welcome to write a blog post about the paper they presented.\nYou can write about about anything in the post as long as it captures some of our discussion during the meeting.\nBlogging is optional. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together."
   }
 ]

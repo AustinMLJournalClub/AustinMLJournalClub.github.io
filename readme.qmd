@@ -1,0 +1,22 @@
+---
+title: "Tips"
+---
+
+## Logistics
+- We meet **every last Thursday of the month** between 6 pm and 8 pm.
+- We are flexible about where we meet. Hongsup has been hosting the meetings so far and he can provide his place for future meetings as a backup.
+
+## Presentation
+- We take turns to present a paper.
+- **It doesn't have to be a paper.** It can be a blog post, newspaper article, or even package documentation. We can also use the journal club as a brainstorming session if the presenter wants to discuss a specific work problem they want to talk about.
+
+## Communication
+- All correspondence happens in our **Slack channel**.
+- Presenters should give others **at least 2 weeks to read the paper**.
+- Please send a message on Slack about whether you can come next time **at least a week before the meeting**.
+
+## Blogging
+- Presenters are welcome to write a blog post about the paper they presented. 
+- You can write about about anything in the post as long as it captures some of our discussion during the meeting.
+- **Blogging is optional**. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together.
+
