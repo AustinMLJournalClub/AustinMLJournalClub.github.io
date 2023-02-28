@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kate Behrman">
+<meta name="dcterms.date" content="2023-01-26">
+<meta name="description" content="Data leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.">
+
+<title>Austin ML Journal Club - Leakage and the Reproducibility Crisis in ML-based Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../readme.html">
+ <span class="menu-text">Tips</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Leakage and the Reproducibility Crisis in ML-based Science</h1>
+                  <div>
+        <div class="description">
+          Data leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">paper</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Kate Behrman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 26, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Paper: <a href="https://arxiv.org/pdf/2207.07048.pdf"><em>Leakage and the Reproducibility Crisis in ML-based Science</em></a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/kate-behrman/">Kate</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a>, <a href="https://www.linkedin.com/in/joelafriyie/">Joel</a>, <a href="https://www.linkedin.com/in/kate-behrman/">Kate</a>, and <a href="https://www.linkedin.com/in/saina199/">Saina</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper?</h2>
+<p>Data leakage is a problem that we have all encountered as data scientists and scientific researchers. We just never knew how big! I was drawn to this paper because it attempts to quantify the impact of data leakage. It presents the unique view of considering the impact on ML-based science and shows how widespread and problematic data leakage is and leads to exaggerated claims of predictive performance. However, the frequency of data leakage and the impact of making these types of mistakes could be just as high or higher for ML-based industry applications. As a mixed group of ex ML-based science practitioners and current ML-based industry practitioners, I thought it would be insightful to discuss the eight types of data leakage identified, the proposed mitigation strategy of filling out model info sheets for ML-based science, and if the presented solution is also reasonable for a variety of ML-based industry applications.</p>
+</section>
+<section id="defining-the-leakage-and-the-reproducibility-crisis-in-ml-based-science" class="level2">
+<h2 class="anchored" data-anchor-id="defining-the-leakage-and-the-reproducibility-crisis-in-ml-based-science">Defining the leakage and the reproducibility crisis in ML-based science</h2>
+<p>This first thing this paper does is narrow the scope of relevant literature to only papers that are used for ML-based science. The authors define <em>ML-based science</em> as only papers “making a scientific claim using the performance of the ML model as evidence.” Furthermore, research findings are termed <em>reproducible</em> “if the code used to obtain the findings are available and the data is correctly analyzed.” Lastly, <em>data leakage</em> is a “spurious relationship between the independent variables and the target variables that arises as an artifaction of data collection, sampling, or pre-processing strategy.” Based on these three definitions, 20 papers with data leakage in 17 fields were found to impact a total of 329 ML-based research papers. These authors make three explicit contributions: 1) present a unified taxonomy of eight types of data leakage that lead to reproducibility issues, 2) propose the use of model info sheets to identify and prevent leakage, 3) quantify the impact of data leakage on model performance of civil war predictions. &nbsp;</p>
+<p>The first thing we noticed when looking at Table 1 was that several of the fields are areas with potential high-stakes such as medicine, clinical epidemiology, neuropsychiatry, medicine, and radiology. Engineering applications were excluded from this analysis but several fields sounded very close to this industry such as software engineering and computer security. We didn’t feel that ML-based science should be differentiated from industry-based ML applications. If anything, we felt that data leakage in industry applications may be &nbsp;harder to detect because they lack a formal peer review process and could have a bigger impact because these models are deployed in the real world.</p>
+</section>
+<section id="data-leakage-taxonomy" class="level2">
+<h2 class="anchored" data-anchor-id="data-leakage-taxonomy">Data leakage taxonomy</h2>
+<ul>
+<li>L1.1 No test set: This was shocking to us. How does the peer review process allow these papers to be published? Hopefully, in the future reviewers will be more demanding of ML practitioners. This is also the most common type of data leakage identified in Table 1.</li>
+<li>L1.2 Pre-processing on training and test set: &nbsp;We felt that this was a loaded category. There are many different ways for this type of data leakage to come about. For example, during imputation, under/oversampling, and encoding. For clarity, we thought this category could have been subdivided.</li>
+<li>L1.3 Feature selection on training and test set: This is the second most common type of data leakage found in Table 1.</li>
+<li>L1.4 Duplicates in dataset: This seems more like an error than a type of data leakage.</li>
+<li>L2 Model features that aren’t legitimate: We spent the most time discussing this category. We found it hard to think about proxy variables because they require a lot of domain knowledge. Instead, we like the definition of a feature the model would not have access to when making new predictions.</li>
+<li>L3.1 Temporal leakage: This is when future data is included in model training.</li>
+<li>L3.2 Non-independence between training and test samples: This can be caused by resampling the same patient or geographic location. This type of leakage can also be due to the interpretation of the results. This occurs when there is a mismatch between the test distribution and the scientific claim.</li>
+<li>L3.3 Sampling bias in test distribution: This is choosing a non-representative subset for analysis.</li>
+</ul>
+<p>In general, categories L1.1-4 are clear cut and should be identifiable and avoidable. L2 is difficult because it depends on domain knowledge. Due to the nature of collaboration the researcher with this expert domain knowledge may not be the individual performing the ML analysis. Similarly, L3.1-3.3 are also difficult to detect and avoid if the researcher is using previously collected data and not designing an experiment and collecting data from scratch. In industry, data is often given to ML practitioners and there is no option to immediately collect more data or change the collection methodology. If this is the case, data leakage could be undetectable in many industry applications as ML practitioners are working with the best data at hand. In addition, there are limited strategies for identifying and mitigating these three types of data leakage.</p>
+</section>
+<section id="model-info-sheets-to-mitigate-data-leakage" class="level2">
+<h2 class="anchored" data-anchor-id="model-info-sheets-to-mitigate-data-leakage">Model info sheets to mitigate data leakage</h2>
+<p>We appreciated that the authors suggested a mitigation strategy. We found the questions in the model info sheets to be a useful sanity check for any ML practitioner. However, the level of detail requested from the info sheets would likely only be filled out if peer reviewed journals required it. &nbsp;Even if journals require model info sheets as part of the peer review process, we agree with the authors that there are still limitations. Most notably, the claims in the model info sheets can’t be verified without the code, computing environment, and data. There are some scientific research fields where authors might be unwilling or unable to disclose all information due to privacy concerns. In addition, there is nothing to prevent authors from lying or not having the ML expertise to fill out the model info sheet correctly. Since ML has become more accessible to non-ML experts, subtle cases might not easily be noticed by the author or reviewer.</p>
+<p>In industry, data privacy is also a concern but ML practitioners within a company could use these model info sheets to identify data leakage in industry based applications. However, there is no way to enforce this across companies or for a user of an industry based ML application to determine if the results are sound. Industry based ML is growing and there are often many groups within a company experimenting with ML. From what we have seen, there are no established within-company standards let alone between-company standards that would require the use of model info sheets to prevent data leakage.</p>
+</section>
+<section id="civil-war-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="civil-war-predictions">Civil war predictions</h2>
+<p>To understand the impact of data leakage the authors present a case study on civil war predictions. They identified 12 papers on the topic that provided the code and data. Of the 12 papers identified, four claimed superior performance of complex ML models compared to logistic regression. When all types of data leakage were identified and fixed, the complex models did not outperform logistic regression (Figure 1). Figure 1 shows how the performance metric is reduced after data leakage is corrected. In particular, we noticed that model performance of the simple logistic regression model was not impacted as much by data leakage compared to the complex (tree-based) ML methods. We wish the authors had speculated on why.&nbsp;</p>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+<p>Data leakage is a big issue that is not highlighted enough. The authors focused their efforts on identifying data leakage in ML-based science. While we appreciate them proposing a solution to identify and prevent data leakage, we think filling out model info sheets is a big ask and unlikely to be a common practice unless required by the peer review process. In addition, there are efficacy issues with model info sheets and it will be impossible to substantiate each claim. Industry ML applications are likely facing similar challenges with data leakage as ML-based science but these effects will be even more challenging to detect and quantify.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
