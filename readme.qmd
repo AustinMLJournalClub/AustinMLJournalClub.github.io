@@ -2,13 +2,30 @@
 title: "Tips"
 ---
 
+If you are interested in joining the journal club, please send an email to <hongsup.shin@pm.me>.
+
 ## Logistics
-- We meet **every last Thursday of the month** between 6 pm and 8 pm.
+- We meet **every last Thursday of the month** between 6 pm and 8 pm. Meeting announcement is done through our Slack channel.
 - We are flexible about where we meet. Hongsup has been hosting the meetings so far and he can provide his place for future meetings as a backup.
 
 ## Presentation
 - We take turns to present a paper.
-- **It doesn't have to be a paper.** It can be a blog post, newspaper article, or even package documentation. We can also use the journal club as a brainstorming session if the presenter wants to discuss a specific work problem they want to talk about.
+- When announcing what to read, we encourage the presenter to write a few sentences about the reason for the pick. This will motivate readers.
+- **It doesn't have to be a paper.** It can be a blog post, newspaper article, or even tool documentation. We can also use the journal club as a brainstorming session if the presenter wants to discuss a specific work problem they want to talk about.
+- Every presenter will be introduced in the [About](https://austinmljournalclub.github.io/about.html) page with a short bio. Participants will be mentioned in the posts.
+- Presenters don't have to know everything in the paper but they should have enough understanding of the paper to lead the discussion.
+
+### Guidelines for choosing papers
+Reading papers takes a great deal of time. To respect everyone's time, we encourage presenters to consider the following as acceptable material for the meetings.
+
+- Papers that are published or peer-reviewed
+- Papers about ideas that are discussed frequently in the media
+- Papers with high citation counts
+- Papers from renowned research groups
+- Papers that are not too niche in terms of their domain
+- Papers that are not too long
+- Papers that have many interesting discussing points; this means you can choose a bad paper intentionally
+
 
 ## Communication
 - All correspondence happens in our **Slack channel**.
@@ -17,6 +34,7 @@ title: "Tips"
 
 ## Blogging
 - Presenters are welcome to write a blog post about the paper they presented. 
+- The blog is hosted through GitHub pages from [our repository](https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io) and we use the [Quarto](https://quarto.org/) platform. 
 - You can write about anything in the post as long as it captures some of our discussion during the meeting.
 - **Blogging is optional**. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together.
 
