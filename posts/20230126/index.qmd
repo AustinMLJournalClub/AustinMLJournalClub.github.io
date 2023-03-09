@@ -38,6 +38,8 @@ We appreciated that the authors suggested a mitigation strategy. We found the qu
 
 In industry, data privacy is also a concern but ML practitioners within a company could use these model info sheets to identify data leakage in industry based applications. However, there is no way to enforce this across companies or for a user of an industry based ML application to determine if the results are sound. Industry based ML is growing and there are often many groups within a company experimenting with ML. From what we have seen, there are no established within-company standards let alone between-company standards that would require the use of model info sheets to prevent data leakage.
 
+![Figure 1. A comparison of reported and corrected results in civil war prediction papers published in top political science journals.](Leakage and the Reproducibility Crisis in ML-based Science.png)
+
 ## Civil war predictions
 To understand the impact of data leakage the authors present a case study on civil war predictions. They identified 12 papers on the topic that provided the code and data. Of the 12 papers identified, four claimed superior performance of complex ML models compared to logistic regression. When all types of data leakage were identified and fixed, the complex models did not outperform logistic regression (Figure 1). Figure 1 shows how the performance metric is reduced after data leakage is corrected. In particular, we noticed that model performance of the simple logistic regression model was not impacted as much by data leakage compared to the complex (tree-based) ML methods. We wish the authors had speculated on why. 
 
