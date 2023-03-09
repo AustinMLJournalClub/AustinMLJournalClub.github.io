@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Austin ML Journal Club – note</title>
+<title>Austin ML Journal Club – readme</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -87,6 +150,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../readme.html">
  <span class="menu-text">Tips</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../quarto.html">
+ <span class="menu-text">Blogging</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"><i class="bi bi-github" role="img">
 </i> 
@@ -108,83 +175,41 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<ul>
-<li>ML-based science: Is prediction important in science? This might depend on the domain (e.g., climate change research might focus on predicting the risk)</li>
-<li>Model info sheet: the intent is good but it seems unfeasible (too much effort and information for the author)</li>
-<li>Definition of reproducibility: it makes sense to consider the correctness of analysis and scientific integrity as a part of reproducibility</li>
-<li>Why focus on the civil war papers? Perhaps these are well-studied review papers w/ code and data available</li>
-</ul>
-</section>
-<section id="why-make-distinction-between-science-and-engineering-applications" class="level2">
-<h2 class="anchored" data-anchor-id="why-make-distinction-between-science-and-engineering-applications">Why make distinction between science and engineering applications?</h2>
-<ul>
-<li>It’s not like that leakage is okay in production or difficult not to notice in engineering application. Data leakage is still an issue.</li>
-<li>Perhaps they meant that industry engineering applications get less constraints/scrutiny about the process. But practically speaking, engineering applications can pose higher risks than scientific research because they have more immediate real-world impacts</li>
-<li>Plus some papers they looked into sounded very close to industry such as software engineering, cybersecurity, etc.</li>
-</ul>
-</section>
-<section id="taxonomy" class="level2">
-<h2 class="anchored" data-anchor-id="taxonomy">Taxonomy</h2>
-<ul>
-<li>L1.1 (no test set): shocking!</li>
-<li>L1.2 (preprocessing): This is a loaded area because many different sub-domains exist such as imputation, oversampling, encoding, etc. Thus, it would’ve been nice to separate these areas further.</li>
-<li>L2 (illegitimate features):
-<ul>
-<li>Definition of proxy sounds a bit tricky.
-<ul>
-<li>We had a discussion about whether highly correlated features can be considered as data leakage. We agreed that all proxies are highly correlated features but not all highly correlated features are proxies.</li>
-<li>Like in hypertensive drug example, proxies are those that we should not be using (either because it’s cheating or not relevant or not available when making prediction) for obviously reasons. Thinking about the causal relationship also can help.</li>
-<li>As the paper says, domain knowledge might be required to identify all proxies.</li>
-</ul></li>
-<li>This L2 problem can get worse due to the high ML hype and ML code being extremely light (only a few lines of readily usable code available).</li>
-</ul></li>
-<li>L3.2 and L3.3: they are quite different from other data leakage problems.
-<ul>
-<li>Both are more challenging to identify.</li>
-<li>If researchers can design experiments and collect data by themselves, they have some control over it, but for engineering applications/industry, often the data is given to us and we often don’t have many options to mitigate this problem.</li>
-<li>For instance, it’s usually difficult to do split the data to achieve similar distributions between train and test (except class imbalance, temporal etc.)</li>
-</ul></li>
-</ul>
-</section>
-<section id="model-info-sheets-and-our-theory-of-change" class="level2">
-<h2 class="anchored" data-anchor-id="model-info-sheets-and-our-theory-of-change">3.3: Model info sheets and our theory of change</h2>
-<ul>
-<li>High hopes!</li>
-<li>It might not be useful to believe that the authors would follow this guideline. It will be a useful sanity checkpoint where the authors can think about the process (in this sense, this could be useful for industry people as well).</li>
-<li>But of course, the authors can simply lie about it. But we get that this could be a middle-ground suggestion.</li>
-<li>Also, in certain filed, people are very reluctant about sharing their data and code (such as oil and gas companies where well data is essentially their most valuable asset).</li>
-<li>It might be more impactful if journals make this process as mandatory (but again, this will be a big ask).</li>
-</ul>
-</section>
-<section id="limitations-of-model-info-sheets" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-model-info-sheets">3.4: Limitations of model info sheets</h2>
-<ul>
-<li>Authors not being ML experts and using ML in their research seems like another side-effect of ML hype.</li>
-</ul>
-</section>
-<section id="fig-1" class="level2">
-<h2 class="anchored" data-anchor-id="fig-1">Fig 1</h2>
-<ul>
-<li>It’s interesting that logistic regression isn’t affected much by the correction. It would have been nice if the authors explained more about the why (there’s some in appendix but it’s not super clear).</li>
-<li>As the appendix explains, datasets from one paper were used by others even though they were based on imputation with high data leakage. Also some imputation processes in the papers the authors examined were done when the proportion of missing data is very high (like 90%).</li>
-</ul>
-</section>
-<section id="problem-of-missing-significant-testing" class="level2">
-<h2 class="anchored" data-anchor-id="problem-of-missing-significant-testing">Problem of missing significant testing</h2>
-<ul>
-<li>We discussed what exactly they were supposed to compare in terms of significant testing. Since they also mentioned confidence interval, we assumed it’s the results based on bootstrapping</li>
-</ul>
-</section>
-<section id="enhancing-the-reproducibility" class="level2">
-<h2 class="anchored" data-anchor-id="enhancing-the-reproducibility">5: Enhancing the reproducibility</h2>
-<ul>
-<li>First of all, this paper feels very redundant. This section also.</li>
-<li>Again, these are good recommendations but maybe a big ask? (We were being realistic.)</li>
-<li>Privacy concern is another thing to think about. If we violate privacy when we have to disclose so much about data and distribution to prove the absence of data leakage, how would we resolve this conflict?</li>
-<li>We learned about the presence of CodeOcean (pretty cool effort).</li>
-</ul>
+<section id="austin-journal-club-blog" class="level1">
+<h1>Austin Journal Club Blog</h1>
+<p>Our blog uses <a href="https://quarto.org/">quarto</a> platform and it is hosted via <a href="https://pages.github.com/">GitHub Pages</a>. This is a short guide for uploading blog posts using quarto.</p>
+<ol type="1">
+<li><p><a href="https://quarto.org/docs/get-started/hello/vscode.html">Install quarto</a>. I chose the VS Code option.</p></li>
+<li><p>Clone the blog repository.</p></li>
+<li><p>Create an issue (issue title example: “Upload a blog post for the Feb 2023 meeting”) and assign yourself.</p></li>
+<li><p>Check out a new branch (branch name example: “16-write_blog”)</p></li>
+<li><p>Create a folder in <code>/posts</code>. The name of the new folder should be the date of the meeting in YYYYMMDD format (e.g., <code>posts/20221027/</code>).</p></li>
+<li><p>Create <code>index.qmd</code> inside the folder. This is the main file for your post.</p></li>
+<li><p>The top section of a blog post is a YAML block with document options. You must fill out <code>title, author, date, description, categories</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Paper title"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Author full name"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"YYYY-MM-DD"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"This image will show on the main page (this is optional).jpg"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Short description of the post. It will show on the main page.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">paper</span><span class="kw">]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Before writing the body, please include the following right after the YAML block:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Paper: <span class="co">[</span><span class="ot">paper title</span><span class="co">](link to original paper)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Presenter: <span class="co">[</span><span class="ot">first name</span><span class="co">](linkedin profile)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Attendees: <span class="co">[</span><span class="ot">first name 1 (alphabetical order)</span><span class="co">](linkedin profile)</span>, <span class="co">[</span><span class="ot">first name 2</span><span class="co">](linkedin profile)</span>, ... </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>To give everyone some context, I highly suggest starting the body with “Why this paper” paragraph.</p></li>
+<li><p>If you want to include any images, you can include them in the same folder as <code>index.qmd</code>.</p></li>
+<li><p>You can use <code>quarto preview</code> to preview the rendered look on the blog website.</p></li>
+<li><p>Once you are done, run <code>quarto render</code>. This will automatically generate and modify html files in the <code>/docs</code> and the main folders.</p></li>
+<li><p>Add all the changes, commit, and make a merge request to <code>main</code>.</p></li>
+<li><p>Assign the attendees of the meeting as reviewers, and go through a review process.</p></li>
+<li><p>Leave a message on Slack about the merge request.</p></li>
+<li><p>Once your branch is merged after the review, close your issue ticket and delete the remote branch.</p></li>
+</ol>
+<p>Currently the blog is hosted via <code>gh-pages</code> branch (not <code>main</code>), and thus after <code>main</code> is updated, we will rebase main to <code>gh-pages</code> and the blog website will be automatically updated with your post.</p>
 
 
 </section>

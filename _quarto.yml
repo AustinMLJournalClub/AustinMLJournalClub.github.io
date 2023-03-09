@@ -8,6 +8,7 @@ website:
     right:
       - about.qmd
       - readme.qmd
+      - quarto.qmd
       - icon: github
         href: https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io
 format:
