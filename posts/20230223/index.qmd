@@ -2,8 +2,7 @@
 title: "A review of a case study about real estate market prediction"
 author: "Athula Pudhiyidath"
 date: "2023-02-23"
-image: "alternative_approach.png"
-description: The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper's research design and results were lacking, it gave us a chance to have a discussion about best practices for experimental and analyitical design.
+description: The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper's research design and results were lacking, it gave us a chance to have a discussion about practices for experimental and analyitical design.
 categories: [paper]
 ---
 
@@ -45,23 +44,5 @@ By this point, the research question was not sufficiently motivated, and the dat
 
 The seeming conclusion the authors draw from this section that XGBoost was a superior classifier, but considering all of these factors above, this conclusion did not follow logic. 
 
-## Alternative approach
-In our discussions, the group agreed the best approach to this problem of predicting home prices would be linear regression, and not a binary classification. However, even if the authors chose not to reconsider their overall approach, wanted to use this binary classification for predicting final sale outcomes as they proposed, and intended to use the same data as was described here for these predictions, there are many changes the authors could have made to improve their modeling methods. In this spirit, I have outlined an alternative binary classification approach the authors could have taken with the existing problem and data framework in the figure below. 
-
-### Data
-The data should be encoded properly, with categorical data like parid (property identifier), nbhd (neighborhood code), yrblt (year built), zip21 (ZIP code of area), sale_date (sale date), and luc (property class) treated as such. Furthermore, month and year variables should be extracted and matched to the socio-economic data matching it on those variables where possible. 
-
-![Figure 1. Another model pipeline for how the authors could have approached their high-price/low-price classificaiton problem; compare to the authors' model pipeline in Figure 9 of the paper.](alternative_approach.png)
-
-### Model Training
-Before training the model, we should have an understanding about what exactly we want the model to do. Looking at Fig. 2 in the paper, we can see that the occurrence of high price instances surpassed low price instances in the last few years, and  indeed [steadily increasing home prices price over the last few decades confirm that trend](https://fred.stlouisfed.org/series/ASPUS). Considering this, it would probably behoove the authors to build a model that is optimized to predict high-price (Class = 1) outcomes to apply this model to new data. 
-
-In order to train the model, the authors should consider the time-sensitive deviation in high-price classes in the data by using a time series split of the data in their 10-fold cross validation. Furthermore, I propose to keep 20% of the latest data as the ultimate holdout test for evaluating the winning model. For each fold of the time-split data, the different models of interest (i.e. Random Forest, XGBoost, Logistic Regression) can be trained and hyperparameter tuned. 
-
-### Model Appraisal
-Because in this alternative approach we have decided that detecting high-price outcomes is more valuable, and that the distribution of high- and low-price though balanced, differs over time, the main method by which we can evaluate the best performing classifier is through the metric of F1, which is a function of the metrics of precision and recall. The authors can then find the best F1 score for a given model and its respective optimal hyperparameters. Then, the authors can validate the model with the best F1 score on the holdout test to see how it performs on the latest data. They can also evaluate what features of the model contributed to discriminating amongst the high and low-price classes. 
-
-With this alternative framework, the authors would be better able to rectify some of the glaring procedural errors in this paper, namely the huge amounts of data leakage that went into every layer of the authors’ research process (see Fig. 9) in this paper. In this way, they would be able to be more confident about which models performed better at discriminating high-price homes and be better able to understand what features of the data contributed to the model’s performance.
-
 ## Final thoughts 
-This paper’s central question is unclear, and deviated from the beginning to end. The paper switched from comparing listing home prices to sold home prices, to appraisal home prices to sold home prices, to figuring out which model is best. If the authors had a more structured story on the questions they wanted to answer, the baseline with which they wanted to compare outcomes, and shored up methods on those comparisons, this would have been a more compelling read. As it stands, however, it is not possible to draw any conclusions from this paper. However, I hope that this blog has given some insight for better practices to people who want to conduct research similar to this in the future! 
+This paper’s central question is unclear, and deviated from the beginning to end. The paper switched from comparing listing home prices to sold home prices, to appraisal home prices to sold home prices, to figuring out which model is best. If the authors had a more structured story on the questions they wanted to answer, the baseline with which they wanted to compare outcomes, and shored up methods on those comparisons, this would have been a more compelling read. As it stands, however, it is not possible to draw any conclusions from this paper. 
