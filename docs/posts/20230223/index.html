@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.242">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Athula Pudhiyidath">
+<meta name="dcterms.date" content="2023-02-23">
+<meta name="description" content="The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.">
+
+<title>Austin ML Journal Club - Reviwing a Case Study About Real Estate Market Prediction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../readme.html">
+ <span class="menu-text">Tips</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../quarto.html">
+ <span class="menu-text">Blogging</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Reviwing a Case Study About Real Estate Market Prediction</h1>
+                  <div>
+        <div class="description">
+          The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">paper</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Athula Pudhiyidath </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 23, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Paper: <a href="https://arxiv.org/pdf/2008.09922.pdf"><em>“Machine Learning Approaches to Real Estate Market Prediction Problem: A Case Study</em></a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/hannah-peeler-a4751bb2/">Hannah</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a>,<a href="https://www.linkedin.com/in/kate-behrman/">Kate</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper</h2>
+<p>In my work, I deal with real estate data. The data consists of various attributes of real estate properites, some of which follow the ebbs and flows of the mutable economy. I came across this paper while perusing arxiv, and I was compelled by its abstract: using real estate data that spanned 10 years from a single county in Florida, the research compares four ML models that make predictions about whether or not a property’s appraised price matches its eventually listed price. Since the data spans such a long time, the researchers accounted for fluctuations in socio-economic factors over time in the model; this facet was of particular interest to me to conceptualize my own work and I was interested to learn about the authors incorporated these factors in machine learning algorithms to make predictions about the real estate market.</p>
+<p>While this abstract seemed reasonably promising to understand the application of ML in real estate evaluation, when I read the paper more closely, I found myself questioning many of the approaches the authors took to answer their central question. Therefore, this blog is structured such that it summarizes the authors’ work as outlined in this paper and offers alternative considerations from our group’s discussion.</p>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The data</h2>
+<p>The authors wanted to build and compare models for predicting home prices. They posit that previous literature addressed home pricing with hedonic regression models, which are linear regression models with specific focus on price of goods, i.e.&nbsp;property price, but that this work did not necessarily account for broader socio-economic factors in their models. With the modeling conducted in this paper, the authors attempted to model home pricing accounting for such factors. However, instead of predicting home pricing as a continous variable as with regression, the authors chose to make home prediction a binary classification problem. The data used in this research consist of ~94,000 rows of publicly available real estate sale data from a single county in Florida, Volusia County.</p>
+<section id="outcome-variable" class="level4">
+<h4 class="anchored" data-anchor-id="outcome-variable">Outcome variable</h4>
+<p>The way the authors defined the binary outcome variable for this research was interesting: they took the final sale price of the home and compared it to the appraised government price of the home, assigning the variable 1 if the property’s selling price is above the appraised price (which they call <code>high price</code>), and 0 if not (called <code>low price</code>); reasoning on why this designation was useful to classify was left unsaid. More importantly there was no information on how or when the properties were initially appraised by the government, which makes the comparison to final sale price unclear. Government appraisals are technically known as a home’s <a href="https://www.rocketmortgage.com/learn/assessed-value">assessed values</a> and differ from appraised values. Assessed valuations are made to determine yearly property tax rates for a home in a given area; this is generally determined by the broad characteristics of a home and the taxed values of homes in the region. An appraised valuation of a home, on the other hand, is done by an appraiser who does a more thorough check of the features of a home, like its style and appliances, and determines a price for the <a href="https://www.rocketmortgage.com/learn/appraisal-vs-assessment">current market price of your home</a>. Thus, it is possible the authors of the paper were using home assessment prices instead of appraisal prices. The authors don’t provide a tally on how many of the properties are classified as high price, though the authors do show a plot (see paper Fig. 2) that suggests that the total count of high price properties have steadily increased in the 10 years of this data. But despite this fact, appraisal year or sale year are not predictor variables the authors considered.</p>
+<p>Another way the author could have approached the outcome variables was to have compared the initial listing price to the final sale price. In fact, in the abstract the authors tout that the listing price is baseline against which the final sale price would be compared, but the final models differ from this initial assertion. Regardless, this binary outcome variable falls short because the magnitude of difference between any two price comparisons would be lost; a high price differential of $100k would be treated the same as a lower price differential of $5k.</p>
+</section>
+<section id="predictor-variables" class="level4">
+<h4 class="anchored" data-anchor-id="predictor-variables">Predictor variables</h4>
+<p>For the predictor variables, the authors chose 21 features or columns from the data for consideration for the models. However, some of the variables were not considered in the right format: <code>parid</code> (property identifier), <code>nbhd</code> (neighborhood code), <code>yrblt</code> (year built), <code>zip21</code> (ZIP code of area), <code>sale_date</code> (sale date), and <code>luc</code> (property class) were all variables that the authors encoded as continuous variables but should have been treated as categorical variables (see Table 1). Furthermore, the variable <code>sale_date</code> (sale date of the property) was not separated into its component month or year values and instead was used as a single datetime value. From our group’s discussion about this paper, it was also suggested that the authors could have considered time variables in terms of seasons or quarters, as home sales typically vary by such cadences.</p>
+<p>Because, this data spanned approximately 10 years, the authors attempted to account for the market fluctuations in those years by incorporating economic factors of gross domestic product (GDP), consumer price index (CPI), producer price index (PPI), housing price index (HPI), and effective federal funds rate (EFFR). But, it was unclear where the authors collected these values from and how exactly they matched this collected information to the real estate data. There was little discussion about why these variables were chosen out of the many other indices available, and little information about how these indices were good markers for the central question. Furthermore, it was unclear whether all of these ecoonimic factors were actually available at the time of prediction when the model is used for prediction.</p>
+</section>
+</section>
+<section id="data-culling" class="level2">
+<h2 class="anchored" data-anchor-id="data-culling">Data culling</h2>
+<p>The authors took their initial dataset and used a myriad of approaches to reduce and refactor the data. First, the authors correlated the predictor variables to the outcome variables and excluded variables which were not correlated; however, they did not account for variables that are highly correlated with one another (see paper Fig. 5) which is cause for multicollinearity in how the authors interpret the importance of features in the models subsequently. Furthermore, later on when the authors introduce the voting classifier, they deem that “the method performs best when the predictors are as independent from each another as possible.”</p>
+<p>Next, the authors perform a set of preliminary modeling, using the dataset in random forest and XGBoost models and examining the resulting feature importance of those model predictions to make decisions about which of the variables are used in the final models. Every step of this interim modeling process was unclear, thus making it hard to give any credit to the authors’ interpretations of the variable importance charts (Fig. 6-8). Regardless, the authors used these outcomes to further enmesh the predictor variables, using a technique called ‘mean encoding’ to merge together highly ranked variables, creating two new variables which they term F1 and F2. Mean encoding seems to be a technique for encoding variable identities into a model that accounts for how those variables interact with the outcome variables. This type of encoding of variables, in addition to the method of feature selection of predictor variables through interim modeling of the data before processing those select features to a bigger model, is an approach that is teeming with <a href="https://austinmljournalclub.github.io/posts/20230126/">data leakage</a>.</p>
+</section>
+<section id="algorithm-predictions-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="algorithm-predictions-and-results">Algorithm predictions and results</h2>
+<p>Finally, the authors get to their model comparison stage. At this point of the paper it was unclear why exactly these models were being compared against one another. The ultimate question the authors laid out was out of focus and it was unclear what exactly model comparison of the data-leaked dataset would bring.</p>
+<p>The authors went on to compare the dataset with random forest, XGBoost, voting classifier, and logistic regression classifiers. The authors said they used a 10-fold cross validation method (separate to the 5-fold cross validation method they did for the preliminary modeling for the feature selection step). While hyperparameter tuning is briefly discussed, the authors don’t provide any details on what models were tuned or the parameters. The authors evaluate differences between these classifiers namely by using accuracy, precision, and recall. However, why the authors chose these metrics to evaluate their high-low classifier is unclear, and how it served their goals. Is it more important for the classifier to catch correctly labeled lower labels, or higher labels? And if it’s better at one rather than the other, what impact would it have for the market?</p>
+<p>By this point, the research question was not sufficiently motivated, and the data was ‘double-dipped’ and overly engineered. In fact, in presenting the comparisons between algorithm performance, the authors showcase how the engineered data performs better at classification of the task, which is of no surprise because the data features were initially chosen because they were better at classifying the task (see paper Fig. 20, 21).</p>
+<p>The seeming conclusion the authors draw from this section that XGBoost was a superior classifier, but considering all of these factors above, this conclusion did not follow logic. Perhaps a more logical conclusion could have been reached had the authors employed a linear regression model instead; in this way they could have predicted the final sale price as a continous variable instead of a binary variable one as they attempt to do here.</p>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+<p>This paper’s central question is unclear, and deviated from the beginning to end. The paper switched from comparing listing home prices to sold home prices, to appraisal home prices (which were likely assessed home prices) to sold home prices, to figuring out which model is best. If the authors had a more structured story on the questions they wanted to answer, the baseline with which they wanted to compare outcomes, and shored up methods on those comparisons, this would have been a more compelling read. As it stands, however, it is not possible to draw any conclusions from this paper.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
