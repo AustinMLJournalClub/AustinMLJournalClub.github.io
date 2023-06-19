@@ -11,3 +11,6 @@ He is a Principal ML Research Engineer at Arm and used to be a volunteer data sc
 
 ## [Kathrine (Kate) Behrman](https://www.linkedin.com/in/kate-behrman/)
 She is a Staff ML Research Engineer at Arm in Austin, TX. She used to work for the USDA-NRCS and USDA-ARS as a Research Ecologist. Her background is in landscape and evolutionary ecology. She is interested in human AI interactions and responsible use of AI.
+
+## [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath)
+She is a Data Scientist at PrimeStreet and is based in Austin, TX. Her background is in cognitive neuroscience. She is interested in keeping up with the ever-changing landscape of AI and ML and its applications to daily life and business.
