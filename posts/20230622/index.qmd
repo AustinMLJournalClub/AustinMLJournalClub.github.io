@@ -5,7 +5,7 @@ author:
     - Hongsup Shin
 date: "2023-06-22"
 image: "fig1.png"
-description: "TBD"
+description: This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also "think" through the problem to arrive at the right answer.
 categories: [paper]
 ---
 
@@ -16,8 +16,17 @@ categories: [paper]
 :::
 
 ## Why this paper?
+This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. It's interesting to see how a process based supervision approach is superior to outcome based supervision approach.
 
 ## Paper summary
+The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also "think" through the problem to arrive at the right answer. The authors mention that there are numerous benefits to this approach:
+
+1. Model reasoning is explainable as each step of the process is provided a probability score (positive, negative and neutral)
+2. Wrong steps that would lead to incorrect outcomes are identified early on in the training process
+3. Wrong steps that would lead to the correct solution are also identified and discouraged
+4. Model could be trained to reason and model its behaviors that matches human values which leads to reduction in hallucinations, false information and potentially dangerous outcomes.
+
+The authors then attempted to showcase superior model performance with a few datasets which we then discussed.
 
 ## Discussion
 
