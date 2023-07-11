@@ -1,5 +1,166 @@
 [
   {
+    "objectID": "readme.html",
+    "href": "readme.html",
+    "title": "Tips",
+    "section": "",
+    "text": "If you are interested in joining the journal club, please send an email to hongsup.shin@pm.me."
+  },
+  {
+    "objectID": "readme.html#logistics",
+    "href": "readme.html#logistics",
+    "title": "Tips",
+    "section": "Logistics",
+    "text": "Logistics\n\nWe meet every last Thursday of the month between 6 pm and 8 pm. Meeting announcement is done through our Slack channel.\nWe are flexible about where we meet. Hongsup has been hosting the meetings so far and he can provide his place for future meetings as a backup."
+  },
+  {
+    "objectID": "readme.html#presentation",
+    "href": "readme.html#presentation",
+    "title": "Tips",
+    "section": "Presentation",
+    "text": "Presentation\n\nWe take turns to present a paper.\nWhen announcing what to read, we encourage the presenter to write a few sentences about the reason for the pick. This will motivate readers.\nIt doesn’t have to be a paper. It can be a blog post, newspaper article, or even tool documentation. We can also use the journal club as a brainstorming session if the presenter wants to discuss a specific work problem they want to talk about.\nEvery presenter will be introduced in the About page with a short bio. Participants will be mentioned in the posts.\nPresenters don’t have to know everything in the paper but they should have enough understanding of the paper to lead the discussion.\n\n\nGuidelines for choosing papers\nReading papers takes a great deal of time. To respect everyone’s time, we encourage presenters to consider the following as acceptable material for the meetings.\n\nPapers that are published or peer-reviewed\nPapers about ideas that are discussed frequently in the media\nPapers with high citation counts\nPapers from renowned research groups\nPapers that are not too niche in terms of their domain\nPapers that are not too long\nPapers that have many interesting discussing points; this means you can choose a bad paper intentionally"
+  },
+  {
+    "objectID": "readme.html#communication",
+    "href": "readme.html#communication",
+    "title": "Tips",
+    "section": "Communication",
+    "text": "Communication\n\nAll correspondence happens in our Slack channel.\nPresenters should give others at least 2 weeks to read the paper.\nPlease send a message on Slack about whether you can come next time at least a week before the meeting."
+  },
+  {
+    "objectID": "readme.html#blogging",
+    "href": "readme.html#blogging",
+    "title": "Tips",
+    "section": "Blogging",
+    "text": "Blogging\n\nPresenters are welcome to write a blog post about the paper they presented.\nThe blog is hosted through GitHub pages from our repository and we use the Quarto platform.\nYou can write about anything in the post as long as it captures some of our discussion during the meeting.\nBlogging is optional. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together."
+  },
+  {
+    "objectID": "notes/2023-02-23.html",
+    "href": "notes/2023-02-23.html",
+    "title": "Meeting notes",
+    "section": "",
+    "text": "Meeting notes\nAll of us found a lot of problems with this paper. Here are some discussions points.\n\nFrom the abstract, having conclusion as “model X is the best” is honestly not publishable. It’s simply stating that they did model tuning, which is really a few lines of code and doesn’t mean anything more.\nThe fact that they are framing this as classification, not regression is highly problematic and misleading. Making this as classification ignores the distribution and magnitude of difference between appraisal and selling price.\nData leakage in feature space: we suspect some features may contain information about the target or they may not be available at the time of prediction\nEven though they didn’t have any class imbalance (class ratio was almost 1:1), according to their graphs, it’s possible that class imbalance would have changed over time.\nIt was not clear what the goal of the paper was especially on what they want to do with the ML model. We had a discussion about whether the authors should’ve used listing price instead of appraisal. They also didn’t seem to consider the common sense that government appraisal might lag and how their model will account for it.\nThe dataset is limited to a single county and yet in conclusion they made overreaching conclusions.\nIt’s also unclear how they got the socioeconomic data, which is critical because they seemed to emphasize them in Introduction.\nTheir feature representation was highly problematic (Tab. 1) mainly because they treated categorical features like zip code as numeric values.\nThere were also new features (such as month) they later mentioned in the paper, which were missing in their feature set table. We also suspect that they used month as numeric variable not as ordinal/categorical variable.\nThe sale date feature also could’ve been divided into more granular and meaningful features such as year, month, quarter, school season, etc.\nEven with feature importance calculation and feature selection, we couldn’t find what they exactly want to do with the prediction and how they want to use it. What exactly can become actionable items is also missing. This is why we were confused about why they did correlation study because it wasn’t really used much in their modeling. Besides, we don’t know whether they are interested in building interpretable models and whether they care about conducting sensitivity analysis to understand the impact of feature value changes better.\nUsing too many highly correlated features and their impact on calculating feature importance should have been investigated.\nTheir feature importance calculation seems to have data leakage issue.\nMean encoding idea is not clear. Also, it seems to be prone to data leakage.\nVoting classifier description doesn’t mention what the voter algorithms are.\nThey didn’t have an independent test set and their cross validation didn’t consider temporal aspect of the data (=more data leakage).\nTheir lack of discussion on business objectives becomes problematic again when they do model comparison with various metrics. We don’t know which metric makes most sense. They seemed to have used accuracy.\nAt this point, we agreed that this paper seemed like it’s written for the sake of showcasing ML (aka “we can build an ML for this”) not for any research and business goals.\nAgain, we think the model selection should’ve considered interpretability, which is related to the actual use case of the model, which the authors never discussed.\nThey also didn’t mention any baseline and so we don’t know the achieved score is enough or not.\nMassive overreach is shown in their conclusions.\nAs a future work, they suggested building better ML predictors. First, this paper is not about creating a novel algorithm, so they can’t make this claim and second, it’s often the case that authors simply suggest building a better model even though the problem is not the model but rather it’s them making so many basic mistakes such as data leakage, feature misrepresentation, and lack of use case."
+  },
+  {
+    "objectID": "quarto.html",
+    "href": "quarto.html",
+    "title": "Blogging",
+    "section": "",
+    "text": "Our blog uses quarto platform and it is hosted via GitHub Pages. This is a short guide for uploading blog posts using quarto."
+  },
+  {
+    "objectID": "quarto.html#set-up",
+    "href": "quarto.html#set-up",
+    "title": "Blogging",
+    "section": "Set up",
+    "text": "Set up\n\nInstall quarto. The VS Code option is straightforward.\nClone the blog repository.\nCreate an issue (title example: “Upload a blog post for the Feb 2023 meeting”) and assign yourself to the issue.\nCheck out a new branch for the issue (branch name example: “16-write_blog”)."
+  },
+  {
+    "objectID": "quarto.html#write",
+    "href": "quarto.html#write",
+    "title": "Blogging",
+    "section": "Write",
+    "text": "Write\n\nCreate a folder in /posts. The name of the new folder should be the date of the meeting in YYYYMMDD format (e.g., posts/20221027/).\nCreate index.qmd inside the folder. This is the main file for your post. The top section of index.qmd is a YAML block with document options. You must fill out title, author, date, description, categories.\n---\ntitle: \"Paper title\"\nauthor: \"Author full name\"\ndate: \"YYYY-MM-DD\"\nimage: \"This image will show on the main page (this is optional).jpg\"\ndescription: Short description of the post. It will show on the main page.\ncategories: [paper]\n---\nBefore writing the body, please include the following right after the YAML block:\n:::{.callout-note}\n- Paper: [paper title](link to original paper)\n- Presenter: [first name](linkedin profile)\n- Attendees: [first name 1 (alphabetical order)](linkedin profile), [first name 2](linkedin profile), ... \n:::\nTo give everyone some context, start the body with “Why this paper” paragraph.\nYou can include any image files in the same folder as index.qmd.\nRun quarto preview &lt;file name&gt; to preview the rendered look of your post on the website."
+  },
+  {
+    "objectID": "quarto.html#render-and-review",
+    "href": "quarto.html#render-and-review",
+    "title": "Blogging",
+    "section": "Render and Review",
+    "text": "Render and Review\n\nRun quarto render once you are done. This automatically generates and modifies html files in the /docs and the main folders.\nAdd all the changes, commit, and make a merge request to main.\nAssign the attendees of the meeting as reviewers, and go through a review process. Leave a message on Slack about the merge request.\nUpdate the manuscript based on reviewers’ comments.\nOnce approved, merge the branch, close your issue ticket, and delete the remote branch.\n\nCurrently the blog is hosted via gh-pages branch (not main). Thus, after main is updated, we will rebase it to gh-pages, and the blog will be automatically updated with a new post."
+  },
+  {
+    "objectID": "posts/20221027/index.html",
+    "href": "posts/20221027/index.html",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "",
+    "text": "Note\n\n\n\n\nPaper: “Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI\nPresenter: Hongsup\nAttendees: Athula, Hongsup, Kate, and Saina"
+  },
+  {
+    "objectID": "posts/20221027/index.html#why-this-paper",
+    "href": "posts/20221027/index.html#why-this-paper",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "Why this paper",
+    "text": "Why this paper\nMany ML articles exist but few talk about how the sausage gets made. They are often based on toy or clean benchmark datasets, which are quite different from what we get in real world. That’s why I enjoy reading survey papers. They interview people in the field like us and try to address common pain points to find a broader picture.\nFor the past several years, I have been noticing a trend in ML community. Many practitioners tend to ignore data quality but instead put all their efforts into models and algorithms. I find it very troubling because many problems in real-world ML are caused by data-related issues. “Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI talks about this pattern based on the interviews from dozens of ML practitioners all over the globe."
+  },
+  {
+    "objectID": "posts/20221027/index.html#data-cascades",
+    "href": "posts/20221027/index.html#data-cascades",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "Data cascades",
+    "text": "Data cascades\nThe paper focuses on “data cascades,” a series of compounding negative events due to data-related issues. The authors say the problems are wildly prevalent (92% reported experience at least one type of data cascades). During the discussion, we thought about sampling bias because those who are ignorant of these problems may not be able to recognize them. Indeed, they are often opaque because there are no clear indicators and often discovered later. Data cascades often lead to technical debt and harm to beneficiary communities. They can sour relationships between stakeholders and in extremely cases, force ML practitioners discard entire datasets. Figure 1 shows the schematic of the data cascades. We thought the figure wasn’t particularly informative because too many arrows exist between the points. We hoped that the authors explained why there aren’t arrows between certain points.\n\n\n\nFigure 1. Data cascades in high-stakes AI"
+  },
+  {
+    "objectID": "posts/20221027/index.html#high-stake-domains",
+    "href": "posts/20221027/index.html#high-stake-domains",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "High-stake domains",
+    "text": "High-stake domains\nData cascades are more critical in high stake domains such as landslide detection, suicide prevention, and cancer detection. There are several reasons:\n\nMore ML applications are deployed in these domains where more direct humanitarian impact exists.\nThis impact can be disproportionate towards vulnerable communities.\nIt is often very challenging to acquire high quality data in these domains.\nThe problems frequently require more multidisciplinary approach.\n\n\n\n\nTable 1. Summary of participant demographics; Domain\n\n\nThe authors find that the problems are due to human factors. Unfortunately solutions have been focusing on other issues such as database, legal, or license. To gather firsthand experience in the field, the authors interviewed 50+ ML practitioners all over the world, ranging from the US to India and African countries, and from founders to developers. Table 1 summarizes various high-stake domains. It was fascinating for us to learn that ML is used in areas as landslide detection, poaching prevention, or regenerative farming. It would have been more interesting to see how data cascades create specific negative consequences in some domains."
+  },
+  {
+    "objectID": "posts/20221027/index.html#data-cascade-triggers",
+    "href": "posts/20221027/index.html#data-cascade-triggers",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "Data cascade triggers",
+    "text": "Data cascade triggers\nThe authors introduce three triggers that cause data cascades.\n\nPhysical world brittleness\nPhysical world changes over time and thus often ML systems can’t produce robust results. Data drifts due to hardware (measurements) and environmental changes are commonly mentioned in ML Ops literature. In high-stake domains, they become more pronounced because training data are very limited and policy or regulation changes can impact the ML systems in various ways.\n\n\nInadequate application-domain expertise\nMost ML practitioners are not equipped with domain knowledge. All of us admitted that our academic background does not match to the domain that we work in. Even though close collaboration between domain experts and ML practitioners is always emphasized, in practice the authors find that domain experts are often detached from the larger impact of the applications. The authors explain two specific types of problems:\nSubjectivity in ground truth: Areas such as insurance claim approval or medical imaging for cancer detection involve highly specialized and often subjective decision-making. To build a reliable and robust ML system, it is necessary to standardize the decision-making criteria and find consensus. However, ML practitioners are asked to rush through the development process, and thus do not have time to address it.\nPoor domain expertise in finding representative data: ML practitioners often start building ML applications without involving domain experts much because the practitioners simply believe that data are reliable. However, because they lack domain knowledge, practitioners make incomplete assumptions, which results in disparity between data collection and deployment. This often leads to poor and unreliable model performance.\n\n\nConflicting reward system\nData collection and any data-related work are often considered non-technical and undervalued. The situation gets worse for frontline workers because they are asked to collect and curate field data on top of their existing responsibilities but they are not well compensated.\n\n\nPoor cross-organizational documentation\nMetadata about data collection, quality, and curation are also often missing. Some good practices the authors suggest involve keeping good documentation on reproducible assets such as data collection plan, data strategy handbooks, design documents, file conventions, field notes, and so on."
+  },
+  {
+    "objectID": "posts/20221027/index.html#broader-context",
+    "href": "posts/20221027/index.html#broader-context",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "Broader context",
+    "text": "Broader context\nData cascades discussion can be extended to bigger problems in ML community.\n\nIncentives and currency in AI\nBecause of the low incentives, data-related work are not rewarded or even tracked. This makes us difficult to get buy-in from stakeholders. The situation is similar in academia as well. Most practitioners and researchers focus on developing algorithms but they rarely mention or work on data. The title “Everyone wants to do the model work, not the data work” was a verbatim from an interviewee. Unfortunately, we were all able to relate to this quote.\n\n\nData education\nMost ML or data science curricula lack any mention of data quality or ethics. They use toy datasets or very clean benchmark datasets. As experience ML practitioners, we wholeheartedly agreed with this finding. We lamented that these courses do not prepare students with practical knowledge because one never works with clean datasets in real world. Some of us have experienced this pattern firsthand because we have been interviewing candidates for an ML practitioner position and found that the candidates who only worked with clean datasets (or primarily worked on algorithms) often lack basic practical ML knowledge.\n\n\nData bootstrapping\nData bootstrapping describes ML practitioners’ use of other data sources such as established data services or existing datasets to create their own dataset. For most of us, it was surprising to learn that many ML practitioners in high-stake domains in countries from Global South had to collect data from scratch. We agreed that challenges in data collection and lack of access to quality data would create inequality between countries."
+  },
+  {
+    "objectID": "posts/20221027/index.html#how-to-address-data-cascades",
+    "href": "posts/20221027/index.html#how-to-address-data-cascades",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "How to address data cascades",
+    "text": "How to address data cascades\nThe authors introduce several ways of addressing the problem of data cascades. They introduce the concept of “data excellence”, an effort to “focus on the practices, politics, and values of humans of the data pipeline to improve the quality and sanctity of data, through the use of processes, standards, infrastructure and incentives”.\n\nFrom goodness-of-fit to goodness-of-data\nThe first is to use the right metric to evaluate data quality. Many ML practitioners use model performance metrics such as accuracy and RMSE to evaluate data quality. Some of us had a similar experience. We had to argue that model metrics shouldn’t be used to make a decision on data-pipeline and data-quality features. We hope that the authors can introduce specific examples of goodness-of-data metrics in the future.\n\n\nIncentives for data excellence\nThere are several ways to address the low incentives of data work. First, journals and conferences should require dataset documentation, provenance, and ethics as mandatory disclosure. Second, organizations should reward data-related work similar to how good software engineering is rewarded. Finally, partnership between stakeholders can nurture data excellence by sharing the reward on data-related work such as data collection, anomaly identification, and model verification.\n\n\nEducation and visibility\nThe authors argue for real-world data literacy in AI education, which includes training on data collection, infrastructure building, data documentation, data sense-making, and data ethics and responsible AI in general. Increasing the data visibility in ML lifecycle is important as well; implementing good monitoring system is one of the most important ML Ops practices anyway."
+  },
+  {
+    "objectID": "posts/20221027/index.html#final-thoughts",
+    "href": "posts/20221027/index.html#final-thoughts",
+    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+    "section": "Final thoughts",
+    "text": "Final thoughts\nSome of us found this paper vindicating because we have been advocating for data quality at work and had to fight for the attention it deserves. The paper helped us share our own practices at work that address data-related issues especially data collection, curation, and post-deployment data problems. Even though we generally agreed with authors’ suggestions, some of us wanted something more specific, like a case study. Overall, we found the paper interesting and insightful. We thought it would be beneficial to read the paper with our colleagues at work to start a discussion for data excellence."
+  },
+  {
+    "objectID": "posts/20230622/index.html",
+    "href": "posts/20230622/index.html",
+    "title": "Let’s Verify Step by Step",
+    "section": "",
+    "text": "Note\n\n\n\n\nPaper: Let’s Verify Step by Step\nPresenter: Akshata\nAttendees: Hongsup, Meghann, Saina"
+  },
+  {
+    "objectID": "posts/20230622/index.html#why-this-paper",
+    "href": "posts/20230622/index.html#why-this-paper",
+    "title": "Let’s Verify Step by Step",
+    "section": "Why this paper?",
+    "text": "Why this paper?\nThis is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. It’s interesting to see how a process based supervision approach is superior to outcome based supervision approach."
+  },
+  {
+    "objectID": "posts/20230622/index.html#paper-summary",
+    "href": "posts/20230622/index.html#paper-summary",
+    "title": "Let’s Verify Step by Step",
+    "section": "Paper summary",
+    "text": "Paper summary\nThe paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also “think” through the problem to arrive at the right answer. The authors mention that there are numerous benefits to this approach:\n\nModel reasoning is explainable as each step of the process is provided a probability score (positive, negative and neutral)\nWrong steps that would lead to incorrect outcomes are identified early on in the training process\nWrong steps that would lead to the correct solution are also identified and discouraged\nModel could be trained to reason and model its behaviors that matches human values which leads to reduction in hallucinations, false information and potentially dangerous outcomes.\n\nThe authors then attempted to showcase superior model performance with a few datasets which we then discussed."
+  },
+  {
+    "objectID": "posts/20230622/index.html#discussion",
+    "href": "posts/20230622/index.html#discussion",
+    "title": "Let’s Verify Step by Step",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhy apply language modeling for math problems? Some of us thought a logic-/rule-based approach for creating math solutions might be smarter and more efficient than using a language model because it will requires a massive amount of training data.\nWe also thought multi-step math solutions pose an interesting question because it makes it very clear (hence easy) to identify the correctness of individual steps in inference and deduction, compared to other language problems.\nSome of us questioned why the authors didn’t have enough mention of reinforcement learning although we eventually agreed that the paper’s main focus is about how to define the reward function properly.\nMany of us thought the idea of the process model is very similar to explainable AI (XAI) or interpretable AI. This is of course related to how we need to conduct value assessment when a multi-step solution reaches a correct answer with incorrect steps. This would be a big problem for XAI.\nSpeaking of value assessment, we had a question about the audience of these LLM-generated math solutions because they were extremely detailed, which we assumed are for students. Whether LLMs can tailor solutions based on the level of audience knowledge would be an interesting question to look into.\nWe had a length discussion about the “neutral” label because this would be where human labelers subjectivity will matter a lot. It would’ve been nice if the authors mentioned this more. Also, we were disappointed that the paper didn’t have any mention of who the human labelers were because they were the ones who contributed to the training data.\nCompared to other deep learning papers, we appreciated that the authors did attempt to include many details of the models even though like many deep learning models, we felt the explanation insufficient. For instance, it wasn’t perfectly clear of the multi-step solutions are fed as input to the model during training.\nWe had a brief discussion of model poisoning attacks because ChatGPT and its likes collect user data and we wondered how it can conduct quality control of user input. At the end of the paper, we sensed that the authors can’t have full knowledge of every training data, and then we wonder how they can be sure of what kind of data is used to generate output.\nFigure 3 and similar figures that are followed by this somewhat puzzled us because there was no clear explanation of what the majority voting baseline was. Besides, Figure 3 shows that when the solutions are simple, there wasn’t much performance between the two models. Also, model performance was generally lower when the solution was simple. If LLMs can’t solve simple math problems, we wonder their positive findings matter or not.\nFigure 4 shows performance that is quite low (close to 50%) and we weren’t entirely sure whether this is an acceptable level of performance or not.\nSome of us criticized the use of the term “alignment tax”, which makes AI safety quite negative, which is essentially requirements for any public-facing AI applications.\nUnder 6.3, the authors claim that there wasn’t “clear sign of memorization”, but they did not provide a clear definition of this clear sign. Are they talking about overfitting? Regardless, this requires quantifiable evidence.\nThe multi-step learning model made us think about implementing course-correct steps in model training. For instance, using a callback function, if we can somehow detect the model is on a clearly wrong path, how can we pull it back so that we don’t waste compute resource and train the model in a more efficient way? Some of us thought it might have to do with devising a more interactive and granular cost function."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Why ML Journal Club",
+    "section": "",
+    "text": "In machine learning (ML) community, numerous research papers and new tools come out everyday. For an individual ML practitioner like myself, it is impossible to check every paper and tool, and it is also difficult to know what works and what doesn’t. There are several weekly ML newsletters that provide a summary but I still need to carve out time after work to digest it. Besides, I prefer reading the papers in depth to examine how they exactly work and whether there are any flaws. But of course reading and critiquing papers on a regular basis requires discipline and dedication.\nThis is where a journal club can be useful. A group of people reading and dissecting papers together and having a discussion about them is certainly more fun and educational than doing everything alone. In a journal club, participants usually take turns to present a paper, which makes things easy. We can also hold each other accountable so that we as a group read papers on a consistent pace. Finally, the gathering itself becomes a good networking and information-sharing opportunity.\nI have gather a group of my fellow ML practitioner friends in Austin that I have known personally for several years. We are a diverse group of engineers and researchers with different interests and backgrounds. I am really excited to participate in this journal club with these brilliant friends to critique papers together, share our own practices at work, and socialize."
+  },
+  {
     "objectID": "posts/20230126/index.html",
     "href": "posts/20230126/index.html",
     "title": "Leakage and the Reproducibility Crisis in ML-based Science",
@@ -47,13 +208,6 @@
     "title": "Leakage and the Reproducibility Crisis in ML-based Science",
     "section": "Final thoughts",
     "text": "Final thoughts\nData leakage is a big issue that is not highlighted enough. The authors focused their efforts on identifying data leakage in ML-based science. While we appreciate them proposing a solution to identify and prevent data leakage, we think filling out model info sheets is a big ask and unlikely to be a common practice unless required by the peer review process. In addition, there are efficacy issues with model info sheets and it will be impossible to substantiate each claim. Industry ML applications are likely facing similar challenges with data leakage as ML-based science but these effects will be even more challenging to detect and quantify."
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Why ML Journal Club",
-    "section": "",
-    "text": "In machine learning (ML) community, numerous research papers and new tools come out everyday. For an individual ML practitioner like myself, it is impossible to check every paper and tool, and it is also difficult to know what works and what doesn’t. There are several weekly ML newsletters that provide a summary but I still need to carve out time after work to digest it. Besides, I prefer reading the papers in depth to examine how they exactly work and whether there are any flaws. But of course reading and critiquing papers on a regular basis requires discipline and dedication.\nThis is where a journal club can be useful. A group of people reading and dissecting papers together and having a discussion about them is certainly more fun and educational than doing everything alone. In a journal club, participants usually take turns to present a paper, which makes things easy. We can also hold each other accountable so that we as a group read papers on a consistent pace. Finally, the gathering itself becomes a good networking and information-sharing opportunity.\nI have gather a group of my fellow ML practitioner friends in Austin that I have known personally for several years. We are a diverse group of engineers and researchers with different interests and backgrounds. I am really excited to participate in this journal club with these brilliant friends to critique papers together, share our own practices at work, and socialize."
   },
   {
     "objectID": "posts/20230223/index.html",
@@ -147,99 +301,22 @@
     "text": "Final thoughts\nThanks to the paper, we learned that VQ-VAE and transformer together can generate images from text inputs. However, we questioned the results and model validation especially due to the lack of investigation on model failure. We also thought about ethical aspect of this model being available in public. Just because it belongs to computer vision, which tends to amuse general audience, it does not mean that it is exempt from any social responsibility. And in deep learning with image and speech data, it is often the case that model validation is often looser than tabular data used in industries with higher stakes such as health care, finance, or risk assessment. That said, we would like to learn more about other techniques mentioned in the paper to have a deeper understanding of how they work."
   },
   {
-    "objectID": "posts/20221027/index.html",
-    "href": "posts/20221027/index.html",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "",
-    "text": "Note\n\n\n\n\nPaper: “Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI\nPresenter: Hongsup\nAttendees: Athula, Hongsup, Kate, and Saina"
-  },
-  {
-    "objectID": "posts/20221027/index.html#why-this-paper",
-    "href": "posts/20221027/index.html#why-this-paper",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "Why this paper",
-    "text": "Why this paper\nMany ML articles exist but few talk about how the sausage gets made. They are often based on toy or clean benchmark datasets, which are quite different from what we get in real world. That’s why I enjoy reading survey papers. They interview people in the field like us and try to address common pain points to find a broader picture.\nFor the past several years, I have been noticing a trend in ML community. Many practitioners tend to ignore data quality but instead put all their efforts into models and algorithms. I find it very troubling because many problems in real-world ML are caused by data-related issues. “Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI talks about this pattern based on the interviews from dozens of ML practitioners all over the globe."
-  },
-  {
-    "objectID": "posts/20221027/index.html#data-cascades",
-    "href": "posts/20221027/index.html#data-cascades",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "Data cascades",
-    "text": "Data cascades\nThe paper focuses on “data cascades,” a series of compounding negative events due to data-related issues. The authors say the problems are wildly prevalent (92% reported experience at least one type of data cascades). During the discussion, we thought about sampling bias because those who are ignorant of these problems may not be able to recognize them. Indeed, they are often opaque because there are no clear indicators and often discovered later. Data cascades often lead to technical debt and harm to beneficiary communities. They can sour relationships between stakeholders and in extremely cases, force ML practitioners discard entire datasets. Figure 1 shows the schematic of the data cascades. We thought the figure wasn’t particularly informative because too many arrows exist between the points. We hoped that the authors explained why there aren’t arrows between certain points.\n\n\n\nFigure 1. Data cascades in high-stakes AI"
-  },
-  {
-    "objectID": "posts/20221027/index.html#high-stake-domains",
-    "href": "posts/20221027/index.html#high-stake-domains",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "High-stake domains",
-    "text": "High-stake domains\nData cascades are more critical in high stake domains such as landslide detection, suicide prevention, and cancer detection. There are several reasons:\n\nMore ML applications are deployed in these domains where more direct humanitarian impact exists.\nThis impact can be disproportionate towards vulnerable communities.\nIt is often very challenging to acquire high quality data in these domains.\nThe problems frequently require more multidisciplinary approach.\n\n\n\n\nTable 1. Summary of participant demographics; Domain\n\n\nThe authors find that the problems are due to human factors. Unfortunately solutions have been focusing on other issues such as database, legal, or license. To gather firsthand experience in the field, the authors interviewed 50+ ML practitioners all over the world, ranging from the US to India and African countries, and from founders to developers. Table 1 summarizes various high-stake domains. It was fascinating for us to learn that ML is used in areas as landslide detection, poaching prevention, or regenerative farming. It would have been more interesting to see how data cascades create specific negative consequences in some domains."
-  },
-  {
-    "objectID": "posts/20221027/index.html#data-cascade-triggers",
-    "href": "posts/20221027/index.html#data-cascade-triggers",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "Data cascade triggers",
-    "text": "Data cascade triggers\nThe authors introduce three triggers that cause data cascades.\n\nPhysical world brittleness\nPhysical world changes over time and thus often ML systems can’t produce robust results. Data drifts due to hardware (measurements) and environmental changes are commonly mentioned in ML Ops literature. In high-stake domains, they become more pronounced because training data are very limited and policy or regulation changes can impact the ML systems in various ways.\n\n\nInadequate application-domain expertise\nMost ML practitioners are not equipped with domain knowledge. All of us admitted that our academic background does not match to the domain that we work in. Even though close collaboration between domain experts and ML practitioners is always emphasized, in practice the authors find that domain experts are often detached from the larger impact of the applications. The authors explain two specific types of problems:\nSubjectivity in ground truth: Areas such as insurance claim approval or medical imaging for cancer detection involve highly specialized and often subjective decision-making. To build a reliable and robust ML system, it is necessary to standardize the decision-making criteria and find consensus. However, ML practitioners are asked to rush through the development process, and thus do not have time to address it.\nPoor domain expertise in finding representative data: ML practitioners often start building ML applications without involving domain experts much because the practitioners simply believe that data are reliable. However, because they lack domain knowledge, practitioners make incomplete assumptions, which results in disparity between data collection and deployment. This often leads to poor and unreliable model performance.\n\n\nConflicting reward system\nData collection and any data-related work are often considered non-technical and undervalued. The situation gets worse for frontline workers because they are asked to collect and curate field data on top of their existing responsibilities but they are not well compensated.\n\n\nPoor cross-organizational documentation\nMetadata about data collection, quality, and curation are also often missing. Some good practices the authors suggest involve keeping good documentation on reproducible assets such as data collection plan, data strategy handbooks, design documents, file conventions, field notes, and so on."
-  },
-  {
-    "objectID": "posts/20221027/index.html#broader-context",
-    "href": "posts/20221027/index.html#broader-context",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "Broader context",
-    "text": "Broader context\nData cascades discussion can be extended to bigger problems in ML community.\n\nIncentives and currency in AI\nBecause of the low incentives, data-related work are not rewarded or even tracked. This makes us difficult to get buy-in from stakeholders. The situation is similar in academia as well. Most practitioners and researchers focus on developing algorithms but they rarely mention or work on data. The title “Everyone wants to do the model work, not the data work” was a verbatim from an interviewee. Unfortunately, we were all able to relate to this quote.\n\n\nData education\nMost ML or data science curricula lack any mention of data quality or ethics. They use toy datasets or very clean benchmark datasets. As experience ML practitioners, we wholeheartedly agreed with this finding. We lamented that these courses do not prepare students with practical knowledge because one never works with clean datasets in real world. Some of us have experienced this pattern firsthand because we have been interviewing candidates for an ML practitioner position and found that the candidates who only worked with clean datasets (or primarily worked on algorithms) often lack basic practical ML knowledge.\n\n\nData bootstrapping\nData bootstrapping describes ML practitioners’ use of other data sources such as established data services or existing datasets to create their own dataset. For most of us, it was surprising to learn that many ML practitioners in high-stake domains in countries from Global South had to collect data from scratch. We agreed that challenges in data collection and lack of access to quality data would create inequality between countries."
-  },
-  {
-    "objectID": "posts/20221027/index.html#how-to-address-data-cascades",
-    "href": "posts/20221027/index.html#how-to-address-data-cascades",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "How to address data cascades",
-    "text": "How to address data cascades\nThe authors introduce several ways of addressing the problem of data cascades. They introduce the concept of “data excellence”, an effort to “focus on the practices, politics, and values of humans of the data pipeline to improve the quality and sanctity of data, through the use of processes, standards, infrastructure and incentives”.\n\nFrom goodness-of-fit to goodness-of-data\nThe first is to use the right metric to evaluate data quality. Many ML practitioners use model performance metrics such as accuracy and RMSE to evaluate data quality. Some of us had a similar experience. We had to argue that model metrics shouldn’t be used to make a decision on data-pipeline and data-quality features. We hope that the authors can introduce specific examples of goodness-of-data metrics in the future.\n\n\nIncentives for data excellence\nThere are several ways to address the low incentives of data work. First, journals and conferences should require dataset documentation, provenance, and ethics as mandatory disclosure. Second, organizations should reward data-related work similar to how good software engineering is rewarded. Finally, partnership between stakeholders can nurture data excellence by sharing the reward on data-related work such as data collection, anomaly identification, and model verification.\n\n\nEducation and visibility\nThe authors argue for real-world data literacy in AI education, which includes training on data collection, infrastructure building, data documentation, data sense-making, and data ethics and responsible AI in general. Increasing the data visibility in ML lifecycle is important as well; implementing good monitoring system is one of the most important ML Ops practices anyway."
-  },
-  {
-    "objectID": "posts/20221027/index.html#final-thoughts",
-    "href": "posts/20221027/index.html#final-thoughts",
-    "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
-    "section": "Final thoughts",
-    "text": "Final thoughts\nSome of us found this paper vindicating because we have been advocating for data quality at work and had to fight for the attention it deserves. The paper helped us share our own practices at work that address data-related issues especially data collection, curation, and post-deployment data problems. Even though we generally agreed with authors’ suggestions, some of us wanted something more specific, like a case study. Overall, we found the paper interesting and insightful. We thought it would be beneficial to read the paper with our colleagues at work to start a discussion for data excellence."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Austin ML Journal Club",
     "section": "",
-    "text": "Reviwing a Case Study About Real Estate Market Prediction\n\n\n\n\n\n\n\npaper\n\n\n\n\nThe paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.\n\n\n\n\n\n\nFeb 23, 2023\n\n\nAthula Pudhiyidath\n\n\n\n\n\n\n  \n\n\n\n\nLeakage and the Reproducibility Crisis in ML-based Science\n\n\n\n\n\n\n\npaper\n\n\n\n\nData leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.\n\n\n\n\n\n\nJan 26, 2023\n\n\nKate Behrman\n\n\n\n\n\n\n  \n\n\n\n\nZero-Shot Text-to-Image Generation\n\n\n\n\n\n\n\npaper\n\n\n\n\nThere is so much hype in generative AI. But how does it actually work? We discuss OpenAI’s DALL-E paper to understand model architecture but more importantly, whether their model validation is solid and reasonable.\n\n\n\n\n\n\nDec 15, 2022\n\n\nHongsup Shin\n\n\n\n\n\n\n  \n\n\n\n\n“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI\n\n\n\n\n\n\n\npaper\n\n\n\n\nGarbage in, garbage out. It seems like a lot of people in the ML community still don’t understand this logic. We discuss poor data-handling practices and their critical ramifications.\n\n\n\n\n\n\nOct 27, 2022\n\n\nHongsup Shin\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhy ML Journal Club\n\n\n\n\n\n\n\nnews\n\n\n\n\nWelcome to our journal club! I talk about why I organized an in-person journal club with my fellow ML practitioner friends in Austin, TX.\n\n\n\n\n\n\nOct 17, 2022\n\n\nHongsup Shin\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "quarto.html",
-    "href": "quarto.html",
-    "title": "Blogging",
-    "section": "",
-    "text": "Our blog uses quarto platform and it is hosted via GitHub Pages. This is a short guide for uploading blog posts using quarto."
-  },
-  {
-    "objectID": "quarto.html#set-up",
-    "href": "quarto.html#set-up",
-    "title": "Blogging",
-    "section": "Set up",
-    "text": "Set up\n\nInstall quarto. The VS Code option is straightforward.\nClone the blog repository.\nCreate an issue (title example: “Upload a blog post for the Feb 2023 meeting”) and assign yourself to the issue.\nCheck out a new branch for the issue (branch name example: “16-write_blog”)."
-  },
-  {
-    "objectID": "quarto.html#write",
-    "href": "quarto.html#write",
-    "title": "Blogging",
-    "section": "Write",
-    "text": "Write\n\nCreate a folder in /posts. The name of the new folder should be the date of the meeting in YYYYMMDD format (e.g., posts/20221027/).\nCreate index.qmd inside the folder. This is the main file for your post. The top section of index.qmd is a YAML block with document options. You must fill out title, author, date, description, categories.\n---\ntitle: \"Paper title\"\nauthor: \"Author full name\"\ndate: \"YYYY-MM-DD\"\nimage: \"This image will show on the main page (this is optional).jpg\"\ndescription: Short description of the post. It will show on the main page.\ncategories: [paper]\n---\nBefore writing the body, please include the following right after the YAML block:\n:::{.callout-note}\n- Paper: [paper title](link to original paper)\n- Presenter: [first name](linkedin profile)\n- Attendees: [first name 1 (alphabetical order)](linkedin profile), [first name 2](linkedin profile), ... \n:::\nTo give everyone some context, start the body with “Why this paper” paragraph.\nYou can include any image files in the same folder as index.qmd.\nRun quarto preview <file name> to preview the rendered look of your post on the website."
-  },
-  {
-    "objectID": "quarto.html#render-and-review",
-    "href": "quarto.html#render-and-review",
-    "title": "Blogging",
-    "section": "Render and Review",
-    "text": "Render and Review\n\nRun quarto render once you are done. This automatically generates and modifies html files in the /docs and the main folders.\nAdd all the changes, commit, and make a merge request to main.\nAssign the attendees of the meeting as reviewers, and go through a review process. Leave a message on Slack about the merge request.\nUpdate the manuscript based on reviewers’ comments.\nOnce approved, merge the branch, close your issue ticket, and delete the remote branch.\n\nCurrently the blog is hosted via gh-pages branch (not main). Thus, after main is updated, we will rebase it to gh-pages, and the blog will be automatically updated with a new post."
+    "text": "Let’s Verify Step by Step\n\n\n\n\n\n\n\npaper\n\n\n\n\nThis is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also “think” through the problem to arrive at the right answer.\n\n\n\n\n\n\nJun 22, 2023\n\n\nAkshata Mohan, Hongsup Shin\n\n\n\n\n\n\n  \n\n\n\n\nReviwing a Case Study About Real Estate Market Prediction\n\n\n\n\n\n\n\npaper\n\n\n\n\nThe paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.\n\n\n\n\n\n\nFeb 23, 2023\n\n\nAthula Pudhiyidath\n\n\n\n\n\n\n  \n\n\n\n\nLeakage and the Reproducibility Crisis in ML-based Science\n\n\n\n\n\n\n\npaper\n\n\n\n\nData leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.\n\n\n\n\n\n\nJan 26, 2023\n\n\nKate Behrman\n\n\n\n\n\n\n  \n\n\n\n\nZero-Shot Text-to-Image Generation\n\n\n\n\n\n\n\npaper\n\n\n\n\nThere is so much hype in generative AI. But how does it actually work? We discuss OpenAI’s DALL-E paper to understand model architecture but more importantly, whether their model validation is solid and reasonable.\n\n\n\n\n\n\nDec 15, 2022\n\n\nHongsup Shin\n\n\n\n\n\n\n  \n\n\n\n\n“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI\n\n\n\n\n\n\n\npaper\n\n\n\n\nGarbage in, garbage out. It seems like a lot of people in the ML community still don’t understand this logic. We discuss poor data-handling practices and their critical ramifications.\n\n\n\n\n\n\nOct 27, 2022\n\n\nHongsup Shin\n\n\n\n\n\n\n  \n\n\n\n\nWhy ML Journal Club\n\n\n\n\n\n\n\nnews\n\n\n\n\nWelcome to our journal club! I talk about why I organized an in-person journal club with my fellow ML practitioner friends in Austin, TX.\n\n\n\n\n\n\nOct 17, 2022\n\n\nHongsup Shin\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hongsup is the organizer of the Austin ML Journal Club. He organizes the club meetings, and maintains the blog and the journal club GitHub repository.\nHe is a Principal ML Research Engineer at Arm and used to be a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin, TX. His background is computational neuroscience and behavioral ecology. He is interested in ML Ops and responsible/ethical AI."
+  },
+  {
+    "objectID": "about.html#hongsup-shin",
+    "href": "about.html#hongsup-shin",
     "title": "About",
     "section": "",
     "text": "Hongsup is the organizer of the Austin ML Journal Club. He organizes the club meetings, and maintains the blog and the journal club GitHub repository.\nHe is a Principal ML Research Engineer at Arm and used to be a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin, TX. His background is computational neuroscience and behavioral ecology. He is interested in ML Ops and responsible/ethical AI."
@@ -259,15 +336,22 @@
     "text": "Athula Pudhiyidath\nShe is a Data Scientist at PrimeStreet and is based in Austin, TX. Her background is in cognitive neuroscience. She is interested in keeping up with the ever-changing landscape of AI and ML and its applications to daily life and business."
   },
   {
-    "objectID": "notes/2023-02-23.html",
-    "href": "notes/2023-02-23.html",
-    "title": "Austin ML Journal Club",
-    "section": "",
-    "text": "Meeting notes\nAll of us found a lot of problems with this paper. Here are some discussions points.\n\nFrom the abstract, having conclusion as “model X is the best” is honestly not publishable. It’s simply stating that they did model tuning, which is really a few lines of code and doesn’t mean anything more.\nThe fact that they are framing this as classification, not regression is highly problematic and misleading. Making this as classification ignores the distribution and magnitude of difference between appraisal and selling price.\nData leakage in feature space: we suspect some features may contain information about the target or they may not be available at the time of prediction\nEven though they didn’t have any class imbalance (class ratio was almost 1:1), according to their graphs, it’s possible that class imbalance would have changed over time.\nIt was not clear what the goal of the paper was especially on what they want to do with the ML model. We had a discussion about whether the authors should’ve used listing price instead of appraisal. They also didn’t seem to consider the common sense that government appraisal might lag and how their model will account for it.\nThe dataset is limited to a single county and yet in conclusion they made overreaching conclusions.\nIt’s also unclear how they got the socioeconomic data, which is critical because they seemed to emphasize them in Introduction.\nTheir feature representation was highly problematic (Tab. 1) mainly because they treated categorical features like zip code as numeric values.\nThere were also new features (such as month) they later mentioned in the paper, which were missing in their feature set table. We also suspect that they used month as numeric variable not as ordinal/categorical variable.\nThe sale date feature also could’ve been divided into more granular and meaningful features such as year, month, quarter, school season, etc.\nEven with feature importance calculation and feature selection, we couldn’t find what they exactly want to do with the prediction and how they want to use it. What exactly can become actionable items is also missing. This is why we were confused about why they did correlation study because it wasn’t really used much in their modeling. Besides, we don’t know whether they are interested in building interpretable models and whether they care about conducting sensitivity analysis to understand the impact of feature value changes better.\nUsing too many highly correlated features and their impact on calculating feature importance should have been investigated.\nTheir feature importance calculation seems to have data leakage issue.\nMean encoding idea is not clear. Also, it seems to be prone to data leakage.\nVoting classifier description doesn’t mention what the voter algorithms are.\nThey didn’t have an independent test set and their cross validation didn’t consider temporal aspect of the data (=more data leakage).\nTheir lack of discussion on business objectives becomes problematic again when they do model comparison with various metrics. We don’t know which metric makes most sense. They seemed to have used accuracy.\nAt this point, we agreed that this paper seemed like it’s written for the sake of showcasing ML (aka “we can build an ML for this”) not for any research and business goals.\nAgain, we think the model selection should’ve considered interpretability, which is related to the actual use case of the model, which the authors never discussed.\nThey also didn’t mention any baseline and so we don’t know the achieved score is enough or not.\nMassive overreach is shown in their conclusions.\nAs a future work, they suggested building better ML predictors. First, this paper is not about creating a novel algorithm, so they can’t make this claim and second, it’s often the case that authors simply suggest building a better model even though the problem is not the model but rather it’s them making so many basic mistakes such as data leakage, feature misrepresentation, and lack of use case."
+    "objectID": "about.html#akshata-mohan",
+    "href": "about.html#akshata-mohan",
+    "title": "About",
+    "section": "Akshata Mohan",
+    "text": "Akshata Mohan\nAkshata Mohan does machine learning at Cloudflare. She is also one of the organizers of the local women in data science meetup in Austin. Her background is in information science and analytics and she’s interested in the applications of ML to cybersecurity."
   },
   {
     "objectID": "notes/2023-01-26.html",
     "href": "notes/2023-01-26.html",
+    "title": "Austin ML Journal Club",
+    "section": "",
+    "text": "ML-based science: Is prediction important in science? This might depend on the domain (e.g., climate change research might focus on predicting the risk)\nModel info sheet: the intent is good but it seems unfeasible (too much effort and information for the author)\nDefinition of reproducibility: it makes sense to consider the correctness of analysis and scientific integrity as a part of reproducibility\nWhy focus on the civil war papers? Perhaps these are well-studied review papers w/ code and data available"
+  },
+  {
+    "objectID": "notes/2023-01-26.html#overview",
+    "href": "notes/2023-01-26.html#overview",
     "title": "Austin ML Journal Club",
     "section": "",
     "text": "ML-based science: Is prediction important in science? This might depend on the domain (e.g., climate change research might focus on predicting the risk)\nModel info sheet: the intent is good but it seems unfeasible (too much effort and information for the author)\nDefinition of reproducibility: it makes sense to consider the correctness of analysis and scientific integrity as a part of reproducibility\nWhy focus on the civil war papers? Perhaps these are well-studied review papers w/ code and data available"
@@ -320,40 +404,5 @@
     "title": "Austin ML Journal Club",
     "section": "5: Enhancing the reproducibility",
     "text": "5: Enhancing the reproducibility\n\nFirst of all, this paper feels very redundant. This section also.\nAgain, these are good recommendations but maybe a big ask? (We were being realistic.)\nPrivacy concern is another thing to think about. If we violate privacy when we have to disclose so much about data and distribution to prove the absence of data leakage, how would we resolve this conflict?\nWe learned about the presence of CodeOcean (pretty cool effort)."
-  },
-  {
-    "objectID": "readme.html",
-    "href": "readme.html",
-    "title": "Tips",
-    "section": "",
-    "text": "If you are interested in joining the journal club, please send an email to hongsup.shin@pm.me."
-  },
-  {
-    "objectID": "readme.html#logistics",
-    "href": "readme.html#logistics",
-    "title": "Tips",
-    "section": "Logistics",
-    "text": "Logistics\n\nWe meet every last Thursday of the month between 6 pm and 8 pm. Meeting announcement is done through our Slack channel.\nWe are flexible about where we meet. Hongsup has been hosting the meetings so far and he can provide his place for future meetings as a backup."
-  },
-  {
-    "objectID": "readme.html#presentation",
-    "href": "readme.html#presentation",
-    "title": "Tips",
-    "section": "Presentation",
-    "text": "Presentation\n\nWe take turns to present a paper.\nWhen announcing what to read, we encourage the presenter to write a few sentences about the reason for the pick. This will motivate readers.\nIt doesn’t have to be a paper. It can be a blog post, newspaper article, or even tool documentation. We can also use the journal club as a brainstorming session if the presenter wants to discuss a specific work problem they want to talk about.\nEvery presenter will be introduced in the About page with a short bio. Participants will be mentioned in the posts.\nPresenters don’t have to know everything in the paper but they should have enough understanding of the paper to lead the discussion.\n\n\nGuidelines for choosing papers\nReading papers takes a great deal of time. To respect everyone’s time, we encourage presenters to consider the following as acceptable material for the meetings.\n\nPapers that are published or peer-reviewed\nPapers about ideas that are discussed frequently in the media\nPapers with high citation counts\nPapers from renowned research groups\nPapers that are not too niche in terms of their domain\nPapers that are not too long\nPapers that have many interesting discussing points; this means you can choose a bad paper intentionally"
-  },
-  {
-    "objectID": "readme.html#communication",
-    "href": "readme.html#communication",
-    "title": "Tips",
-    "section": "Communication",
-    "text": "Communication\n\nAll correspondence happens in our Slack channel.\nPresenters should give others at least 2 weeks to read the paper.\nPlease send a message on Slack about whether you can come next time at least a week before the meeting."
-  },
-  {
-    "objectID": "readme.html#blogging",
-    "href": "readme.html#blogging",
-    "title": "Tips",
-    "section": "Blogging",
-    "text": "Blogging\n\nPresenters are welcome to write a blog post about the paper they presented.\nThe blog is hosted through GitHub pages from our repository and we use the Quarto platform.\nYou can write about anything in the post as long as it captures some of our discussion during the meeting.\nBlogging is optional. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together."
   }
 ]
