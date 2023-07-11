@@ -1,0 +1,45 @@
+---
+title: "Let’s Verify Step by Step"
+author:
+    - Akshata Mohan
+    - Hongsup Shin
+date: "2023-06-22"
+image: "fig1.png"
+description: This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also "think" through the problem to arrive at the right answer.
+categories: [paper]
+---
+
+:::{.callout-note}
+- Paper: [*Let’s Verify Step by Step*](https://arxiv.org/abs/2305.20050)
+- Presenter: [Akshata](https://www.linkedin.com/in/akshata-mohan/)
+- Attendees: [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Meghann](https://www.linkedin.com/in/meghann-agarwal/), [Saina](https://www.linkedin.com/in/saina199/)
+:::
+
+## Why this paper?
+This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. It's interesting to see how a process based supervision approach is superior to outcome based supervision approach.
+
+## Paper summary
+The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also "think" through the problem to arrive at the right answer. The authors mention that there are numerous benefits to this approach:
+
+1. Model reasoning is explainable as each step of the process is provided a probability score (positive, negative and neutral)
+2. Wrong steps that would lead to incorrect outcomes are identified early on in the training process
+3. Wrong steps that would lead to the correct solution are also identified and discouraged
+4. Model could be trained to reason and model its behaviors that matches human values which leads to reduction in hallucinations, false information and potentially dangerous outcomes.
+
+The authors then attempted to showcase superior model performance with a few datasets which we then discussed.
+
+## Discussion
+
+- Why apply language modeling for math problems? Some of us thought a logic-/rule-based approach for creating math solutions might be smarter and more efficient than using a language model because it will requires a massive amount of training data.
+- We also thought multi-step math solutions pose an interesting question because it makes it very clear (hence easy) to identify the correctness of individual steps in inference and deduction, compared to other language problems.
+- Some of us questioned why the authors didn't have enough mention of reinforcement learning although we eventually agreed that the paper's main focus is about how to define the reward function properly.
+- Many of us thought the idea of the process model is very similar to explainable AI (XAI) or interpretable AI. This is of course related to how we need to conduct value assessment when a multi-step solution reaches a correct answer with incorrect steps. This would be a big problem for XAI.
+- Speaking of value assessment, we had a question about the audience of these LLM-generated math solutions because they were extremely detailed, which we assumed are for students. Whether LLMs can tailor solutions based on the level of audience knowledge would be an interesting question to look into.
+- We had a length discussion about the "neutral" label because this would be where human labelers subjectivity will matter a lot. It would've been nice if the authors mentioned this more. Also, we were disappointed that the paper didn't have any mention of who the human labelers were because they were the ones who contributed to the training data.
+- Compared to other deep learning papers, we appreciated that the authors did attempt to include many details of the models even though like many deep learning models, we felt the explanation insufficient. For instance, it wasn't perfectly clear of the multi-step solutions are fed as input to the model during training.
+- We had a brief discussion of model poisoning attacks because ChatGPT and its likes collect user data and we wondered how it can conduct quality control of user input. At the end of the paper, we sensed that the authors can't have full knowledge of every training data, and then we wonder how they can be sure of what kind of data is used to generate output.
+- Figure 3 and similar figures that are followed by this somewhat puzzled us because there was no clear explanation of what the majority voting baseline was. Besides, Figure 3 shows that when the solutions are simple, there wasn't much performance between the two models. Also, model performance was generally lower when the solution was simple. If LLMs can't solve simple math problems, we wonder their positive findings matter or not.
+- Figure 4 shows performance that is quite low (close to 50%) and we weren't entirely sure whether this is an acceptable level of performance or not.
+- Some of us criticized the use of the term "alignment *tax*", which makes AI safety quite negative, which is essentially requirements for any public-facing AI applications.
+- Under 6.3, the authors claim that there wasn't "clear sign of memorization", but they did not provide a clear definition of this clear sign. Are they talking about overfitting? Regardless, this requires quantifiable evidence.
+- The multi-step learning model made us think about implementing course-correct steps in model training. For instance, using a callback function, if we can somehow detect the model is on a clearly wrong path, how can we pull it back so that we don't waste compute resource and train the model in a more efficient way? Some of us thought it might have to do with devising a more interactive and granular cost function.
