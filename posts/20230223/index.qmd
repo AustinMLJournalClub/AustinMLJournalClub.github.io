@@ -2,6 +2,7 @@
 title: "Reviwing a Case Study About Real Estate Market Prediction"
 author: "Athula Pudhiyidath"
 date: "2023-02-23"
+image: "table1.png"
 description: The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper's research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.
 categories: [paper]
 ---
