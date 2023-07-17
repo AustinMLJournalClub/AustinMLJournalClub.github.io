@@ -9,7 +9,7 @@ Hi, we are a group of machine learning (ML) practitioners in Austin, TX. We read
 ## [Hongsup Shin](https://www.linkedin.com/in/hongsupshin/)
 Hongsup is the organizer of the Austin ML Journal Club. He organizes the club meetings, and maintains the blog and the journal club GitHub repository. 
 
-He is a Principal ML Research Engineer at Arm and used to be a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin, TX. His background is computational neuroscience and behavioral ecology. He is interested in **ML Ops and responsible/ethical AI**.
+He is a Principal ML Research Engineer at Arm and used to be a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin, TX. His background is computational neuroscience and behavioral ecology. He is interested in ML Ops, responsible AI, and AI ethics.
 
 ## [Kathrine (Kate) Behrman](https://www.linkedin.com/in/kate-behrman/)
 She is a Staff ML Research Engineer at Arm in Austin, TX. She used to work for the USDA-NRCS and USDA-ARS as a Research Ecologist. Her background is in landscape and evolutionary ecology. She is interested in human AI interactions and responsible use of AI.
@@ -18,6 +18,7 @@ She is a Staff ML Research Engineer at Arm in Austin, TX. She used to work for t
 She is a Data Scientist at PrimeStreet and is based in Austin, TX. Her background is in cognitive neuroscience. She is interested in keeping up with the ever-changing landscape of AI and ML and its applications to daily life and business.
 
 ## [Joel Afriyie](https://www.linkedin.com/in/joelafriyie)
+Joel is a Machine Learning Engineer at Acrisure based here in Austin, TX. His background is in Computer Science and Fair ML. He is interested in MLOps, Music ML, Fair and Responsible AI, and Software and Data Engineering.
 
 ## [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan)
 Akshata Mohan does machine learning at Cloudflare. She is also one of the organizers of the local women in data science meetup in Austin. Her background is in information science and analytics and she’s interested in the applications of ML to cybersecurity.
