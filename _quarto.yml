@@ -11,6 +11,7 @@ website:
       - quarto.qmd
       - icon: github
         href: https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io
+  open-graph: true
 format:
   html:
     theme: flatly
