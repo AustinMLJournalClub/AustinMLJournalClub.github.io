@@ -24,3 +24,4 @@ Joel is a Machine Learning Engineer at Acrisure based here in Austin, TX. His ba
 Akshata Mohan does machine learning at Cloudflare. She is also one of the organizers of the local women in data science meetup in Austin. Her background is in information science and analytics and she’s interested in the applications of ML to cybersecurity.
 
 ## [Saina Lajevardi](https://www.linkedin.com/in/saina199/)
+Saina is a senior Data Scientist at Adobe Commerce, located in Austin, TX. Previously, she worked at Arm Cloud Technologies, where she developed machine-learning based frameworks in the IoT space. Her primary interests lie in problem-solving with a pragmatic approach.
