@@ -2,10 +2,10 @@
 title: "Tips"
 ---
 
-If you are interested in joining the journal club, please send an email to <hongsup.shin@pm.me>.
+If you are interested in joining the journal club, please send an email to <hongsup.shin@pm.me>. We will send you an invite to our Discord channel.
 
 ## Logistics
-- We meet **every last Thursday of the month** between 6 pm and 8 pm. Meeting announcement is done through our Slack channel.
+- We meet **every last Thursday of the month** between 6 pm and 8 pm. Meeting announcement is done through our Discord channel.
 - We are flexible about where we meet. Hongsup has been hosting the meetings so far and he can provide his place for future meetings as a backup.
 
 ## Presentation
