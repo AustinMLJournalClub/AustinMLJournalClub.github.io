@@ -1,0 +1,15 @@
+---
+title: "Reading List"
+about:
+  template: solana
+---
+
+These are the papers/articles/repos/videos that our journal club members have shared, which might be worth presenting in the future or we think are interesting. This page will be updated once a month.
+
+- [Machine Learning and the Future of Bayesian Computation](https://arxiv.org/abs/2304.11251) shared by Brian
+- [Challenges in Deploying Machine Learning: a Survey of Case Studies](https://arxiv.org/abs/2011.09926) shared by Hongsup
+- [On the Opportunities and Risks of Foundation Models](https://arxiv.org/abs/2108.07258) shared by Hongsup
+- [The TinyLlama project](https://github.com/jzhang38/TinyLlama) shared by Kshitij
+- [MiniLLM: Large Language Models on Consumer GPUs](https://github.com/kuleshov/minillm) shared by Hongsup
+- [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) shared by Brian
+- [Dive into Deep Learning: Coding Session #4 Attention Mechanism I (MLT Artificial Intelligence)](https://www.youtube.com/watch?v=baEQGk-CTwk&ab_channel=MLTArtificialIntelligence) by Kshitij
