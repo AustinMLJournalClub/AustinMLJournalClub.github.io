@@ -9,6 +9,7 @@ website:
       - about.qmd
       - readme.qmd
       - quarto.qmd
+      - reading_list.qmd
       - icon: github
         href: https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io
   open-graph: true
