@@ -523,5 +523,12 @@
     "title": "Tips",
     "section": "Blogging",
     "text": "Blogging\n\nPresenters are welcome to write a blog post about the paper they presented.\nThe blog is hosted through GitHub pages from our repository and we use the Quarto platform.\nYou can write about anything in the post as long as it captures some of our discussion during the meeting.\nBlogging is optional. If the presenter is too busy to write the post, Hongsup will write a post instead, or he will suggest the presenter to write it together."
+  },
+  {
+    "objectID": "reading_list.html",
+    "href": "reading_list.html",
+    "title": "Reading List",
+    "section": "",
+    "text": "These are the papers/articles/repos/videos that our journal club members have shared, which might be worth presenting in the future or we think are interesting. This page will be updated once a month.\n\nMachine Learning and the Future of Bayesian Computation shared by Brian\nChallenges in Deploying Machine Learning: a Survey of Case Studies shared by Hongsup\nOn the Opportunities and Risks of Foundation Models shared by Hongsup\nThe TinyLlama project shared by Kshitij\nMiniLLM: Large Language Models on Consumer GPUs shared by Hongsup\nRetrieval-Augmented Generation for Knowledge-Intensive NLP Tasks shared by Brian\nDive into Deep Learning: Coding Session #4 Attention Mechanism I (MLT Artificial Intelligence) by Kshitij"
   }
 ]
