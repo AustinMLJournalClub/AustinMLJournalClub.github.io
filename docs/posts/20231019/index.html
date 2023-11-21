@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kathrine Behrman">
+<meta name="dcterms.date" content="2023-11-19">
+<meta name="description" content="This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets. The inductive biases of tree-based versus neural network models was analyzed as a proposed method to guide development of improved tabular specific neural network models.">
+
+<title>Austin ML Journal Club - Why do tree-based models still outperform deep learning on typical tabular data?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Austin ML Journal Club - Why do tree-based models still outperform deep learning on typical tabular data?">
+<meta property="og:description" content="This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets.">
+<meta property="og:image" content="Fig1.png">
+<meta property="og:site-name" content="Austin ML Journal Club">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../readme.html">
+ <span class="menu-text">Tips</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../quarto.html">
+ <span class="menu-text">Blogging</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reading_list.html">
+ <span class="menu-text">Reading List</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Why do tree-based models still outperform deep learning on typical tabular data?</h1>
+                  <div>
+        <div class="description">
+          This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets. The inductive biases of tree-based versus neural network models was analyzed as a proposed method to guide development of improved tabular specific neural network models.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">paper</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Kathrine Behrman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 19, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Paper: <a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/0378c7692da36807bdec87ab043cdadc-Abstract-Datasets_and_Benchmarks.html"><em>Why do tree-based models still outperform deep learning on typical tabular data?</em></a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/kate-behrman/">Kate</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula</a>, <a href="https://www.linkedin.com/in/brianking387/">Brian</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a>, <a href="https://www.linkedin.com/in/joelafriyie/">Joel</a>, <a href="https://www.linkedin.com/in/kshitij13/">Kshitij</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper?</h2>
+<p>This paper piqued my interest because it is a topic that I commonly grapple with. While deep learning techniques are highly publicized for superior performance on image and language data, many practical machine learning (ML) applications rely on tabular data. As an ML practitioner, there is a desire to use cutting edge techniques if they make sense for the data and application. This paper addresses the outstanding question, “Does deep learning outperform tree-based models on tabular data?” In order to answer this question, several shortcomings that have hindered a direct comparison of these modeling techniques on tabular data were addressed. They also compare the inductive biases of deep learning vs tree-based models to help further the development of tabular-based deep-learning architectures</p>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p><em>Benchmark creation</em></p>
+<p>One of the major contributions of this paper is a set of 45 tabular benchmarks used in this study and to be used in the future. The lack of standard and consistent tabular benchmarks was identified by the authors as one of the main reasons tabular studies aren’t reproducible. They fill this gap by making their tabular datasets available through the OpenML platform. This is a major advancement compared to the referenced literature that provides comparisons on 3 and 11 selected tabular datasets respectively (Borisov et al.&nbsp;2022; Gorishny et al.&nbsp;2021).</p>
+<p>For a dataset to be included as a benchmark, it must meet the following criteria:</p>
+<ul>
+<li>Heterogenous columns- each feature is different in nature (not the same signal with a different sensor).</li>
+<li>Not high dimensional- number of dimensions (d) less than 500; d/n (number of observations) less than 1/10.</li>
+<li>No undocumented datasets- removed if little information available.</li>
+<li>I.I.D. data – no time series or stream-like data.</li>
+<li>Real-world data- no artificial datasets with the exception of simulated data of practical importance.</li>
+<li>Not too small- no datasets with less than 4 features or less than 3k samples.</li>
+<li>Not too easy- remove dataset if a simple model (single tree or regression) scores within 5% of a default Resnet or HistGradientBoosting model.</li>
+<li>Not deterministic- remove dataset if the target is a deterministic function of the data (simulated games).</li>
+</ul>
+<p>In addition to the strict criteria above, the authors also removed “side issues” for practical purposes. Five side issues were removed by applying the following rules:</p>
+<ul>
+<li>Medium-sized training set- data too large was truncated to 10k samples</li>
+<li>No missing data- remove all missing data by column first and then row.</li>
+<li>Balanced classes- binarized data if there is more than 1 class and under sampled to retained equal samples of the top two frequency classes.</li>
+<li>Low cardinality categorical features- remove categorical features with more than 20 items.</li>
+<li>High cardinality numerical features- remove numerical features with less than 10 unique values and convert to categorical if there are 2 categories.</li>
+</ul>
+<p>Data preprocessing was minimal after the removal of side issues and benchmark criteria was met. All models that don’t directly include categorial features used ScikitLearn’s OneHotEncoder on categorical features. Regression targets were log-transformed when skewed. All features for neural network training were transformed using ScikitLearn’s QuantileTransformer.</p>
+<p><em>Model selection</em></p>
+<p>The authors compare 3 tree-based and 4 deep learning models. For tree-based methods the authors chose all ScikitLearn ensemble models: RandomForest, GradientBoostingTrees (or HistGradientBoostingTrees for datasets with categorical features), and XGBoost. For deep learning, they chose Multi-layer perceptron (MLP), Resent, FT_transformer (simple transformer with embedding for categorical and numerical features), and SAINT (transformer model with inter-sample attention).</p>
+<p><em>Model tuning and selection</em></p>
+<p>The authors make an effort to tune both deep learning models and tree-based models in a comparable way for each dataset and model using predefined hyperparameter grids and a random search of roughly 400 iterations in Hyperopt-Sklearn. These hyperparameter searches were saved and used as a bank to study performance as a function of the number of random searches. Each number of random searches was repeated 15 times per model and benchmark to asses variance in model performance. For each search the best hyperparameters of the validation set were chosen and evaluated on the test data. Each dataset was divided such that 70% was used for training, 9% for validation, and 21% for test.</p>
+<p><em>Aggregating results across datasets</em></p>
+<p>The classification datasets were assessed using test accuracy and regression datasets were assessed using the R-squared score. To aggregate results across benchmarks, the average distance to the minimum was used to “normalize scores” between the best model, 1, and worst model, 0. However, the worst model was replaced with the test score of 10% quantile for classification and 50% quantile for regression. All negative values were reset to 0. This procedure of model tuning and selection, bootstrapping (15 times per model and benchmark), and aggregating across benchmarks was repeated several times to answer the original question and investigate each inductive biases.</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Model performance was analyzed separately for classification and regression tasks (Figure 1). Furthermore, the benchmarks were subdivided into those that only had numerical features and those that had numerical plus categorical features. The normalized test accuracy of 16 classification datasets with only numerical features revealed that XGBoost, GradientBoostingTrees, and RandomForest had higher normalized accuracy than the 4 deep learning models for all number of random searches. The results were also similar for the 19 regression datasets with only numerical features except that the SAINT model outperformed GradientBoostingTrees only for a low numbers of random searches (less than 10). XGBoost was the top performing model for all random search iterations for both classification and regression tasks with only numerical features. For the numerical plus categorical features HistGradientBoostingTree was added. HistGradientBoostingTree is the top-performing model when random search iterations are low (less than 10 for classification and less than 14 for regression) and XGBoost is the superior model for high search iterations. All tree-based methods outperform all deep learning methods for classification and for regression when the number of searches is more than 10.</p>
+<p><img src="Fig1.png" class="img-fluid"></p>
+<p>The authors came to two big conclusions from this work:</p>
+<ul>
+<li>Hyperparameter tuning of deep learning models did not improve their performance to be better than tree-based methods</li>
+<li>Deep learning methods were not hindered by the inclusion of categorical features.</li>
+</ul>
+<p><em>Empirical investigation: why do tree-based models outperform deep learning on tabular data?</em></p>
+<p>The authors aim to understand the inductive biases or “inherent properties of these models which explain their superior performance on tabular data.” The tree-based models with superior performance are bagging and boosting algorithms that are based on ensembles of decision trees. Therefore, this section focuses on understanding why decision trees explain tabular data well. In this section, hypotheses were tested by applying a treatment to the input data and measuring average normalized test performance.</p>
+<p>First, smoothing transformations were applied to the target features of the tabular classification datasets. This was done by applying a Gaussian kernel smoothing function stretched across different scales. The normalized test accuracy was compared across 15 iterations of 60 hyperparameter searches for four kernels. The four models compared had different performance when no smoothing is applied (Figure 2). However, when smoothing is applied the tree-based models (RandomForest and GradientBoostingTree) are more sensitive to the degree of smoothing. This shows that tree-based methods fit better to irregular functions than neural networks. This is consistent with studies in the literature that show that neural networks perform well on smooth functions.</p>
+<p><img src="Fig2.png" class="img-fluid"></p>
+<p>Second, the number of non-informative features was varied in two experiments, one removing non-informative features (Figure 4a) and one adding non-informative features (Figure 4b). Removing non-informative features reduced the performance gap between tree-based and deep learning models. Next, uninformative features sampled from standard Gaussians distribution were added to each datasets. The additional of uninformative features decreased the normalized test score of MLPs (Resnet) much more than GradientBoostingTrees and RandomForest. This shows that tree-based methods are less affected by uninformative features.</p>
+<p><img src="Fig4.png" class="img-fluid"></p>
+<p>Third, tree-based methods and transformers are not rotationally invariant. MLPs are rotationally invariant. The logic here wasn’t quite adequately explained but we followed the main idea. Which is that it is harder for rotationally invariant algorithms to remove uninformative features because the invariant algorithm needs to identify the orientation and then select the least informative. To test this theory, the authors randomly rotated the training datasets and computed the normalized test accuracy for the original dataset (no rotation) and with rotation. The rotation had no effect on the test performance for Resent. Furthermore, model performance with no rotation in order of highest to lowest was GradinetBoostingTree, RandomForest, FT Transformer and Resnet. With the rotation, the order was completely reversed. This indicates that rotational invariance is not a desirable property for models trained using tabular data.</p>
+<p>In the end the authors use these three inductive biases as a way to recommend how to improve neural network architecture for tabular data. They conclude that a neural network architecture must be robust to uninformative features, preserve the orientation of the data, and learn sharp irregular shaped functions to perform well on tabular data. The authors acknowledge many limitations to their current approach. Most of these have to do with the criteria for benchmark create and the side issues that were removed.</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>In general we found this paper very interesting and thought provoking. We thought the authors made a good effort to create a new set of tabular benchmark datasets. However, we spent a lot of time talking about the benchmark criteria and how this could bias the results presented here. We found the maximum datasets size and number of features to be very restrictive such that it doesn’t include many of the datasets used in our work. These numbers felt like magic since there wasn’t any discussion of why or how the numbers were chosen. The benchmark criteria also removed datasets that were “too easy”. We thought that this action could bias the results because smoother target functions may be removed in this step. This could impact the first inductive bias that most target functions are irregular and captured by better by tree-based models. Neural networks are better at picking out smooth functions but these datasets may have been removed from the tabular benchmarks during creation. We also felt that removal of missing data and imbalanced class ratios was an oversimplification as these issues are common in real-world datasets. In general, even though benchmarks are termed “typical tabular datasets” in the title, we felt the restrictive criteria and removal of side issues likely created more homogenous tabular datasets than naturally occur.</p>
+<p>The shaded regions around the average lines were difficult to understand. During our discussion it took us a long time to decipher how these were calculated. We finally came to realize that these regions were calculated from the 15 repeat draws per random search size, model, and benchmark. These 15 draws were used to aggregate across benchmarks 15 times to calculate 15 normalized test scores. The min and the max of these 15 scores are shown by the shaded area. This is to give an idea of how much variation the random hyperparameter values contribute the results. We felt that these results may be misleading for high random search values. That is because bootstrapping from a fixed bank results in decreasing variance as search size increases. This effect is visible in Figure 1. This procedure is important to understand as it was used throughout the paper in all figures with variance shown as boxplots or shaded regions.</p>
+<p>The authors highlight that this study is one of the first to have a similar level of hyperparameter tuning for both tree-based and deep learning models. From this, they concluded that hyperparameter tuning of deep-learning models did not improve performance beyond tree-based methods. However, this conclusion is solely based on the number of hyperparameter searches. We noticed that authors did not address details like different size hyperparameter grids for the models (or model types) and compute time to fit a model to one hyperparameter set. We would have been interested to see some discussion of these factors that are known to differ for tree-based and deep learning models. Furthermore, neural networks might perform better on larger datasets with an increased tuning budget.</p>
+<p>We liked the idea of analyzing inductive biases, however we found most of the conclusions seemed fairly obvious. Two of the three inductive biases seemed to be known properties of tabular data, which is that it is rotationally invariant by nature and has irregular target functions. The last bias is a known advantage of tree-based methods, which is the ability to perform well amongst many non-informative features. However, we appreciated the rigorous and creative methods used to test each bias.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
