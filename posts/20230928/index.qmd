@@ -1,0 +1,27 @@
+---
+title: "Neural Machine Translation by Jointly Learning to Align and Translate"
+author: 
+    - Meghann Agarwal
+date: "2023-09-28"
+image: fig1.png
+description: TBD
+categories: [paper]
+---
+
+:::{.callout-note}
+- Paper: [*Neural Machine Translation by Jointly Learning to Align and Translate*](https://arxiv.org/abs/1409.0473)
+- Presenter: [Meghann](https://www.linkedin.com/in/meghann-agarwal/)
+- Attendees: [Athula](https://www.linkedin.com/in/athula-pudhiyidath/), [Akshata](https://www.linkedin.com/in/akshata-mohan/), [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Kate](https://www.linkedin.com/in/kate-behrman/), [Kshitij](https://www.linkedin.com/in/kshitij13/), [Renée](https://www.linkedin.com/in/stamant/), and [Sarah](https://www.linkedin.com/in/sarah-price-ut/)
+:::
+
+## Why this paper?
+
+TBD
+
+## Paper Summary
+
+TBD
+
+## Paper Discussion
+
+TBD
