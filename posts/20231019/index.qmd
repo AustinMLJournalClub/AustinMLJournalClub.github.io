@@ -2,7 +2,7 @@
 title: "Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?"
 author: 
     - Kathrine Behrman
-date: 2023-11-19
+date: 2023-10-19
 image: Fig1.png
 description: This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets. The inductive biases of tree-based versus neural network models was analyzed as a proposed method to guide development of improved tabular specific neural network models.  
 categories: [paper]
