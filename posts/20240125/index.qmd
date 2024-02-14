@@ -1,0 +1,184 @@
+---
+title: "Direct Preference Optimization: Your Language Model is Secretly a Reward Model"
+author: "Kshitij Aggarwal"
+date: "2024-01-25"
+image: fig3.png
+description: This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.   
+categories: [paper]
+---
+
+:::{.callout-note}
+- Paper: [Direct Preference Optimization: Your Language Model is Secretly a Reward Model](https://arxiv.org/abs/2305.18290)
+- Presenter: [Kshitij](https://www.linkedin.com/in/kshitij13/)
+- Attendees: [Kate](https://www.linkedin.com/in/kate-behrman/), [Hongsup](https://www.linkedin.com/in/hongsupshin/), [Todd](https://www.linkedin.com/in/troazen/), [Meghann](https://www.linkedin.com/in/meghann-agarwal/)
+:::
+
+## Why this paper?
+
+Following the latest advancements in LLM training, I've been interested in Direct Preference Optimization (DPO), a technique emerging as a superior method. The buzz around DPO was further amplified by Andrew Ng's [tweet](https://twitter.com/AndrewYNg/status/1745516258697863259?lang=en), praising the method for its simplicity and profound insight. 
+
+ <!-- DPO appeared to be the next best technique. It was being mentioned at various forums, used in new models (Mixtral?). Therefore, I was curious to see how it was different and better than PPO, that was supposed to be its predesessor. Then finally, I saw the [tweet](https://twitter.com/AndrewYNg/status/1745516258697863259?lang=en) by Andrew Ng, applauding the paper for it's simplicity and profound insight, and so I wanted to dive deeper into it.  -->
+
+## 1-minute summary
+
+In the realm of Large Language Model (LLM) training, Direct Preference Optimization (DPO) emerges as a promising technique that streamlines the process by bypassing the complexities of traditional Reinforcement Learning from Human Feedback (RLHF). Unlike RLHF, which relies on a separate reward model to fine-tune LLMs based on human or AI-generated preferences, DPO integrates preference optimization directly into the language model training process. It does so by defining the preference loss directly as a function of the policy, instead of training a separate preference reward model. DPO enhances model performance and alignment with human preferences, as demonstrated in tasks ranging from sentiment analysis to content summarization and dialogue generation. This blog delves into some technical nuances of DPO, contrasts it with traditional methods, and highlights its superior efficiency and effectiveness through various application examples.
+
+If you just want the key results, skip to this [section](#key_results). Two useful blogs about DPO that I referred to: [1](https://transferlab.ai/pills/2023/direct-preference-optmization/), [2](https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707).
+
+
+## Background
+
+Before we dive deep into DPO, let's do a quick overview of LLM training process:
+
+1. **Pretraining**: LLMs undergo self-supervised training with vast internet-scale data, focusing primarily on next-token prediction. This stage doesn't require labeled data, although the quality of the data is still vital.
+2. **Instruction Fine Tuning or Supervised Fine tuning (SFT)**: Quoting from the DPO paper: "performance on downstream tasks and alignment with user intent can be significantly improved by fine-tuning on datasets of instructions and humanwritten completions. This ‘instruction-tuning’ procedure enables LLMs to generalize to instructions outside of the instruction-tuning set and generally increase their usability". Llama 2 paper used around 14,000 such examples for their SFT training. This model would be referred to as $\pi^{\text{SFT}}$. Quick note on [notation](#notation).
+3. **Reinforcement Learning from Human Feedback (RLHF)**: Since generating expert human responses for instructions is costly, the focus shifted towards collecting human preferences between answers, which are simpler to label and gather, forming a preference dataset. It is created by generating multiple outputs ($y_1, y_2$) for each prompt ($x$) using an SFT model ($\pi^{\text{SFT}}$), and then using humans or [another LLM](https://arxiv.org/abs/2212.08073) to order them (preferred: $y_w$, dispreferred: $y_l$), hence the preference. In RLHF, a reward model is first trained on the preference dataset (usually an LLM itself) and then the SFT model is fine tuned to maximise the reward using reinforement learning algorithms. 
+
+DPO paper states: "... fine-tuning large language models with reinforcement learning remains a major practical challenge; this work provides a theoretically-justified approach to optimizing relative preferences without RL". 
+
+## RLHF
+
+![RLHF vs DPO](fig1.png){#fig1}
+
+The paper does a pretty good job of summarising RLHF and related steps [Fig1](#fig1). 
+<!-- The authors mention that "preferences are assumed to be generated by some latent reward model $r^*(y, x)$, which we do not have access to." So  -->
+The preference dataset generated by human labels (or [AI labels](https://arxiv.org/abs/2212.08073)) is actually a proxy for the latent reward model (which we don't have access to). Next, given reward values for two outputs $y_1, y_2$, Bradley Terry (BT) model can be used to compare them. i.e: 
+
+$$
+\text{Probability of comparison A > B} = \frac{\text{Score}(A)}{\text{Score}(A) + \text{Score}(B)}
+$$
+
+where instead of score, we will use rewards from the reward model. Typically, given a dataset of prompts $x^i$ and preferences ($y_w, y_l$), the reward model can be trained by maximising the likelihood: 
+
+$$
+\mathcal{L}_R = -\mathbb{E}\left[ \log \sigma(r(x, y_w)) - r(x, y_l))\right] \tag{1}
+$$
+
+which is basically logistic of the difference of the reward of preferred and reward of the dispreferred. Note that only difference of rewards are needed here. Using this, a reward model is trained. This is then used to provide feedback to the language model using the following optimization:
+
+<!-- <span style="color:blue;">
+To ensure a reward function with lower variance, prior works normalize the rewards, such that Ex,y∼D [rϕ(x, y)] = 0 for all x. 
+</span> -->
+
+$$
+\max_{\pi_\theta} \mathbb{E}_{x\sim D, y\sim \pi_\theta(y|x)}\left[ r_\phi(x,y) \right] - \beta D_{KL}\left( \pi_\theta(y|x) || \pi_{\text{ref}}(y|x) \right) \tag{2}
+$$
+
+This expression is maximizing the expected value of reward ($r_\phi(x,y)$), minus a Kullback-Leibler divergence term between current policy $\pi_\theta(y|x)$ and the reference policy $\pi^{\text{SFT}}(y|x)$. $y$ is the output of the $\pi_{\theta}$ model with input $x$. The KL term prevents the model to deviate too far away from the reference policy which leads to coherent outputs ([RLHF paper](https://arxiv.org/abs/1909.08593)). 
+
+<!-- Maximum reward given y oputput from \pi_theta model with input x. \pi_theta is initialized to \pi^{SFT}.  -->
+
+THe authors state that this objective is non-differentiable, and therefore is optimized with reinforcement learning. We discussed a bit on it and were a little unsure why that is the case. Maybe because the preference model is essentially a ranking model and ranking loss is often non differentiable.  
+
+
+## DPO
+From the paper: "This ... approach avoids fitting an explicit, standalone reward model, while still optimizing under existing models of human preferences, .... In essence, the policy network represents both the language model and the (implicit) reward." If you are interested, feel free to take a look at the complete derivation on this [blog](https://transferlab.ai/pills/2023/direct-preference-optmization/). Briefly, they show that by writing the reward in terms of the policy:
+
+$$
+r(x, y) = \beta \log \left( \frac{\pi_r(y | x)}{\pi_{\text{ref}}(y | x)} \right) + \log Z(x). \tag{3}
+$$
+
+and using that in the likelihood estimate for RHLF (equation 2), we can obtain the DPO objective as:
+
+$$
+\mathcal{L}_{DPO}(\pi_\theta; \pi_{\text{ref}}) := -\mathbb{E}_{(x,y_u,y_l)\sim D} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_u | x)}{\pi_{\text{ref}}(y_u | x)} - \beta \log \frac{\pi_\theta(y_l | x)}{\pi_{\text{ref}}(y_l | x)} \right) \right]. \tag{4}
+$$
+
+ 
+Finally, they obtain the gradient of loss function for DPO: 
+
+$$
+\nabla_{\theta} \mathcal{L}_{\text{DPO}}(\pi_{\theta}; \pi_{\text{ref}}) = -\beta \mathbb{E}_{(x,y_w,y_l)\sim D} \left[ \sigma(\hat{r}_{\theta}(x, y_l) - \hat{r}_{\theta}(x, y_w)) \left[ \nabla_{\theta} \log \pi_{\theta}(y_w|x) - \nabla_{\theta} \log \pi_{\theta}(y_l|x) \right] \right],
+$$
+
+Where, 
+$$
+\hat{r}_\theta(x, y) = \beta \log \frac{\pi_\theta(y|x)}{\pi_{\text{ref}}(y|x)}
+$$
+
+<!-- We discussed quite a bit on this equation.  -->
+<!-- That is, we all understood mathematically where it came from, but generating the intuition of what the authors mean by: "he examples are weighed by how much higher the implicit reward model ˆrθ rates
+the dispreferred completions, scaled by β, i.e, how incorrectly the implicit reward model orders
+the completions, accounting for the strength of the KL constraint. " took some effort.  -->
+There are two terms in this equation. Let's start with the second term: 
+<!-- Second term:  -->
+$$
+\nabla_{\theta} \log \pi_{\theta}(y_w|x) - \nabla_{\theta} \log \pi_{\theta}(y_l|x)
+$$
+
+Increases the probability of favored output ($\nabla_{\theta} \log \pi_{\theta}(y_w|x)$) and decrease the probability of disfavored output ($\nabla_{\theta} \log \pi_{\theta}(y_l|x)$). 
+
+Now the first term:
+$$
+\begin{align}
+\sigma(\hat{r}_{\theta}(x, y_l) - \hat{r}_{\theta}(x, y_w)) =\sigma(\beta \log \frac{\pi_\theta(y_l|x)}{\pi_{\text{ref}}(y_l|x)}\frac{\pi_{\text{ref}}(y_w|x)}{\pi_\theta(y_w|x)})
+\end{align}
+$$
+
+This term comes from the KL penalty, essentially preventing model from diverging too far away from the reference model. Here, $\hat{r}_{\theta}$ is the implicit reward model, and so the gradient is weighted by how much the reward model rates dispreferred completions. 
+
+
+From [1](https://transferlab.ai/pills/2023/direct-preference-optmization/): "Thus, instead of first learning a reward and then finding the optimizing policy, one directly finds the optimal policy such that its reward as obtained corresponds to collected human preferences."
+
+### DPO Steps: 
+1. Get outputs ($y1, y2$) from an SFT model ($\pi^{\text{SFT}}$)
+2. Ask humans or LLM to give preferences on those ($y_w, y_l$)
+3. Train $\pi_{\theta}$ starting from ($\pi^{\text{SFT}}$) using the DPO objective.
+
+Note: If you have the preference dataset, but don't have acces to the underlying $\pi^{\text{SFT}}$ then the authors take an off the shelf LLM and supervise fine-tune it using the prompts and preferred outputs of the preference dataset to get $\pi^{\text{SFT}}$. They then do DPO on it. 
+
+
+## Results
+
+They explored three different tasks: Sentiment generation on IMDb dataset, summarization of Reddit posts, single turn dialogue (replying to a human query). For sentiment generation task, they use a sentiment classifier for evaluation, and for others they use GPT4 as a proxy for human evaluator to evaluate the win rate against a baseline policy. They also conduct a human study to justify their usage of GPT-4 for evaluation and find that GPT-4 judgments correlate strongly with humans, with human agreement with GPT-4 typically similar or higher than inter-human annotator agreement. 
+
+They test DPO againsst the following approaches: PPO, Best of N (sampling N responses and returning highest scoring on reward), Unlikelihood (maximizes probability of $y_w$ and minimizes probability of $y_l$), GPT-J, Pythia-2.8B, SFT model, Preferred-FT (SFT on $y_w$). 
+
+![Comparing average reward of different models on test dataset with respect to the KL to the reference policy.](fig2.png){#fig2 width=50%}
+
+|     |     |     |
+|:---:|:---:|:---:|
+| ![Summarization win rates vs. human-written summaries](fig3.png){#fig3} | ![Win rate for one step dialogue.](fig4.png){#fig4} | ![Win rates for different sampling temperatures over the course of training](fig5.png){#fig5} |
+| [Summarization win rates vs. human-written summaries.](#fig3) | [Win rate for one step dialogue.](#fig4) | [Win rates for different sampling temperatures over the course of training.](#fig5) |
+
+### Key results: {#key_results}
+1. DPO is efficient, achieving the highest reward while still achieving low KL with respect to reference policy ([Fig2](#fig2)).
+2. DPO exceeds PPO's performance on summarization, and on one step dialogue task. DPO is even better than (very computationally expensive) "best of N" in most cases ([Fig3](#fig2), [Fig4](#fig3)).
+3. DPO is much more robust to sampling temperature than PPO ([Fig3](#fig3)).
+4. DPO converges to its best performance relatively quickly ([Fig4](#fig4)).
+5. DPO generalizes to new input distribution better than PPO (but the difference is not very significant). 
+
+
+### Notation {#notation}
+
+* $\pi^{\text{SFT}}(y | x)$: refers to probability of getting output sequence $y$ given input sequence $x$. This will be computed as product of probability of each word which can be obtained from the probabilities of all the words in the vocabulary that the model outputs (as explained in second figure of this [blog](https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707)).
+
+* $r (y, x)$: Reward of $y$ with $x$ as input. Or the probability of $y$ given $x$ as input as per the reward model. 
+
+
+<!-- ### The Derivation {#derivation}
+
+Here is the derivation from the paper, but now all in one place. 
+
+$$
+\max_{\pi} \mathbb{E}_{x \sim D, y \sim \pi} \left[ r(x, y) \right] - \beta D_{KL} \left[ \pi(y|x) || \pi_{\text{ref}}(y|x) \right] \tag{11} 
+$$ -->
+
+<!-- $$
+\begin{align}
+% &= \max_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) \right] - \beta D_{KL} \left[ \pi(y|x) || \pi_{\text{ref}}(y|x) \right]  \\
+&= \max_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) - \beta \log \frac{\pi(y|x)}{\pi_{\text{ref}}(y|x)} \right]  \tag{12} \\
+% \end{align}
+\text{Dividing by} -1/\beta \\
+% \begin{align}
+&= \min_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_\text{ref}(y|x)} - \frac{1}{\beta} r(x, y) \right] \tag{13} \\ 
+&= \min_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta} r(x, y)\right)} + \log Z(x) - \log Z(x) \right] \\ 
+\text{Where} Z(x) \text{is some function of x and is not dependent on y} \\
+&= \min_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\frac{1}{Z(x)} \pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta} r(x, y)\right)} - \log Z(x) \right]
+\end{align}
+$$
+
+<!-- Definition of the partition function Z(x) -->
+<!-- $$
+\text{where we have partition function: } Z(x) = \sum_y \pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta}r(x, y)\right).
+$$ -->
