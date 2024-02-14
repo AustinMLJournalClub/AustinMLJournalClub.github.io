@@ -148,6 +148,13 @@ They test DPO againsst the following approaches: PPO, Best of N (sampling N resp
 4. DPO converges to its best performance relatively quickly ([Fig4](#fig4)).
 5. DPO generalizes to new input distribution better than PPO (but the difference is not very significant). 
 
+## Discussion
+
+We found this paper interesting, though the derivation was hard to follow sometimes. The main idea of the paper is simple and powerful: instead of doing RL, you can use the LLM itself as a reward model (by comparing the reward of the model at a training stage with respect to the reward of the SFT model), and only use the difference in the rewards (between favored and disfavored outputs) to train the model for external preferences. Referencing online blogs that explained the derivation well helped. We had to go back and forth between main paper and appendix to follow the derivation, but once you see all the steps, it makes sense. Though we still felt that although we understood mathematically how an equation was derived, obtaining the intuition for that needed more discussion. This was specially true for the gradient of objective for DPO, where we spent some time understanding each term. 
+
+We also discussed at length about what exactly the reward model is, and what is meant by $\pi$ (and in general the notation used in the paper). The results clearly showed that DPO was better, though authors were careful in stating that further tests are needed on larger models. The authors claimed that PPO is unstable, though we were not sure why, and how DPO resolves that. We also discussed what it meant for the RLHF reward to be "non-differentiable". We were not sure why the authors didn't tune beta parameter to further optimize DPO performance. We appreciated the authors comparing the GPT-4 judgements with Human judgements, and showing that "GPT-4 tends to agree with humans about as often as human agree with each other". Towards the end, we looked at some example outputs authors provide for various prompts.  
+
+
 
 ### Notation {#notation}
 
