@@ -6,10 +6,17 @@ about:
 
 These are the papers/articles/repos/videos that our journal club members have shared, which might be worth presenting in the future or we think are interesting. This page will be updated once a month.
 
-- [Machine Learning and the Future of Bayesian Computation](https://arxiv.org/abs/2304.11251) shared by Brian
-- [Challenges in Deploying Machine Learning: a Survey of Case Studies](https://arxiv.org/abs/2011.09926) shared by Hongsup
-- [On the Opportunities and Risks of Foundation Models](https://arxiv.org/abs/2108.07258) shared by Hongsup
-- [The TinyLlama project](https://github.com/jzhang38/TinyLlama) shared by Kshitij
-- [MiniLLM: Large Language Models on Consumer GPUs](https://github.com/kuleshov/minillm) shared by Hongsup
+- [Solving olympiad geometry without human demonstrations](https://www.nature.com/articles/s41586-023-06747-5?_hsmi=291326409) shared by Hongsup
+- [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566) shared by Kshitij
+- [TOFU: A Task of Fictitious Unlearning for LLMs](https://arxiv.org/abs/2401.06121) shared by Sarah
+- [Quantifying the impact of uninformative features on the performance of supervised classification and dimensionality reduction algorithms](https://pubs.aip.org/aip/aml/article/1/4/046118/2928862/Quantifying-the-impact-of-uninformative-features) shared by Kshitij
+- [Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!](https://arxiv.org/abs/2310.03693) shared by Hongsup
+- [A Mulching Proposal](https://arxiv.org/abs/1908.06166) shared by Hongsup
+- [Evaluating and Mitigating Discrimination in Language Model Decisions](https://www.anthropic.com/index/evaluating-and-mitigating-discrimination-in-language-model-decisions) shared by Kshitij
+- [Dive into Deep Learning: Coding Session #4 Attention Mechanism I (MLT Artificial Intelligence)](https://www.youtube.com/watch?v=baEQGk-CTwk&ab_channel=MLTArtificialIntelligence) shared by Kshitij
 - [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) shared by Brian
-- [Dive into Deep Learning: Coding Session #4 Attention Mechanism I (MLT Artificial Intelligence)](https://www.youtube.com/watch?v=baEQGk-CTwk&ab_channel=MLTArtificialIntelligence) by Kshitij
+- [MiniLLM: Large Language Models on Consumer GPUs](https://github.com/kuleshov/minillm) shared by Hongsup
+- [The TinyLlama project](https://github.com/jzhang38/TinyLlama) shared by Kshitij
+- [On the Opportunities and Risks of Foundation Models](https://arxiv.org/abs/2108.07258) shared by Hongsup
+- [Challenges in Deploying Machine Learning: a Survey of Case Studies](https://arxiv.org/abs/2011.09926) shared by Hongsup
+- [Machine Learning and the Future of Bayesian Computation](https://arxiv.org/abs/2304.11251) shared by Brian
