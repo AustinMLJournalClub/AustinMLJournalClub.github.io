@@ -229,7 +229,7 @@ Note
 </section>
 <section id="minute-summary" class="level2">
 <h2 class="anchored" data-anchor-id="minute-summary">1-minute summary</h2>
-<p>In the realm of Large Language Model (LLM) training, Direct Preference Optimization (DPO) emerges as a promising technique that streamlines the process by bypassing the complexities of traditional Reinforcement Learning from Human Feedback (RLHF). Unlike RLHF, which relies on a separate reward model to fine-tune LLMs based on human or AI-generated preferences, DPO integrates preference optimization directly into the language model training process. It does so by defining the preference loss directly as a function of the policy, instead of training a separate preference reward model. DPO enhances model performance and alignment with human preferences, as demonstrated in tasks ranging from sentiment analysis to content summarization and dialogue generation. This blog delves into some technical nuances of DPO, contrasts it with traditional methods, and highlights its superior efficiency and effectiveness through various application examples.</p>
+<p>In the realm of Large Language Model (LLM) training, Direct Preference Optimization (DPO) emerges as a promising technique that streamlines the process by bypassing the complexities of traditional Reinforcement Learning from Human Feedback (RLHF). Unlike RLHF, which relies on a separate reward model to fine-tune LLMs based on human or AI-generated preferences, DPO integrates preference optimization directly into the language model training process. It does so by defining the preference loss directly as a function of the policy, instead of training a separate preference reward model. DPO enhances model performance and alignment with human preferences, as demonstrated in tasks ranging from sentiment analysis to content summarization and dialogue generation. This blog delves into some technical nuances of DPO, contrasts it with traditional methods, and highlights its superior efficiency and effectiveness through various application examples<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>If you just want the key results, skip to this <a href="#key_results">section</a>. Two useful blogs about DPO that I referred to: <a href="https://transferlab.ai/pills/2023/direct-preference-optmization/">1</a>, <a href="https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707">2</a>.</p>
 </section>
 <section id="background" class="level2">
@@ -386,7 +386,13 @@ $$ -->
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Edited with assistance from ChatGPT<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
