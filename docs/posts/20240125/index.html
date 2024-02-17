@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kshitij Aggarwal">
+<meta name="dcterms.date" content="2024-01-25">
+<meta name="description" content="This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.">
+
+<title>Austin ML Journal Club - Direct Preference Optimization: Your Language Model is Secretly a Reward Model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Austin ML Journal Club - Direct Preference Optimization: Your Language Model is Secretly a Reward Model">
+<meta property="og:description" content="This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.">
+<meta property="og:image" content="fig3.png">
+<meta property="og:site_name" content="Austin ML Journal Club">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../readme.html"> 
+<span class="menu-text">Tips</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../quarto.html"> 
+<span class="menu-text">Blogging</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reading_list.html"> 
+<span class="menu-text">Reading List</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/austin-ml-journal-club"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</h1>
+                  <div>
+        <div class="description">
+          This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">paper</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Kshitij Aggarwal </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 25, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Paper: <a href="https://arxiv.org/abs/2305.18290">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/kshitij13/">Kshitij</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/kate-behrman/">Kate</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a>, <a href="https://www.linkedin.com/in/troazen/">Todd</a>, <a href="https://www.linkedin.com/in/meghann-agarwal/">Meghann</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper?</h2>
+<p>Following the latest advancements in LLM training, I’ve been interested in Direct Preference Optimization (DPO), a technique emerging as a superior method. The buzz around DPO was further amplified by Andrew Ng’s <a href="https://twitter.com/AndrewYNg/status/1745516258697863259?lang=en">tweet</a>, praising the method for its simplicity and profound insight.</p>
+<p><!-- DPO appeared to be the next best technique. It was being mentioned at various forums, used in new models (Mixtral?). Therefore, I was curious to see how it was different and better than PPO, that was supposed to be its predesessor. Then finally, I saw the [tweet](https://twitter.com/AndrewYNg/status/1745516258697863259?lang=en) by Andrew Ng, applauding the paper for it's simplicity and profound insight, and so I wanted to dive deeper into it.  --></p>
+</section>
+<section id="minute-summary" class="level2">
+<h2 class="anchored" data-anchor-id="minute-summary">1-minute summary</h2>
+<p>In the realm of Large Language Model (LLM) training, Direct Preference Optimization (DPO) emerges as a promising technique that streamlines the process by bypassing the complexities of traditional Reinforcement Learning from Human Feedback (RLHF). Unlike RLHF, which relies on a separate reward model to fine-tune LLMs based on human or AI-generated preferences, DPO integrates preference optimization directly into the language model training process. It does so by defining the preference loss directly as a function of the policy, instead of training a separate preference reward model. DPO enhances model performance and alignment with human preferences, as demonstrated in tasks ranging from sentiment analysis to content summarization and dialogue generation. This blog delves into some technical nuances of DPO, contrasts it with traditional methods, and highlights its superior efficiency and effectiveness through various application examples<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>If you just want the key results, skip to this <a href="#key_results">section</a>. Two useful blogs about DPO that I referred to: <a href="https://transferlab.ai/pills/2023/direct-preference-optmization/">1</a>, <a href="https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707">2</a>.</p>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Before we dive deep into DPO, let’s do a quick overview of LLM training process:</p>
+<ol type="1">
+<li><strong>Pretraining</strong>: LLMs undergo self-supervised training with vast internet-scale data, focusing primarily on next-token prediction. This stage doesn’t require labeled data, although the quality of the data is still vital.</li>
+<li><strong>Instruction Fine Tuning or Supervised Fine tuning (SFT)</strong>: Quoting from the DPO paper: “performance on downstream tasks and alignment with user intent can be significantly improved by fine-tuning on datasets of instructions and humanwritten completions. This ‘instruction-tuning’ procedure enables LLMs to generalize to instructions outside of the instruction-tuning set and generally increase their usability”. Llama 2 paper used around 14,000 such examples for their SFT training. This model would be referred to as <span class="math inline">\(\pi^{\text{SFT}}\)</span>. Quick note on <a href="#notation">notation</a>.</li>
+<li><strong>Reinforcement Learning from Human Feedback (RLHF)</strong>: Since generating expert human responses for instructions is costly, the focus shifted towards collecting human preferences between answers, which are simpler to label and gather, forming a preference dataset. It is created by generating multiple outputs (<span class="math inline">\(y_1, y_2\)</span>) for each prompt (<span class="math inline">\(x\)</span>) using an SFT model (<span class="math inline">\(\pi^{\text{SFT}}\)</span>), and then using humans or <a href="https://arxiv.org/abs/2212.08073">another LLM</a> to order them (preferred: <span class="math inline">\(y_w\)</span>, dispreferred: <span class="math inline">\(y_l\)</span>), hence the preference. In RLHF, a reward model is first trained on the preference dataset (usually an LLM itself) and then the SFT model is fine tuned to maximise the reward using reinforement learning algorithms.</li>
+</ol>
+<p>DPO paper states: “… fine-tuning large language models with reinforcement learning remains a major practical challenge; this work provides a theoretically-justified approach to optimizing relative preferences without RL”.</p>
+</section>
+<section id="rlhf" class="level2">
+<h2 class="anchored" data-anchor-id="rlhf">RLHF</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig1.png" class="img-fluid figure-img"></p>
+<figcaption>RLHF vs DPO</figcaption>
+</figure>
+</div>
+<p>The paper does a pretty good job of summarising RLHF and related steps <a href="#fig1">Fig1</a>. <!-- The authors mention that "preferences are assumed to be generated by some latent reward model $r^*(y, x)$, which we do not have access to." So  --> The preference dataset generated by human labels (or <a href="https://arxiv.org/abs/2212.08073">AI labels</a>) is actually a proxy for the latent reward model (which we don’t have access to). Next, given reward values for two outputs <span class="math inline">\(y_1, y_2\)</span>, Bradley Terry (BT) model can be used to compare them. i.e:</p>
+<p><span class="math display">\[
+\text{Probability of comparison A &gt; B} = \frac{\text{Score}(A)}{\text{Score}(A) + \text{Score}(B)}
+\]</span></p>
+<p>where instead of score, we will use rewards from the reward model. Typically, given a dataset of prompts <span class="math inline">\(x^i\)</span> and preferences (<span class="math inline">\(y_w, y_l\)</span>), the reward model can be trained by maximising the likelihood:</p>
+<p><span class="math display">\[
+\mathcal{L}_R = -\mathbb{E}\left[ \log \sigma(r(x, y_w)) - r(x, y_l))\right] \tag{1}
+\]</span></p>
+<p>which is basically logistic of the difference of the reward of preferred and reward of the dispreferred. Note that only difference of rewards are needed here. Using this, a reward model is trained. This is then used to provide feedback to the language model using the following optimization:</p>
+<!-- <span style="color:blue;">
+To ensure a reward function with lower variance, prior works normalize the rewards, such that Ex,y∼D [rϕ(x, y)] = 0 for all x. 
+</span> -->
+<p><span class="math display">\[
+\max_{\pi_\theta} \mathbb{E}_{x\sim D, y\sim \pi_\theta(y|x)}\left[ r_\phi(x,y) \right] - \beta D_{KL}\left( \pi_\theta(y|x) || \pi_{\text{ref}}(y|x) \right) \tag{2}
+\]</span></p>
+<p>This expression is maximizing the expected value of reward (<span class="math inline">\(r_\phi(x,y)\)</span>), minus a Kullback-Leibler divergence term between current policy <span class="math inline">\(\pi_\theta(y|x)\)</span> and the reference policy <span class="math inline">\(\pi^{\text{SFT}}(y|x)\)</span>. <span class="math inline">\(y\)</span> is the output of the <span class="math inline">\(\pi_{\theta}\)</span> model with input <span class="math inline">\(x\)</span>. The KL term prevents the model to deviate too far away from the reference policy which leads to coherent outputs (<a href="https://arxiv.org/abs/1909.08593">RLHF paper</a>).</p>
+<!-- Maximum reward given y oputput from \pi_theta model with input x. \pi_theta is initialized to \pi^{SFT}.  -->
+<p>THe authors state that this objective is non-differentiable, and therefore is optimized with reinforcement learning. We discussed a bit on it and were a little unsure why that is the case. Maybe because the preference model is essentially a ranking model and ranking loss is often non differentiable.</p>
+</section>
+<section id="dpo" class="level2">
+<h2 class="anchored" data-anchor-id="dpo">DPO</h2>
+<p>From the paper: “This … approach avoids fitting an explicit, standalone reward model, while still optimizing under existing models of human preferences, …. In essence, the policy network represents both the language model and the (implicit) reward.” If you are interested, feel free to take a look at the complete derivation on this <a href="https://transferlab.ai/pills/2023/direct-preference-optmization/">blog</a>. Briefly, they show that by writing the reward in terms of the policy:</p>
+<p><span class="math display">\[
+r(x, y) = \beta \log \left( \frac{\pi_r(y | x)}{\pi_{\text{ref}}(y | x)} \right) + \log Z(x). \tag{3}
+\]</span></p>
+<p>and using that in the likelihood estimate for RHLF (equation 2), we can obtain the DPO objective as:</p>
+<p><span class="math display">\[
+\mathcal{L}_{DPO}(\pi_\theta; \pi_{\text{ref}}) := -\mathbb{E}_{(x,y_u,y_l)\sim D} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_u | x)}{\pi_{\text{ref}}(y_u | x)} - \beta \log \frac{\pi_\theta(y_l | x)}{\pi_{\text{ref}}(y_l | x)} \right) \right]. \tag{4}
+\]</span></p>
+<p>Finally, they obtain the gradient of loss function for DPO:</p>
+<p><span class="math display">\[
+\nabla_{\theta} \mathcal{L}_{\text{DPO}}(\pi_{\theta}; \pi_{\text{ref}}) = -\beta \mathbb{E}_{(x,y_w,y_l)\sim D} \left[ \sigma(\hat{r}_{\theta}(x, y_l) - \hat{r}_{\theta}(x, y_w)) \left[ \nabla_{\theta} \log \pi_{\theta}(y_w|x) - \nabla_{\theta} \log \pi_{\theta}(y_l|x) \right] \right],
+\]</span></p>
+<p>Where, <span class="math display">\[
+\hat{r}_\theta(x, y) = \beta \log \frac{\pi_\theta(y|x)}{\pi_{\text{ref}}(y|x)}
+\]</span></p>
+<!-- We discussed quite a bit on this equation.  -->
+<!-- That is, we all understood mathematically where it came from, but generating the intuition of what the authors mean by: "he examples are weighed by how much higher the implicit reward model ˆrθ rates
+the dispreferred completions, scaled by β, i.e, how incorrectly the implicit reward model orders
+the completions, accounting for the strength of the KL constraint. " took some effort.  -->
+<p>There are two terms in this equation. Let’s start with the second term: <!-- Second term:  --> <span class="math display">\[
+\nabla_{\theta} \log \pi_{\theta}(y_w|x) - \nabla_{\theta} \log \pi_{\theta}(y_l|x)
+\]</span></p>
+<p>Increases the probability of favored output (<span class="math inline">\(\nabla_{\theta} \log \pi_{\theta}(y_w|x)\)</span>) and decrease the probability of disfavored output (<span class="math inline">\(\nabla_{\theta} \log \pi_{\theta}(y_l|x)\)</span>).</p>
+<p>Now the first term: <span class="math display">\[
+\begin{align}
+\sigma(\hat{r}_{\theta}(x, y_l) - \hat{r}_{\theta}(x, y_w)) =\sigma(\beta \log \frac{\pi_\theta(y_l|x)}{\pi_{\text{ref}}(y_l|x)}\frac{\pi_{\text{ref}}(y_w|x)}{\pi_\theta(y_w|x)})
+\end{align}
+\]</span></p>
+<p>This term comes from the KL penalty, essentially preventing model from diverging too far away from the reference model. Here, <span class="math inline">\(\hat{r}_{\theta}\)</span> is the implicit reward model, and so the gradient is weighted by how much the reward model rates dispreferred completions.</p>
+<p>From <a href="https://transferlab.ai/pills/2023/direct-preference-optmization/">1</a>: “Thus, instead of first learning a reward and then finding the optimizing policy, one directly finds the optimal policy such that its reward as obtained corresponds to collected human preferences.”</p>
+<section id="dpo-steps" class="level3">
+<h3 class="anchored" data-anchor-id="dpo-steps">DPO Steps:</h3>
+<ol type="1">
+<li>Get outputs (<span class="math inline">\(y1, y2\)</span>) from an SFT model (<span class="math inline">\(\pi^{\text{SFT}}\)</span>)</li>
+<li>Ask humans or LLM to give preferences on those (<span class="math inline">\(y_w, y_l\)</span>)</li>
+<li>Train <span class="math inline">\(\pi_{\theta}\)</span> starting from (<span class="math inline">\(\pi^{\text{SFT}}\)</span>) using the DPO objective.</li>
+</ol>
+<p>Note: If you have the preference dataset, but don’t have acces to the underlying <span class="math inline">\(\pi^{\text{SFT}}\)</span> then the authors take an off the shelf LLM and supervise fine-tune it using the prompts and preferred outputs of the preference dataset to get <span class="math inline">\(\pi^{\text{SFT}}\)</span>. They then do DPO on it.</p>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>They explored three different tasks: Sentiment generation on IMDb dataset, summarization of Reddit posts, single turn dialogue (replying to a human query). For sentiment generation task, they use a sentiment classifier for evaluation, and for others they use GPT4 as a proxy for human evaluator to evaluate the win rate against a baseline policy. They also conduct a human study to justify their usage of GPT-4 for evaluation and find that GPT-4 judgments correlate strongly with humans, with human agreement with GPT-4 typically similar or higher than inter-human annotator agreement.</p>
+<p>They test DPO againsst the following approaches: PPO, Best of N (sampling N responses and returning highest scoring on reward), Unlikelihood (maximizes probability of <span class="math inline">\(y_w\)</span> and minimizes probability of <span class="math inline">\(y_l\)</span>), GPT-J, Pythia-2.8B, SFT model, Preferred-FT (SFT on <span class="math inline">\(y_w\)</span>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig2.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Comparing average reward of different models on test dataset with respect to the KL to the reference policy.</figcaption>
+</figure>
+</div>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="fig3.png" id="fig3" class="img-fluid" alt="Summarization win rates vs.&nbsp;human-written summaries"></td>
+<td style="text-align: center;"><img src="fig4.png" id="fig4" class="img-fluid" alt="Win rate for one step dialogue."></td>
+<td style="text-align: center;"><img src="fig5.png" id="fig5" class="img-fluid" alt="Win rates for different sampling temperatures over the course of training"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="#fig3">Summarization win rates vs.&nbsp;human-written summaries.</a></td>
+<td style="text-align: center;"><a href="#fig4">Win rate for one step dialogue.</a></td>
+<td style="text-align: center;"><a href="#fig5">Win rates for different sampling temperatures over the course of training.</a></td>
+</tr>
+</tbody>
+</table>
+<section id="key_results" class="level3">
+<h3 class="anchored" data-anchor-id="key_results">Key results:</h3>
+<ol type="1">
+<li>DPO is efficient, achieving the highest reward while still achieving low KL with respect to reference policy (<a href="#fig2">Fig2</a>).</li>
+<li>DPO exceeds PPO’s performance on summarization, and on one step dialogue task. DPO is even better than (very computationally expensive) “best of N” in most cases (<a href="#fig2">Fig3</a>, <a href="#fig3">Fig4</a>).</li>
+<li>DPO is much more robust to sampling temperature than PPO (<a href="#fig3">Fig3</a>).</li>
+<li>DPO converges to its best performance relatively quickly (<a href="#fig4">Fig4</a>).</li>
+<li>DPO generalizes to new input distribution better than PPO (but the difference is not very significant).</li>
+</ol>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>We found this paper interesting, though the derivation was hard to follow sometimes. The main idea of the paper is simple and powerful: instead of doing RL, you can use the LLM itself as a reward model (by comparing the reward of the model at a training stage with respect to the reward of the SFT model), and only use the difference in the rewards (between favored and disfavored outputs) to train the model for external preferences. Referencing online blogs that explained the derivation well helped. We had to go back and forth between main paper and appendix to follow the derivation, but once you see all the steps, it makes sense. Though we still felt that although we understood mathematically how an equation was derived, obtaining the intuition for that needed more discussion. This was specially true for the gradient of objective for DPO, where we spent some time understanding each term.</p>
+<p>We also discussed at length about what exactly the reward model is, and what is meant by <span class="math inline">\(\pi\)</span> (and in general the notation used in the paper). The results clearly showed that DPO was better, though authors were careful in stating that further tests are needed on larger models. The authors claimed that PPO is unstable, though we were not sure why, and how DPO resolves that. We also discussed what it meant for the RLHF reward to be “non-differentiable”. We were not sure why the authors didn’t tune beta parameter to further optimize DPO performance. We appreciated the authors comparing the GPT-4 judgements with Human judgements, and showing that “GPT-4 tends to agree with humans about as often as human agree with each other”. Towards the end, we looked at some example outputs authors provide for various prompts.</p>
+<section id="notation" class="level3">
+<h3 class="anchored" data-anchor-id="notation">Notation</h3>
+<ul>
+<li><p><span class="math inline">\(\pi^{\text{SFT}}(y | x)\)</span>: refers to probability of getting output sequence <span class="math inline">\(y\)</span> given input sequence <span class="math inline">\(x\)</span>. This will be computed as product of probability of each word which can be obtained from the probabilities of all the words in the vocabulary that the model outputs (as explained in second figure of this <a href="https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707">blog</a>).</p></li>
+<li><p><span class="math inline">\(r (y, x)\)</span>: Reward of <span class="math inline">\(y\)</span> with <span class="math inline">\(x\)</span> as input. Or the probability of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> as input as per the reward model.</p></li>
+</ul>
+<!-- ### The Derivation {#derivation}
+
+Here is the derivation from the paper, but now all in one place. 
+
+$$
+\max_{\pi} \mathbb{E}_{x \sim D, y \sim \pi} \left[ r(x, y) \right] - \beta D_{KL} \left[ \pi(y|x) || \pi_{\text{ref}}(y|x) \right] \tag{11} 
+$$ -->
+<!-- $$
+\begin{align}
+% &= \max_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) \right] - \beta D_{KL} \left[ \pi(y|x) || \pi_{\text{ref}}(y|x) \right]  \\
+&= \max_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) - \beta \log \frac{\pi(y|x)}{\pi_{\text{ref}}(y|x)} \right]  \tag{12} \\
+% \end{align}
+\text{Dividing by} -1/\beta \\
+% \begin{align}
+&= \min_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_\text{ref}(y|x)} - \frac{1}{\beta} r(x, y) \right] \tag{13} \\ 
+&= \min_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta} r(x, y)\right)} + \log Z(x) - \log Z(x) \right] \\ 
+\text{Where} Z(x) \text{is some function of x and is not dependent on y} \\
+&= \min_{\pi} \mathbb{E}_{x \sim D} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\frac{1}{Z(x)} \pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta} r(x, y)\right)} - \log Z(x) \right]
+\end{align}
+$$
+
+<!-- Definition of the partition function Z(x) -->
+<!-- $$
+\text{where we have partition function: } Z(x) = \sum_y \pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta}r(x, y)\right).
+$$ -->
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Edited with assistance from ChatGPT<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
