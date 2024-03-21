@@ -1,0 +1,28 @@
+---
+title: "Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations"
+author: "Hongsup Shin"
+date: "2024-03-28"
+image: https://www.science.org/cms/10.1126/science.aax2342/asset/1353fece-9d19-4293-be71-0d7e8a834b28/assets/graphic/366_447_f1.jpeg
+description: Amidst the LLM hype in ML, algorithmic bias is continued being overlooked although they still have major impact on critical domains such as healthcare, finance, and criminal justice. This seminal paper from 2019 found racial bias in a widely used healthcare algorithm, which used a problematic proxy (healthcare cost) as a target instead of what really matters, patient's sickness. The paper is a few years old but the message is still relevant, and we also get to discuss what's happened since then.
+categories: [paper]
+---
+
+:::{.callout-note}
+- Paper: [Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations](https://www.science.org/doi/10.1126/science.aax2342)
+- Presenter: [Hongsup](https://www.linkedin.com/in/hongsupshin/)
+- Attendees: 
+:::
+
+## Why this paper?
+
+Fresh out of academia and at my first job, I remember being surprised by the great power I was able to wield as the main data scientist in the team. A few lines of my code could easily have cascading impact on business decisions. And (as is often the case) since management didn't care much about technical details, this power gave me a sense of grave responsibility, which was honestly often terrifying. To this day, this sense is something I try to remind myself of, especially because ML systems are getting more complex and we still have very little accountability for ML. So in a way, every ML practitioner is the first line of defense. And this resonsibility is more critical if one is working in an high-impact domain such as healthcare.
+
+These days it feels like ML is all about LLMs and AI assistants. But algorthmic bias is still widespread, and unfortunately it's even more overshadowed by this massive hype. This seminal paper from 2019 identified racial bias in a healthcare algorithm and discussed the problem of label choice bias. I find this paper still relevent because this bias can easily sneak when building datasets and algorithms. Since the paper is a few years old, it will be interesting to discuss what's happened since then.
+
+## Paper summary
+
+### Abstract
+- At a given score (algorithm estimate), Black patients are much sicker than White
+- The algorithm uses healthcare cost as target (proxy), not the sickness itself
+- Label choice bias: the choice of convenient, seemingly effective proxies for ground truth can cause algorithmic bias
+
