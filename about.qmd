@@ -32,4 +32,5 @@ Joel is a Machine Learning Engineer at Acrisure based here in Austin, TX. His ba
 ## [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath)
 She is a Data Scientist at PrimeStreet and is based in Austin, TX. Her background is in cognitive neuroscience. She is interested in keeping up with the ever-changing landscape of AI and ML and its applications to daily life and business.
 
-
+## [Brian King](https://www.linkedin.com/in/brianking387/)
+Brian is a Senior ML Research Engineer at Arm. His background is in Bayesian statistics, and current interests include time series forecasting, uncertainty quantification for complex models, and causal inference.
