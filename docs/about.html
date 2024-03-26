@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -150,6 +150,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-anchor-id="kathrine-kate-behrman"><a href="https://www.linkedin.com/in/kate-behrman/">Kathrine (Kate) Behrman</a></h2>
 <p>She is a Staff ML Research Engineer at Arm in Austin, TX. She used to work for the USDA-NRCS and USDA-ARS as a Research Ecologist. Her background is in landscape and evolutionary ecology. She is interested in human AI interactions and responsible use of AI.</p>
 </section>
+<section id="brian-king" class="level2">
+<h2 data-anchor-id="brian-king"><a href="https://www.linkedin.com/in/brianking387/">Brian King</a></h2>
+<p>Brian is a Senior ML Research Engineer at Arm. His background is in Bayesian statistics, and current interests include time series forecasting, uncertainty quantification for complex models, and causal inference.</p>
+</section>
 <section id="kshitij-aggarwal" class="level2">
 <h2 data-anchor-id="kshitij-aggarwal"><a href="https://www.linkedin.com/in/kshitij13/">Kshitij Aggarwal</a></h2>
 <p>Kshitij is a Data Scientist at Bristol-Myers Squibb. His background is in astronomy and electrical engineering. He is interested in problem-solving using state-of-the-art AI tools and responsible use of AI.</p>
@@ -173,10 +177,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="athula-pudhiyidath" class="level2">
 <h2 data-anchor-id="athula-pudhiyidath"><a href="https://www.linkedin.com/in/athula-pudhiyidath">Athula Pudhiyidath</a></h2>
 <p>She is a Data Scientist at PrimeStreet and is based in Austin, TX. Her background is in cognitive neuroscience. She is interested in keeping up with the ever-changing landscape of AI and ML and its applications to daily life and business.</p>
-</section>
-<section id="brian-king" class="level2">
-<h2 data-anchor-id="brian-king"><a href="https://www.linkedin.com/in/brianking387/">Brian King</a></h2>
-<p>Brian is a Senior ML Research Engineer at Arm. His background is in Bayesian statistics, and current interests include time series forecasting, uncertainty quantification for complex models, and causal inference.</p>
 
 
 </section>
@@ -257,24 +257,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -309,11 +291,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
