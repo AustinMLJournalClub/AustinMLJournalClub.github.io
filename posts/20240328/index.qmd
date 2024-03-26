@@ -26,3 +26,194 @@ These days it feels like ML is all about LLMs and AI assistants. But algorthmic 
 - The algorithm uses healthcare cost as target (proxy), not the sickness itself
 - Label choice bias: the choice of convenient, seemingly effective proxies for ground truth can cause algorithmic bias
 
+### Introduction
+
+Many examples
+- these examples still exist
+
+Difficulty of empricial investigation
+- proprietary algos -> must work "from the outside" (creative, audit)
+  - still limiting: difficult to understand how and why
+  - training data, objective function, prediction method
+
+this study: high-risk care management system
+- rich data, live, scaled
+- risk prediction tool
+- used for 200M in the US 
+- high-risk care management system
+  - provide care for complex medical needs (expensive)
+  - effective in saving cost and improving outcome
+  - resource is limited: use alorithm to prioritize **who will benefit the most**
+
+**algorithm in context** (from supplementary)
+- obamacare -> pressure on hospitals to reduce health care cost
+- causes development of "high risk care management" programs
+  - early identification of high risk patient -> reduce cost (like ER visit)
+
+figure out "who will benefit the most"
+- causal inference problem
+- assumption: "those with the greatest needs will benefit the most"
+- target: "health care needs"
+
+rare opportunity
+- access to everything: data, objective function, prediction
+- not a unique algorithm: widely used
+
+implications of the study
+- many analogies (risk assessment tools)
+- importance and opportunity of studying bias in healthcare algo ("in its own right")
+
+### Data and analytic strategy
+
+#### Data
+- large academic hospital
+- 2013-2015
+- primary: white vs. black (self-reporting)
+  - disadvantage: lack of intersectional racial/ethnic identities
+- sample size
+  - black: 6k (12k patient-years)
+  - white: 40k (90k patient-years)
+  - "patient-years": 1 patient-year = data collected for a patient in a calendar year
+
+#### algorithm scores
+- generated for each patient during the enrollment period
+- > 97%: automatically "identified" as enrolled (not guaranteed for enrollment)
+- > 55%: referred to their PCP for their opinion
+- **program run 3x a year: patients whose scores > threshold (97%)**
+
+#### main methodology
+- fairness metrics
+  - calibration
+  - statistical parity (demographic parity): proportion of C-suite member ratio men vs. women
+  - not possible to optimize all metrics simultaneously
+- this study: calibration
+  - E[Y|R, W] = E[Y|R, B]
+    - Y: interest
+    - R: risk score
+- what we do
+  - R_{i, t}: risk score given patient i in year t given X_{i, t-1}
+  - H_{i, t}: realized health
+  - C_{i, t}: actual cost 
+  - **how well R is calibrated across race for H (or C)**
+
+#### measuring H and C
+- H: health record data, diagnoses, lab results, vital signs, etc.
+- C: insurance claims on utilization, outpatient/ER visit, hospitalization, health care costs
+
+#### **supp**: algo implementation
+- label: C (total medical expenditures)
+- features: insurance claim data
+  - demographics
+  - insurance type
+  - ICD-9 (international classification of diseases code) diagnosis and procedure codes
+  - prescribed medications
+  - encounters, categorized by type of service (surgical, radiology, etc.)
+  - billed amounts, categorized by type (outpatient, dialysis, etc.)
+- **algo is run 3 times a year** 
+
+### Health disparities conditional on risk score
+
+#### measure H: comorbidity score
+- total number of chronic illnesses over year t = **a measure of medical complexity; correlates w/ treatment effect of care management programs**
+- **more biological measure (from eletronic health records; EHR) are also used: measure for severity (not just presence)**
+  - **these data need to be cleaned extensively; usually not available for model building; hard to validate**
+  - **in the analysis, the authors analzed the difference in these values between black and white**
+
+#### Fig 1A: mean comorbidity vs. risk score
+- at the same risk score, Blacks have significantly more illness than Whites
+- 97%: black 4.8, white 3.8
+
+#### Meaning of this score discrepancy
+- less healthy blacks = more healthy whites -> same score -> substantial disparities in program screening
+- use counterfactual to measure this
+  - counterfactual: no racial bias
+
+#### Additional robustness checks related to program effect
+
+Does the program itself have an effect?
+
+1. Predict H_{t-1} instead of H_{t}: no racial difference 
+2. Compare enrolled vs. unenrolled: no difference (**is it though?**)
+3. 
+
+#### Fig 2: blacks are substantially less healthy than whites
+- across many biomarkers
+- at any levels of algorithm predictions
+
+### Mechanisms of bias
+
+- algorithm excludes race
+- target: cost
+- in terms of cost, it's well calibrated between white and black (no bias)
+- why then?
+  - Fig 3B: at a given level of health, Black generate lower costs than Whites
+  - Blacks also generate very different kinds of costs
+    - more costs related to ER and dialysis
+    - fewer inpatient surgical and outpatient specialist costs
+
+#### Why this happens
+
+1. poor patients face substantial barriers to accessing health care, even the insured ones
+   1. geography, transportation
+   2. demans from job, child care
+   3. knowledge of reasons to seek care
+2. cost directly affected by race
+   1. **taste-based discrmination**: employers' prejudice or dislikes in an organisational culture rooted in prohibited grounds can have negative results in hiring minority workers
+      1. One of the leading causes of labor market discrimination (the other: statistical discrimination)
+      2. employers' preference for employees of certain groups is unrelated to their preference for more productive employees
+   2. changes to the doctor-patient relationship
+      1. black patients would take preventive care suggested by black provider more
+      2. blacks also have lower trust in health care system (Tuskegee study; 40 years US gov, conducting study on 400 black men; the men were not informed; most infamous biomedical research study)
+      3. doctors' different perceptions of black patients: intelligence, affiliation, pain tolerance
+
+This results in **lowering health spending substantially for black patients conditional on needs**; known fact for 20 years
+
+### Problem formulation
+ 
+#### cost as target
+- widely used approach (industry wide)
+- not limited to industry
+
+#### alternatige targets
+- avoidable future cost (narrower definition): ER cost
+- measure of health directly
+
+#### problem formulation challenge
+- problem formulation: "turning an often amorphous concept we wish to predict into a concrete variable"
+- health is challenging; the idea is holistic and multi-dimentionsal
+- label choice is important; but each choice has tradeoffs
+
+### Experiments on label choice
+
+#### 3 labels
+1. total cost
+2. avoidable cost
+3. health (comorbidity)
+race is excluded
+
+#### results
+- they performed similarly
+- concentration in highest-risk patients table
+  - the columns are essentially concentraion by their target metric
+  - `top_k_df[outcome].sum() / holdout_pred_df[outcome].sum()`
+    - top_k_df[outcome].sum(): sum of top k (sorted by that outcome predictor) predicted values of that column label
+    - holdout_pred_df[outcome].sum(): sum of all predicted values of that column label
+- notice on the black fraction
+  - active chronic condition has highest proportion
+
+#### Relation to human judgment
+
+!!!!Todo!!!!
+- [ ] Finish the paper summary
+- [ ] Check the swapping code
+- [ ] Check post-paper changes
+
+
+
+
+
+
+
+
+
+
