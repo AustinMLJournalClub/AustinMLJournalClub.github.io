@@ -21,6 +21,11 @@ These days it feels like ML is all about LLMs and AI assistants. But algorthmic 
 
 ## Paper summary
 
+## author: ziad obermeyer
+- famous paper
+- md/phd: emergency medicine physician
+- nightingale foundation; open sourcing medical imaging
+
 ### Abstract
 - At a given score (algorithm estimate), Black patients are much sicker than White
 - The algorithm uses healthcare cost as target (proxy), not the sickness itself
@@ -128,13 +133,21 @@ implications of the study
 - use counterfactual to measure this
   - counterfactual: no racial bias
 
+#### **how the counterfactual works**!
+1. at a given percentile (e.g., 97th percentile) based on the risk score (cost algo)
+2. identify whites who are above, identify blacks who are above and below cutoff
+3. if the healthiest white-upper's comorbidity < sickest black-lower's comorbidity 
+   (= if the healthist white-upper is healthier than the sickest black-lower)
+4. remove the healthiest white (white-upper) 
+5. and give this spot to the sickest black from black-below (move them to the black-upper)
+6. check all blacks in black-below
+
 #### Additional robustness checks related to program effect
 
 Does the program itself have an effect?
 
 1. Predict H_{t-1} instead of H_{t}: no racial difference 
 2. Compare enrolled vs. unenrolled: no difference (**is it though?**)
-3. 
 
 #### Fig 2: blacks are substantially less healthy than whites
 - across many biomarkers
@@ -201,12 +214,61 @@ race is excluded
 - notice on the black fraction
   - active chronic condition has highest proportion
 
-#### Relation to human judgment
+### Relation to human judgment
+
+#### human-algo interaction
+- algo: screening tool
+- >55%: PCPs are informed and make enrollment decision
+
+#### Tab 3: doctors' decision vs. algo predictions
+- 19.2% black in enrollment data (what doctors did)
+- 4 scenarios
+  1. random sampling from cost model
+  2. sampling sicker patients from cost model
+  3. just using the cost algo
+  4. just using the health algo
+
+1 and 3 -> black patient prop. < 19.2% (still very small delta)
+2 and 4 -> more black patients enrolled
+
+- doctors can "redress" (=correct) the algo but not so much
+
+### discussion
+
+#### label choice bias
+- other examples in health: using mortality and readmission rate to measure hospital performance -> penalize those serving poor and non-white pops
+- credit-scoring
+- policing
+- hiring
+- retail
+- **can be deadly because it comes from "reasonable" choice**
+
+#### working on solutions together
+- authors contacted the algo manufacturer -> they could replicate the results
+- using the same model infrastucture
+- but with new target: index that combines health and cost
+- 84% reduction in bias
+- working on table 3 into scalable predictor of multi-dim health issues
+- the manufacturer is an industry leader -> hopeful note
+
+#### conclusions
+- algo baises are fixable
+- algo change wasn't required
+- it's more of a data problem; label!
+- deep knowledge of domain required
+- worth investing research on this
+
+## **impact**
+- [2021: FTC: Aiming for truth, fairness, and equity in your company’s use of AI](https://www.ftc.gov/business-guidance/blog/2021/04/aiming-truth-fairness-equity-your-companys-use-ai)
+- [2019: New York Regulator Probes UnitedHealth Algorithm for Racial Bias](https://www.wsj.com/articles/new-york-regulator-probes-unitedhealth-algorithm-for-racial-bias-11572087601)
+- [2024: Wyden Statement at Finance Committee Hearing on AI in Health Care](https://www.finance.senate.gov/chairmans-news/wyden-statement-at-finance-committee-hearing-on-ai-in-health-care)
+- [CA, 2022: Attorney General Bonta Launches Inquiry into Racial and Ethnic Bias in Healthcare Algorithms](https://oag.ca.gov/news/press-releases/attorney-general-bonta-launches-inquiry-racial-and-ethnic-bias-healthcare)
+
 
 !!!!Todo!!!!
-- [ ] Finish the paper summary
-- [ ] Check the swapping code
-- [ ] Check post-paper changes
+- [X] Finish the paper summary
+- [X] Check the swapping code
+- [X] Check post-paper impact
 
 
 
