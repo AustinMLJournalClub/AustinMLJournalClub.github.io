@@ -20,18 +20,24 @@ Fresh out of academia and at my first job, I remember being surprised by the gre
 These days it feels like ML is all about LLMs and AI assistants. But algorthmic bias is still widespread, and unfortunately it's even more overshadowed by this massive hype. This seminal paper from 2019 identified racial bias in a healthcare algorithm and discussed the problem of label choice bias. I find this paper still relevent because this bias can easily sneak when building datasets and algorithms. Since the paper is a few years old, it will be interesting to discuss what's happened since then.
 
 ## Paper summary
+- this is a famous paper in Fair ML field
+- cited frequently
+- "algorithm audit" paper
+- inspirational: uses many different (and creative) approaches to prove the main point
 
 ## author: ziad obermeyer
-- famous paper
-- md/phd: emergency medicine physician
+- uc berkeley; school of public health; harvard med schoool, history/science, philosophy masters, physician
+- md/phd: emergency medicine
 - nightingale foundation; open sourcing medical imaging
+- **he was working at a hospital that gave access to the algorithm**
+- also **Sendhil Mullainathan**: U chicaco economist
 
 ### Abstract
 - At a given score (algorithm estimate), Black patients are much sicker than White
 - The algorithm uses healthcare cost as target (proxy), not the sickness itself
 - Label choice bias: the choice of convenient, seemingly effective proxies for ground truth can cause algorithmic bias
 
-### Introduction
+### **Introduction**
 
 Many examples
 - these examples still exist
@@ -49,6 +55,7 @@ this study: high-risk care management system
   - provide care for complex medical needs (expensive)
   - effective in saving cost and improving outcome
   - resource is limited: use alorithm to prioritize **who will benefit the most**
+  - **healthy care systems rely on algirhtms **exensively** for this
 
 **algorithm in context** (from supplementary)
 - obamacare -> pressure on hospitals to reduce health care cost
@@ -56,15 +63,15 @@ this study: high-risk care management system
   - early identification of high risk patient -> reduce cost (like ER visit)
 
 figure out "who will benefit the most"
-- causal inference problem
+- difficult **causal inference** problem; we need to estimate individual treatment effeects
 - assumption: "those with the greatest needs will benefit the most"
-- target: "health care needs"
+- target: "future health care needs"
 
 rare opportunity
 - access to everything: data, objective function, prediction
 - not a unique algorithm: widely used
 
-implications of the study
+**implications of the study**
 - many analogies (risk assessment tools)
 - importance and opportunity of studying bias in healthcare algo ("in its own right")
 
@@ -89,14 +96,15 @@ implications of the study
 #### main methodology
 - fairness metrics
   - calibration
-  - statistical parity (demographic parity): proportion of C-suite member ratio men vs. women
+  - statistical parity (demographic parity): college admission rate between white vs. black
   - not possible to optimize all metrics simultaneously
 - this study: calibration
   - E[Y|R, W] = E[Y|R, B]
     - Y: interest
     - R: risk score
-- what we do
-  - R_{i, t}: risk score given patient i in year t given X_{i, t-1}
+- what we do: **EXAMINE CALIBRATION** R vs. H, R vs. C
+  - **WE DO NOT KNOW HOW $R$ IS CALCULATED!**
+  - R_{i, t}: risk score given patient i in year t given X_{i, t-1} -> 
   - H_{i, t}: realized health
   - C_{i, t}: actual cost 
   - **how well R is calibrated across race for H (or C)**
@@ -118,7 +126,7 @@ implications of the study
 
 ### Health disparities conditional on risk score
 
-#### measure H: comorbidity score
+#### overall measure of health: comorbidity score
 - total number of chronic illnesses over year t = **a measure of medical complexity; correlates w/ treatment effect of care management programs**
 - **more biological measure (from eletronic health records; EHR) are also used: measure for severity (not just presence)**
   - **these data need to be cleaned extensively; usually not available for model building; hard to validate**
@@ -142,25 +150,23 @@ implications of the study
 5. and give this spot to the sickest black from black-below (move them to the black-upper)
 6. check all blacks in black-below
 
-#### Additional robustness checks related to program effect
-
-Does the program itself have an effect?
-
-1. Predict H_{t-1} instead of H_{t}: no racial difference 
-2. Compare enrolled vs. unenrolled: no difference (**is it though?**)
-
 #### Fig 2: blacks are substantially less healthy than whites
 - across many biomarkers
 - at any levels of algorithm predictions
+- 
+##### Additional robustness checks related to program effect
+Does the program itself have an effect?
+1. Predict H_{t-1} instead of H_{t}: no racial difference 
+2. Compare enrolled vs. unenrolled: no difference (**is it though?**)
 
 ### Mechanisms of bias
 
 - algorithm excludes race
 - target: cost
-- in terms of cost, it's well calibrated between white and black (no bias)
+- **Fig 3A**: in terms of cost, it's well calibrated between white and black (no bias)
 - why then?
-  - Fig 3B: at a given level of health, Black generate lower costs than Whites
-  - Blacks also generate very different kinds of costs
+  - **Fig 3B**: at a given level of health, Black generate lower costs than Whites
+  - Blacks also generate very different kinds of costs (**Tab S2**)
     - more costs related to ER and dialysis
     - fewer inpatient surgical and outpatient specialist costs
 
@@ -168,7 +174,7 @@ Does the program itself have an effect?
 
 1. poor patients face substantial barriers to accessing health care, even the insured ones
    1. geography, transportation
-   2. demans from job, child care
+   2. demands from job, child care
    3. knowledge of reasons to seek care
 2. cost directly affected by race
    1. **taste-based discrmination**: employers' prejudice or dislikes in an organisational culture rooted in prohibited grounds can have negative results in hiring minority workers
@@ -185,13 +191,14 @@ This results in **lowering health spending substantially for black patients cond
  
 #### cost as target
 - widely used approach (industry wide)
+  - 10 most widely used algo: supplementary
 - not limited to industry
 
-#### alternatige targets
+#### there can be alternatige targets
 - avoidable future cost (narrower definition): ER cost
 - measure of health directly
 
-#### problem formulation challenge
+#### problem formulation challenge; dilemma of which label to choose
 - problem formulation: "turning an often amorphous concept we wish to predict into a concrete variable"
 - health is challenging; the idea is holistic and multi-dimentionsal
 - label choice is important; but each choice has tradeoffs
@@ -204,8 +211,12 @@ This results in **lowering health spending substantially for black patients cond
 3. health (comorbidity)
 race is excluded
 
-#### results
+#### results (Tab 2)
 - they performed similarly
+- **how they built table 2**
+  1. select the top k(3%) based on y_pred (row)
+  2. sum the y_test (column) within the top k
+  3. divide this number by the total sum
 - concentration in highest-risk patients table
   - the columns are essentially concentraion by their target metric
   - `top_k_df[outcome].sum() / holdout_pred_df[outcome].sum()`
@@ -217,8 +228,9 @@ race is excluded
 ### Relation to human judgment
 
 #### human-algo interaction
-- algo: screening tool
+- algo: screening tool -> doctor make the decision
 - >55%: PCPs are informed and make enrollment decision
+- doctor's realized enrollment decision = **how doctors respond to algorithmic predictions**
 
 #### Tab 3: doctors' decision vs. algo predictions
 - 19.2% black in enrollment data (what doctors did)
@@ -264,18 +276,21 @@ race is excluded
 - [2024: Wyden Statement at Finance Committee Hearing on AI in Health Care](https://www.finance.senate.gov/chairmans-news/wyden-statement-at-finance-committee-hearing-on-ai-in-health-care)
 - [CA, 2022: Attorney General Bonta Launches Inquiry into Racial and Ethnic Bias in Healthcare Algorithms](https://oag.ca.gov/news/press-releases/attorney-general-bonta-launches-inquiry-racial-and-ethnic-bias-healthcare)
 
+#### Other works
+- [An algorithmic approach to reducing unexplained pain disparities in underserved populations](https://www.nature.com/articles/s41591-020-01192-7)
+- [Clinical Notes Reveal Physician Fatigue](https://arxiv.org/abs/2312.03077)
 
-!!!!Todo!!!!
-- [X] Finish the paper summary
-- [X] Check the swapping code
-- [X] Check post-paper impact
-
-
-
-
-
-
-
-
-
-
+#### Recent work of his (FAccT 2023 talk)
+- **lack of data access** is a huge problem: health data can be considered a public good
+  - new clinical tools: predicting sudden cardiac arrest
+  - urgent need to audit many flawed algorithms
+    - even hard for FDA; difficult to do rigorous external validation (they can't get the data)
+    - unsafe regulatory environment (difficulty of data access)
+- data platform for clinical AI
+  - company: **dandelion** 
+- **closing thoughts: engagement with real problems**
+  - agnozing tradeoffs; better proxy? how to persuade hospitals, how to stop bias, etc.
+  - generates fascinating, unexpected new technical problems to solve -> constraints -> creative solutions
+  - deep satisfaction
+    - being in the room where decisions are made
+    - bending the process in the right direction
