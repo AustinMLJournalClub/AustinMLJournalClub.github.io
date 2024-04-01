@@ -27,7 +27,7 @@ These days it feels like ML is all about LLMs and AI assistants. But algorthmic 
 
 ## author: ziad obermeyer
 - uc berkeley; school of public health; harvard med schoool, history/science, philosophy masters, physician
-- md/phd: emergency medicine
+- physician specliazed in emergency medicine
 - nightingale foundation; open sourcing medical imaging
 - **he was working at a hospital that gave access to the algorithm**
 - also **Sendhil Mullainathan**: U chicaco economist
@@ -39,15 +39,15 @@ These days it feels like ML is all about LLMs and AI assistants. But algorthmic 
 
 ### **Introduction**
 
-Many examples
+#### Many examples
 - these examples still exist
 
-Difficulty of empricial investigation
+#### Difficulty of empricial investigation
 - proprietary algos -> must work "from the outside" (creative, audit)
   - still limiting: difficult to understand how and why
   - training data, objective function, prediction method
 
-this study: high-risk care management system
+#### this study: high-risk care management system
 - rich data, live, scaled
 - risk prediction tool
 - used for 200M in the US 
@@ -57,21 +57,21 @@ this study: high-risk care management system
   - resource is limited: use alorithm to prioritize **who will benefit the most**
   - **healthy care systems rely on algirhtms **exensively** for this
 
-**algorithm in context** (from supplementary)
+#### Supp: **algorithm in context**
 - obamacare -> pressure on hospitals to reduce health care cost
 - causes development of "high risk care management" programs
   - early identification of high risk patient -> reduce cost (like ER visit)
 
-figure out "who will benefit the most"
+#### figure out "who will benefit the most"
 - difficult **causal inference** problem; we need to estimate individual treatment effeects
 - assumption: "those with the greatest needs will benefit the most"
 - target: "future health care needs"
 
-rare opportunity
+#### rare opportunity
 - access to everything: data, objective function, prediction
 - not a unique algorithm: widely used
 
-**implications of the study**
+#### **implications of the study**
 - many analogies (risk assessment tools)
 - importance and opportunity of studying bias in healthcare algo ("in its own right")
 
@@ -89,8 +89,8 @@ rare opportunity
 
 #### algorithm scores
 - generated for each patient during the enrollment period
-- > 97%: automatically "identified" as enrolled (not guaranteed for enrollment)
-- > 55%: referred to their PCP for their opinion
+- `> 97`%: automatically "identified" as enrolled (not guaranteed for enrollment)
+- `> 55%`: referred to their PCP for their opinion
 - **program run 3x a year: patients whose scores > threshold (97%)**
 
 #### main methodology
@@ -98,15 +98,16 @@ rare opportunity
   - calibration
   - statistical parity (demographic parity): college admission rate between white vs. black
   - not possible to optimize all metrics simultaneously
+  - **UT Austin presence: Maria De-Arteaga**
 - this study: calibration
   - E[Y|R, W] = E[Y|R, B]
     - Y: interest
     - R: risk score
 - what we do: **EXAMINE CALIBRATION** R vs. H, R vs. C
   - **WE DO NOT KNOW HOW $R$ IS CALCULATED!**
-  - R_{i, t}: risk score given patient i in year t given X_{i, t-1} -> 
-  - H_{i, t}: realized health
-  - C_{i, t}: actual cost 
+  - $R_{i, t}$: risk score given patient i in year t given $X_{i, t-1}$ (commercial algo)
+  - $H_{i, t}$: realized health
+  - $C_{i, t}$: actual cost 
   - **how well R is calibrated across race for H (or C)**
 
 #### measuring H and C
@@ -153,7 +154,7 @@ rare opportunity
 #### Fig 2: blacks are substantially less healthy than whites
 - across many biomarkers
 - at any levels of algorithm predictions
-- 
+
 ##### Additional robustness checks related to program effect
 Does the program itself have an effect?
 1. Predict H_{t-1} instead of H_{t}: no racial difference 
@@ -209,7 +210,8 @@ This results in **lowering health spending substantially for black patients cond
 1. total cost
 2. avoidable cost
 3. health (comorbidity)
-race is excluded
+
+(race is excluded in all cases)
 
 #### results (Tab 2)
 - they performed similarly
@@ -227,10 +229,11 @@ race is excluded
 
 ### Relation to human judgment
 
-#### human-algo interaction
+#### human-algo interaction (HAI)
 - algo: screening tool -> doctor make the decision
-- >55%: PCPs are informed and make enrollment decision
+- `>55%`: PCPs are informed and make enrollment decision
 - doctor's realized enrollment decision = **how doctors respond to algorithmic predictions**
+- ref.: UT Austin presence; Min Kyung Lee (HAI)
 
 #### Tab 3: doctors' decision vs. algo predictions
 - 19.2% black in enrollment data (what doctors did)
@@ -239,13 +242,11 @@ race is excluded
   2. sampling sicker patients from cost model
   3. just using the cost algo
   4. just using the health algo
-
-1 and 3 -> black patient prop. < 19.2% (still very small delta)
-2 and 4 -> more black patients enrolled
-
+- 1 and 3 -> black patient prop. < 19.2% (still very small delta)
+- 2 and 4 -> more black patients enrolled
 - doctors can "redress" (=correct) the algo but not so much
 
-### discussion
+### Discussion
 
 #### label choice bias
 - other examples in health: using mortality and readmission rate to measure hospital performance -> penalize those serving poor and non-white pops
