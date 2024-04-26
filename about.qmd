@@ -11,8 +11,14 @@ Hongsup is the organizer of the Austin ML Journal Club. He organizes the club me
 
 He is a Principal ML Research Engineer at Arm and used to be a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin, TX. His background is computational neuroscience and behavioral ecology. He is interested in ML Ops, responsible AI, and AI ethics.
 
+## [Joel Afriyie](https://www.linkedin.com/in/joelafriyie)
+Joel is a Machine Learning Engineer at Acrisure based here in Austin, TX. His background is in Computer Science and Fair ML. He is interested in MLOps, Music ML, Fair and Responsible AI, and Software and Data Engineering.
+
 ## [Kathrine (Kate) Behrman](https://www.linkedin.com/in/kate-behrman/)
 She is a Staff ML Research Engineer at Arm in Austin, TX. She used to work for the USDA-NRCS and USDA-ARS as a Research Ecologist. Her background is in landscape and evolutionary ecology. She is interested in human AI interactions and responsible use of AI.
+
+## [Brian King](https://www.linkedin.com/in/brianking387/)
+Brian is a Senior ML Research Engineer at Arm. His background is in Bayesian statistics, and current interests include time series forecasting, uncertainty quantification for complex models, and causal inference.
 
 ## [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/)
 Kshitij is a Data Scientist at Bristol-Myers Squibb. His background is in astronomy and electrical engineering. He is interested in problem-solving using state-of-the-art AI tools and responsible use of AI.
@@ -26,10 +32,6 @@ Saina is a senior Data Scientist at Adobe Commerce, located in Austin, TX. Previ
 ## [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan)
 Akshata Mohan does machine learning at Cloudflare. She is also one of the organizers of the local women in data science meetup in Austin. Her background is in information science and analytics and she’s interested in the applications of ML to cybersecurity.
 
-## [Joel Afriyie](https://www.linkedin.com/in/joelafriyie)
-Joel is a Machine Learning Engineer at Acrisure based here in Austin, TX. His background is in Computer Science and Fair ML. He is interested in MLOps, Music ML, Fair and Responsible AI, and Software and Data Engineering.
-
 ## [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath)
 She is a Data Scientist at PrimeStreet and is based in Austin, TX. Her background is in cognitive neuroscience. She is interested in keeping up with the ever-changing landscape of AI and ML and its applications to daily life and business.
-
 

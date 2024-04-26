@@ -2,8 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
+<<<<<<< HEAD
       "/posts/20240328/Obermeyer_2019_experiment.html",
       "/posts/20240328/index.html",
+||||||| 70a9c51
+=======
+      "/posts/20240229/index.html",
+>>>>>>> main
       "/posts/20240125/index.html",
       "/posts/20231019/index.html",
       "/posts/20230928/index.html",
