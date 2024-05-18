@@ -19,7 +19,7 @@ The power of LLMs, in a commercial setting, comes from its ability to use other 
 
 ## LLM agents
 
-We first discussed what LLM agents are and how they operate. Joel provided us with good introduction. LLM agents are tools with APIs that interact with LLMs to build a customized tool that serves your product's custom needs. [An NVIDIA blog post about LLM agents](https://developer.nvidia.com/blog/introduction-to-llm-agents/) gives an example of using an LLM agent to summarize an earnings call, which requires a complex process more than just looking up an answer. Using an LLM agent is what the paper refers to as "using a tool via API calls."
+We first discussed what LLM agents are and how they operate. Joel provided us with a good introduction. LLM agents are tools with APIs that interact with LLMs to build a customized tool that serves your product's custom needs. [An NVIDIA blog post about LLM agents](https://developer.nvidia.com/blog/introduction-to-llm-agents/) gives an example of using an LLM agent to summarize an earnings call, which requires a complex process more than just looking up an answer. Using an LLM agent is what the paper refers to as "using a tool via API calls."
 
 ## Why this paper is interesting
 
