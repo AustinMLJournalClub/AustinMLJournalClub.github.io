@@ -1,0 +1,38 @@
+---
+title: "Gorilla: Large Language Model Connected with Massive APIs"
+author: "Hongsup Shin"
+date: "2024-04-18"
+image: https://github.com/ShishirPatil/gorilla/raw/gh-pages/assets/img/logo.png
+description: The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.
+categories: [paper]
+---
+
+:::{.callout-note}
+- Paper: [Gorilla: Large Language Model Connected with Massive APIs](https://arxiv.org/abs/2305.15334)
+- Presenter: [Joel](https://www.linkedin.com/in/joelafriyie/)
+- Attendees: [Athula](https://www.linkedin.com/in/athula-pudhiyidath/), [Brian](https://www.linkedin.com/in/brianking387/), [Hongsup](https://www.linkedin.com/in/hongsupshin/)
+:::
+
+## Why this paper?
+
+The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.
+
+## LLM agents
+
+We first discussed what LLM agents are and how they operate. Joel provided us with a good introduction. LLM agents are tools with APIs that interact with LLMs to build a customized tool that serves your product's custom needs. [An NVIDIA blog post about LLM agents](https://developer.nvidia.com/blog/introduction-to-llm-agents/) gives an example of using an LLM agent to summarize an earnings call, which requires a complex process more than just looking up an answer. Using an LLM agent is what the paper refers to as "using a tool via API calls."
+
+## Why this paper is interesting
+
+Even though one of the paper's most interesting points is the test-time behavior of Gorilla, which can dynamically update its answer using up-to-date information instead of a static snapshot from training data, we think the main contribution lies in their APIBench benchmark and the fact that they were able to train a relatively small model, with better performance.
+
+## Training data
+
+We were slightly confused by the authors' description of training data, especially when they said they *constructed six examples (Instruction-API pairs) for each of the three model hubs*. From our understanding, the authors ended up having 1,645 data points and per data point, they had 6 samples, which they chose 3 out of, and then generated 10 pairs. We briefly looked at their training data shared on their GitHub repo. We were quite surprised that they included a variety of examples from requesting specific coding examples to asking for inspirations for poetry writing. We also appreciated that the authors released the training data to be more cognizant of their tool's social impacts.
+
+## Retrievers
+
+Joel also provided the group with a brief explanation of how retrievers work. Essentially, retrievers do similarity match and pick the top ranked item based on a prompt. Retriever-aware training was introduced as a main feature of Gorilla, which enables test-time performance. That said, it was important to understand that Gorilla had two modes: zero-shot (without retriever) and retriever-aware.
+
+## Final thoughts
+
+This paper is still a preprint but the tool has been getting a lot of attention lately. However, we very much agreed that this paper could be more polished after a review process. For instance, we found that their best model performance came from the mode without retriever (zero-shot) even though their hightlight is the retriever-aware mode. Also, they had almost no mention of compute resources other than the model size. Given that this group already has follow-up papers based on Gorilla, we are interested in how this paper would be reviewed and further developed.
