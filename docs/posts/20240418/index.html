@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Hongsup Shin">
+<meta name="dcterms.date" content="2024-04-18">
+<meta name="description" content="The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.">
 
-<title>Austin ML Journal Club</title>
+<title>Austin ML Journal Club - Gorilla: Large Language Model Connected with Massive APIs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,19 +71,21 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Austin ML Journal Club">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Austin ML Journal Club - Gorilla: Large Language Model Connected with Massive APIs">
+<meta property="og:description" content="The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.">
+<meta property="og:image" content="https://github.com/ShishirPatil/gorilla/raw/gh-pages/assets/img/logo.png">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Austin ML Journal Club</span>
     </a>
   </div>
@@ -91,19 +96,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../readme.html"> 
+    <a class="nav-link" href="../../readme.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../quarto.html"> 
+    <a class="nav-link" href="../../quarto.html"> 
 <span class="menu-text">Blogging</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reading_list.html"> 
+    <a class="nav-link" href="../../reading_list.html"> 
 <span class="menu-text">Reading List</span></a>
   </li>  
   <li class="nav-item compact">
@@ -124,93 +129,93 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Gorilla: Large Language Model Connected with Massive APIs</h1>
+                  <div>
+        <div class="description">
+          The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">paper</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hongsup Shin </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 18, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>ML-based science: Is prediction important in science? This might depend on the domain (e.g., climate change research might focus on predicting the risk)</li>
-<li>Model info sheet: the intent is good but it seems unfeasible (too much effort and information for the author)</li>
-<li>Definition of reproducibility: it makes sense to consider the correctness of analysis and scientific integrity as a part of reproducibility</li>
-<li>Why focus on the civil war papers? Perhaps these are well-studied review papers w/ code and data available</li>
+<li>Paper: <a href="https://arxiv.org/abs/2305.15334">Gorilla: Large Language Model Connected with Massive APIs</a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/joelafriyie/">Joel</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula</a>, <a href="https://www.linkedin.com/in/brianking387/">Brian</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a></li>
 </ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper?</h2>
+<p>The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.</p>
 </section>
-<section id="why-make-distinction-between-science-and-engineering-applications" class="level2">
-<h2 class="anchored" data-anchor-id="why-make-distinction-between-science-and-engineering-applications">Why make distinction between science and engineering applications?</h2>
-<ul>
-<li>It’s not like that leakage is okay in production or difficult not to notice in engineering application. Data leakage is still an issue.</li>
-<li>Perhaps they meant that industry engineering applications get less constraints/scrutiny about the process. But practically speaking, engineering applications can pose higher risks than scientific research because they have more immediate real-world impacts</li>
-<li>Plus some papers they looked into sounded very close to industry such as software engineering, cybersecurity, etc.</li>
-</ul>
+<section id="llm-agents" class="level2">
+<h2 class="anchored" data-anchor-id="llm-agents">LLM agents</h2>
+<p>We first discussed what LLM agents are and how they operate. Joel provided us with a good introduction. LLM agents are tools with APIs that interact with LLMs to build a customized tool that serves your product’s custom needs. <a href="https://developer.nvidia.com/blog/introduction-to-llm-agents/">An NVIDIA blog post about LLM agents</a> gives an example of using an LLM agent to summarize an earnings call, which requires a complex process more than just looking up an answer. Using an LLM agent is what the paper refers to as “using a tool via API calls.”</p>
 </section>
-<section id="taxonomy" class="level2">
-<h2 class="anchored" data-anchor-id="taxonomy">Taxonomy</h2>
-<ul>
-<li>L1.1 (no test set): shocking!</li>
-<li>L1.2 (preprocessing): This is a loaded area because many different sub-domains exist such as imputation, oversampling, encoding, etc. Thus, it would’ve been nice to separate these areas further.</li>
-<li>L2 (illegitimate features):
-<ul>
-<li>Definition of proxy sounds a bit tricky.
-<ul>
-<li>We had a discussion about whether highly correlated features can be considered as data leakage. We agreed that all proxies are highly correlated features but not all highly correlated features are proxies.</li>
-<li>Like in hypertensive drug example, proxies are those that we should not be using (either because it’s cheating or not relevant or not available when making prediction) for obviously reasons. Thinking about the causal relationship also can help.</li>
-<li>As the paper says, domain knowledge might be required to identify all proxies.</li>
-</ul></li>
-<li>This L2 problem can get worse due to the high ML hype and ML code being extremely light (only a few lines of readily usable code available).</li>
-</ul></li>
-<li>L3.2 and L3.3: they are quite different from other data leakage problems.
-<ul>
-<li>Both are more challenging to identify.</li>
-<li>If researchers can design experiments and collect data by themselves, they have some control over it, but for engineering applications/industry, often the data is given to us and we often don’t have many options to mitigate this problem.</li>
-<li>For instance, it’s usually difficult to do split the data to achieve similar distributions between train and test (except class imbalance, temporal etc.)</li>
-</ul></li>
-</ul>
+<section id="why-this-paper-is-interesting" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper-is-interesting">Why this paper is interesting</h2>
+<p>Even though one of the paper’s most interesting points is the test-time behavior of Gorilla, which can dynamically update its answer using up-to-date information instead of a static snapshot from training data, we think the main contribution lies in their APIBench benchmark and the fact that they were able to train a relatively small model, with better performance.</p>
 </section>
-<section id="model-info-sheets-and-our-theory-of-change" class="level2">
-<h2 class="anchored" data-anchor-id="model-info-sheets-and-our-theory-of-change">3.3: Model info sheets and our theory of change</h2>
-<ul>
-<li>High hopes!</li>
-<li>It might not be useful to believe that the authors would follow this guideline. It will be a useful sanity checkpoint where the authors can think about the process (in this sense, this could be useful for industry people as well).</li>
-<li>But of course, the authors can simply lie about it. But we get that this could be a middle-ground suggestion.</li>
-<li>Also, in certain filed, people are very reluctant about sharing their data and code (such as oil and gas companies where well data is essentially their most valuable asset).</li>
-<li>It might be more impactful if journals make this process as mandatory (but again, this will be a big ask).</li>
-</ul>
+<section id="training-data" class="level2">
+<h2 class="anchored" data-anchor-id="training-data">Training data</h2>
+<p>We were slightly confused by the authors’ description of training data, especially when they said they <em>constructed six examples (Instruction-API pairs) for each of the three model hubs</em>. From our understanding, the authors ended up having 1,645 data points and per data point, they had 6 samples, which they chose 3 out of, and then generated 10 pairs. We briefly looked at their training data shared on their GitHub repo. We were quite surprised that they included a variety of examples from requesting specific coding examples to asking for inspirations for poetry writing. We also appreciated that the authors released the training data to be more cognizant of their tool’s social impacts.</p>
 </section>
-<section id="limitations-of-model-info-sheets" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-of-model-info-sheets">3.4: Limitations of model info sheets</h2>
-<ul>
-<li>Authors not being ML experts and using ML in their research seems like another side-effect of ML hype.</li>
-</ul>
+<section id="retrievers" class="level2">
+<h2 class="anchored" data-anchor-id="retrievers">Retrievers</h2>
+<p>Joel also provided the group with a brief explanation of how retrievers work. Essentially, retrievers do similarity match and pick the top ranked item based on a prompt. Retriever-aware training was introduced as a main feature of Gorilla, which enables test-time performance. That said, it was important to understand that Gorilla had two modes: zero-shot (without retriever) and retriever-aware.</p>
 </section>
-<section id="fig-1" class="level2">
-<h2 class="anchored" data-anchor-id="fig-1">Fig 1</h2>
-<ul>
-<li>It’s interesting that logistic regression isn’t affected much by the correction. It would have been nice if the authors explained more about the why (there’s some in appendix but it’s not super clear).</li>
-<li>As the appendix explains, datasets from one paper were used by others even though they were based on imputation with high data leakage. Also some imputation processes in the papers the authors examined were done when the proportion of missing data is very high (like 90%).</li>
-</ul>
-</section>
-<section id="problem-of-missing-significant-testing" class="level2">
-<h2 class="anchored" data-anchor-id="problem-of-missing-significant-testing">Problem of missing significant testing</h2>
-<ul>
-<li>We discussed what exactly they were supposed to compare in terms of significant testing. Since they also mentioned confidence interval, we assumed it’s the results based on bootstrapping</li>
-</ul>
-</section>
-<section id="enhancing-the-reproducibility" class="level2">
-<h2 class="anchored" data-anchor-id="enhancing-the-reproducibility">5: Enhancing the reproducibility</h2>
-<ul>
-<li>First of all, this paper feels very redundant. This section also.</li>
-<li>Again, these are good recommendations but maybe a big ask? (We were being realistic.)</li>
-<li>Privacy concern is another thing to think about. If we violate privacy when we have to disclose so much about data and distribution to prove the absence of data leakage, how would we resolve this conflict?</li>
-<li>We learned about the presence of CodeOcean (pretty cool effort).</li>
-</ul>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+<p>This paper is still a preprint but the tool has been getting a lot of attention lately. However, we very much agreed that this paper could be more polished after a review process. For instance, we found that their best model performance came from the mode without retriever (zero-shot) even though their hightlight is the retriever-aware mode. Also, they had almost no mention of compute resources other than the model size. Given that this group already has follow-up papers based on Gorilla, we are interested in how this paper would be reviewed and further developed.</p>
 
 
 </section>
