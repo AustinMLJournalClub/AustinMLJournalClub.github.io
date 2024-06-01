@@ -1,0 +1,249 @@
+---
+title: Modeling Tabular Data using Conditional GAN
+author: Hongsup Shin
+date: 2024-05-30
+image: Fig 1.png
+description: Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the [*Synthetic Data Vault*](https://sdv.dev/) library in Python.
+categories: [paper]
+---
+
+:::{.callout-note}
+- Paper: [Modeling Tabular Data using Conditional GAN](https://papers.nips.cc/paper_files/paper/2019/file/254ed7d2de3b23ab10936522dd547b78-Paper.pdf)
+- Presenter: [Hongsup](https://www.linkedin.com/in/hongsupshin/)
+- Attendees: [Brian](https://www.linkedin.com/in/brianking387/)
+:::
+
+## Why this paper?
+
+At work, I train models using tabular data with extreme class imbalance, which is often quite challenging. To tackle this, I have been looking into data augmentation techniques for tabular data, which is a relatively understudied domain compared to unstructured data. [Synthetic Data Vault](https://docs.sdv.dev/sdv) is a popular python library for tabular data synthesis, and the main techniques originate from the paper above. Since class imbalance is a common problem in real-world data and most of us work with tabular data, I think this will be an interesting paper to discuss.
+
+## Paper summary
+
+### 1. Intro
+- GAN's advantage: flexible distribution approximation
+- benchmarking: real and synthetic data
+- baselines: Bayesian networkds
+  - CLBN: 1968; BN for approximate discrete distribution using trees
+  - PrivBN: 2017; Privacy BN; privacy data release (data synthesis included)
+- evaluation methods
+  - likelihood fitness
+  - ML efficacy (ML performance)
+- result summary: Tab. 1
+  - CTGAN wins 7/8 or 8/8
+- technique summary
+  - mode-specific normalization
+  - conditional generator
+  - training-by-sampling
+- main contributions
+  1. Conditional GAN for synthetic data generation
+       - TVAE for another comparison: VAE directly uses data
+       - CTGAN has competitive performance
+  2. Benchmark system
+       - open source
+       - 15 datasets
+       - 7 methods: 5 DL methods, 2 BN methods
+       - 2 eval methods
+
+### 2. Related work
+
+- Previous approach
+  - Treat each column as ind. rand. var -> model the joint distribution
+    - Example
+      - Discrete data: decision trees or BN
+      - Spatial data: spatial compositional tree
+      - Non-linear correlated cont. var -> copulas
+  - Disadvantage: types of dist are restricted
+- VAE and GAN: flexibility
+  - GAN use case: synthetic healthcare data
+  - medGAN: AE + GAN
+  - tableGAN: CNN
+  - PATE-GAN: private synthetic
+- **VAE vs. GAN**
+  - VAE
+    - loss: KL divergence
+    - simpler to train
+    - latent space (usually gaussian mixture)
+    - image generation, anomaly detection
+  - GAN
+    - essentially classification: is it fake or original (framing generative process as supervised learning problem)
+    - loss: 2 loss functions; generator and discriminator losses
+    - trained together in a zero-sum game, adversarial, **until the discriminator model is fooled about half the time, meaning the generator model is generating plausible examples.**
+    - more difficult to train but generally better results
+    - synthetic data
+- **Conditional GAN**
+  - conditionally generating an output
+  - input is conditioned by some additional input (given class, given input feature value)
+  - can be conditioned from the domain like an image (image-to-image translation, etc.)
+  - both generatort and discriminator are conditioned
+
+### 3. Challenges 
+- Main task: synthesizer $G$ learns a table $T$ to generate a synthetic table $T_{syn}$
+- Overview of the structure
+  - $T$
+    - $N_c$ continuous columns + $N_d$ discrete columns
+    - Rand vars following unknown joint distribution
+    - $T$ is split into $T_{train}$ ($G$ is trained on this) + $T_{test}$
+  - Eval methods
+      1. Likelihood fitness: **fidelity of distributions between $T_{syn}$ and $T_{train}$**
+      2. Machine learning efficacy: **When training an ML model to predict *one column* using other columns as features, the model from $T_{syn}$ and the model from $T_{test}$ produce similar scores?**
+- **Unique challenges**
+    1.  Mixed data types: discrete + continuous
+    2.  Non-Gaussian distributions: tanh vanishing gradient after normaliztion (min max)
+    3.  Multimodal distributions
+    4.  Learning from sparse one-hot-encoded vectors
+        - softmax: [0.5, 0.2, 0.3] -> one-hot: [1, 0, 0]
+    5.  Highly imbalanced categorical columns: causes *severe* mode collapse, insufficient training samples
+
+![](https://www.baeldung.com/wp-content/uploads/sites/4/2022/02/derivatives.png)
+
+### 4. CTGAN
+
+- mode-specific normalization: non-Gaussian and multimodal
+- conditional generator + training-by-sampling: class imbalance
+
+#### 4.1 Notations
+- gumbel softmax: a continuous distribution over the simplex that is often used as a relaxation of discrete distributions (easily reparameterized)
+- leaky: negative gradients are not ignored any more
+
+#### 4.2 Mode-specific normalization
+- gist: converting continous columns into one-hot vector of modes and their prob. weights
+- Steps
+    1. For a continuous column, use VGM (variational gaussian mixture) to estimate the no. of modes
+    2. For each value in the column, compute the prob. coming from each mode
+    3. Choose the largest mode indicator (represented as a one-hot vector), and normalize the value with the mode and its std.
+        - **not sure why the denominator is $4\phi_{3}$**
+- Representation: concatenated values
+
+#### 4.3 Conditional Generator and Training-by-Sampling
+
+- Tradional GAN's gaussian assumption
+  - uses a vector sampled from a standard multivariate normal distribution (MVN)
+  - after training, we get a deterministic transformation of this MVN
+  - doesn't account for class imbalance (minority class not well represented)
+- Sampling during training
+    1. Random sampling: minority class not well represented
+    2. Resampling: generator learns the resampled dist. (differernt from real dist.)
+- This gets worse because there are many imbalanced columns and the real data dist. should be kept intact
+- Goal
+    - Resampling data that all categories are sampled **evenly** during training
+    - Recover the real data dist. during test
+- Why conditional
+    - Estimating the conditional distribution of **rows given that particular value at that particular column**
+- Requirements to integrate a conditional generator into GAN architecture
+    1. Must devise a representation for the condition and prepare an input
+    2. Generated rows must preserve the given condition
+    3. The conditional generator should learn the real data conditional distribution
+$$\hat{r} \sim P_G (row|D_{i^*}=k^*)$$
+- Reconstruct the real distribution is done by marginalizing across all categories
+
+##### CTGAN Model
+![CT GAN model](Fig 2.png)
+
+1. Conditional vector
+    - Each discrete column is one-hot vector
+    - Mask vector: only represent a category of a single discrete column (in one-hot way, the rest is all zero)
+    - **Seems a bit wasteful?**
+2. Generator loss
+    - Cross entropy between $m_{i^*}$ (given by data) and $\hat{d}_{i^*}$ (produced generator) averaged over all rows in a batch
+3. Training-by-sampling method: Critic assessment -> measure dist btw learned cond. dist. and cond. dist on real data **while exploring all possible values evenly**
+   1. Create an all-zero mask vector for all discrete columns (concatenated)
+   2. Randomly select a discrete column (uniform)
+   3. Construct a PMF (measure frequency): PM = *log frequency*
+   4. Randomly select a category based on PMF
+   5. Update the mask (0 -> 1)
+
+#### 4.4 Network Structure
+Generator
+
+- Fully connected network to capture all possible correlations btw columns
+- $\alpha$ (normalized scalar): tanh
+- $\beta$ (mode indicator): gumbel
+- $d$ (one-hot discrete): gumbel
+
+Critic
+
+- PacGAN: 10 samples in a pack to prevent mode collapse (to avoid getting stuck)
+- WGAN: Wasserstein distance (earth mover's distance; works well with disjoint prob dist)
+
+#### 4.5 TVAE Model
+- Two networks: encoder and decoder
+- Same input preprocessing (one-hot of continuous + discrete)
+
+Encoder ($p(r|z)$)
+
+- $\alpha$ (normalized scalar): Gaussian
+- $\beta$ (mode indicator): softmax
+- $d$ (one-hot discrete): softmax
+- **typo**: $p_{\theta}$ distribution at the end ($\alpha$ -> $d$)
+
+Decoder ($q(z|r)$)
+
+- multivariate gaussian
+
+### 5. Benchmarking Synthetic Data Generation Algorithms
+
+Goal: same data, same baseline, same metric
+
+#### 5.1 Baselines and Datasets
+
+- Baseline: BN (CLBN, PrivBN)
+- Current DL: MedGAN, VeeGAN, TableGAN
+- Compare TVAE and CTGAN against these
+
+Benchmark: 7 simulated + 8 real
+
+##### Simulated data
+- Known data distribution $S$ (Gaussian mix or [BN](http://www.bnlearn.com/bnrepository/))
+- Sample train and test tables
+
+##### Real datasets
+- UCI database, Kaggle, binarized MNIST
+
+#### 5.2 Evaluation Metrics and Framework
+
+##### Likelihood fitness metric
+
+- Use the data oracle $S$; basically estimate whether the syntetic data can fit $S$ well
+- $L_{syn}$: likelihood of $T_{syn}$ on $S$
+- $L_{test}$: likelihood of $T_{test}$ on $S'$
+  - Can detect mode collapse
+  - $S'$: same model structure but different params
+    - Guassian: same no. of mixture, different mean and cov
+    - BN: same network, learn new cond. dist.
+  
+##### ML efficacy
+
+- same performance from real and synthetic?
+
+#### 5.3 Benchmarking Results
+
+- GM sim
+  - BN baselines don't do well: **continuous numeric data has to be discretized before modeling using Bayesian networks**
+  - other GANs suffer from mode collapse
+- BN sim
+  - CLBN and PrivBN do well
+  - TableGAN does well
+    - **One possible reasoning for this is that in our simulated data, most variables have fewer than 4 categories, so conversion does not cause serious problems.**
+- Real
+  - TVAE and CTGAN do well
+- TVAE > CTGAN
+  - Why choose GAN: better differential privacy
+
+#### 5.4 Ablation Study
+
+Remove/change components to measure their impact
+
+- Mode-specific normalization
+    - Fixed number of modes (GMM), min-max norm: all worse
+- Conditional generator and training-by-sampling: both are critical
+    1. w/o S (disable training-by-sampling)
+    2. w/o C (remove the condition vector in the generator)
+- Architecture
+    - Current: WGANGP + PacGAN
+    - vs. WGANGP
+    - vs. vanilla GAN
+    - va. vanilla GAN + PacGAN
+
+### 6. Conclusion
+
+- Furthermore, we argue that the conditional generator can help generate data with a specific discrete value, which can be used for data augmentation.
