@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,15 +32,17 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -98,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -112,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -130,22 +132,25 @@ window.Quarto = {
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Austin ML Journal Club">
+<meta property="og:image" content="./posts/20240530/Fig 1.png">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Austin ML Journal Club</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -178,18 +183,18 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="paper">paper <span class="quarto-category-count">(15)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXI=">paper <span class="quarto-category-count">(15)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -202,26 +207,23 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="paper" data-listing-date-sort="1717045200000" data-listing-file-modified-sort="1721493460804" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="735">
-<div class="thumbnail">
-<p><a href="./posts/20240530/index.html" class="no-external"></a></p><a href="./posts/20240530/index.html" class="no-external">
-<p><img src="./posts/20240530/Fig 1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20240530/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="0" data-categories="cGFwZXI=" data-listing-date-sort="1717045200000" data-listing-file-modified-sort="1721512026042" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="735">
+<div class="thumbnail"><a href="./posts/20240530/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20240530/Fig 1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240530/index.html" class="no-external">Modeling Tabular Data using Conditional GAN</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20240530/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20240530/index.html" class="no-external">Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the <span><em>Synthetic Data Vault</em></span> library in Python.</a>
+<div class="delink listing-description"><a href="./posts/20240530/index.html" class="no-external">
+</a><p><a href="./posts/20240530/index.html" class="no-external">Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the </a><a href="https://sdv.dev/"><em>Synthetic Data Vault</em></a> library in Python.</p>
 </div>
 </div>
 <div class="metadata">
@@ -235,27 +237,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="paper" data-listing-date-sort="1713416400000" data-listing-file-modified-sort="1716563051241" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="500">
-<div class="thumbnail">
-<p><a href="./posts/20240418/index.html" class="no-external"></a></p><a href="./posts/20240418/index.html" class="no-external">
-<p><img src="https://github.com/ShishirPatil/gorilla/raw/gh-pages/assets/img/logo.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20240418/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="1" data-categories="cGFwZXI=" data-listing-date-sort="1713416400000" data-listing-file-modified-sort="1716563051241" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="500">
+<div class="thumbnail"><a href="./posts/20240418/index.html" class="no-external">
+
+<img loading="lazy" src="https://github.com/ShishirPatil/gorilla/raw/gh-pages/assets/img/logo.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240418/index.html" class="no-external">Gorilla: Large Language Model Connected with Massive APIs</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20240418/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20240418/index.html" class="no-external">The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20240418/index.html" class="no-external">
+<p>The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20240418/index.html" class="no-external">
@@ -268,27 +267,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="paper" data-listing-date-sort="1711602000000" data-listing-file-modified-sort="1717037170367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2269">
-<div class="thumbnail">
-<p><a href="./posts/20240328/index.html" class="no-external"></a></p><a href="./posts/20240328/index.html" class="no-external">
-<p><img src="./posts/20240328/Fig 1b.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20240328/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="2" data-categories="cGFwZXI=" data-listing-date-sort="1711602000000" data-listing-file-modified-sort="1717037170367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2269">
+<div class="thumbnail"><a href="./posts/20240328/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20240328/Fig 1b.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240328/index.html" class="no-external">Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20240328/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20240328/index.html" class="no-external">Amidst the LLM hype, algorithmic bias in a critical domain such as healthcare is continued being overlooked. This algorithm-audit paper found racial bias in a widely used healthcare system and discussed the problem of using a wrong target variable. The paper is a few years old but the message is still relevant, and we discussed what’s happened since then.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20240328/index.html" class="no-external">
+<p>Amidst the LLM hype, algorithmic bias in a critical domain such as healthcare is continued being overlooked. This algorithm-audit paper found racial bias in a widely used healthcare system and discussed the problem of using a wrong target variable. The paper is a few years old but the message is still relevant, and we discussed what’s happened since then.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20240328/index.html" class="no-external">
@@ -301,27 +297,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="paper" data-listing-date-sort="1709186400000" data-listing-file-modified-sort="1714102673185" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1072">
-<div class="thumbnail">
-<p><a href="./posts/20240229/index.html" class="no-external"></a></p><a href="./posts/20240229/index.html" class="no-external">
-<p><img src="./posts/20240229/schaeffer_fig2.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20240229/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="3" data-categories="cGFwZXI=" data-listing-date-sort="1709186400000" data-listing-file-modified-sort="1714102673185" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1072">
+<div class="thumbnail"><a href="./posts/20240229/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20240229/schaeffer_fig2.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240229/index.html" class="no-external">Are Emergent Abilities of Large Language Models a Mirage?</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20240229/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20240229/index.html" class="no-external">Recent research observed that the largest models exhibit incredible increases in performance on a wide variety of tasks compared to smaller models. This paper argues that such so-called <em>emergence</em> is actually more reflective of the evaluation metric used. Switching to metrics that are known to scale smoothly with the per-token error reveals a much more predictable picture.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20240229/index.html" class="no-external">
+<p>Recent research observed that the largest models exhibit incredible increases in performance on a wide variety of tasks compared to smaller models. This paper argues that such so-called <em>emergence</em> is actually more reflective of the evaluation metric used. Switching to metrics that are known to scale smoothly with the per-token error reveals a much more predictable picture.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20240229/index.html" class="no-external">
@@ -334,27 +327,24 @@ Brian King
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="paper" data-listing-date-sort="1706162400000" data-listing-file-modified-sort="1708616305823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2184">
-<div class="thumbnail">
-<p><a href="./posts/20240125/index.html" class="no-external"></a></p><a href="./posts/20240125/index.html" class="no-external">
-<p><img src="./posts/20240125/fig3.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20240125/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="4" data-categories="cGFwZXI=" data-listing-date-sort="1706162400000" data-listing-file-modified-sort="1708616305823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2184">
+<div class="thumbnail"><a href="./posts/20240125/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20240125/fig3.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240125/index.html" class="no-external">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20240125/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20240125/index.html" class="no-external">This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20240125/index.html" class="no-external">
+<p>This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20240125/index.html" class="no-external">
@@ -367,27 +357,24 @@ Kshitij Aggarwal
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="paper" data-listing-date-sort="1697691600000" data-listing-file-modified-sort="1705375455882" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2077">
-<div class="thumbnail">
-<p><a href="./posts/20231019/index.html" class="no-external"></a></p><a href="./posts/20231019/index.html" class="no-external">
-<p><img src="./posts/20231019/Fig1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20231019/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="5" data-categories="cGFwZXI=" data-listing-date-sort="1697691600000" data-listing-file-modified-sort="1705375455882" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2077">
+<div class="thumbnail"><a href="./posts/20231019/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20231019/Fig1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20231019/index.html" class="no-external">Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20231019/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20231019/index.html" class="no-external">This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets. The inductive biases of tree-based versus neural network models was analyzed as a proposed method to guide development of improved tabular specific neural network models.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20231019/index.html" class="no-external">
+<p>This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets. The inductive biases of tree-based versus neural network models was analyzed as a proposed method to guide development of improved tabular specific neural network models.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20231019/index.html" class="no-external">
@@ -400,27 +387,24 @@ Kathrine Behrman
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="paper" data-listing-date-sort="1695877200000" data-listing-file-modified-sort="1705359898281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1500">
-<div class="thumbnail">
-<p><a href="./posts/20230928/index.html" class="no-external"></a></p><a href="./posts/20230928/index.html" class="no-external">
-<p><img src="./posts/20230928/fig1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230928/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="6" data-categories="cGFwZXI=" data-listing-date-sort="1695877200000" data-listing-file-modified-sort="1705359898281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1500">
+<div class="thumbnail"><a href="./posts/20230928/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230928/fig1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230928/index.html" class="no-external">Neural Machine Translation by Jointly Learning to Align and Translate</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230928/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230928/index.html" class="no-external">This paper marks an important step in the development of machine translation (MT). It came out just as Neural Machine Translation (NMT) was taking off, extending from Statistical Machine Translation (SMT), and as a milestone along the way to Transformer-based NMT. The authors introduce a novel attention mechanism applied to MT and show that it improves performance on long sentences, in particular, from prior recurrent neural network NMT approaches.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230928/index.html" class="no-external">
+<p>This paper marks an important step in the development of machine translation (MT). It came out just as Neural Machine Translation (NMT) was taking off, extending from Statistical Machine Translation (SMT), and as a milestone along the way to Transformer-based NMT. The authors introduce a novel attention mechanism applied to MT and show that it improves performance on long sentences, in particular, from prior recurrent neural network NMT approaches.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230928/index.html" class="no-external">
@@ -433,27 +417,24 @@ Meghann Agarwal, Hongsup Shin, Claude
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="paper" data-listing-date-sort="1693458000000" data-listing-file-modified-sort="1696638722112" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2183">
-<div class="thumbnail">
-<p><a href="./posts/20230831/index.html" class="no-external"></a></p><a href="./posts/20230831/index.html" class="no-external">
-<p><img src="./posts/20230831/principle.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230831/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="7" data-categories="cGFwZXI=" data-listing-date-sort="1693458000000" data-listing-file-modified-sort="1696638722112" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2183">
+<div class="thumbnail"><a href="./posts/20230831/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230831/principle.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230831/index.html" class="no-external">Constitutional AI: Harmlessness from AI Feedback</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230831/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230831/index.html" class="no-external">There is an arms race of large language models (LLMs) in industry where companies use different approaches and techniques. Anthropic claims to adopt a more cautious approach that minimizes harm by LLMs than others. Let’s look into <em>constitutional AI</em>, the core algorithm of their LLM, to understand how this harm mitigation works.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230831/index.html" class="no-external">
+<p>There is an arms race of large language models (LLMs) in industry where companies use different approaches and techniques. Anthropic claims to adopt a more cautious approach that minimizes harm by LLMs than others. Let’s look into <em>constitutional AI</em>, the core algorithm of their LLM, to understand how this harm mitigation works.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230831/index.html" class="no-external">
@@ -466,27 +447,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="paper" data-listing-date-sort="1689829200000" data-listing-file-modified-sort="1691981786079" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1655">
-<div class="thumbnail">
-<p><a href="./posts/20230720/index.html" class="no-external"></a></p><a href="./posts/20230720/index.html" class="no-external">
-<p><img src="./posts/20230720/fig1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230720/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="8" data-categories="cGFwZXI=" data-listing-date-sort="1689829200000" data-listing-file-modified-sort="1691981786079" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1655">
+<div class="thumbnail"><a href="./posts/20230720/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230720/fig1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230720/index.html" class="no-external">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230720/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230720/index.html" class="no-external">In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230720/index.html" class="no-external">
+<p>In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230720/index.html" class="no-external">
@@ -499,27 +477,24 @@ Saina Lajevardi, Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="paper" data-listing-date-sort="1687410000000" data-listing-file-modified-sort="1689619025074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="806">
-<div class="thumbnail">
-<p><a href="./posts/20230622/index.html" class="no-external"></a></p><a href="./posts/20230622/index.html" class="no-external">
-<p><img src="./posts/20230622/fig1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230622/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="9" data-categories="cGFwZXI=" data-listing-date-sort="1687410000000" data-listing-file-modified-sort="1689619025074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="806">
+<div class="thumbnail"><a href="./posts/20230622/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230622/fig1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230622/index.html" class="no-external">Let’s Verify Step by Step</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230622/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230622/index.html" class="no-external">This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also “think” through the problem to arrive at the right answer.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230622/index.html" class="no-external">
+<p>This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also “think” through the problem to arrive at the right answer.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230622/index.html" class="no-external">
@@ -532,27 +507,24 @@ Akshata Mohan, Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="paper" data-listing-date-sort="1680066000000" data-listing-file-modified-sort="1689619025073" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1214">
-<div class="thumbnail">
-<p><a href="./posts/20230329/index.html" class="no-external"></a></p><a href="./posts/20230329/index.html" class="no-external">
-<p><img src="./posts/20230329/fig10a.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230329/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="10" data-categories="cGFwZXI=" data-listing-date-sort="1680066000000" data-listing-file-modified-sort="1757468606295" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1214">
+<div class="thumbnail"><a href="./posts/20230329/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230329/fig10a.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230329/index.html" class="no-external">Visualization in Bayesian workflow</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230329/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230329/index.html" class="no-external">This paper summarizes types of data visualization that we can use in Bayesian modeling and inference. It also provides a good overview of how to do Bayesian data analysis properly, including model validation such as prior and posterior predictive checks.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230329/index.html" class="no-external">
+<p>This paper summarizes types of data visualization that we can use in Bayesian modeling and inference. It also provides a good overview of how to do Bayesian data analysis properly, including model validation such as prior and posterior predictive checks.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230329/index.html" class="no-external">
@@ -565,27 +537,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="paper" data-listing-date-sort="1677132000000" data-listing-file-modified-sort="1689619025063" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1683">
-<div class="thumbnail">
-<p><a href="./posts/20230223/index.html" class="no-external"></a></p><a href="./posts/20230223/index.html" class="no-external">
-<p><img src="./posts/20230223/table1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230223/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="11" data-categories="cGFwZXI=" data-listing-date-sort="1677132000000" data-listing-file-modified-sort="1689619025063" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1683">
+<div class="thumbnail"><a href="./posts/20230223/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230223/table1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230223/index.html" class="no-external">Reviwing a Case Study About Real Estate Market Prediction</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230223/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230223/index.html" class="no-external">The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230223/index.html" class="no-external">
+<p>The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230223/index.html" class="no-external">
@@ -598,27 +567,24 @@ Athula Pudhiyidath
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="paper" data-listing-date-sort="1674712800000" data-listing-file-modified-sort="1689619025063" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1362">
-<div class="thumbnail">
-<p><a href="./posts/20230126/index.html" class="no-external"></a></p><a href="./posts/20230126/index.html" class="no-external">
-<p><img src="./posts/20230126/front.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20230126/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="12" data-categories="cGFwZXI=" data-listing-date-sort="1674712800000" data-listing-file-modified-sort="1689619025063" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1362">
+<div class="thumbnail"><a href="./posts/20230126/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20230126/front.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230126/index.html" class="no-external">Leakage and the Reproducibility Crisis in ML-based Science</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20230126/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20230126/index.html" class="no-external">Data leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20230126/index.html" class="no-external">
+<p>Data leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20230126/index.html" class="no-external">
@@ -631,27 +597,24 @@ Kate Behrman
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="paper" data-listing-date-sort="1671084000000" data-listing-file-modified-sort="1689619025062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1532">
-<div class="thumbnail">
-<p><a href="./posts/20221215/index.html" class="no-external"></a></p><a href="./posts/20221215/index.html" class="no-external">
-<p><img src="./posts/20221215/Fig 8.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20221215/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="13" data-categories="cGFwZXI=" data-listing-date-sort="1671084000000" data-listing-file-modified-sort="1689619025062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1532">
+<div class="thumbnail"><a href="./posts/20221215/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20221215/Fig 8.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20221215/index.html" class="no-external">Zero-Shot Text-to-Image Generation</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20221215/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20221215/index.html" class="no-external">There is so much hype in generative AI. But how does it actually work? We discuss OpenAI’s DALL-E paper to understand model architecture but more importantly, whether their model validation is solid and reasonable.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20221215/index.html" class="no-external">
+<p>There is so much hype in generative AI. But how does it actually work? We discuss OpenAI’s DALL-E paper to understand model architecture but more importantly, whether their model validation is solid and reasonable.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20221215/index.html" class="no-external">
@@ -664,27 +627,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="paper" data-listing-date-sort="1666846800000" data-listing-file-modified-sort="1689619025059" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1452">
-<div class="thumbnail">
-<p><a href="./posts/20221027/index.html" class="no-external"></a></p><a href="./posts/20221027/index.html" class="no-external">
-<p><img src="./posts/20221027/Data cascades in high-stakes AI.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/20221027/index.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="14" data-categories="cGFwZXI=" data-listing-date-sort="1666846800000" data-listing-file-modified-sort="1689619025059" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1452">
+<div class="thumbnail"><a href="./posts/20221027/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20221027/Data cascades in high-stakes AI.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/20221027/index.html" class="no-external">“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/20221027/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
-paper
+
+<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/20221027/index.html" class="no-external">Garbage in, garbage out. It seems like a lot of people in the ML community still don’t understand this logic. We discuss poor data-handling practices and their critical ramifications.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/20221027/index.html" class="no-external">
+<p>Garbage in, garbage out. It seems like a lot of people in the ML community still don’t understand this logic. We discuss poor data-handling practices and their critical ramifications.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/20221027/index.html" class="no-external">
@@ -697,27 +657,24 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="news" data-listing-date-sort="1665982800000" data-listing-file-modified-sort="1689619025075" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="15" data-categories="bmV3cw==" data-listing-date-sort="1665982800000" data-listing-file-modified-sort="1689619025075" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
+<div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
+
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/welcome/index.html" class="no-external">Why ML Journal Club</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
+
 </div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">Welcome to our journal club! I talk about why I organized an in-person journal club with my fellow ML practitioner friends in Austin, TX.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
+<p>Welcome to our journal club! I talk about why I organized an in-person journal club with my fellow ML practitioner friends in Austin, TX.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/welcome/index.html" class="no-external">
@@ -731,48 +688,61 @@ Hongsup Shin
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
+<div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -780,162 +750,184 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -943,185 +935,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
