@@ -1,16 +1,16 @@
----
-title: "Blogging"
----
+# Blogging tips
 
 Our blog uses [quarto](https://quarto.org/) platform and it is hosted via [GitHub Pages](https://pages.github.com/). This is a short guide for uploading blog posts using quarto.
 
 ## Set up
+
 - [Install quarto](https://quarto.org/docs/get-started/hello/vscode.html). The VS Code option is straightforward.
 - Clone the [blog repository](https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io).
 - Create an issue (title example: "Upload a blog post for the Feb 2023 meeting") and assign yourself to the issue.
 - Check out a new branch for the issue (branch name example: "16-write_blog").
 
 ## Write
+
 - Create a folder in `/posts`. The name of the new folder should be the date of the meeting in YYYYMMDD format (e.g., `posts/20221027/`). 
 - Create `index.qmd` inside the folder. This is the main file for your post. The top section of `index.qmd` is a YAML block with document options. You must fill out `title, author, date, description, categories`.
 
@@ -24,6 +24,7 @@ Our blog uses [quarto](https://quarto.org/) platform and it is hosted via [GitHu
     categories: [paper]
     ---
     ```
+
 - Before writing the body, please include the following right after the YAML block:
 
     ```markdown
@@ -33,15 +34,15 @@ Our blog uses [quarto](https://quarto.org/) platform and it is hosted via [GitHu
     - Attendees: [first name 1 (alphabetical order)](linkedin profile), [first name 2](linkedin profile), ... 
     :::
     ```
+
 - To give everyone some context, start the body with **"Why this paper"** paragraph.
 - You can include any image files in the same folder as `index.qmd`.
 - Run `quarto preview <file name>` to preview the rendered look of your post on the website.
 
 ## Render and Review
+
 - Run `quarto render` once you are done. This automatically generates and modifies html files in the `/docs` and the main folders.
 - Add all the changes, commit, and make a merge request to `main`.
 - Assign the attendees of the meeting as reviewers, and go through a review process. Leave a message on Slack about the merge request.
 - Update the manuscript based on reviewers' comments.
 - Once approved, merge the branch, close your issue ticket, and delete the remote branch.
-
-Currently the blog is hosted via `gh-pages` branch (not `main`). Thus, after `main` is updated, we will rebase it to `gh-pages`, and the blog will be automatically updated with a new post.

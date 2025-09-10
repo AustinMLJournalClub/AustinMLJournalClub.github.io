@@ -4,7 +4,26 @@ about:
   template: solana
 ---
 
-These are the papers/articles/repos/videos that our journal club members have shared, which might be worth presenting in the future or we think are interesting. This page will be updated once a month.
+This page collects papers, books, articles, videos, and other resources suggested by our community for potential future discussions. We welcome suggestions that align with our focus on impactful and seminal machine learning content.
+
+## Current Suggestions
+
+- Hongsup: [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology)
+
+*This section will be populated with new paper suggestions as our journal club resumes regular meetings.*
+
+## How to Suggest Papers
+
+Have a paper, book chapter, news article, lecture, or other resource you think would spark great discussion? You can:
+- Contact the organizer directly
+- Submit a suggestion via GitHub issue
+- Bring it up during our monthly meetings
+
+We look for content that is impactful, thought-provoking, or offers practical insights into how machine learning works in practice, regardless of format or technical complexity.
+
+## Previously Suggested Papers
+
+The following were suggested by community members during our earlier meeting phases:
 
 - [Solving olympiad geometry without human demonstrations](https://www.nature.com/articles/s41586-023-06747-5?_hsmi=291326409) shared by Hongsup
 - [Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566) shared by Kshitij
