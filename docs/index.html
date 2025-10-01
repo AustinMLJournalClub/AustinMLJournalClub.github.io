@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./logo.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -42,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4b985fbe78086b3471c5fbcf9670e4ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,9 +81,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -132,11 +133,12 @@ window.Quarto = {
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Austin ML Journal Club">
-<meta property="og:image" content="./posts/20240530/Fig 1.png">
+<meta property="og:description" content="">
+<meta property="og:image" content="./posts/20250925/Fig 3.png">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -144,6 +146,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.jpeg" alt="" class="navbar-logo light-content">
+    <img src="./logo.jpeg" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Austin ML Journal Club</span>
@@ -154,7 +158,7 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
@@ -163,6 +167,8 @@ window.Quarto = {
     <a class="nav-link" href="./reading_list.html"> 
 <span class="menu-text">Reading List</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"> <i class="bi bi-github" role="img">
 </i> 
@@ -179,27 +185,284 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+ <span class="menu-text">Papers by Year</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">2025</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20250925/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">On the Theoretical Limitations of Embedding-Based Retrieval</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">2024</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20240530/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling Tabular Data using Conditional GAN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20240418/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gorilla: Large Language Model Connected with Massive APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20240328/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20240229/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Are Emergent Abilities of Large Language Models a Mirage?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20240125/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">2023</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20231019/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230928/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Neural Machine Translation by Jointly Learning to Align and Translate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230831/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Constitutional AI: Harmlessness from AI Feedback</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230720/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230622/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Let’s Verify Step by Step</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230329/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualization in Bayesian workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230223/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reviwing a Case Study About Real Estate Market Prediction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20230126/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Leakage and the Reproducibility Crisis in ML-based Science</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">2022</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20221215/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zero-Shot Text-to-Image Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/20221027/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Everyone wants to do the model work, not the data work: Data Cascades in High-Stakes AI</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFwZXI=">paper <span class="quarto-category-count">(15)</span></div></div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Papers by Topic</p>
+<details>
+<summary>
+LLMs &amp; Generative AI
+</summary>
+<ul>
+<li><a href="./posts/20250925/index.html">Limitations of Embeddings</a></li>
+<li><a href="./posts/20240418/index.html">Gorilla: LLM with APIs</a></li>
+<li><a href="./posts/20240229/index.html">Emergent Abilities of LLMs</a></li>
+<li><a href="./posts/20240125/index.html">Direct Preference Optimization</a></li>
+<li><a href="./posts/20230831/index.html">Constitutional AI</a></li>
+<li><a href="./posts/20230622/index.html">Let’s Verify Step by Step</a></li>
+<li><a href="./posts/20221215/index.html">Zero-Shot Text-to-Image</a></li>
+</ul>
+</details>
+<details>
+<summary>
+Data Quality &amp; Best Practices
+</summary>
+<ul>
+<li><a href="./posts/20230223/index.html">Real Estate Prediction Critique</a></li>
+<li><a href="./posts/20230126/index.html">Leakage &amp; Reproducibility</a></li>
+<li><a href="./posts/20221027/index.html">Data Cascades</a></li>
+</ul>
+</details>
+<details>
+<summary>
+Fairness &amp; Bias
+</summary>
+<ul>
+<li><a href="./posts/20240328/index.html">Racial Bias in Healthcare</a></li>
+</ul>
+</details>
+<details>
+<summary>
+Tabular Data
+</summary>
+<ul>
+<li><a href="./posts/20240530/index.html">Tabular GAN</a></li>
+<li><a href="./posts/20231019/index.html">Tree-based vs Deep Learning</a></li>
+</ul>
+</details>
+<details>
+<summary>
+NLP &amp; Translation
+</summary>
+<ul>
+<li><a href="./posts/20230928/index.html">Neural Machine Translation</a></li>
+<li><a href="./posts/20230720/index.html">AutoKnow</a></li>
+</ul>
+</details>
+<details>
+<summary>
+Bayesian Methods
+</summary>
+<ul>
+<li><a href="./posts/20230329/index.html">Visualization in Bayesian workflow</a></li>
+</ul>
+</details>
+</div></div><section id="welcome-to-the-austin-ml-journal-club" class="level2" style="text-align: center; padding: 2rem 0 1.5rem 0;">
+<h2 class="anchored" data-anchor-id="welcome-to-the-austin-ml-journal-club">Welcome to the Austin ML Journal Club</h2>
+<p>We are a community of ML/AI practitioners who meet monthly to deeply engage with seminal research. Our posts capture the insights and critical perspectives that emerge when practitioners move beyond surface-level summaries to examine how the sausages actually get made.</p>
+<div style="margin-top: 1.5rem;">
+<p><a href="./about.html" class="btn btn-outline-secondary">Learn more →</a> <a href="https://www.linkedin.com/company/austin-ml-journal-club" class="btn btn-primary">Join us</a></p>
+</div>
+</section>
+<hr>
 
 
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cGFwZXI=" data-listing-date-sort="1717045200000" data-listing-file-modified-sort="1721512026042" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="735">
+<div class="quarto-post image-right" data-index="0" data-categories="cGFwZXI=" data-listing-date-sort="1758776400000" data-listing-file-modified-sort="1759283925650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2272">
+<div class="thumbnail"><a href="./posts/20250925/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/20250925/Fig 3.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/20250925/index.html" class="no-external">On the Theoretical Limitations of Embedding-Based Retrieval</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/20250925/index.html" class="no-external">
+<p>This preprint explores theoretical limits of single-vector embeddings through communication complexity theory, proving that embedding dimension bounds the number of representable top-k document combinations. Our discussion focuses on the gap between elegant theory and problematic experiments, embedding truncation, and tasks designed for memory not semantics. An interesting theoretical framework that needs more careful empirical validation.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/20250925/index.html" class="no-external">
+<div class="listing-date">
+Sep 25, 2025
+</div>
+<div class="listing-author">
+Hongsup Shin
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="cGFwZXI=" data-listing-date-sort="1717045200000" data-listing-file-modified-sort="1759282026031" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="806">
 <div class="thumbnail"><a href="./posts/20240530/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20240530/Fig 1.png" class="thumbnail-image">
@@ -209,11 +472,6 @@ window.Quarto = {
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240530/index.html" class="no-external">Modeling Tabular Data using Conditional GAN</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20240530/index.html" class="no-external">
 </a><p><a href="./posts/20240530/index.html" class="no-external">Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the </a><a href="https://sdv.dev/"><em>Synthetic Data Vault</em></a> library in Python.</p>
 </div>
@@ -229,7 +487,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="cGFwZXI=" data-listing-date-sort="1713416400000" data-listing-file-modified-sort="1716563051241" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="500">
+<div class="quarto-post image-right" data-index="2" data-categories="cGFwZXI=" data-listing-date-sort="1713416400000" data-listing-file-modified-sort="1759282027613" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="573">
 <div class="thumbnail"><a href="./posts/20240418/index.html" class="no-external">
 
 <img loading="lazy" src="https://github.com/ShishirPatil/gorilla/raw/gh-pages/assets/img/logo.png" class="thumbnail-image">
@@ -239,11 +497,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240418/index.html" class="no-external">Gorilla: Large Language Model Connected with Massive APIs</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20240418/index.html" class="no-external">
 <p>The power of LLMs, in a commercial setting, comes from its ability to use other tools and integrate business domain knowledge too. Unfotunately, it is still challenging getting the LLMs to work well when hooking up custom APIs that interface with custom processes and data. This paper is interesting, largely because it may be a step forward in getting the LLM to accurately use custom tooling.</p>
 </a></div>
@@ -259,7 +512,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="cGFwZXI=" data-listing-date-sort="1711602000000" data-listing-file-modified-sort="1717037170367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2269">
+<div class="quarto-post image-right" data-index="3" data-categories="cGFwZXI=" data-listing-date-sort="1711602000000" data-listing-file-modified-sort="1759282469884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2347">
 <div class="thumbnail"><a href="./posts/20240328/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20240328/Fig 1b.png" class="thumbnail-image">
@@ -269,11 +522,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240328/index.html" class="no-external">Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20240328/index.html" class="no-external">
 <p>Amidst the LLM hype, algorithmic bias in a critical domain such as healthcare is continued being overlooked. This algorithm-audit paper found racial bias in a widely used healthcare system and discussed the problem of using a wrong target variable. The paper is a few years old but the message is still relevant, and we discussed what’s happened since then.</p>
 </a></div>
@@ -289,7 +537,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="cGFwZXI=" data-listing-date-sort="1709186400000" data-listing-file-modified-sort="1714102673185" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1072">
+<div class="quarto-post image-right" data-index="4" data-categories="cGFwZXI=" data-listing-date-sort="1709186400000" data-listing-file-modified-sort="1759282029952" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1146">
 <div class="thumbnail"><a href="./posts/20240229/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20240229/schaeffer_fig2.png" class="thumbnail-image">
@@ -299,11 +547,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240229/index.html" class="no-external">Are Emergent Abilities of Large Language Models a Mirage?</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20240229/index.html" class="no-external">
 <p>Recent research observed that the largest models exhibit incredible increases in performance on a wide variety of tasks compared to smaller models. This paper argues that such so-called <em>emergence</em> is actually more reflective of the evaluation metric used. Switching to metrics that are known to scale smoothly with the per-token error reveals a much more predictable picture.</p>
 </a></div>
@@ -319,7 +562,7 @@ Brian King
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="cGFwZXI=" data-listing-date-sort="1706162400000" data-listing-file-modified-sort="1708616305823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2184">
+<div class="quarto-post image-right" data-index="5" data-categories="cGFwZXI=" data-listing-date-sort="1706162400000" data-listing-file-modified-sort="1759282030970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2260">
 <div class="thumbnail"><a href="./posts/20240125/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20240125/fig3.png" class="thumbnail-image">
@@ -329,11 +572,6 @@ Brian King
 <h3 class="no-anchor listing-title">
 <a href="./posts/20240125/index.html" class="no-external">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20240125/index.html" class="no-external">
 <p>This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.</p>
 </a></div>
@@ -349,7 +587,7 @@ Kshitij Aggarwal
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="cGFwZXI=" data-listing-date-sort="1697691600000" data-listing-file-modified-sort="1705375455882" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2077">
+<div class="quarto-post image-right" data-index="6" data-categories="cGFwZXI=" data-listing-date-sort="1697691600000" data-listing-file-modified-sort="1759282134969" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2154">
 <div class="thumbnail"><a href="./posts/20231019/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20231019/Fig1.png" class="thumbnail-image">
@@ -359,11 +597,6 @@ Kshitij Aggarwal
 <h3 class="no-anchor listing-title">
 <a href="./posts/20231019/index.html" class="no-external">Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20231019/index.html" class="no-external">
 <p>This paper compares the performance of deep learning techniques to traditional tree-based methods for a novel set of 45 tabular datasets. The inductive biases of tree-based versus neural network models was analyzed as a proposed method to guide development of improved tabular specific neural network models.</p>
 </a></div>
@@ -379,7 +612,7 @@ Kathrine Behrman
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="cGFwZXI=" data-listing-date-sort="1695877200000" data-listing-file-modified-sort="1705359898281" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1500">
+<div class="quarto-post image-right" data-index="7" data-categories="cGFwZXI=" data-listing-date-sort="1695877200000" data-listing-file-modified-sort="1759282135921" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1578">
 <div class="thumbnail"><a href="./posts/20230928/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230928/fig1.png" class="thumbnail-image">
@@ -389,11 +622,6 @@ Kathrine Behrman
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230928/index.html" class="no-external">Neural Machine Translation by Jointly Learning to Align and Translate</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230928/index.html" class="no-external">
 <p>This paper marks an important step in the development of machine translation (MT). It came out just as Neural Machine Translation (NMT) was taking off, extending from Statistical Machine Translation (SMT), and as a milestone along the way to Transformer-based NMT. The authors introduce a novel attention mechanism applied to MT and show that it improves performance on long sentences, in particular, from prior recurrent neural network NMT approaches.</p>
 </a></div>
@@ -409,7 +637,7 @@ Meghann Agarwal, Hongsup Shin, Claude
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="cGFwZXI=" data-listing-date-sort="1693458000000" data-listing-file-modified-sort="1696638722112" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2183">
+<div class="quarto-post image-right" data-index="8" data-categories="cGFwZXI=" data-listing-date-sort="1693458000000" data-listing-file-modified-sort="1759282137454" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2254">
 <div class="thumbnail"><a href="./posts/20230831/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230831/principle.png" class="thumbnail-image">
@@ -419,11 +647,6 @@ Meghann Agarwal, Hongsup Shin, Claude
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230831/index.html" class="no-external">Constitutional AI: Harmlessness from AI Feedback</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230831/index.html" class="no-external">
 <p>There is an arms race of large language models (LLMs) in industry where companies use different approaches and techniques. Anthropic claims to adopt a more cautious approach that minimizes harm by LLMs than others. Let’s look into <em>constitutional AI</em>, the core algorithm of their LLM, to understand how this harm mitigation works.</p>
 </a></div>
@@ -439,7 +662,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="cGFwZXI=" data-listing-date-sort="1689829200000" data-listing-file-modified-sort="1691981786079" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1655">
+<div class="quarto-post image-right" data-index="9" data-categories="cGFwZXI=" data-listing-date-sort="1689829200000" data-listing-file-modified-sort="1759282138378" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1733">
 <div class="thumbnail"><a href="./posts/20230720/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230720/fig1.png" class="thumbnail-image">
@@ -449,11 +672,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230720/index.html" class="no-external">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230720/index.html" class="no-external">
 <p>In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.</p>
 </a></div>
@@ -469,7 +687,7 @@ Saina Lajevardi, Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="cGFwZXI=" data-listing-date-sort="1687410000000" data-listing-file-modified-sort="1689619025074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="806">
+<div class="quarto-post image-right" data-index="10" data-categories="cGFwZXI=" data-listing-date-sort="1687410000000" data-listing-file-modified-sort="1759282285834" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="879">
 <div class="thumbnail"><a href="./posts/20230622/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230622/fig1.png" class="thumbnail-image">
@@ -479,11 +697,6 @@ Saina Lajevardi, Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230622/index.html" class="no-external">Let’s Verify Step by Step</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230622/index.html" class="no-external">
 <p>This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also “think” through the problem to arrive at the right answer.</p>
 </a></div>
@@ -499,7 +712,7 @@ Akshata Mohan, Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="cGFwZXI=" data-listing-date-sort="1680066000000" data-listing-file-modified-sort="1757468606295" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1214">
+<div class="quarto-post image-right" data-index="11" data-categories="cGFwZXI=" data-listing-date-sort="1680066000000" data-listing-file-modified-sort="1759282306785" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1283">
 <div class="thumbnail"><a href="./posts/20230329/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230329/fig10a.png" class="thumbnail-image">
@@ -509,11 +722,6 @@ Akshata Mohan, Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230329/index.html" class="no-external">Visualization in Bayesian workflow</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230329/index.html" class="no-external">
 <p>This paper summarizes types of data visualization that we can use in Bayesian modeling and inference. It also provides a good overview of how to do Bayesian data analysis properly, including model validation such as prior and posterior predictive checks.</p>
 </a></div>
@@ -529,7 +737,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="cGFwZXI=" data-listing-date-sort="1677132000000" data-listing-file-modified-sort="1689619025063" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1683">
+<div class="quarto-post image-right" data-index="12" data-categories="cGFwZXI=" data-listing-date-sort="1677132000000" data-listing-file-modified-sort="1759282140701" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1757">
 <div class="thumbnail"><a href="./posts/20230223/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230223/table1.png" class="thumbnail-image">
@@ -539,11 +747,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230223/index.html" class="no-external">Reviwing a Case Study About Real Estate Market Prediction</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230223/index.html" class="no-external">
 <p>The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.</p>
 </a></div>
@@ -559,7 +762,7 @@ Athula Pudhiyidath
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="cGFwZXI=" data-listing-date-sort="1674712800000" data-listing-file-modified-sort="1689619025063" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1362">
+<div class="quarto-post image-right" data-index="13" data-categories="cGFwZXI=" data-listing-date-sort="1674712800000" data-listing-file-modified-sort="1759282141845" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1435">
 <div class="thumbnail"><a href="./posts/20230126/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20230126/front.png" class="thumbnail-image">
@@ -569,11 +772,6 @@ Athula Pudhiyidath
 <h3 class="no-anchor listing-title">
 <a href="./posts/20230126/index.html" class="no-external">Leakage and the Reproducibility Crisis in ML-based Science</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20230126/index.html" class="no-external">
 <p>Data leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types.</p>
 </a></div>
@@ -589,7 +787,7 @@ Kate Behrman
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="cGFwZXI=" data-listing-date-sort="1671084000000" data-listing-file-modified-sort="1689619025062" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1532">
+<div class="quarto-post image-right" data-index="14" data-categories="cGFwZXI=" data-listing-date-sort="1671084000000" data-listing-file-modified-sort="1759282157224" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1600">
 <div class="thumbnail"><a href="./posts/20221215/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20221215/Fig 8.png" class="thumbnail-image">
@@ -599,11 +797,6 @@ Kate Behrman
 <h3 class="no-anchor listing-title">
 <a href="./posts/20221215/index.html" class="no-external">Zero-Shot Text-to-Image Generation</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20221215/index.html" class="no-external">
 <p>There is so much hype in generative AI. But how does it actually work? We discuss OpenAI’s DALL-E paper to understand model architecture but more importantly, whether their model validation is solid and reasonable.</p>
 </a></div>
@@ -619,7 +812,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="cGFwZXI=" data-listing-date-sort="1666846800000" data-listing-file-modified-sort="1689619025059" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1452">
+<div class="quarto-post image-right" data-index="15" data-categories="cGFwZXI=" data-listing-date-sort="1666846800000" data-listing-file-modified-sort="1759282159004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1533">
 <div class="thumbnail"><a href="./posts/20221027/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/20221027/Data cascades in high-stakes AI.png" class="thumbnail-image">
@@ -629,11 +822,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/20221027/index.html" class="no-external">“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGFwZXI='); return false;">paper</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/20221027/index.html" class="no-external">
 <p>Garbage in, garbage out. It seems like a lot of people in the ML community still don’t understand this logic. We discuss poor data-handling practices and their critical ramifications.</p>
 </a></div>
@@ -649,7 +837,7 @@ Hongsup Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="bmV3cw==" data-listing-date-sort="1665982800000" data-listing-file-modified-sort="1689619025075" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
+<div class="quarto-post image-right" data-index="16" data-categories="bmV3cw==" data-listing-date-sort="1665982800000" data-listing-file-modified-sort="1759183170902" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
 <div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -659,11 +847,6 @@ Hongsup Shin
 <h3 class="no-anchor listing-title">
 <a href="./posts/welcome/index.html" class="no-external">Why ML Journal Club</a>
 </h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
 <div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
 <p>Welcome to our journal club! I talk about why I organized an in-person journal club with my fellow ML practitioner friends in Austin, TX.</p>
 </a></div>
@@ -1083,6 +1266,19 @@ Hongsup Shin
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2022-2025 Austin ML Journal Club | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

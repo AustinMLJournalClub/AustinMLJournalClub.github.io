@@ -89,3 +89,21 @@ The shaded regions around the average lines were difficult to understand. During
 The authors highlight that this study is one of the first to have a similar level of hyperparameter tuning for both tree-based and deep learning models. From this, they concluded that hyperparameter tuning of deep-learning models did not improve performance beyond tree-based methods. However, this conclusion is solely based on the number of hyperparameter searches. We noticed that authors did not address details like different size hyperparameter grids for the models (or model types) and compute time to fit a model to one hyperparameter set. We would have been interested to see some discussion of these factors that are known to differ for tree-based and deep learning models. Furthermore, neural networks might perform better on larger datasets with an increased tuning budget.
 
 We liked the idea of analyzing inductive biases, however we found most of the conclusions seemed fairly obvious. Two of the three inductive biases seemed to be known properties of tabular data, which is that it is rotationally invariant by nature and has irregular target functions.  The last bias is a known advantage of tree-based methods, which is the ability to perform well amongst many non-informative features. However, we appreciated the rigorous and creative methods used to test each bias.
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2023-tree-based-tabular,
+    author = {Kathrine Behrman},
+    title = {Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?},
+    year = {2023},
+    month = {10},
+    day = {19},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20231019/},
+}
+```

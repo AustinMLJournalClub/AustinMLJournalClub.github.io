@@ -47,3 +47,21 @@ The seeming conclusion the authors draw from this section that XGBoost was a sup
 
 ## Final thoughts 
 This paper’s central question is unclear, and deviated from the beginning to end. The paper switched from comparing listing home prices to sold home prices, to appraisal home prices (which were likely assessed home prices) to sold home prices, to figuring out which model is best. If the authors had a more structured story on the questions they wanted to answer, the baseline with which they wanted to compare outcomes, and shored up methods on those comparisons, this would have been a more compelling read. As it stands, however, it is not possible to draw any conclusions from this paper. 
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2023-real-estate-prediction,
+    author = {Athula Pudhiyidath},
+    title = {Reviwing a Case Study About Real Estate Market Prediction},
+    year = {2023},
+    month = {02},
+    day = {23},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20230223/},
+}
+```

@@ -6,13 +6,9 @@ about:
 
 The Austin ML Journal Club brings together ML/AI practitioners to explore cutting-edge research through focused discussion and collaborative learning. We meet monthly(ish) to dive deep into papers that are shaping our rapidly evolving field. We aim to nurture deep conversations and practitioner insights that reveal how the sausages get made.
 
-All meetings are announced on our [LinkedIn page](https://www.linkedin.com/company/austin-ml-journal-club). If you are interested in joining our meetings, please fill out the [registration form](https://lnkd.in/eV8RzW95).
+## Join Us
 
-## How We Started
-
-The Austin ML Journal Club emerged from a simple recognition: the ML field moves so quickly that staying current with meaningful research is challenging for individual practitioners. While numerous newsletters and articles provide summaries, there's real value in reading papers deeply, examining methodologies critically, and understanding what actually works in practice. 
-
-A journal club creates the structure and accountability for this kind of sustained engagement while transforming what could be isolated study into collaborative learning. What began as a group of Austin-based ML practitioners gathering to critique papers and share workplace insights has evolved to serve a broader community of engineers and researchers who value rigorous discussion over surface-level summaries.
+Interested in joining our discussions? Follow our [LinkedIn page](https://www.linkedin.com/company/austin-ml-journal-club) for meeting announcements and registration details. Registration opens before each session and closes 48 hours prior to the meeting.
 
 ## How We Work
 
@@ -38,11 +34,19 @@ We publish summaries of our discussions on this blog, capturing key insights and
 
 ### Community Standards
 
-We maintain a welcoming environment for practitioners at all experience levels - from industry engineers to academic researchers to passionate learners. Our community represents diverse industry domains including hardware, software, fintech, and healthcare, as well as academic backgrounds spanning neuroscience, statistics, electrical engineering, astrophysics, biology, and more. This diversity enriches our discussions by bringing varied perspectives to how machine learning intersects with different fields and problem domains. A formal code of conduct is in development to ensure respectful and productive discourse across all backgrounds.
+We maintain a welcoming environment for practitioners at all experience levels - from industry engineers to academic researchers to passionate learners. Our community represents diverse industry domains including hardware, software, fintech, and healthcare, as well as academic backgrounds spanning neuroscience, statistics, electrical engineering, astrophysics, biology, and more. This diversity enriches our discussions by bringing varied perspectives to how machine learning intersects with different fields and problem domains.
 
 ## Schedule & Participation
 
 We typically meet late in the month on Thursday evenings at 5:00 PM CT. Registration opens before each session and closes 48 hours prior to maintain focused group dynamics. The club is free and open to anyone interested in advancing their understanding of ML/AI.
+
+## Our Story
+
+The Austin ML Journal Club emerged from a simple recognition: the ML field moves so quickly that staying current with meaningful research is challenging for individual practitioners. While numerous newsletters and articles provide summaries, there's real value in reading papers deeply, examining methodologies critically, and understanding what actually works in practice.
+
+A journal club creates the structure and accountability for this kind of sustained engagement while transforming what could be isolated study into collaborative learning. What began as a group of Austin-based ML practitioners gathering to critique papers and share workplace insights has evolved to serve a broader community of engineers and researchers who value rigorous discussion over surface-level summaries.
+
+## Team
 
 ### Organizer
 
@@ -50,4 +54,8 @@ We typically meet late in the month on Thursday evenings at 5:00 PM CT. Registra
 
 ### Community Contributors
 
-The Austin ML Journal Club has evolved over time with contributions from many dedicated participants. We're grateful to [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), and other community members who helped establish the foundations of our collaborative learning environment during the club's earlier phases.
+The Austin ML Journal Club has evolved over time with contributions from many dedicated participants. We're grateful to [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), and other community members who helped establish the foundations of our collaborative learning environment during the club's earlier phases.
+
+## License
+
+Our blog posts are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). You're free to share and adapt our content with proper attribution to Austin ML Journal Club.

@@ -1,1 +1,26 @@
 /* css styles */
+
+/* Make navbar title bold and larger */
+.navbar-brand {
+  font-weight: bold !important;
+  font-size: 1.3rem !important;
+}
+
+/* Make h4 headers bold */
+h4 {
+  font-weight: bold;
+}
+
+/* Justify text in article body */
+#quarto-content p {
+  text-align: justify;
+}
+
+.quarto-container p {
+  text-align: justify;
+}
+
+/* Don't justify the description in the title block */
+.quarto-title-block .description {
+  text-align: left;
+}

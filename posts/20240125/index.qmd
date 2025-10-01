@@ -189,3 +189,22 @@ $$
 <!-- $$
 \text{where we have partition function: } Z(x) = \sum_y \pi_{\text{ref}}(y|x) \exp\left(\frac{1}{\beta}r(x, y)\right).
 $$ -->
+
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2024-dpo,
+    author = {Kshitij Aggarwal},
+    title = {Direct Preference Optimization: Your Language Model is Secretly a Reward Model},
+    year = {2024},
+    month = {01},
+    day = {25},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20240125/},
+}
+```

@@ -69,3 +69,22 @@ As the authors mention in their discussion, this line of work does not rebut the
 
 As a final note, we discussed how ML papers often have much stronger and eye-catching language than many other academic disciplines. In some cases, this can be a good thing to attract attention, but it is also easy to misinterpret and make stronger. For example, the aforementioned [Vice article](https://www.vice.com/en/article/wxjdg5/scary-emergent-ai-abilities-are-just-a-mirage-produced-by-researchers-stanford-study-says) attaches the qualifier 'scary' to its headline when mentioning the theorized emergent AI capabilities. This kind of language makes it easy for the conversation to shift away from the core of the article and into more vague notions of 'sentience' and AI existential risk. These latter topics are certainly important and interesting, but they are mostly divorced from the actual content of this particular paper.
 
+
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2024-emergent-abilities,
+    author = {Brian King},
+    title = {Are Emergent Abilities of Large Language Models a Mirage?},
+    year = {2024},
+    month = {02},
+    day = {29},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20240229/},
+}
+```
