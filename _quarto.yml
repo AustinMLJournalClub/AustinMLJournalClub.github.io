@@ -5,18 +5,74 @@ project:
 website:
   title: "Austin ML Journal Club"
   navbar:
-    right:
+    logo: logo.jpeg
+    left:
       - about.qmd
       - reading_list.qmd
+    right:
       - icon: github
         href: https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io
       - icon: linkedin
         href: https://www.linkedin.com/company/austin-ml-journal-club
+  sidebar:
+    - id: papers-by-year
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - text: "Papers by Year"
+        - section: "2025"
+          contents:
+            - text: "On the Theoretical Limitations of Embedding-Based Retrieval"
+              href: posts/20250925/index.qmd
+        - section: "2024"
+          contents:
+            - text: "Modeling Tabular Data using Conditional GAN"
+              href: posts/20240530/index.qmd
+            - text: "Gorilla: Large Language Model Connected with Massive APIs"
+              href: posts/20240418/index.qmd
+            - text: "Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations"
+              href: posts/20240328/index.ipynb
+            - text: "Are Emergent Abilities of Large Language Models a Mirage?"
+              href: posts/20240229/index.qmd
+            - text: "Direct Preference Optimization: Your Language Model is Secretly a Reward Model"
+              href: posts/20240125/index.qmd
+        - section: "2023"
+          contents:
+            - text: "Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?"
+              href: posts/20231019/index.qmd
+            - text: "Neural Machine Translation by Jointly Learning to Align and Translate"
+              href: posts/20230928/index.qmd
+            - text: "Constitutional AI: Harmlessness from AI Feedback"
+              href: posts/20230831/index.qmd
+            - text: "AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types"
+              href: posts/20230720/index.qmd
+            - text: "Let's Verify Step by Step"
+              href: posts/20230622/index.qmd
+            - text: "Visualization in Bayesian workflow"
+              href: posts/20230329/index.qmd
+            - text: "Reviwing a Case Study About Real Estate Market Prediction"
+              href: posts/20230223/index.qmd
+            - text: "Leakage and the Reproducibility Crisis in ML-based Science"
+              href: posts/20230126/index.qmd
+        - section: "2022"
+          contents:
+            - text: "Zero-Shot Text-to-Image Generation"
+              href: posts/20221215/index.qmd
+            - text: "Everyone wants to do the model work, not the data work: Data Cascades in High-Stakes AI"
+              href: posts/20221027/index.qmd
   open-graph: true
+  favicon: logo.jpeg
+  page-footer:
+    center: "© 2022-2025 Austin ML Journal Club | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
 format:
   html:
-    theme: flatly
+    theme: cosmo
     css: styles.css
+    grid:
+      body-width: 1000px
+    fontsize: "1.25em"
+    toc: true
+    toc-depth: 3
 execute:
   freeze: auto
 

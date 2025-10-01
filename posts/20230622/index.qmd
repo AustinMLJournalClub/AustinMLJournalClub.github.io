@@ -43,3 +43,21 @@ The authors then attempted to showcase superior model performance with a few dat
 - Some of us criticized the use of the term "alignment *tax*", which makes AI safety quite negative, which is essentially requirements for any public-facing AI applications.
 - Under 6.3, the authors claim that there wasn't "clear sign of memorization", but they did not provide a clear definition of this clear sign. Are they talking about overfitting? Regardless, this requires quantifiable evidence.
 - The multi-step learning model made us think about implementing course-correct steps in model training. For instance, using a callback function, if we can somehow detect the model is on a clearly wrong path, how can we pull it back so that we don't waste compute resource and train the model in a more efficient way? Some of us thought it might have to do with devising a more interactive and granular cost function.
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2023-verify-step-by-step,
+    author = {Akshata Mohan and Hongsup Shin},
+    title = {Let's Verify Step by Step},
+    year = {2023},
+    month = {06},
+    day = {22},
+    howpublished = {url{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20230622/},
+}
+```

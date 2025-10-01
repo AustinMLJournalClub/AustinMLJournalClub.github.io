@@ -60,3 +60,22 @@ We spent a lot of time trying to understand the sequential labeling problem the 
 We also discussed other algorithms used in the paper to improve our understanding. First, we suspected that the regression problem they attempted to solve was based on MTurk workers' subjective level of attribute importance (not a feature importance of an ML model) even though we doubted the choice of using only 6 MTurk workers. We also discussed the difference between *semi-supervised* and *weak-supervised* learning models: the former is about “based on what is already labeled, label some more” and the latter is about “based on your knowledge, label some more”. Finally, we talked about [*hyperbolic space embedding*](https://hazyresearch.stanford.edu/hyperE/), which is excellent at preserving graph distances and complex relationships in very few dimensions Finally, as the authors mentioned at the end, we thought it would make sense to have a single model that takes care of data imputation and cleaning because in this paper, the cleaning is more of correction in imputed values.
 
 We generally enjoyed reading this paper because it uses a plethora of various ML algorithms extensively, which gave us a good opportunity to get to know them. However, some of us questioned how this model pipeline can be maintained especially with the arrival of new information. We thought some stages of the pipeline might be more resilient to changes (such as the attribute importance estimation) but taxonomy changes may not. As we've seen in deep learning papers many times, we also questioned the validation aspect because the number of samples used in validation (a few hundreds triples) was much smaller than the actual dataset (one billion triples).
+
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2023-autoknow,
+    author = {Saina Lajevardi and Hongsup Shin},
+    title = {AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types},
+    year = {2023},
+    month = {07},
+    day = {20},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20230720/},
+}
+```

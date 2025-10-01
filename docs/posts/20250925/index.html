@@ -6,12 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Saina Lajevardi">
 <meta name="author" content="Hongsup Shin">
-<meta name="dcterms.date" content="2023-07-20">
-<meta name="description" content="In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.">
+<meta name="dcterms.date" content="2025-09-25">
+<meta name="description" content="This preprint explores theoretical limits of single-vector embeddings through communication complexity theory, proving that embedding dimension bounds the number of representable top-k document combinations. Our discussion focuses on the gap between elegant theory and problematic experiments, embedding truncation, and tasks designed for memory not semantics. An interesting theoretical framework that needs more careful empirical validation.">
 
-<title>AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types – Austin ML Journal Club</title>
+<title>On the Theoretical Limitations of Embedding-Based Retrieval – Austin ML Journal Club</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -140,9 +139,9 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types – Austin ML Journal Club">
-<meta property="og:description" content="In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.">
-<meta property="og:image" content="fig1.png">
+<meta property="og:title" content="On the Theoretical Limitations of Embedding-Based Retrieval – Austin ML Journal Club">
+<meta property="og:description" content="This preprint explores theoretical limits of single-vector embeddings through communication complexity theory, proving that embedding dimension bounds the number of representable top-k document combinations. Our discussion focuses on the gap between elegant theory and problematic experiments, embedding truncation, and tasks designed for memory not semantics. An interesting theoretical framework that needs more careful empirical validation.">
+<meta property="og:image" content="Fig 3.png">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
@@ -198,7 +197,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/20231019/index.html">2023</a></li><li class="breadcrumb-item"><a href="../../posts/20230720/index.html">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/20250925/index.html">2025</a></li><li class="breadcrumb-item"><a href="../../posts/20250925/index.html">On the Theoretical Limitations of Embedding-Based Retrieval</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -207,11 +206,11 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/20231019/index.html">2023</a></li><li class="breadcrumb-item"><a href="../../posts/20230720/index.html">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</a></li></ol></nav>
-      <h1 class="title">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/20250925/index.html">2025</a></li><li class="breadcrumb-item"><a href="../../posts/20250925/index.html">On the Theoretical Limitations of Embedding-Based Retrieval</a></li></ol></nav>
+      <h1 class="title">On the Theoretical Limitations of Embedding-Based Retrieval</h1>
                   <div>
         <div class="description">
-          In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.
+          This preprint explores theoretical limits of single-vector embeddings through communication complexity theory, proving that embedding dimension bounds the number of representable top-k document combinations. Our discussion focuses on the gap between elegant theory and problematic experiments, embedding truncation, and tasks designed for memory not semantics. An interesting theoretical framework that needs more careful empirical validation.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -224,9 +223,8 @@ window.Quarto = {
   <div class="quarto-title-meta">
 
       <div>
-      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Saina Lajevardi </p>
                <p>Hongsup Shin </p>
             </div>
     </div>
@@ -234,7 +232,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 20, 2023</p>
+        <p class="date">September 25, 2025</p>
       </div>
     </div>
     
@@ -256,16 +254,16 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">2025</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/20250925/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/20250925/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">On the Theoretical Limitations of Embedding-Based Retrieval</span></a>
   </div>
 </li>
@@ -314,13 +312,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">2023</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/20231019/index.html" class="sidebar-item-text sidebar-link">
@@ -341,7 +339,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/20230720/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/20230720/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</span></a>
   </div>
 </li>
@@ -404,10 +402,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why this paper?</a></li>
-  <li><a href="#summary-of-techniques" id="toc-summary-of-techniques" class="nav-link" data-scroll-target="#summary-of-techniques">Summary of techniques</a></li>
-  <li><a href="#final-points" id="toc-final-points" class="nav-link" data-scroll-target="#final-points">Final Points</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link active" data-scroll-target="#paper-summary">Paper summary</a></li>
+  <li><a href="#strengths" id="toc-strengths" class="nav-link" data-scroll-target="#strengths">Strengths</a></li>
+  <li><a href="#weaknesses" id="toc-weaknesses" class="nav-link" data-scroll-target="#weaknesses">Weaknesses</a>
+  <ul class="collapse">
+  <li><a href="#experimental-methodology-issues" id="toc-experimental-methodology-issues" class="nav-link" data-scroll-target="#experimental-methodology-issues">Experimental methodology issues</a></li>
+  <li><a href="#dataset-design-problems" id="toc-dataset-design-problems" class="nav-link" data-scroll-target="#dataset-design-problems">Dataset design problems</a></li>
+  <li><a href="#superficial-analysis" id="toc-superficial-analysis" class="nav-link" data-scroll-target="#superficial-analysis">Superficial analysis</a></li>
+  </ul></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final thoughts</a></li>
   </ul>
 </nav>
     </div>
@@ -429,64 +432,116 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Paper: <a href="https://arxiv.org/abs/2006.13473"><em>AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</em></a></li>
-<li>Presenter: <a href="https://www.linkedin.com/in/saina199/">Saina</a></li>
-<li>Attendees: <a href="https://www.linkedin.com/in/brianking387/">Brian</a>, <a href="https://www.linkedin.com/in/hariprasadnatarajan/">Hari</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a>, <a href="https://www.linkedin.com/in/meghann-agarwal/">Meghann</a></li>
+<li>Paper: <a href="https://arxiv.org/abs/2508.21038">On the Theoretical Limitations of Embedding-Based Retrieval</a> (arXiv:2508.21038v1, submitted August 28, 2025). <em>This is a preprint that has not yet undergone peer review.</em></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula Pudhiyidath</a>, <a href="https://www.linkedin.com/in/ivanperezav/">Ivan Perez Avellaneda</a></li>
 </ul>
 </div>
 </div>
-<section id="why-this-paper" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper?</h2>
-<p>Product discovery plays a pivotal role in the success of an online store, as it not only fuels revenue generation but also exerts a profound influence on the overall customer experience. In the vast landscape of e-commerce, where countless products are bought and sold through platforms like Amazon, the task of efficiently arranging and presenting product information for indexing and seamless search functionality stands as a continuous and formidable challenge.</p>
-<p>Another challenge arises due to the lack of a unified language in product descriptions. Given that retailers curate the information, the distinct characteristics and attributes of products are predominantly delineated within titles or descriptions, rather than being uniformly collected. Consequently, the extraction of this information necessitates delving into unstructured textual data.</p>
-<p>Researchers at Amazon address this issue by introducing a pipeline named AUTOKNOW. This pipeline comprises a set of machine learning algorithms and techniques that create taxonomy, recognize products, and ultimately construct a product knowledge graph. This graph serves the purpose of organizing catalog information and enhancing product discovery through indexing and downstream functionalities of search and product recommendation.</p>
-</section>
-<section id="summary-of-techniques" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-techniques">Summary of techniques</h2>
+<p>This paper tackles a fundamental question that’s becoming increasingly relevant as embedding models are required to solve more complex retrieval tasks. The authors connect communication complexity theory to modern neural language model embeddings, and argue that the combinatorial explosion of possible top-k document sets will inevitably overwhelm fixed-dimensional embeddings. Given our interest in retrieval architectures and their fundamental capabilities, this paper offers an interesting theoretical lens, and tries to expand their idea with empirical experiments based on a synthetic dataset.</p>
+<section id="paper-summary" class="level2">
+<h2 class="anchored" data-anchor-id="paper-summary">Paper summary</h2>
+<p>The core theoretical contribution connects the sign-rank of a query-relevance matrix (<em>qrel</em>, where rows represent queries and columns represent documents) to the minimum embedding dimension needed to represent it. Specifically, the authors prove that for a binary relevance matrix A, the <em>row-wise order-preserving</em> rank is bounded by <span class="math inline">\(\text{Rank}_{\pm}(2A - 1) - 1 \leq \text{Rank}_{\text{rop}}(A) \leq \text{Rank}_{\pm}(2A - 1)\)</span>, where <span class="math inline">\(\text{Rank}_{\pm}\)</span> denotes the sign-rank and <span class="math inline">\(\text{Rank}_{\text{rop}}(A)\)</span> represents the minimum embedding dimension needed to correctly order documents for all queries. This means that for any fixed dimension d, there exist combinations of top-k documents that cannot be represented regardless of the query.</p>
+<p>To validate this empirically, the authors conduct <em>free embedding</em> (simulated embeddings that are unconstrained by natural language) experiments where they directly optimize query (without backpropagation) and document vectors using gradient descent. They find that for k=2, there exists a critical point for each dimension d where the number of documents becomes too large to encode all combinations. Fitting these critical points across dimensions yields a smooth polynomial relationship that is monotonically increasing.</p>
+<p>The experimental evaluation relies heavily on testing models at various embedding dimensions, which brings up an important technique: <strong>Matryoshka Representation Learning (MRL)</strong>; think Russian dolls. MRL is a training technique that enables embeddings to maintain meaningful representations when truncated to smaller dimensions. It achieves this by using a loss function that combines losses computed at multiple embedding dimensions simultaneously. This trains the model so that the first d dimensions contain a complete (if lower-fidelity) representation, rather than requiring all N dimensions. This is crucial because naively truncating a standard embedding model’s 4096-dimensional output to, say, 512 dimensions would destroy the representation, as those first 512 dimensions were not optimized to be independently meaningful.</p>
+<p>The paper tests both MRL-trained models (which can be fairly evaluated at smaller dimensions) and standard models (where truncation introduces severe artifacts), though not all models in comparison use MRL techniques, implying that potential severe loss in information may have occurred in smaller embedding spaces.</p>
+<p>The authors then create LIMIT, a dataset designed to stress-test this limitation using natural language. Documents describe people and their preferences (e.g., “Jon likes Quokkas and Apples”), and queries ask “Who likes X?” Despite this simplicity, state-of-the-art embedding models achieve less than 20% recall@100, while BM25 scores above 90%.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="fig2.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2: AutoKnow architecture, containing ontology suite to enrich product ontology and data suite to enrich product structured data.</figcaption>
+<p><img src="Fig 1.png" class="img-fluid figure-img"></p>
+<figcaption>Overview of the LIMIT dataset design and experimental setup for testing embedding limitations with k=2 attribute combinations.</figcaption>
 </figure>
 </div>
-<p>This paper delves into the intricacies of the Retail Product Domain, where challenges compound due to the rapid influx of new products and the extensive range of associated attributes, such as color that can have many values. This domain presents a diverse spectrum of attributes spanning various product types, even as some attributes are shared among products. To address the inherent complexity, the study narrows its focus to four domains: grocery, health, beauty, and baby. Eligible products for the study must have at least one monthly page view. It is observed that products are characterized by dozens to hundreds of attributes per product, with the attribute count varying from 100 to 250 across different product types.</p>
-<p>They start organizing the product taxonomy by focusing on types and hypernyms relationships, and curating attributes and synonyms for each type. They also focus on a knowledge graph (KG) that consists of triples in the form of (subject, predicate, object), where subjects are entities with IDs belonging to various types, objects can be entities or atomic values, and predicates signify relationships. This study concentrates on broad graphs where the topic type is products. Product types are organized hierarchically, forming a taxonomy. The paper assumes input sources, including a product catalog with attributes and customer behavior logs, query/purchase logs, customer reviews and question/answer. Intuitively, most product types appear in title, and search queries.</p>
-<p>The taxonomy enrichment process consists of two steps. Firstly, a type extractor is trained to identify new product types from titles and queries, utilizing an open-world tagging model. Secondly, type attachment is achieved through a binary classification task, employing a graph neural network (GNN) module that captures signals from customer behaviors. This GNN-based approach refines type representations and combines them with semantic features for classification. Distant supervision is applied for model training, utilizing existing taxonomy and customer behavior data for positive and negative labels.</p>
-<p>The Data Imputation component addresses the Structure-sparsity challenge by enhancing coverage through structured value extraction from product profiles. This process involves extracting new (attribute, value) pairs for each product from its profiles. State-of-the-art techniques using BIOE sequential labeling and active learning have been effective for solving this at the type-attribute level, as demonstrated in Equation (1) with BiLSTM and CRF.</p>
-<p><span class="math display">\[(y_{1},y_{2},...y_{L}) = \text{CRF}(\text{BiLSTM}(e_{x_{1}},e_{x_{2}},...,e_{x_{L}}))\]</span></p>
-<p>However, scalability to handle large numbers of product types and attributes is an issue. To overcome this, the paper introduces a novel taxonomy-aware sequence tagging approach conditioned on product type. The model’s predictions are influenced by the product type’s pre-trained hyperbolic-space embedding, preserving hierarchical relationships within the taxonomy. The approach also employs multi-task learning to enhance the identification of tokens indicating product type and tackle catalog misclassification or missing type information through shared BiLSTM training for sequence tagging and product categorization.</p>
-<p>Next step is the relation discovery which is based on product attributes where various sets of attributes apply to different product types, and only a fraction significantly affects shopping decisions. Identifying applicable and important attributes for thousands of types is essential. Formally, the task involves determining if an attribute applies to a product type and its importance for purchasing decisions. This paper employs classification and regression models—specifically, Random Forest—to assess attribute applicability and importance. The models utilize seller behavior (attribute value coverage and frequency in profiles) and buyer behavior (frequency in search queries, reviews, Q&amp;A). Annotations from in-house and MTurk sources are used for model training. The approach distinguishes between subtle differences, such as attributes required for coverage but not always pivotal for decisions. The trained models are applied to all attribute-type pairs for decision-making.</p>
-<p>This model is designed to figure out if a suggested attribute value matches the context provided by product descriptions and the product categories they belong to. The model takes raw input, which is a combination of words from product descriptions, product categories, and the suggested attribute value. These words are turned into embedding vectors that capture their meaning, source, and position in the text. The model then processes these embeddings using a multi-layer transformer to create a representation that summarizes all this information. This summarized representation is used to calculate a score, which tells us how well the suggested attribute value fits in with the context. To train the model, they use examples from the product catalog. They generate both correct and incorrect examples, and the model learns to distinguish between them. During testing, the model is applied to different attribute-value pairs, and those with low scores are considered as incorrect matches.</p>
+<p>Below is an example of a document in the LIMIT corpus:</p>
+<blockquote class="blockquote">
+<p>{“_id”: “Olinda Posso”, “title”: ““,”text”: “Olinda Posso likes Bagels, Hot Chocolate, Pumpkin Seeds, The Industrial Revolution, Cola Soda, Quinoa, Alfajores, Rats, Eggplants, The Gilded Age, Pavements Ants, Cribbage, Florists, Butchers, Eggnog, Armadillos, Scuba Diving, Bammy, the Texas Rangers, Grey Parrots, Urban Exploration, Wallets, Rainbows, Juggling, Green Peppercorns, Dryers, Pulled Pork, Holland Lops, Blueberries, The Sound of Wind in the Trees, Apple Juice, Markhors, Philosophy, Orchids, Risk, Alligators, Peonies, Birch Trees, Stand-up Comedy, Cod, Paneer, Environmental Engineering, Caramel Candies, Lotteries and Levels.”}</p>
+</blockquote>
+<p>The paper concludes by briefly examining alternatives to single-vector embeddings that might avoid these theoretical limitations. Cross-encoders (e.g., Gemini-2.5-Pro, which uses a long context reranker) successfully solve the LIMIT task with 100% accuracy but remain too computationally expensive for first-stage retrieval at scale (note: the details of how they conducted this experiment are quite vague). Multi-vector models like ColBERT show improvement over single-vector approaches (though still fall short of solving LIMIT), while sparse models like BM25 succeed due to their effectively much higher dimensionality. However, the authors note it’s unclear how sparse approaches would handle instruction-following or reasoning-based tasks without lexical overlap.</p>
 </section>
-<section id="final-points" class="level2">
-<h2 class="anchored" data-anchor-id="final-points">Final Points</h2>
-<p>At the time of this paper presentation, Autoknow is deployed in production in collecting over 1B product knowledge facts for over 11K distinct product types. The approach is validated by demonstrating the expansion of existing Amazon ontology by 2.9 times where precision is improved by 7.6% and recall by 16.4%. The collection suite of technologies are Apache spark distributed system, tensorflow for deep learning, amazon deep graph library for graph neural network for taxonomy. The relationships are derived using Spark ML, and an AWS SageMaker instance is used for training the imputation component.</p>
-<p>Finally, they mention an important lesson, which is that sometimes they need to move away from the product tree and consider multiple parents. In other words, a single sub-type cannot be clearly defined in many instances.</p>
+<section id="strengths" class="level2">
+<h2 class="anchored" data-anchor-id="strengths">Strengths</h2>
+<p>The theoretical motivation is quite interesting. Connecting sign-rank to retrieval capacity provides a formal framework for understanding embedding limitations, and the proof itself is clean, well-constructed, and relatively easy to follow. The observation that as retrieval tasks require representing more top-k combinations (especially through instruction-based queries connecting previously unrelated documents), models will hit fundamental limits is genuinely important for the field.</p>
+<p>The authors’ decision to test models across different embedding dimensions using MRL is commendable. While the execution has issues (inconsistent treatment of MRL and non-MRL models, unclear figure legends), the underlying motivation to examine information loss in truncated embeddings is sound and addresses an important question.</p>
+<p>Finally, we liked that the authors tried to bridge theory and practice by creating a concrete dataset. Many theoretical papers stop at proofs and toy examples, but the LIMIT dataset represents a genuine effort to operationalize the theoretical limitations. The dataset takes the abstract notion of “all top-k combinations” and maps it to natural language. The progression from free embedding experiments (pure mathematical optimization) to synthetic but linguistic data (LIMIT) to comparisons with models trained on existing benchmarks (MTEB, BEIR) shows methodological rigor in trying to validate the theory at multiple levels of abstraction. Even if the execution has flaws, the attempt to move beyond pure theory into testable predictions is highly valuable.</p>
 </section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>First, Saina gave us a great introduction about the problem domain, knowledge discovery. She said extracting and understanding attributes is essential in knowledge discovery in retail, which has been relatively easy before the era online shopping because merchants usually provided well-organized product catalogs. However, widely variable free text formats started emerging with the rise of e-commerce. Search engines have been trying to automatically extract attributes from the text input and to build a good taxonomy to create hierarchical relationship between products. Since products come and go constantly, this process requires interactive process of attribute extraction and taxonomy building. As the authors mentioned in the paper, some of the main challenges are to clean, curate, and understand the data, and to correct errors and prevent abuse of attributes.</p>
-<p>We spent a lot of time trying to understand the sequential labeling problem the paper used extensively. The authors frequently cited their <a href="https://arxiv.org/abs/1806.01264">OpenTag</a> paper, which they used to automatically generate training labels. These tags are used in many stages of their model pipeline including <em>taxonomy enrichment</em> and <em>type attachment</em>. The algorithm takes a sequence of text tokens and return a sequence of BIOE (“beginning”, “inside”, “outside”, “end”) labels. Then the authors used the returned tags as true labels for subsequent ML algorithms (distant supervision and regular supervision). We initially thought this BIOE labeling system came from the OpenTag paper but we later learned that it was based on <a href="https://arxiv.org/pdf/1508.01991.pdf">a 2015 paper</a> about bidirectional LSTM-CRT (conditional random field) for sequential tagging, which the authors used in this paper as well. In short, the final CRF layer in this deep learning model returns a probability for every plausible label sequences (sequence likelihood). We thought it would have been nice for the authors to give a quick overview of the algorithm and address potential risk of ML-generated labels as true labels in downstream ML modeling.</p>
+<section id="weaknesses" class="level2">
+<h2 class="anchored" data-anchor-id="weaknesses">Weaknesses</h2>
+<p>However, we found the gap between theoretical insight and experimental validation concerning. Several fundamental issues may undermine the paper’s claims:</p>
+<section id="experimental-methodology-issues" class="level3">
+<h3 class="anchored" data-anchor-id="experimental-methodology-issues">Experimental methodology issues</h3>
+<section id="free-embedding-experiments-are-questionable-as-best-case" class="level4">
+<h4 class="anchored" data-anchor-id="free-embedding-experiments-are-questionable-as-best-case">Free embedding experiments are questionable as “best case”</h4>
+<p>The authors frame free embedding optimization as the ‘best case’ scenario, arguing that if direct vector optimization cannot solve it, real models won’t either. But this <strong>“unconstrained = best” logic</strong> reasoning conflates representational capacity with optimization tractability. Inductive biases in real models (e.g., semantic structure learned from language) don’t just constrain what can be represented, but they actively guide optimization by shaping the loss landscape. Free embeddings optimizing in unconstrained high-dimensional space may actually face harder optimization challenges than semantically grounded models, potentially getting trapped in poor local minima precisely because they lack guiding structure. Whether free embedding failure truly upper-bounds neural retriever performance, or simply reflects different optimization dynamics, remains unclear.</p>
+</section>
+<section id="flaws-in-experimental-design-regarding-varying-embedding-sizes" class="level4">
+<h4 class="anchored" data-anchor-id="flaws-in-experimental-design-regarding-varying-embedding-sizes">Flaws in experimental design regarding varying embedding sizes</h4>
+<p>The dimension ablation experiments are particularly problematic. When evaluating models at different dimensions d &lt; N (where N is the model’s native dimension), they simply truncate to the first d dimensions. This causes <strong>massive information loss</strong> because these dimensions were not trained to be independently meaningful at arbitrary truncation points. Even for models trained with MRL, which does enable meaningful truncation, the paper is inconsistent about which models used MRL versus which were naively truncated.</p>
+<p>The domain shift experiment suffers from the same truncation issue, making it hard to disentangle whether poor performance stems from domain mismatch or from damaged representations. Moreover, this experiment relies solely on fine-tuning without providing sufficient detail on whether the limited data samples were adequate to meaningfully change embedding behavior. With smaller dimensions especially, full training (rather than fine-tuning) might have been more appropriate, though we acknowledge this would be computationally expensive. Fine-tuning with truncated naive embeddings (which suffer from severe information loss) doesn’t convincingly demonstrate the authors’ point about theoretical limitations—it may simply reveal the inadequacy of the fine-tuning approach itself.</p>
+</section>
+<section id="missing-theoretical-depth-in-key-places" class="level4">
+<h4 class="anchored" data-anchor-id="missing-theoretical-depth-in-key-places">Missing theoretical depth in key places</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="biLSTM-CRT.png" class="img-fluid figure-img"></p>
-<figcaption>A BI-LSTM-CRF model (Huang et al.&nbsp;2015)</figcaption>
+<p><img src="Fig 2.png" class="img-fluid figure-img"></p>
+<figcaption>Polynomial relationship between embedding dimension and the critical number of documents at which free embeddings fail to represent all k=2 combinations. The smooth cubic fit suggests deeper theoretical structure.</figcaption>
 </figure>
 </div>
-<p>We also discussed other algorithms used in the paper to improve our understanding. First, we suspected that the regression problem they attempted to solve was based on MTurk workers’ subjective level of attribute importance (not a feature importance of an ML model) even though we doubted the choice of using only 6 MTurk workers. We also discussed the difference between <em>semi-supervised</em> and <em>weak-supervised</em> learning models: the former is about “based on what is already labeled, label some more” and the latter is about “based on your knowledge, label some more”. Finally, we talked about <a href="https://hazyresearch.stanford.edu/hyperE/"><em>hyperbolic space embedding</em></a>, which is excellent at preserving graph distances and complex relationships in very few dimensions Finally, as the authors mentioned at the end, we thought it would make sense to have a single model that takes care of data imputation and cleaning because in this paper, the cleaning is more of correction in imputed values.</p>
-<p>We generally enjoyed reading this paper because it uses a plethora of various ML algorithms extensively, which gave us a good opportunity to get to know them. However, some of us questioned how this model pipeline can be maintained especially with the arrival of new information. We thought some stages of the pipeline might be more resilient to changes (such as the attribute importance estimation) but taxonomy changes may not. As we’ve seen in deep learning papers many times, we also questioned the validation aspect because the number of samples used in validation (a few hundreds triples) was much smaller than the actual dataset (one billion triples).</p>
+<p>The polynomial fit to the critical-n points (Figure 2) is impressively smooth, suggesting deeper theoretical structure that remains unexplored. Why specifically a degree-3 polynomial? Is there a theoretical derivation for this functional form, or is it purely empirical? Similarly, the connection to order-k Voronoi diagrams is mentioned but dismissed as “computationally infeasible” and “notoriously difficult to bound tightly” without much detail.</p>
+<p>Despite deriving a polynomial relationship between dimension and critical document count, the paper disappointingly provides <strong>no practical guidance</strong>. A natural question remains unanswered: given N documents with k-attribute queries, what minimum embedding dimension is needed? The fitted curve could inform such estimates, but the authors do not discuss whether their framework enables practical dimensionality recommendations or what additional work would be required to derive them.</p>
+<p>The qrel pattern experiments (Figure 6) show that “dense” patterns are much harder than random, cycle, or disjoint patterns, but no theoretical framework connects the patterns to sign-rank. These experiments are also where exploring different values of k could have been particularly informative.</p>
+</section>
+</section>
+<section id="dataset-design-problems" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-design-problems">Dataset design problems</h3>
+<section id="limit-doesnt-test-what-it-claims-to-test" class="level4">
+<h4 class="anchored" data-anchor-id="limit-doesnt-test-what-it-claims-to-test">LIMIT doesn’t test what it claims to test</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig 3 full.png" class="img-fluid figure-img"></p>
+<figcaption>Performance comparison on LIMIT dataset</figcaption>
+</figure>
+</div>
+<p>The LIMIT dataset has a fundamental mismatch. While queries are simple (‘Who likes Quokkas?’), the documents are highly unnatural. Each document lists approximately 50 randomly assigned attributes, a structure difficult to be found in natural language. This creates what is essentially a <strong>memorization stress test rather than a semantic understanding task</strong>. Documents like ‘Olinda Posso likes Bagels, Hot Chocolate, Pumpkin Seeds, The Industrial Revolution, Cola Soda, Quinoa…’ (continuing for ca. 50 items) bear very little resemblance to natural text. The fact that BM25 achieves over 90% while neural models struggle below 20% is revealing: this task rewards exact term matching (lexical memorization) rather than semantic understanding.</p>
+</section>
+<section id="limited-exploration-of-k-undermines-the-combinatorial-complexity-claim" class="level4">
+<h4 class="anchored" data-anchor-id="limited-exploration-of-k-undermines-the-combinatorial-complexity-claim">Limited exploration of k undermines the combinatorial complexity claim</h4>
+<p>The paper’s central thesis is that combinatorial complexity fundamentally limits embeddings, yet the empirical validation examines only k=2. If combinatorial explosion is truly the core issue, the natural experiment is to vary k systematically (k=2, 3, 4, 5…) and demonstrate where and how performance degrades. Without this, their argument on combinatorics becomes weak.</p>
+<p>Moreover, k=2 represents a fundamentally shallow per-instance retrieval task: each query asks only whether two specific attributes co-occur in a document. This is qualitatively different from queries requiring inference, reasoning, or understanding complex semantic relationships. The difficulty comes not from the cognitive complexity of individual queries, but from the sheer volume of attribute combinations to memorize numerous pairs. This is <strong>combinatorial overload of a simple operation rather than genuine semantic complexity</strong>. The paper’s claim about <em>combinatorial limitations</em> would be more compelling if tested on queries that actually require complex reasoning for each instance, not just checking membership in a memorized list.</p>
+</section>
+</section>
+<section id="superficial-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="superficial-analysis">Superficial analysis</h3>
+<section id="the-mteb-correlation-analysis-is-superficial" class="level4">
+<h4 class="anchored" data-anchor-id="the-mteb-correlation-analysis-is-superficial">The MTEB correlation analysis is superficial</h4>
+<p>The paper compares SOTA models’ poor LIMIT performance with BEIR performance (Figure 7, Section 5.5), and suggests that “smaller models (like Arctic Embed) do worse on both, likely due to embedding dimension and pre-trained model knowledge.” Yet large models like E5-Mistral (4096-d) also score poorly on LIMIT. The correlation analysis doesn’t support strong conclusions either way, and the discussion of dimension dependence is hand-wavy given that high-dimensional models also struggle.</p>
+</section>
+<section id="the-alternatives-section-adds-little" class="level4">
+<h4 class="anchored" data-anchor-id="the-alternatives-section-adds-little">The “alternatives” section adds little</h4>
+<p>Given these limitations in the empirical validation, the paper’s brief discussion of alternatives to single-vector embeddings feels incomplete. The discussion of cross-encoders, multi-vector models, and sparse retrievers is disappointingly shallow. These are well-known alternatives, and the paper provides no new insights about how they circumvent the theoretical limitations or what trade-offs they entail at scale. The observation that ColBERT performs better offers little explanation of why or what this tells us about the limitations.</p>
+</section>
+<section id="absolutist-framing-obscures-nuance" class="level4">
+<h4 class="anchored" data-anchor-id="absolutist-framing-obscures-nuance">Absolutist framing obscures nuance</h4>
+<p>The paper tests one narrow scenario (k=2, synthetic memorization task), finds poor performance, and then makes sweeping claims like “embedding models cannot represent all combinations” without adequate explanation or qualification. The framing presents <strong>binary success/failure</strong> when the real questions are graded and contextual: which combinations matter in practice? How much worse is performance, and in what ways? Would these limitations manifest in real-world retrieval scenarios with natural language?</p>
+<p>Moreover, the embedding models achieved about 20% recall, not zero, yet there is no analysis of which queries or combinations succeeded versus failed. Understanding this pattern, especially across different embedding dimensions, could reveal whether failures are random or systematic and whether certain types of combinations are more representable than others. This would provide far more insight than aggregate failure rates alone.</p>
+</section>
+</section>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+<p>This paper doesn’t fully deliver on its promise. The theoretical contribution is solid and potentially important, but the empirical validation is flawed and does not support the strong claims being made. The sign-rank framework provides a useful lens for thinking about embedding capacity, and the paper does demonstrate something real: state-of-the-art neural embedding models struggle to exhaustively memorize even small combinatorial spaces (k=2 combinations). This empirical finding is noteworthy, even if the authors don’t analyze which combinations succeed versus fail or whether certain patterns are systematically more difficult.</p>
+<p>However, without cleaner experiments that separate genuine theoretical limits from artifacts of poor experimental design, we can’t conclude whether state-of-the-art models are hitting fundamental boundaries or simply failing at an artificial memorization task with broken evaluation methodology. The theoretical limitations are real—the question is whether they matter for realistic semantic retrieval tasks, where queries require understanding meaning and context rather than exhaustively memorizing unnatural attribute lists. The paper raises important questions about the future of instruction-based retrieval and alternatives to single-vector embeddings, but doesn’t yet provide convincing evidence that these theoretical limits will constrain models on practical retrieval tasks.</p>
 <hr>
 <p><em>If you found this post useful, you can cite it as:</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2023</span>-<span class="ot">autoknow</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Saina Lajevardi and Hongsup Shin},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2023},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {07},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {20},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {rl{https://austinmljournalclub.github.io}},</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2025</span>-<span class="ot">embedding</span>-<span class="ot">retrieval</span>-<span class="ot">limitations</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Hongsup Shin},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {On the Theoretical Limitations of Embedding-Based Retrieval},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2025},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {09},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {25},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://austinmljournalclub.github.io}},</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Austin ML Journal Club},</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20230720/},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20250925/},</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 

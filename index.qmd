@@ -3,11 +3,77 @@ listing:
   contents: posts
   sort: "date desc"
   type: default
-  categories: true
+  categories: false
   sort-ui: false
   filter-ui: false
-page-layout: full
 title-block-banner: true
+sidebar: papers-by-year
+toc: false
+---
+
+::: {.column-margin}
+Papers by Topic
+
+<details>
+<summary>LLMs & Generative AI</summary>
+
+- [Limitations of Embeddings](posts/20250925/index.qmd)
+- [Gorilla: LLM with APIs](posts/20240418/index.qmd)
+- [Emergent Abilities of LLMs](posts/20240229/index.qmd)
+- [Direct Preference Optimization](posts/20240125/index.qmd)
+- [Constitutional AI](posts/20230831/index.qmd)
+- [Let's Verify Step by Step](posts/20230622/index.qmd)
+- [Zero-Shot Text-to-Image](posts/20221215/index.qmd)
+</details>
+
+<details>
+<summary>Data Quality & Best Practices</summary>
+
+- [Real Estate Prediction Critique](posts/20230223/index.qmd)
+- [Leakage & Reproducibility](posts/20230126/index.qmd)
+- [Data Cascades](posts/20221027/index.qmd)
+</details>
+
+<details>
+<summary>Fairness & Bias</summary>
+
+- [Racial Bias in Healthcare](posts/20240328/index.ipynb)
+</details>
+
+<details>
+<summary>Tabular Data</summary>
+
+- [Tabular GAN](posts/20240530/index.qmd)
+- [Tree-based vs Deep Learning](posts/20231019/index.qmd)
+</details>
+
+<details>
+<summary>NLP & Translation</summary>
+
+- [Neural Machine Translation](posts/20230928/index.qmd)
+- [AutoKnow](posts/20230720/index.qmd)
+</details>
+
+<details>
+<summary>Bayesian Methods</summary>
+
+- [Visualization in Bayesian workflow](posts/20230329/index.qmd)
+</details>
+:::
+
+::: {style="text-align: center; padding: 2rem 0 1.5rem 0;"}
+
+## Welcome to the Austin ML Journal Club
+
+We are a community of ML/AI practitioners who meet monthly to deeply engage with seminal research. Our posts capture the insights and critical perspectives that emerge when practitioners move beyond surface-level summaries to examine how the sausages actually get made.
+
+::: {style="margin-top: 1.5rem;"}
+[Learn more →](about.qmd){.btn .btn-outline-secondary}
+[Join us](https://www.linkedin.com/company/austin-ml-journal-club){.btn .btn-primary}
+:::
+
+:::
+
 ---
 
 

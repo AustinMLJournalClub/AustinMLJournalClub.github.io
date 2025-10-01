@@ -45,3 +45,22 @@ To understand the impact of data leakage the authors present a case study on civ
 
 ## Final thoughts
 Data leakage is a big issue that is not highlighted enough. The authors focused their efforts on identifying data leakage in ML-based science. While we appreciate them proposing a solution to identify and prevent data leakage, we think filling out model info sheets is a big ask and unlikely to be a common practice unless required by the peer review process. In addition, there are efficacy issues with model info sheets and it will be impossible to substantiate each claim. Industry ML applications are likely facing similar challenges with data leakage as ML-based science but these effects will be even more challenging to detect and quantify.
+
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2023-data-leakage,
+    author = {Kate Behrman},
+    title = {Leakage and the Reproducibility Crisis in ML-based Science},
+    year = {2023},
+    month = {01},
+    day = {26},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20230126/},
+}
+```

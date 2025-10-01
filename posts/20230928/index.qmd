@@ -108,3 +108,22 @@ I'll end by listing a few of the topics and questions that we considered.
 How is [Google Translate](https://translate.google.com/) able to translate between so many languages? See [Building Machine Translation Systems for the Next Thousand Languages](https://arxiv.org/abs/2205.03983).
 
 Fund. ނިމުމެވެ. Endirinn. Ti Panungpalan. Njedebe. Cоңы. Tungtungna. Isiphetho. अन्तम् (translations of "The End" using [Google Translate](https://translate.google.com/))
+
+
+---
+
+*If you found this post useful, you can cite it as:*
+
+```bibtex
+@article{
+    austinmljc-2023-neural-machine-translation,
+    author = {Meghann Agarwal and Hongsup Shin},
+    title = {Neural Machine Translation by Jointly Learning to Align and Translate},
+    year = {2023},
+    month = {09},
+    day = {28},
+    howpublished = { rl{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/20230928/},
+}
+```

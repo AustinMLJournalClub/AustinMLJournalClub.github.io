@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./logo.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -39,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4b985fbe78086b3471c5fbcf9670e4ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,6 +84,8 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.jpeg" alt="" class="navbar-logo light-content">
+    <img src="./logo.jpeg" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Austin ML Journal Club</span>
@@ -93,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
@@ -102,6 +105,8 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./reading_list.html" aria-current="page"> 
 <span class="menu-text">Reading List</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"> <i class="bi bi-github" role="img">
 </i> 
@@ -123,7 +128,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+  <ul>
+  <li><a href="#current-suggestions" id="toc-current-suggestions" class="nav-link active" data-scroll-target="#current-suggestions">Current Suggestions</a></li>
+  <li><a href="#how-to-suggest-papers" id="toc-how-to-suggest-papers" class="nav-link" data-scroll-target="#how-to-suggest-papers">How to Suggest Papers</a></li>
+  <li><a href="#previously-suggested-papers" id="toc-previously-suggested-papers" class="nav-link" data-scroll-target="#previously-suggested-papers">Previously Suggested Papers</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <div class="quarto-about-solana column-body">
   <div class="about-entity">
@@ -136,37 +150,44 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </header> 
       <div class="about-contents"><main class="content" id="quarto-document-content">
+
 <p>This page collects papers, books, articles, videos, and other resources suggested by our community for potential future discussions. We welcome suggestions that align with our focus on impactful and seminal machine learning content.</p>
 <section id="current-suggestions" class="level2">
 <h2 data-anchor-id="current-suggestions">Current Suggestions</h2>
 <ul>
-<li>Hongsup: <a href="https://knightcolumbia.org/content/ai-as-normal-technology">AI as Normal Technology</a></li>
+<li><a href="https://arxiv.org/abs/2508.21038">On the Theoretical Limitations of Embedding-Based Retrieval</a> (discussed September 2025)</li>
+<li><a href="https://arxiv.org/abs/2507.02092">Energy-Based Transformers are Scalable Learners and Thinkers</a></li>
+<li><a href="https://knightcolumbia.org/content/ai-as-normal-technology">AI as Normal Technology</a></li>
 </ul>
-<p><em>This section will be populated with new paper suggestions as our journal club resumes regular meetings.</em></p>
 </section>
 <section id="how-to-suggest-papers" class="level2">
 <h2 data-anchor-id="how-to-suggest-papers">How to Suggest Papers</h2>
-<p>Have a paper, book chapter, news article, lecture, or other resource you think would spark great discussion? You can: - Contact the organizer directly - Submit a suggestion via GitHub issue - Bring it up during our monthly meetings</p>
-<p>We look for content that is impactful, thought-provoking, or offers practical insights into how machine learning works in practice, regardless of format or technical complexity.</p>
+<p>Have a paper, book chapter, news article, lecture, or other resource you think would spark great discussion? You can:</p>
+<ul>
+<li>Contact the organizer directly</li>
+<li>Submit a suggestion via <a href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io/issues">GitHub issue</a></li>
+<li>Bring it up during our monthly meetings</li>
+</ul>
+<p>We look for content that is impactful, thought-provoking, or offers practical insights into how ML/AI works in practice, regardless of format or technical complexity.</p>
 </section>
 <section id="previously-suggested-papers" class="level2">
 <h2 data-anchor-id="previously-suggested-papers">Previously Suggested Papers</h2>
 <p>The following were suggested by community members during our earlier meeting phases:</p>
 <ul>
-<li><a href="https://www.nature.com/articles/s41586-023-06747-5?_hsmi=291326409">Solving olympiad geometry without human demonstrations</a> shared by Hongsup</li>
-<li><a href="https://arxiv.org/abs/2401.05566">Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training</a> shared by Kshitij</li>
-<li><a href="https://arxiv.org/abs/2401.06121">TOFU: A Task of Fictitious Unlearning for LLMs</a> shared by Sarah</li>
-<li><a href="https://pubs.aip.org/aip/aml/article/1/4/046118/2928862/Quantifying-the-impact-of-uninformative-features">Quantifying the impact of uninformative features on the performance of supervised classification and dimensionality reduction algorithms</a> shared by Kshitij</li>
-<li><a href="https://arxiv.org/abs/2310.03693">Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!</a> shared by Hongsup</li>
-<li><a href="https://arxiv.org/abs/1908.06166">A Mulching Proposal</a> shared by Hongsup</li>
-<li><a href="https://www.anthropic.com/index/evaluating-and-mitigating-discrimination-in-language-model-decisions">Evaluating and Mitigating Discrimination in Language Model Decisions</a> shared by Kshitij</li>
-<li><a href="https://www.youtube.com/watch?v=baEQGk-CTwk&amp;ab_channel=MLTArtificialIntelligence">Dive into Deep Learning: Coding Session #4 Attention Mechanism I (MLT Artificial Intelligence)</a> shared by Kshitij</li>
-<li><a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a> shared by Brian</li>
-<li><a href="https://github.com/kuleshov/minillm">MiniLLM: Large Language Models on Consumer GPUs</a> shared by Hongsup</li>
-<li><a href="https://github.com/jzhang38/TinyLlama">The TinyLlama project</a> shared by Kshitij</li>
-<li><a href="https://arxiv.org/abs/2108.07258">On the Opportunities and Risks of Foundation Models</a> shared by Hongsup</li>
-<li><a href="https://arxiv.org/abs/2011.09926">Challenges in Deploying Machine Learning: a Survey of Case Studies</a> shared by Hongsup</li>
-<li><a href="https://arxiv.org/abs/2304.11251">Machine Learning and the Future of Bayesian Computation</a> shared by Brian</li>
+<li><a href="https://www.nature.com/articles/s41586-023-06747-5?_hsmi=291326409">Solving olympiad geometry without human demonstrations</a></li>
+<li><a href="https://arxiv.org/abs/2401.05566">Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training</a></li>
+<li><a href="https://arxiv.org/abs/2401.06121">TOFU: A Task of Fictitious Unlearning for LLMs</a></li>
+<li><a href="https://pubs.aip.org/aip/aml/article/1/4/046118/2928862/Quantifying-the-impact-of-uninformative-features">Quantifying the impact of uninformative features on the performance of supervised classification and dimensionality reduction algorithms</a></li>
+<li><a href="https://arxiv.org/abs/2310.03693">Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!</a></li>
+<li><a href="https://arxiv.org/abs/1908.06166">A Mulching Proposal</a></li>
+<li><a href="https://www.anthropic.com/index/evaluating-and-mitigating-discrimination-in-language-model-decisions">Evaluating and Mitigating Discrimination in Language Model Decisions</a></li>
+<li><a href="https://www.youtube.com/watch?v=baEQGk-CTwk&amp;ab_channel=MLTArtificialIntelligence">Dive into Deep Learning: Coding Session #4 Attention Mechanism I (MLT Artificial Intelligence)</a></li>
+<li><a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a></li>
+<li><a href="https://github.com/kuleshov/minillm">MiniLLM: Large Language Models on Consumer GPUs</a></li>
+<li><a href="https://github.com/jzhang38/TinyLlama">The TinyLlama project</a></li>
+<li><a href="https://arxiv.org/abs/2108.07258">On the Opportunities and Risks of Foundation Models</a></li>
+<li><a href="https://arxiv.org/abs/2011.09926">Challenges in Deploying Machine Learning: a Survey of Case Studies</a></li>
+<li><a href="https://arxiv.org/abs/2304.11251">Machine Learning and the Future of Bayesian Computation</a></li>
 </ul>
 
 
@@ -570,6 +591,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2022-2025 Austin ML Journal Club | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
