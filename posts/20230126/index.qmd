@@ -4,7 +4,7 @@ author: "Kate Behrman"
 date: "2023-01-26"
 image: front.png
 description: Data leakage in a common problem in ML-based science leading to reproducibility failures and overly optimistic conclusions. We discussed 8 types of data leakage and the use of model info sheets to identify and reduce all leakage types. 
-categories: [paper]
+categories: [best-practices]
 ---
 
 :::{.callout-note}

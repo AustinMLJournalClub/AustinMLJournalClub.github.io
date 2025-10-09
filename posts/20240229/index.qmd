@@ -5,7 +5,7 @@ date: "2024-02-29"
 image: schaeffer_fig2.png
 bibliography: refs.bib
 description: Recent research observed that the largest models exhibit incredible increases in performance on a wide variety of tasks compared to smaller models. This paper argues that such so-called *emergence* is actually more reflective of the evaluation metric used. Switching to metrics that are known to scale smoothly with the per-token error reveals a much more predictable picture. 
-categories: [paper]
+categories: [llm, evaluation]
 ---
 
 :::{.callout-note}

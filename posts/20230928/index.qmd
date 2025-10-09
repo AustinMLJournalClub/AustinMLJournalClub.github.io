@@ -7,7 +7,7 @@ author:
 date: "2023-09-28"
 image: fig1.png
 description: This paper marks an important step in the development of machine translation (MT). It came out just as Neural Machine Translation (NMT) was taking off, extending from Statistical Machine Translation (SMT), and as a milestone along the way to Transformer-based NMT. The authors introduce a novel attention mechanism applied to MT and show that it improves performance on long sentences, in particular, from prior recurrent neural network NMT approaches.
-categories: [paper]
+categories: [nlp, deep-learning]
 ---
 
 :::{.callout-note}

@@ -9,8 +9,12 @@ This page collects papers, books, articles, videos, and other resources suggeste
 ## Current Suggestions
 
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (discussed September 2025)
+- [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology) (discussing October 2025)
 - [Energy-Based Transformers are Scalable Learners and Thinkers](https://arxiv.org/abs/2507.02092)
-- [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology)
+- [Angles Don’t Lie: Unlocking Training-Efficient RL Through the Model’s Own Signals](https://arxiv.org/abs/2506.02281)
+- [Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation](https://arxiv.org/abs/2509.08825)
+- [Petri: An open-source auditing tool to accelerate AI safety research ](https://alignment.anthropic.com/2025/petri/) (Anthropic)
+- [Shutdown resistance in reasoning models](https://palisaderesearch.org/blog/shutdown-resistance) (Palisade Research)
 
 ## How to Suggest Papers
 

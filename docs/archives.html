@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Hongsup Shin">
-<meta name="dcterms.date" content="2024-05-30">
-<meta name="description" content="Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the Synthetic Data Vault library in Python.">
 
-<title>Modeling Tabular Data using Conditional GAN – Austin ML Journal Club</title>
+<title>Archives – Austin ML Journal Club</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,63 +20,28 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../logo.jpeg" rel="icon" type="image/jpeg">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4b985fbe78086b3471c5fbcf9670e4ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./logo.jpeg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4b985fbe78086b3471c5fbcf9670e4ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,55 +70,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Modeling Tabular Data using Conditional GAN – Austin ML Journal Club">
-<meta property="og:description" content="Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the Synthetic Data Vault library in Python.">
-<meta property="og:image" content="Fig 1.png">
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Archives – Austin ML Journal Club">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../logo.jpeg" alt="" class="navbar-logo light-content">
-    <img src="../../logo.jpeg" alt="" class="navbar-logo dark-content">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.jpeg" alt="" class="navbar-logo light-content">
+    <img src="./logo.jpeg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Austin ML Journal Club</span>
     </a>
   </div>
@@ -167,15 +98,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../reading_list.html"> 
+    <a class="nav-link" href="./reading_list.html"> 
 <span class="menu-text">Reading List</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../archives.html"> 
+    <a class="nav-link active" href="./archives.html" aria-current="page"> 
 <span class="menu-text">Archives</span></a>
   </li>  
 </ul>
@@ -198,44 +129,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Modeling Tabular Data using Conditional GAN</h1>
-                  <div>
-        <div class="description">
-          Tabular data synthesis (data augmentation) is an under-studied area compared to unstructured data. This paper uses GAN to model unique properties of tabular data such as mixed data types and class imbalance. This technique has many potentials for model improvement and privacy. The technique is currently available under the <a href="https://sdv.dev/"><em>Synthetic Data Vault</em></a> library in Python.
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">tabular-data</div>
-                <div class="quarto-category">deep-learning</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Hongsup Shin </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">May 30, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -243,102 +137,70 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why this paper?</a></li>
-  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link" data-scroll-target="#paper-summary">Paper summary</a>
-  <ul class="collapse">
-  <li><a href="#mode-specific-normalization" id="toc-mode-specific-normalization" class="nav-link" data-scroll-target="#mode-specific-normalization">Mode-specific normalization</a></li>
-  <li><a href="#conditional-generator-and-training-by-sampling" id="toc-conditional-generator-and-training-by-sampling" class="nav-link" data-scroll-target="#conditional-generator-and-training-by-sampling">Conditional generator and training-by-sampling</a></li>
-  <li><a href="#ct-gan-model" id="toc-ct-gan-model" class="nav-link" data-scroll-target="#ct-gan-model">CT-GAN model</a></li>
-  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model evaluation</a></li>
-  </ul></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2025</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2024</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2023</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2022</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-
-
-
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Archives</h1>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">2025</h2>
 <ul>
-<li>Paper: <a href="https://papers.nips.cc/paper_files/paper/2019/file/254ed7d2de3b23ab10936522dd547b78-Paper.pdf">Modeling Tabular Data using Conditional GAN</a></li>
-<li>Presenter: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a></li>
-<li>Attendees: <a href="https://www.linkedin.com/in/brianking387/">Brian</a>, <a href="https://www.linkedin.com/in/kate-behrman/">Kate</a></li>
+<li><a href="./posts/20250925/index.html">On the Theoretical Limitations of Embedding-Based Retrieval</a></li>
 </ul>
-</div>
-</div>
-<section id="why-this-paper" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper?</h2>
-<p>At work, I train models using tabular data with extreme class imbalance, which is often quite challenging. To tackle this, I have been looking into data augmentation techniques for tabular data, which is a relatively understudied domain compared to unstructured data. <a href="https://docs.sdv.dev/sdv">Synthetic Data Vault</a> is a popular python library for tabular data synthesis, and the main techniques originate from the paper above. Since class imbalance is a common problem in real-world data and most of us work with tabular data, I think this will be an interesting paper to discuss.</p>
 </section>
-<section id="paper-summary" class="level2">
-<h2 class="anchored" data-anchor-id="paper-summary">Paper summary</h2>
-<p>Several challenges lie in tabular data synthesis. They often have mixed data types with non-Gaussian or multi-modal distributions. Categorical variables in a tabular dataset often have severe class imbalance and provide insufficient samples. The authors argue that GAN’s flexibility can address these problems. The authors introduce several techniques for their approach, conditional-tabular GAN (CT-GAN).</p>
-<section id="mode-specific-normalization" class="level3">
-<h3 class="anchored" data-anchor-id="mode-specific-normalization">Mode-specific normalization</h3>
-<p>The basic idea is mode-specific normalization is to convert a continuous-variable column into a set of columns where each column represents an estimated mode (like an indicator) and its value represents the weight of the corresponding mode. To estimate the number of the modes, they use variational Gaussian mixture (VGM) method.</p>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">2024</h2>
+<ul>
+<li><a href="./posts/20240530/index.html">Modeling Tabular Data using Conditional GAN</a></li>
+<li><a href="./posts/20240418/index.html">Gorilla: Large Language Model Connected with Massive APIs</a></li>
+<li><a href="./posts/20240328/index.html">Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations</a></li>
+<li><a href="./posts/20240229/index.html">Are Emergent Abilities of Large Language Models a Mirage?</a></li>
+<li><a href="./posts/20240125/index.html">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a></li>
+</ul>
 </section>
-<section id="conditional-generator-and-training-by-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="conditional-generator-and-training-by-sampling">Conditional generator and training-by-sampling</h3>
-<p>Traditional GANs have Gaussian assumption where a vector is sampled from a standard multivariate normal distribution. However, this doesn’t account for class imbalance, which is a problem in tabular data. So the goal here is to resample data so that all categories are sampled <em>evenly</em> during training, and to estimate the conditional distribution of rows given that particular value at that particular column.</p>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">2023</h2>
+<ul>
+<li><a href="./posts/20231019/index.html">Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?</a></li>
+<li><a href="./posts/20230928/index.html">Neural Machine Translation by Jointly Learning to Align and Translate</a></li>
+<li><a href="./posts/20230831/index.html">Constitutional AI: Harmlessness from AI Feedback</a></li>
+<li><a href="./posts/20230720/index.html">AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types</a></li>
+<li><a href="./posts/20230622/index.html">Let’s Verify Step by Step</a></li>
+<li><a href="./posts/20230329/index.html">Visualization in Bayesian workflow</a></li>
+<li><a href="./posts/20230223/index.html">Reviewing a Case Study About Real Estate Market Prediction</a></li>
+<li><a href="./posts/20230126/index.html">Leakage and the Reproducibility Crisis in ML-based Science</a></li>
+</ul>
 </section>
-<section id="ct-gan-model" class="level3">
-<h3 class="anchored" data-anchor-id="ct-gan-model">CT-GAN model</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Fig 2.png" class="img-fluid figure-img"></p>
-<figcaption>CT GAN model</figcaption>
-</figure>
-</div>
-<p>In the CT-GAN model, the data are represented Conditional vector where each discrete column is a one-hot vector. The mask vector is used to only represent a category of a single discrete column (in one-hot way, the rest is all zero). The generator loss is cross-entropy between <span class="math inline">\(m_{i^*}\)</span> (given by data) and <span class="math inline">\(\hat{d}_{i^*}\)</span> (produced by the generator) averaged over all rows in a batch. During the critic assessment stage, the model measures distance between learned conditional distribution and conditional distribution on real data <em>while exploring all possible values evenly</em>.</p>
-</section>
-<section id="model-evaluation" class="level3">
-<h3 class="anchored" data-anchor-id="model-evaluation">Model evaluation</h3>
-<section id="baseline-models" class="level4">
-<h4 class="anchored" data-anchor-id="baseline-models">Baseline models</h4>
-<p>The paper uses multiple baseline models for performance comparison. They use two Bayesian network models (CLBN and PrivBN), other GAN models (MedGAN, VeeGAN, TableGAN), and a tabular VAE (TVAE) model that they built. The TVAE model has multivariate Gaussian assumption.</p>
-</section>
-<section id="evaluation-metrics" class="level4">
-<h4 class="anchored" data-anchor-id="evaluation-metrics">Evaluation metrics</h4>
-<p>For model comparison, the authors use two metrics. Likelihood fitness metric which estimates how well the synthetic data can fit the data oracle well. They also use <em>ML efficacy</em>, which measures whether ML model performance from synthetic data is comparable to that from using real data.</p>
-</section>
-<section id="results" class="level4">
-<h4 class="anchored" data-anchor-id="results">Results</h4>
-<p>For model comparison, they used several different sets of data. First, they used multi-modal Gaussian-simulated data. Here, other GANs suffer from model collapse and the CT-GAN showed better performance. When simulated data from Bayesian networks were used, the Bayesian baseline models (CLBN and PrivBN) performed the best. With real-world data, TVAE and CTGAN performed the best although TVAE was often better.</p>
-</section>
-</section>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Even though we were pleased to see good baseline comparison with multiple different datasets, we thought the authors should have did more thorough work on literature review such as comparing their work with <code>synthpop</code>, a widely-used data synthesis package in R. They also could have looked into other statistical models because data synthesis an active research area in statistics.</p>
-<p>We also questioned the validity of the VGM technique because it is the core of creating the embedding of continuous variables. The proposed model does not have checks that evaluate the fidelity of VGM estimation, and thus poor estimation of a multi-model distribution by it can further compromise model performance in general.</p>
-<p>We also thought their claim on CT-GAN was a bit exaggerated. First, in most benchmark datasets, it was actually TVAE model that performed the best. In the performance comparison table, there was only one regression data, which we thought insufficient to evaluate the <em>ML efficacy</em> metric the authors proposed. Finally, the proposed models for the regression problem showed <em>negative</em> R scores, suggesting that the models performed quite poorly.</p>
-<p>Overall, we thought the approach was novel but the evaluation could have been improved given that tabular datasets are quite diverse. Also, given that GAN is expensive train, we would have liked to learn more practical aspects of the implementation.</p>
-<hr>
-<p><em>If you found this post useful, you can cite it as:</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2024</span>-<span class="ot">tabular</span>-<span class="ot">gan</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Hongsup Shin},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {Modeling Tabular Data using Conditional GAN},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2024},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {05},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {30},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {rl{https://austinmljournalclub.github.io}},</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Austin ML Journal Club},</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20240530/},</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">2022</h2>
+<ul>
+<li><a href="./posts/20221215/index.html">Zero-Shot Text-to-Image Generation</a></li>
+<li><a href="./posts/20221027/index.html">“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI</a></li>
+</ul>
 
 
 </section>

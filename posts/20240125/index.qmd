@@ -4,7 +4,7 @@ author: "Kshitij Aggarwal"
 date: "2024-01-25"
 image: fig3.png
 description: This paper proposes a new technique to align LLMs with human preferences without using RL. This method is more robust and shows better performance over models trained with RLHF.   
-categories: [paper]
+categories: [llm, algorithm]
 ---
 
 :::{.callout-note}
