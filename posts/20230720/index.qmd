@@ -6,7 +6,7 @@ author:
 date: 2023-07-20
 image: fig1.png
 description: In e-commerce, it is challenging to organize and categorize products that are described by merchants in various ways. Finding a unified language and taxonomy has always been an underlying effort with commerce. This paper uses various ML algorithms to address this challenge.
-categories: [paper]
+categories: [nlp, knowledge-graph, e-commerce]
 ---
 
 :::{.callout-note}

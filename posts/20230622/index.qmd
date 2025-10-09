@@ -6,7 +6,7 @@ author:
 date: "2023-06-22"
 image: "fig1.png"
 description: This is an interesting new paper by OpenAI that discusses how we can apply the same principles we use to solve math problems to AI. The paper evaluates different approaches to solving a dataset comprising of math problems. With this approach, they trained the model to get the right answer and but also "think" through the problem to arrive at the right answer.
-categories: [paper]
+categories: [llm, reasoning, verification]
 ---
 
 :::{.callout-note}

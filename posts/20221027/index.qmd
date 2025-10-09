@@ -4,7 +4,7 @@ author: "Hongsup Shin"
 date: "2022-10-27"
 image: "Data cascades in high-stakes AI.png"
 description: Garbage in, garbage out. It seems like a lot of people in the ML community still don't understand this logic. We discuss poor data-handling practices and their critical ramifications.
-categories: [paper]
+categories: [data-quality, best-practices, high-stakes]
 ---
 
 :::{.callout-note}

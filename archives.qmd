@@ -1,0 +1,32 @@
+---
+title: "Archives"
+toc: true
+---
+
+## 2025
+
+- [On the Theoretical Limitations of Embedding-Based Retrieval](posts/20250925/index.qmd)
+
+## 2024
+
+- [Modeling Tabular Data using Conditional GAN](posts/20240530/index.qmd)
+- [Gorilla: Large Language Model Connected with Massive APIs](posts/20240418/index.qmd)
+- [Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations](posts/20240328/index.ipynb)
+- [Are Emergent Abilities of Large Language Models a Mirage?](posts/20240229/index.qmd)
+- [Direct Preference Optimization: Your Language Model is Secretly a Reward Model](posts/20240125/index.qmd)
+
+## 2023
+
+- [Why Do Tree-based Models Still Outperform Deep Learning on Typical Tabular Data?](posts/20231019/index.qmd)
+- [Neural Machine Translation by Jointly Learning to Align and Translate](posts/20230928/index.qmd)
+- [Constitutional AI: Harmlessness from AI Feedback](posts/20230831/index.qmd)
+- [AutoKnow: Self-Driving Knowledge Collection for Products of Thousands of Types](posts/20230720/index.qmd)
+- [Let's Verify Step by Step](posts/20230622/index.qmd)
+- [Visualization in Bayesian workflow](posts/20230329/index.qmd)
+- [Reviewing a Case Study About Real Estate Market Prediction](posts/20230223/index.qmd)
+- [Leakage and the Reproducibility Crisis in ML-based Science](posts/20230126/index.qmd)
+
+## 2022
+
+- [Zero-Shot Text-to-Image Generation](posts/20221215/index.qmd)
+- ["Everyone wants to do the model work, not the data work": Data Cascades in High-Stakes AI](posts/20221027/index.qmd)

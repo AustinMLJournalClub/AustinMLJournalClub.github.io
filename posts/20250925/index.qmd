@@ -4,7 +4,7 @@ author: "Hongsup Shin"
 date: "2025-09-25"
 image: "Fig 3.png"
 description: This preprint explores theoretical limits of single-vector embeddings through communication complexity theory, proving that embedding dimension bounds the number of representable top-k document combinations. Our discussion focuses on the gap between elegant theory and problematic experiments, embedding truncation, and tasks designed for memory not semantics. An interesting theoretical framework that needs more careful empirical validation.
-categories: [paper]
+categories: [retrieval, embeddings, theory, evaluation]
 toc: true
 toc-depth: 3
 ---
