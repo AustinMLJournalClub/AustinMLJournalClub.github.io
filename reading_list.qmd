@@ -10,7 +10,16 @@ This page collects papers, books, articles, videos, and other resources suggeste
 
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (discussed September 2025)
 - [Energy-Based Transformers are Scalable Learners and Thinkers](https://arxiv.org/abs/2507.02092)
-- [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology)
+- [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology) (discussed October 2025)
+- [Angles Don't Lie: Unlocking Training-Efficient RL Through the Model's Own Signals](https://arxiv.org/abs/2506.02281)
+- [Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation](https://arxiv.org/abs/2509.08825)
+- [Text-to-LoRA: Instant Transformer Adaption](https://arxiv.org/abs/2506.06105)
+- [Poisoning Attacks on LLMs Require a Near-constant Number of Poison Sample](https://arxiv.org/abs/2510.07192)
+- [Petri: An open-source auditing tool to accelerate AI safety research](https://alignment.anthropic.com/2025/petri/)
+- [Holistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation](https://arxiv.org/abs/2510.11977)
+- [Alignment Faking in Large Language Models](https://arxiv.org/abs/2412.14093)
+- [MolmoAct: Action Reasoning Models that can Reason in Space](https://arxiv.org/abs/2508.07917)
+- [The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity](https://machinelearning.apple.com/research/illusion-of-thinking)
 
 ## How to Suggest Papers
 

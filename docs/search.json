@@ -11,7 +11,7 @@
     "href": "reading_list.html#current-suggestions",
     "title": "Reading List",
     "section": "Current Suggestions",
-    "text": "Current Suggestions\n\nOn the Theoretical Limitations of Embedding-Based Retrieval (discussed September 2025)\nEnergy-Based Transformers are Scalable Learners and Thinkers\nAI as Normal Technology"
+    "text": "Current Suggestions\n\nOn the Theoretical Limitations of Embedding-Based Retrieval (discussed September 2025)\nEnergy-Based Transformers are Scalable Learners and Thinkers\nAI as Normal Technology (discussed October 2025)\nAngles Don’t Lie: Unlocking Training-Efficient RL Through the Model’s Own Signals\nLarge Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\nText-to-LoRA: Instant Transformer Adaption\nPoisoning Attacks on LLMs Require a Near-constant Number of Poison Sample\nPetri: An open-source auditing tool to accelerate AI safety research\nHolistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation\nAlignment Faking in Large Language Models\nMolmoAct: Action Reasoning Models that can Reason in Space\nThe Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity"
   },
   {
     "objectID": "reading_list.html#how-to-suggest-papers",
