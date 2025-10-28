@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hongsup Shin">
+<meta name="dcterms.date" content="2025-10-23">
+<meta name="description" content="This article challenges both AI doomsday narratives and hype by framing AI as a normal transformative technology comparable to electricity or aviation. Drawing from historical technology adoption patterns, the authors argue for pragmatic policy approaches focused on deployment-level safeguards, sector-specific regulation, and institutional resilience rather than speculative fears about autonomous superintelligence. A refreshing, evidence-based perspective for practitioners tired of extremes.">
+
+<title>AI as Normal Technology – Austin ML Journal Club</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-510e90d5290213db49adf6b6d1eb74e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="AI as Normal Technology – Austin ML Journal Club">
+<meta property="og:description" content="This article challenges both AI doomsday narratives and hype by framing AI as a normal transformative technology comparable to electricity or aviation. Drawing from historical technology adoption patterns, the authors argue for pragmatic policy approaches focused on deployment-level safeguards, sector-specific regulation, and institutional resilience rather than speculative fears about autonomous superintelligence. A refreshing, evidence-based perspective for practitioners tired of extremes.">
+<meta property="og:image" content="image.png">
+<meta property="og:site_name" content="Austin ML Journal Club">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.jpeg" alt="" class="navbar-logo light-content">
+    <img src="../../logo.jpeg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reading_list.html"> 
+<span class="menu-text">Reading List</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../archives.html"> 
+<span class="menu-text">Archives</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/austin-ml-journal-club"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">AI as Normal Technology</h1>
+                  <div>
+        <div class="description">
+          This article challenges both AI doomsday narratives and hype by framing AI as a normal transformative technology comparable to electricity or aviation. Drawing from historical technology adoption patterns, the authors argue for pragmatic policy approaches focused on deployment-level safeguards, sector-specific regulation, and institutional resilience rather than speculative fears about autonomous superintelligence. A refreshing, evidence-based perspective for practitioners tired of extremes.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">ai-safety</div>
+                <div class="quarto-category">agi</div>
+                <div class="quarto-category">responsible-ai</div>
+                <div class="quarto-category">policy</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hongsup Shin </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 23, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why This Paper</a></li>
+  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link" data-scroll-target="#paper-summary">Paper Summary</a>
+  <ul class="collapse">
+  <li><a href="#part-1-the-speed-of-ai-transformation" id="toc-part-1-the-speed-of-ai-transformation" class="nav-link" data-scroll-target="#part-1-the-speed-of-ai-transformation">Part 1: The Speed of AI Transformation</a></li>
+  <li><a href="#part-2-intelligence-vs.-control" id="toc-part-2-intelligence-vs.-control" class="nav-link" data-scroll-target="#part-2-intelligence-vs.-control">Part 2: Intelligence vs.&nbsp;Control</a></li>
+  <li><a href="#part-3-ai-risks-landscape" id="toc-part-3-ai-risks-landscape" class="nav-link" data-scroll-target="#part-3-ai-risks-landscape">Part 3: AI Risks Landscape</a></li>
+  <li><a href="#part-4-resilience-over-restriction" id="toc-part-4-resilience-over-restriction" class="nav-link" data-scroll-target="#part-4-resilience-over-restriction">Part 4: Resilience Over Restriction</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#gradual-ceding-of-control" id="toc-gradual-ceding-of-control" class="nav-link" data-scroll-target="#gradual-ceding-of-control">Gradual Ceding of Control</a></li>
+  <li><a href="#limitations-in-forecasting-and-persuasion" id="toc-limitations-in-forecasting-and-persuasion" class="nav-link" data-scroll-target="#limitations-in-forecasting-and-persuasion">Limitations in Forecasting and Persuasion</a></li>
+  <li><a href="#omission-of-military-ai" id="toc-omission-of-military-ai" class="nav-link" data-scroll-target="#omission-of-military-ai">Omission of Military AI</a></li>
+  <li><a href="#the-alignment-distraction" id="toc-the-alignment-distraction" class="nav-link" data-scroll-target="#the-alignment-distraction">The Alignment Distraction</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Article: <a href="https://knightcolumbia.org/content/ai-as-normal-technology"><em>AI as Normal Technology</em></a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/ivanperezav/">Ivan Perez Avellaneda</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/anil-kamat-6383a314b/">Anil Kamat</a>, <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula Pudhiyidath</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why This Paper</h2>
+<p>As ML practitioners, we often find ourselves caught between two exhausting extremes: on one side, breathless hype about AI solving everything, and on the other, existential dread about superintelligence destroying humanity. Neither perspective helps us navigate the real challenges we face daily—deploying models responsibly, understanding their limitations, and communicating realistic expectations to stakeholders.</p>
+<p>This article cuts through the noise by suggesting we treat AI like any other transformative technology we’ve dealt with before. We wanted to discuss it because it validates what many of us have been feeling: that the most pressing issues aren’t about preventing AGI apocalypse, but about thoughtful deployment, institutional safeguards, and closing the gap between what models can do in benchmarks versus what they can actually accomplish in production. It offers a framework for having the grounded, practical conversations about AI policy and safety that are realistic and clear-eyed.</p>
+</section>
+<section id="paper-summary" class="level2">
+<h2 class="anchored" data-anchor-id="paper-summary">Paper Summary</h2>
+<p>Narayanan and Kapoor propose viewing AI as “normal technology” rather than a potential superintelligence—a tool that humans can and should remain in control of, without requiring drastic policy interventions or technical breakthroughs.</p>
+<section id="part-1-the-speed-of-ai-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-the-speed-of-ai-transformation">Part 1: The Speed of AI Transformation</h3>
+<p><img src="Fig1.png" class="img-fluid"></p>
+<p>In Part 1, the authors argue that AI’s societal impact will be gradual, not sudden. They distinguish between three phases: invention (model development), innovation (practical applications), and diffusion (widespread adoption). While AI research produces new models rapidly, the authors remind us that this does not mean translation to real-world utility. For instance, infrastructure and organizational inertia create substantial barriers, as implementing AI requires changes to existing systems, training, and workflows. This is especially true for high-risk areas.</p>
+<p>Besides, there exists a capability-reliability gap where impressive benchmark performance doesn’t guarantee real-world utility—what they call a problem of “construct validity.” This gap is particularly pronounced in safety-critical applications, which face slow adoption due to regulatory requirements and risk aversion.</p>
+<p>The research community itself may be slowing innovation through what the authors describe as “ossification of canon”—a phenomenon where the proliferation of AI publications has led researchers to pile onto existing approaches rather than pursue genuine innovation. The paper notes that even transformative technologies like electricity took decades to reshape manufacturing, with <a href="https://www.bbc.com/news/business-40673694">Paul A. David’s 1990 paper quoting economist Robert Solow</a> that computers were everywhere except in productivity statistics. This historical pattern suggests AI will follow a similar trajectory of gradual integration rather than sudden transformation.</p>
+</section>
+<section id="part-2-intelligence-vs.-control" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-intelligence-vs.-control">Part 2: Intelligence vs.&nbsp;Control</h3>
+<p><img src="Fig5.png" class="img-fluid"></p>
+<p>The authors make a critical distinction between intelligence and control over the environment. They challenge the superintelligence narrative by arguing that intelligence alone doesn’t automatically translate to power or control. They suggest that AI will likely not achieve meaningful superiority in crucial domains like geopolitical forecasting or mass persuasion, areas where human judgment and contextual understanding remain essential. This reframing implies that the focus should shift from model alignment research to system safety, which emphasizes preventing accidents and misuse through well-established engineering approaches.</p>
+<p>The authors’ argument on alignment research as fundamentally misconceived is well represented in their quote: “trying to make a computer that cannot be used for bad things.” The alignment framing assumes AI systems will operate autonomously in high-stakes situations, which contradicts how safety-critical systems are actually deployed in practice. Instead of seeking to solve alignment as an abstract problem, the authors argue for treating AI safety like cybersecurity—a continuous process of identifying and mitigating specific vulnerabilities rather than seeking a final solution.</p>
+</section>
+<section id="part-3-ai-risks-landscape" class="level3">
+<h3 class="anchored" data-anchor-id="part-3-ai-risks-landscape">Part 3: AI Risks Landscape</h3>
+<p>Rather than focusing on speculative catastrophic misalignment, the authors identify more immediate and concrete risks. In examining accidents and arms races, they note that different domains have fundamentally different safety dynamics. <a href="https://cltc.berkeley.edu/ai-aviation/">Aviation</a> and <a href="https://www.nbcbayarea.com/investigations/waymo-driverless-cars-safety-study/3740522/">self-driving cars</a> demonstrate how market incentives can potentially align with safety when harm attribution is clear and liability is established. <a href="https://knightcolumbia.org/content/understanding-social-media-recommendation-algorithms">Social media</a>, by contrast, shows what happens when this is not the case. Regarding the arms races between countries, particularly between the U.S. and China, the authors clarify that the focuses of the competition have been more on model development capabilities than deployment.</p>
+<p>Regarding misuse, the authors argue that primary defenses must be <em>located downstream of models</em>—at the point of application rather than in the models themselves. They emphasize that AI can also be used defensively against threats, creating a more complex security landscape than simple misuse scenarios suggest. However, they identify systemic risks as the most pressing concern, including the entrenchment of bias and discrimination, labor market disruption in specific sectors, increasing inequality and concentration of power, pollution of the information ecosystem, erosion of democratic institutions, and the enabling of authoritarianism. These risks have been consistent problems back in traditional ML days (pre-generative AI), and they can be aggravated by AI. Finally, they argue that these are more likely to materialize than speculative extinction scenarios.</p>
+</section>
+<section id="part-4-resilience-over-restriction" class="level3">
+<h3 class="anchored" data-anchor-id="part-4-resilience-over-restriction">Part 4: Resilience Over Restriction</h3>
+<p><img src="Fig6.png" class="img-fluid"></p>
+<p>The authors advocate for a <strong>resilience</strong>-based policy framework rather than restrictive preemptive regulation (e.g., nonproliferation). They define resilience as “the capacity of a system to deal with harm,” which recognizes that <strong>“changes are inevitable in complex systems, and tries to manage and adapt to that change in ways that protect and preserve the core values and functions of the original system.”</strong></p>
+<p>They argue that AI risk probabilities lack meaningful epistemic foundations, unlike actuarial data used for insurance pricing, making probability-based policy interventions problematic. In this sense, their approach emphasizes reducing uncertainty through strategic research funding focused on downstream risks rather than abstract capability improvements, developing robust risk monitoring systems, and treating evidence gathering as a primary goal rather than a preliminary step.</p>
+<p>This resilience framework operates across four categories:</p>
+<ul>
+<li><strong>Societal resilience</strong> that protects democratic institutions and civil society</li>
+<li><strong>Prerequisites for effective defenses including technical and policy capabilities</strong></li>
+<li>Generally <strong>beneficial interventions that help regardless of AI’s trajectory</strong>, and</li>
+<li><strong>Normal-technology-specific measures that assume AI remains under human control</strong>.</li>
+</ul>
+<p>The authors firmly argue that nonproliferation of AI technology is infeasible and likely counterproductive. Instead, policy should focus on enabling beneficial diffusion through thoughtful regulation, promoting AI literacy across society, and supporting digitization and open government data initiatives that enable broader participation in the AI ecosystem.</p>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>As a group, we all thought this paper presented several thought-provoking arguments that provide realistic and critical perspectives that pierce through the AI hype.</p>
+<section id="gradual-ceding-of-control" class="level3">
+<h3 class="anchored" data-anchor-id="gradual-ceding-of-control">Gradual Ceding of Control</h3>
+<p>On the question of control, some of us expressed concern that we may already be on our way to ceding control gradually to AI systems even as the authors argue for maintaining human oversight. While the paper presents various control mechanisms—from auditing to circuit breakers—there’s a troubling sense that each new capability we delegate to AI represents a small surrender of human agency. The authors frame this as manageable through proper governance structures, but we wondered whether this incremental handover might create dependencies that become increasingly difficult to reverse, even if the technology remains “normal” rather than superintelligent. A good example would be AI companies getting actively involved in higher education for adoption.</p>
+</section>
+<section id="limitations-in-forecasting-and-persuasion" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-in-forecasting-and-persuasion">Limitations in Forecasting and Persuasion</h3>
+<p>However, we did not completely agree on the paper’s confidence about AI’s limitations in forecasting and persuasion. The authors predict that AI won’t meaningfully outperform humans at geopolitical forecasting, but we thought the authors did not provide enough explanation on why. More concerning was the persuasion argument—while the authors carefully qualify their prediction to focus on persuading people “against their self-interest,” recent incidents involving AI chatbots and vulnerable individuals, particularly teenagers, suggest that AI systems may already possess concerning persuasive capabilities in specific contexts. The paper’s distinction between costless persuasion tests and real-world scenarios with meaningful stakes is valid, but we felt it might underestimate the vulnerability of certain populations and the subtler forms of influence that don’t require dramatic against-interest actions.</p>
+</section>
+<section id="omission-of-military-ai" class="level3">
+<h3 class="anchored" data-anchor-id="omission-of-military-ai">Omission of Military AI</h3>
+<p>A notable omission that troubled us was the near-complete absence of military AI applications from the paper’s analysis. While the authors briefly touch on arms races in the context of model development competition between nations, they largely sidestep the reality of autonomous weapons systems and military AI deployment. This feels like a significant gap, particularly given that military AI operates under fundamentally different constraints than civilian applications—with inherent opacity, limited oversight mechanisms, and incentives that may actively resist the “normal technology” framework.</p>
+<p>The literal arms race in lethal autonomous weapons systems presents exactly the kind of scenario where human control could be rapidly eroded and safety measures would be easily compromised, not through superintelligence but through competitive pressures. While we understand that military AI might deserve its own separate treatment, we think excluding it entirely weakens the paper’s argument that we can maintain meaningful human control through institutional and regulatory mechanisms.</p>
+</section>
+<section id="the-alignment-distraction" class="level3">
+<h3 class="anchored" data-anchor-id="the-alignment-distraction">The Alignment Distraction</h3>
+<p>Despite these reservations, we found the paper’s reframing of AI safety particularly compelling. The authors make an excellent point that the intense focus on model alignment has diverted attention from more immediate harms like the erosion of democratic institutions, entrenched discrimination, and labor displacement. This critique resonates strongly with our experience as practitioners who see these concrete issues manifesting today while policy discussions on ML fairness and AI safety still fall behind the advancements in tech industry.</p>
+<p>Interestingly, our group was split on whether the paper’s tone was optimistic or pessimistic. Some saw it as sobering in its catalog of potential harms, while others found it refreshingly empowering in its assertion that we still have agency to shape AI’s trajectory. Perhaps this divergence itself validates the paper’s central thesis: by moving away from binary utopian or dystopian narratives, we can have more nuanced, productive conversations about AI governance. The paper provides a valuable framework for cutting through the exhausting cycle of hype and doom that dominates AI discourse, offering instead a pragmatic path forward based on historical precedent and institutional resilience.</p>
+<hr>
+<p><em>If you found this post useful, you can cite it as:</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2025</span>-<span class="ot">ai</span>-<span class="ot">normal</span>-<span class="ot">tech</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Hongsup Shin},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {AI as Normal Technology},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2025},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {10},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {23},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://austinmljournalclub.github.io}},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Austin ML Journal Club},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20251023_ai_normal_tech/},</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2022-2025 Austin ML Journal Club | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
