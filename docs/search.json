@@ -11,7 +11,7 @@
     "href": "reading_list.html#current-suggestions",
     "title": "Reading List",
     "section": "Current Suggestions",
-    "text": "Current Suggestions\n\nThe Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity (discussing November 2025)\nAI as Normal Technology (discussed October 2025)\nOn the Theoretical Limitations of Embedding-Based Retrieval (discussed September 2025)\nEnergy-Based Transformers are Scalable Learners and Thinkers\nAngles Don’t Lie: Unlocking Training-Efficient RL Through the Model’s Own Signals\nLarge Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\nText-to-LoRA: Instant Transformer Adaption\nPoisoning Attacks on LLMs Require a Near-constant Number of Poison Sample\nPetri: An open-source auditing tool to accelerate AI safety research\nHolistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation\nAlignment Faking in Large Language Models\nMolmoAct: Action Reasoning Models that can Reason in Space"
+    "text": "Current Suggestions\n\nThe Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity (discussing November 2025)\nAI as Normal Technology (discussed October 2025)\nOn the Theoretical Limitations of Embedding-Based Retrieval (discussed September 2025)\nLanguage models cannot reliably distinguish belief from knowledge and fact\nEnhancing Retrieval-Augmented Generation: A Study of Best Practices\nRetrieval Augmented Generation (RAG) and Beyond: A Comprehensive Survey on How to Make your LLMs use External Data More Wisely\nAgentic Retrieval-Augmented Generation: A Survey on Agentic RAG\nEnergy-Based Transformers are Scalable Learners and Thinkers\nAngles Don’t Lie: Unlocking Training-Efficient RL Through the Model’s Own Signals\nLarge Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\nText-to-LoRA: Instant Transformer Adaption\nPoisoning Attacks on LLMs Require a Near-constant Number of Poison Sample\nPetri: An open-source auditing tool to accelerate AI safety research\nHolistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation\nAlignment Faking in Large Language Models\nMolmoAct: Action Reasoning Models that can Reason in Space"
   },
   {
     "objectID": "reading_list.html#how-to-suggest-papers",
@@ -32,7 +32,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "The Austin ML Journal Club brings together ML/AI practitioners to explore cutting-edge research through focused discussion and collaborative learning. We meet monthly(ish) to dive deep into papers that are shaping our rapidly evolving field. We aim to nurture deep conversations and practitioner insights that reveal how the sausages get made."
+    "text": "The Austin ML Journal Club brings together ML/AI practitioners to explore cutting-edge research through focused discussion and collaborative learning.\nThough “Austin” remains in our name as a nod to our origins, we meet virtually via Zoom—welcoming participants regardless of location.\nWe meet monthly(ish) to dive deep into papers that are shaping our rapidly evolving field. We aim to nurture deep conversations and practitioner insights that reveal how the sausages get made."
   },
   {
     "objectID": "about.html#join-us",
