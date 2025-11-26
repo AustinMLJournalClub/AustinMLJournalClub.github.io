@@ -14,6 +14,8 @@ We meet monthly(ish) to dive deep into papers that are shaping our rapidly evolv
 
 Interested in joining our discussions? Follow our [LinkedIn page](https://www.linkedin.com/company/austin-ml-journal-club) for meeting announcements and registration details. Registration opens before each session and closes 48 hours prior to the meeting.
 
+Want to present a paper? Fill out our [presenter volunteer form](https://docs.google.com/forms/d/e/1FAIpQLSd8i5kla7LMwN61OPNXCpkyU63qOo2pzgjxhONpPmywLP2yoQ/viewform).
+
 ## How We Work
 
 ### Meeting Format
