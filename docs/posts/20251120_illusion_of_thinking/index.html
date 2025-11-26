@@ -8,7 +8,7 @@
 
 <meta name="author" content="Hongsup Shin">
 <meta name="dcterms.date" content="2025-11-20">
-<meta name="description" content="Apple Research tests reasoning capabilities using controlled logic puzzles, finding dramatic performance drops and models failing even when given exact solutions. We examine methodological concerns about difficulty definitions, missing qualitative analysis, Anthropic’s rebuttal, and troubling reliability implications. A contentious debate revealing the challenge of distinguishing genuine reasoning from pattern matching.">
+<meta name="description" content="Apple Research tests reasoning capabilities using controlled logic puzzles, finding dramatic performance drops and models failing even when given exact solutions. We examine methodological concerns about difficulty definitions, missing qualitative analysis, and troubling reliability implications for practitioners.">
 
 <title>The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity – Austin ML Journal Club</title>
 <style>
@@ -140,7 +140,7 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity – Austin ML Journal Club">
-<meta property="og:description" content="Apple Research tests reasoning capabilities using controlled logic puzzles, finding dramatic performance drops and models failing even when given exact solutions. We examine methodological concerns about difficulty definitions, missing qualitative analysis, Anthropic’s rebuttal, and troubling reliability implications. A contentious debate revealing the challenge of distinguishing genuine reasoning from pattern matching.">
+<meta property="og:description" content="Apple Research tests reasoning capabilities using controlled logic puzzles, finding dramatic performance drops and models failing even when given exact solutions. We examine methodological concerns about difficulty definitions, missing qualitative analysis, and troubling reliability implications for practitioners.">
 <meta property="og:image" content="Fig8b.png">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
@@ -204,7 +204,7 @@ window.Quarto = {
       <h1 class="title">The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity</h1>
                   <div>
         <div class="description">
-          Apple Research tests reasoning capabilities using controlled logic puzzles, finding dramatic performance drops and models failing even when given exact solutions. We examine methodological concerns about difficulty definitions, missing qualitative analysis, Anthropic’s rebuttal, and troubling reliability implications. A contentious debate revealing the challenge of distinguishing genuine reasoning from pattern matching.
+          Apple Research tests reasoning capabilities using controlled logic puzzles, finding dramatic performance drops and models failing even when given exact solutions. We examine methodological concerns about difficulty definitions, missing qualitative analysis, and troubling reliability implications for practitioners.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -254,12 +254,8 @@ window.Quarto = {
   <li><a href="#the-tower-of-hanoi-solution-experiment" id="toc-the-tower-of-hanoi-solution-experiment" class="nav-link" data-scroll-target="#the-tower-of-hanoi-solution-experiment">The Tower of Hanoi Solution Experiment</a></li>
   <li><a href="#unreliable-performance-at-higher-cost" id="toc-unreliable-performance-at-higher-cost" class="nav-link" data-scroll-target="#unreliable-performance-at-higher-cost">Unreliable Performance at Higher Cost</a></li>
   </ul></li>
-  <li><a href="#the-anthropic-rebuttal" id="toc-the-anthropic-rebuttal" class="nav-link" data-scroll-target="#the-anthropic-rebuttal">The Anthropic Rebuttal</a>
-  <ul class="collapse">
-  <li><a href="#valid-points-and-overreach" id="toc-valid-points-and-overreach" class="nav-link" data-scroll-target="#valid-points-and-overreach">Valid Points and Overreach</a></li>
-  <li><a href="#the-complexity-claim" id="toc-the-complexity-claim" class="nav-link" data-scroll-target="#the-complexity-claim">The Complexity Claim</a></li>
-  <li><a href="#what-the-debate-reveals" id="toc-what-the-debate-reveals" class="nav-link" data-scroll-target="#what-the-debate-reveals">What the Debate Reveals</a></li>
-  </ul></li>
+  <li><a href="#discussion-of-the-satirical-rebuttal-see-correction-above" id="toc-discussion-of-the-satirical-rebuttal-see-correction-above" class="nav-link" data-scroll-target="#discussion-of-the-satirical-rebuttal-see-correction-above">Discussion of the Satirical “Rebuttal” (See Correction Above)</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -282,16 +278,29 @@ Note
 <div class="callout-body-container callout-body">
 <ul>
 <li>Article: <a href="https://machinelearning.apple.com/research/illusion-of-thinking"><em>The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity</em></a></li>
-<li>Comment paper: <a href="https://arxiv.org/abs/2506.09250"><em>Comment on The Illusion of Thinking by Anthropic</em></a></li>
 <li>Presenter: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a></li>
 <li>Attendees: <a href="https://www.linkedin.com/in/anil-kamat-6383a314b/">Anil Kamat</a>, <a href="https://www.linkedin.com/in/ericabelson">Eric Abelson</a>, <a href="https://www.linkedin.com/in/sanhitamj/">Sanhita Joshi</a>, <a href="https://www.linkedin.com/in/satishkc7/">Satish K C</a></li>
 </ul>
 </div>
 </div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Correction (November 26, 2025)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Important</strong>: The “comment paper” I referenced from Anthropic researchers was actually satire written by Alex Lawsen, not genuine research. I apologize for not catching this before our journal club discussion and initial blog post publication. I was alerted to this error by a colleague at Anthropic, and I’m grateful for the correction. The original satirical piece can be found here: <a href="https://lawsen.substack.com/p/when-your-joke-paper-goes-viral">When Your Joke Paper Goes Viral</a>.</p>
+<p>The satire was effective precisely because it articulated legitimate methodological concerns that many researchers share about the Apple paper. However, I should have verified the source more carefully. This correction does not invalidate our substantive critiques of the Apple paper’s experimental design and methodology. Those critiques stand independently.</p>
+<p>I’ve left the original discussion of the “rebuttal” below intact as a record of what was discussed, but readers should understand it was responding to satire, not official research. This serves as a valuable reminder about source verification.</p>
+</div>
+</div>
 <section id="why-this-paper" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-paper">Why This Paper</h2>
 <p>The question of whether large reasoning models (LRMs) can actually reason has become increasingly contentious as these models seem to show impressive performance on various benchmarks. However, several recent papers have challenged the notion that chain-of-thought prompting and extended reasoning traces represent genuine reasoning capability. “The Illusion of Thinking” by Apple Research contributes to this debate with a more thorough and comprehensive experimental design compared to many other papers in this space.</p>
-<p>What made this paper particularly interesting was the rapid response it received from Anthropic researchers, who published a <a href="https://arxiv.org/abs/2506.09250">comment paper</a> shortly after the original release. This back-and-forth between research teams provided us with an opportunity to examine not just the original methodology, but also how different organizations interpret similar experimental findings and defend their technologies.</p>
 <p>The paper’s approach of using parametrically controlled puzzles to prevent memorization and address potential data contamination represents a thoughtful attempt to isolate reasoning capabilities from pattern matching. This methodological choice aligns with growing concerns in the field about whether impressive benchmark performance reflects genuine problem-solving ability or pattern-matching.</p>
 </section>
 <section id="paper-summary" class="level2">
@@ -374,6 +383,7 @@ END ALGORITHM</code></pre>
 <section id="the-tower-of-hanoi-solution-experiment" class="level3">
 <h3 class="anchored" data-anchor-id="the-tower-of-hanoi-solution-experiment">The Tower of Hanoi Solution Experiment</h3>
 <p>Section 4.4 contains perhaps the paper’s most important finding, yet interestingly it’s also <em>the least explored</em>. When given exact solutions for Tower of Hanoi, models achieved similar accuracy to solving without assistance. This is a remarkable result that deserves deeper investigation, but the authors only tested this on Tower of Hanoi and not the other three puzzle types. This matters because Tower of Hanoi consistently shows different results than the other puzzles throughout the paper. We suspect this may reflect data contamination issues or the puzzle’s recursive structure, where difficulty at the <span class="math inline">\(n\)</span>th step equals difficulty at the <span class="math inline">\(n+1\)</span>th step. Additionally, the prompt apparently tells models they “can” use the provided solution rather than forcing them to use it—a subtle but potentially important distinction.</p>
+<p>The constant-difficulty nature of Tower of Hanoi makes these failures particularly puzzling. If a model correctly executes the sequence at early steps, it should maintain that correctness at later steps since the difficulty remains constant and no memorization is required. To use a programming analogy, finding the computation correct at <code>i=0</code> but incorrect at <code>i=100</code> in what amounts to a for loop would be unacceptable in traditional software, and suggests something other than systematic reasoning is occurring.</p>
 </section>
 <section id="unreliable-performance-at-higher-cost" class="level3">
 <h3 class="anchored" data-anchor-id="unreliable-performance-at-higher-cost">Unreliable Performance at Higher Cost</h3>
@@ -382,23 +392,14 @@ END ALGORITHM</code></pre>
 <p>Figure 13 reveals enormous variation in thinking token expenditure, sometimes showing cases where models fail quickly with few tokens and other cases where they consume massive token counts before failing. The characteristics of reasoning traces in these different failure modes would be very interesting, but the authors chose not to investigate this qualitatively.</p>
 </section>
 </section>
-<section id="the-anthropic-rebuttal" class="level2">
-<h2 class="anchored" data-anchor-id="the-anthropic-rebuttal">The Anthropic Rebuttal</h2>
-<section id="valid-points-and-overreach" class="level3">
-<h3 class="anchored" data-anchor-id="valid-points-and-overreach">Valid Points and Overreach</h3>
-<p>The Anthropic comment paper makes several valid points while also engaging in some overstatement. The distinction between “can’t solve” and “I will stop here” given token limits is important and well-taken. However, their invocation of “statistical inevitability” seems exaggerated. The reasoning unit is a sequence, not individual tokens, and the actual sequence length <span class="math inline">\(T\)</span> is considerably smaller than the 10,000 tokens they use in their Section 2.1 calculation.</p>
-<p>More fundamentally, for logic puzzles where correctness requires every step to be right, their probabilistic argument falls short. Tower of Hanoi puzzles can be solved perfectly by existing software, so arguing that cumulative error is statistically inevitable misses the point—these are deterministic problems with algorithmic solutions.</p>
-<p>The comment paper’s discussion of <span class="math inline">\(p(correct) &lt; 1\)</span> doesn’t adequately address the constant-difficulty nature of Tower of Hanoi. If a model correctly executes the sequence at early steps, it should maintain that correctness at later steps since the difficulty remains constant and no memorization is required. To use a programming analogy, finding the computation correct at <code>i=0</code> but incorrect at <code>i=100</code> in what amounts to a for loop would be unacceptable, and suggests something other than reasoning is occurring.</p>
+<section id="discussion-of-the-satirical-rebuttal-see-correction-above" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-of-the-satirical-rebuttal-see-correction-above">Discussion of the Satirical “Rebuttal” (See Correction Above)</h2>
+<p>While satirical in intent, the comment paper did articulate one legitimate methodological concern: the distinction between “can’t solve” and “I will stop here” given token limits. Models operating under computational constraints may fail not because they lack reasoning capability, but because they’ve exhausted their budget. However, this doesn’t fully explain the Apple paper’s findings, particularly the failure modes when exact solutions were provided.</p>
+<p>Separately, the Apple paper doesn’t adequately address difficulty variations across puzzle types. River Crossing is NP-hard, which may explain why models particularly struggle with it compared to other puzzles. This asymmetry across puzzle types complicates the paper’s broader claims about reasoning capabilities.</p>
 </section>
-<section id="the-complexity-claim" class="level3">
-<h3 class="anchored" data-anchor-id="the-complexity-claim">The Complexity Claim</h3>
-<p>Anthropic’s complexity claim reevaluation makes a good point that our journal club discussion also identified. The Apple paper doesn’t adequately address difficulty variations across puzzle types. As Anthropic notes, River Crossing is NP-hard, which may explain why models particularly struggle with it. This asymmetry across puzzle types complicates the paper’s broader claims about reasoning capabilities.</p>
-<p>The comment paper’s closing statement, “The question isn’t whether LRMs can reason, but whether our evaluations can distinguish reasoning from typing”, sounds like an overreach. The problem absolutely remains whether LRMs can reason. Moreover, the rebuttal never addresses why models failed to perform better even when explicitly given correct solutions. That finding from Section 4.4 of the original paper stands as powerful evidence that something fundamental is missing, regardless of how we define or evaluate reasoning.</p>
-</section>
-<section id="what-the-debate-reveals" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-debate-reveals">What the Debate Reveals</h3>
-<p>The debate between these papers highlights an important challenge in AI research: distinguishing genuine capability from sophisticated pattern matching. Both papers make contributions, but both also show how methodological choices, presentation decisions, and framing can shape interpretation of experimental results.</p>
-<p>For practitioners trying to understand what these reasoning models can and cannot reliably do, the answer seems to remain unclear. However, this public exchange between researchers and the emergence of novel evaluation tasks represent healthy scientific discourse that pushes the field toward more rigorous assessments of reasoning capabilities.</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Despite the methodological concerns raised here, “The Illusion of Thinking” makes an important contribution to the reasoning debate. The use of parametrically controlled puzzles represents a meaningful attempt to isolate reasoning from memorization, and the finding that models fail even when given exact solutions (Section 4.4) remains one of the most striking results in recent evaluation work. The paper also reveals that reasoning models show unreliable performance with high variability, yet cost significantly more to run. Until we better understand when and why these models fail unpredictably, their practical value proposition remains unclear.</p>
 <hr>
 <p><em>If you found this post useful, you can cite it as:</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
@@ -414,7 +415,6 @@ END ALGORITHM</code></pre>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
