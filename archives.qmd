@@ -5,6 +5,7 @@ toc: true
 
 ## 2025
 
+- [The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity](posts/20251120_illusion_of_thinking/index.qmd)
 - [AI as Normal Technology](posts/20251023_ai_normal_tech/index.qmd)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](posts/20250925/index.qmd)
 
