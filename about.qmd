@@ -60,7 +60,7 @@ A journal club creates the structure and accountability for this kind of sustain
 
 ### Community Contributors
 
-The Austin ML Journal Club has evolved over time with contributions from many dedicated participants. We're grateful to [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), and other community members who helped establish the foundations of our collaborative learning environment during the club's earlier phases.
+The Austin ML Journal Club has evolved over time with contributions from many dedicated participants. We're grateful to [Anil Kamat](https://www.linkedin.com/in/anil-kamat-6383a314b/), [Satish K C](https://www.linkedin.com/in/satishkc7/), [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), and other community members who helped establish the foundations of our collaborative learning environment during the club's earlier phases.
 
 ## License
 
