@@ -8,6 +8,7 @@ This page collects papers, books, articles, videos, and other resources suggeste
 
 ## Current Suggestions
 
+- [Efficient GPT-4V level multimodal large language model for deployment on edge devices](https://www.nature.com/articles/s41467-025-61040-5) (discussed December 2025)
 - [The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity](https://machinelearning.apple.com/research/illusion-of-thinking) (discussed November 2025)
 - [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology) (discussed October 2025)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (discussed September 2025)

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hongsup Shin">
+<meta name="dcterms.date" content="2025-12-18">
+<meta name="description" content="MiniCPM-V presents a series of lightweight multimodal large language models that achieve GPT-4V level performance while being deployable on edge devices like mobile phones, addressing computational costs and privacy concerns of cloud-based models.">
+
+<title>Efficient GPT-4V Level Multimodal Large Language Model for Deployment on Edge Devices – Austin ML Journal Club</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-510e90d5290213db49adf6b6d1eb74e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Efficient GPT-4V Level Multimodal Large Language Model for Deployment on Edge Devices – Austin ML Journal Club">
+<meta property="og:description" content="MiniCPM-V presents a series of lightweight multimodal large language models that achieve GPT-4V level performance while being deployable on edge devices like mobile phones, addressing computational costs and privacy concerns of cloud-based models.">
+<meta property="og:image" content="Fig6e.png">
+<meta property="og:site_name" content="Austin ML Journal Club">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.jpeg" alt="" class="navbar-logo light-content">
+    <img src="../../logo.jpeg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reading_list.html"> 
+<span class="menu-text">Reading List</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../archives.html"> 
+<span class="menu-text">Archives</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/austin-ml-journal-club"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Efficient GPT-4V Level Multimodal Large Language Model for Deployment on Edge Devices</h1>
+                  <div>
+        <div class="description">
+          MiniCPM-V presents a series of lightweight multimodal large language models that achieve GPT-4V level performance while being deployable on edge devices like mobile phones, addressing computational costs and privacy concerns of cloud-based models.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">multimodal</div>
+                <div class="quarto-category">edge-computing</div>
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">vision</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hongsup Shin </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 18, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why this paper</a></li>
+  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link" data-scroll-target="#paper-summary">Paper summary</a>
+  <ul class="collapse">
+  <li><a href="#architecture-design" id="toc-architecture-design" class="nav-link" data-scroll-target="#architecture-design">Architecture Design</a></li>
+  <li><a href="#training-methodology" id="toc-training-methodology" class="nav-link" data-scroll-target="#training-methodology">Training Methodology</a></li>
+  <li><a href="#benchmark-performance" id="toc-benchmark-performance" class="nav-link" data-scroll-target="#benchmark-performance">Benchmark Performance</a></li>
+  <li><a href="#edge-deployment-optimization" id="toc-edge-deployment-optimization" class="nav-link" data-scroll-target="#edge-deployment-optimization">Edge Deployment Optimization</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#why-edge-deployment-matters" id="toc-why-edge-deployment-matters" class="nav-link" data-scroll-target="#why-edge-deployment-matters">Why edge deployment matters</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Article: <a href="https://www.nature.com/articles/s41467-025-61040-5"><em>Efficient GPT-4V level multimodal large language model for deployment on edge devices</em></a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/anil-kamat-6383a314b/">Anil Kamat</a>, <a href="https://www.linkedin.com/in/satishkc7/">Satish K C</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a>, <a href="https://www.linkedin.com/in/ivanperezav/">Ivan Perez Avellaneda</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper</h2>
+<p>As practitioners, we wonder how the multimodal models with impressive demo videos can actually be deployed in production, especially in edge devices. Models like GPT-4V and Gemini Pro are powerful, but they require cloud infrastructure, introduce latency, raise privacy concerns, and come with API costs that add up fast. For applications involving personal photos, medical imaging, or offline scenarios, cloud-based models face many challenges.</p>
+<p>The MiniCPM-V paper claims that you can get GPT-4V-level performance from an 8B parameter model running on a smartphone. Not just “pretty good for mobile” performance, but actually outperforming GPT-4V on benchmarks while using a fraction of the resources. This is in alignment with recent developments in AI research where smaller models are catching up with the larger cloud-based models.</p>
+<p>The paper is particularly interesting because of its use of various optimization techniques that help achieve good performance in terms of both training and deployment on edge devices. This is one of those papers that are packed with a variety of techniques, which provides a good learning opportunity.</p>
+</section>
+<section id="paper-summary" class="level2">
+<h2 class="anchored" data-anchor-id="paper-summary">Paper summary</h2>
+<p>MiniCPM-V is a series of lightweight multimodal models designed to bring GPT-4V-level capabilities to edge devices. The flagship model, MiniCPM-Llama3-V 2.5, has 8B parameters and claims to outperform GPT-4V-1106, Gemini Pro, and Claude 3 across 11 benchmarks in the OpenCompass evaluation suite. The main selling point is that it runs on a smartphone. The authors achieve this through a combination of architectural innovations, training strategies, and deployment optimizations.</p>
+<section id="architecture-design" class="level3">
+<h3 class="anchored" data-anchor-id="architecture-design">Architecture Design</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig2a.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2a. Adaptive visual encoding strategy.</figcaption>
+</figure>
+</div>
+<p>The MiniCPM-V architecture consists of three core components: a visual encoder, a compression layer, and a language model. The key architecture technique is the <strong>adaptive visual encoding</strong> mechanism, which allows efficient processing of high-resolution images while avoiding quadratic computational growth. Here, rather than processing entire images at once, the system divides high-resolution images into slices (maximum 10 slices) supporting up to 1.8M pixels total. Each slice undergoes position embedding interpolation to accommodate varying aspect ratios, then compresses visual tokens through a cross-attention mechanism. This compression reduces tokens from 1,024 per slice to either 64 or 96 tokens depending on the model variant, significantly reducing computational costs during subsequent processing. This design choice is particularly important because it allows the model to handle images of any aspect ratio without distortion or padding, while keeping the computational requirements manageable for edge devices with limited memory.</p>
+</section>
+<section id="training-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="training-methodology">Training Methodology</h3>
+<p>The authors implemented a three-phase progressive learning strategy.</p>
+<p><strong>Phase 1: Pre-training (3 stages)</strong></p>
+<ol type="1">
+<li>Compression layer warmup</li>
+<li>Resolution extension to 448×448 pixels</li>
+<li>Adaptive visual encoding training using 570M+ images</li>
+</ol>
+<p>The pre-training data included English and Chinese image-text pairs plus OCR datasets totaling approximately 570 million items, balancing data scale with quality.</p>
+<p><strong>Phase 2: Supervised Fine-Tuning</strong></p>
+<p>High-quality instruction datasets were used to teach the model to follow instructions and perform specific tasks. This is also where the model was trained for languages other than English and Chinese (20+ languages).</p>
+<p><strong>Phase 3: Alignment via RLAIF-V</strong></p>
+<p>The team developed the RLAIF-V (Reinforcement Learning from AI Feedback for Vision) framework, using AI-generated feedback combined with direct preference optimization (DPO) to reduce hallucination rates and improve trustworthiness. This alignment phase is critical for ensuring the model provides reliable outputs in real-world deployment scenarios.</p>
+</section>
+<section id="benchmark-performance" class="level3">
+<h3 class="anchored" data-anchor-id="benchmark-performance">Benchmark Performance</h3>
+<p>MiniCPM-V demonstrated impressive performance across multiple dimensions.</p>
+<ul>
+<li><strong>General Capabilities</strong>: Superior to GPT-4V-1106 and Gemini Pro on OpenCompass (11 comprehensive benchmarks).</li>
+<li><strong>Specialized Tasks</strong>
+<ul>
+<li>OCR capabilities: Outperforms competitors on OCRBench, TextVQA, and DocVQA</li>
+<li>Hallucination rates: Lower than GPT-4V-1106 on Object HalBench</li>
+<li>Multilingual support: Demonstrated strong performance across 30+ languages</li>
+</ul></li>
+<li><strong>Size-Performance Trade-off</strong>: The paper demonstrates that smaller models with better architectural and training designs can match or exceed the performance of much larger models, challenging the conventional wisdom that larger always means better.</li>
+</ul>
+<p>The paper evaluates MiniCPM-V on a comprehensive suite of benchmarks.</p>
+<section id="general-multimodal-understanding" class="level4">
+<h4 class="anchored" data-anchor-id="general-multimodal-understanding">General Multimodal Understanding</h4>
+<ul>
+<li><strong>OpenCompass</strong>: Meta-benchmark aggregating popular multimodal benchmarks for comprehensive performance evaluation</li>
+<li><strong>MME</strong>: Tests perception (object recognition, counting, OCR) and cognition (reasoning, calculation) across a dozen subtasks</li>
+<li><strong>MMBench</strong>: Bilingual multiple-choice questions across 20 fine-grained ability dimensions</li>
+<li><strong>MMMU</strong>: College-level questions spanning multiple disciplines with expert-level knowledge requirements</li>
+<li><strong>MathVista</strong>: Testing mathematical reasoning in visual contexts across multiple reasoning types</li>
+<li><strong>LLaVA Bench</strong>: Daily-life visual chat instructions across conversation, description, and reasoning tasks</li>
+<li><strong>RealWorldQA</strong>: Real-world images testing spatial understanding and commonsense reasoning</li>
+</ul>
+</section>
+<section id="ocr-and-document-understanding" class="level4">
+<h4 class="anchored" data-anchor-id="ocr-and-document-understanding">OCR and Document Understanding</h4>
+<ul>
+<li><strong>OCRBench</strong>: ~1,000 questions across multiple datasets evaluating text recognition, scene text VQA, and document understanding</li>
+<li><strong>TextVQA</strong>: ~45,000 questions requiring reading and reasoning about text within images</li>
+<li><strong>DocVQA</strong>: ~50,000 questions testing layout-aware reading comprehension on diverse document types</li>
+</ul>
+</section>
+<section id="hallucination" class="level4">
+<h4 class="anchored" data-anchor-id="hallucination">Hallucination</h4>
+<ul>
+<li><strong>Object HalBench</strong>: Measures object-based hallucination and factual grounding</li>
+</ul>
+</section>
+</section>
+<section id="edge-deployment-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="edge-deployment-optimization">Edge Deployment Optimization</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig6a-d.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6. Deploying MiniCPM-V on edge devices.</figcaption>
+</figure>
+</div>
+<p>Deploying the model on mobile devices required addressing severe memory and computational constraints. The authors implemented the following optimization techniques.</p>
+<p><strong>Memory Optimization</strong>: 4-bit quantization reducing memory footprint from 16-17GB to approximately 5GB, sequential loading of visual and language components to fit within mobile RAM limits.</p>
+<p><strong>Computational Optimization</strong>: Device-specific compilation reduced encoding latency, NPU integration reduced visual encoding on Snapdragon 8 Gen3 chips.</p>
+<p><strong>Real-world Performance</strong>: Testing on a Xiaomi 14 Pro smartphone achieved 8.2 tokens/second decoding throughput, which exceeds typical reading speed and enables practical interactive use.</p>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>We thought the training techniques were sensible and well thought out. The adaptive visual encoding and compression mechanism reduces visual tokens from 1k per slice down to 64-96 tokens, which is quite significant, and the ablation study (Fig. 6e) shows its impact. By processing images in slices and using cross-attention compression, the model avoids the quadratic computational growth that plagues many vision transformers. This makes high-resolution image processing actually feasible on phones.</p>
+<p>The multilingual generalization seems like a smart engineering practice. Instead of collecting massive amounts of multimodal training data in 20+ languages, they rely on Llama3’s existing multilingual capabilities. Build strong vision-language connections in English and Chinese, then let the LLM handle transfer to other languages. Nevertheless, how the model captures different and subtle nuances across all languages should be investigated further.</p>
+<p>Finally, we found the paper quite comprehensive. We appreciated that the authors didn’t just present a model architecture, but they covered the full pipeline ranging from training techniques, extensive benchmarking, and actual edge device deployment with real performance numbers. This end-to-end approach makes the paper much more valuable for practitioners.</p>
+<section id="why-edge-deployment-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-edge-deployment-matters">Why edge deployment matters</h3>
+<p>We also discussed the importance of edge deployment. First and foremost, this enables privacy. Sensitive visual data never has to leave your phone—personal photos, medical imaging, or confidential documents. Plus, offline capability means the model doesn’t suffer from connectivity issues when network access is unreliable or expensive. Edge deployment also has an economic advantage. Cloud API costs add up fast when you’re processing lots of images. For high-volume applications, edge deployment shifts costs from per-query API fees to one-time model deployment.</p>
+<p>Although on-device processing eliminates network round-trips, as we can see in the paper, the best inference speed (on a Xiaomi 14 Pro) is still slower than cloud-based models. It seems interactive enough for many applications (faster than reading speed), but probably not fast enough for real-time video understanding. The authors acknowledge this limitation, which we appreciate.</p>
+</section>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
+<p>Although we appreciated that the authors used many different benchmark datasets, the benchmark performance can’t tell the whole story and more detailed evaluation would be needed. Besides, edge deployment introduces new concerns that benchmarks don’t capture. For instance, how does performance degrade when the phone is hot? What about battery drain? How does it handle device-to-device variation across different Android phones? These practical deployment questions aren’t addressed.</p>
+<p>The paper’s model handles static images, and we have to acknowledge the modality limitation. True multimodal fusion (processing video + audio simultaneously) is mentioned as future work in the paper, but given that video is much more demanding than images, it’s unclear whether the edge deployment approach scales to these use cases.</p>
+<p>Finally, we’d like more details on the training compute. The paper mentions model sizes and dataset scales, but gives almost no information about training compute, training time, or hardware requirements. For practitioners considering similar approaches, this information would be valuable.</p>
+<hr>
+<p><em>If you found this post useful, you can cite it as:</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2025</span>-<span class="ot">minicpm</span>-<span class="ot">v</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Hongsup Shin},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {Efficient GPT-4V level multimodal large language model for deployment on edge devices},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2025},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {12},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {18},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://austinmljournalclub.github.io}},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Austin ML Journal Club},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20251218_minicpm_v/},</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2022-2025 Austin ML Journal Club | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
