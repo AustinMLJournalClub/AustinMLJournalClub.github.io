@@ -8,6 +8,9 @@ This page collects papers, books, articles, videos, and other resources suggeste
 
 ## Current Suggestions
 
+- [SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training](https://arxiv.org/abs/2501.17161) (discussing January 2026)
+- [SCP: Accelerating Discovery with a Global Web of Autonomous Scientific Agents](https://arxiv.org/abs/2512.24189)
+- [The Markovian Thinker: Architecture-Agnostic Linear Scaling of Reasoning](https://arxiv.org/abs/2510.06557)
 - [Efficient GPT-4V level multimodal large language model for deployment on edge devices](https://www.nature.com/articles/s41467-025-61040-5) (discussed December 2025)
 - [The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity](https://machinelearning.apple.com/research/illusion-of-thinking) (discussed November 2025)
 - [AI as Normal Technology](https://knightcolumbia.org/content/ai-as-normal-technology) (discussed October 2025)
