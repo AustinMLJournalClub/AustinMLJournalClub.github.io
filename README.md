@@ -86,7 +86,7 @@ We maintain a welcoming environment for practitioners at all experience levels -
 
 ## Organizer
 
-[Hongsup Shin](https://www.linkedin.com/in/hongsupshin/) organizes the Austin ML Journal Club, managing meeting coordination, paper selection, and blog maintenance. He is a Principal AI Engineer at Arm with a background in computational neuroscience and behavioral ecology.
+[Hongsup Shin](https://www.linkedin.com/in/hongsupshin/) organizes the Austin ML Journal Club, managing meeting coordination, paper selection, and blog maintenance. He is a Seinor AI & LLM Engineer at NVIDIA with a background in computational neuroscience and behavioral ecology.
 
 ## License
 
