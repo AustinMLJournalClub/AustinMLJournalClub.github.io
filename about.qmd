@@ -56,7 +56,7 @@ A journal club creates the structure and accountability for this kind of sustain
 
 ### Organizer
 
-[Hongsup Shin](https://www.linkedin.com/in/hongsupshin/) organizes the Austin ML Journal Club, managing meeting coordination, paper selection, and blog maintenance. He is a Principal AI Engineer at Arm with a background in computational neuroscience and behavioral ecology. His interests span AI engineering, MLOps, responsible AI, and AI ethics. Previously, he contributed as a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin. He current volunteers as a co-chair of the SciPy conference Proceedings Committee.
+[Hongsup Shin](https://www.linkedin.com/in/hongsupshin/) organizes the Austin ML Journal Club, managing meeting coordination, paper selection, and blog maintenance. He is a Senior AI & LLM Engineer at NVIDIA with a background in computational neuroscience and behavioral ecology. His interests span AI engineering, MLOps, responsible AI, and AI ethics. Previously, he contributed as a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin. He current volunteers as a co-chair of the SciPy conference Proceedings Committee.
 
 ### Community Contributors
 
