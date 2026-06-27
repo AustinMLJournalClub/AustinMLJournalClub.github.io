@@ -15,6 +15,9 @@ website:
         href: https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io
       - icon: linkedin
         href: https://www.linkedin.com/company/austin-ml-journal-club
+      - icon: people-fill
+        href: https://groups.google.com/g/austin-ml-journal-club/
+        aria-label: Google Group
   open-graph: true
   favicon: logo.jpeg
   page-footer:

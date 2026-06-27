@@ -14,7 +14,8 @@ The **Austin ML Journal Club** brings together ML/AI practitioners for monthly d
 
 ::: {style="margin-top: 1.5rem;"}
 [Learn more →](about.qmd){.btn .btn-outline-secondary}
-[Join us](https://www.linkedin.com/company/austin-ml-journal-club){.btn .btn-primary}
+[Join our Google Group](https://groups.google.com/g/austin-ml-journal-club/){.btn .btn-primary}
+[LinkedIn](https://www.linkedin.com/company/austin-ml-journal-club){.btn .btn-outline-primary}
 :::
 
 ---
