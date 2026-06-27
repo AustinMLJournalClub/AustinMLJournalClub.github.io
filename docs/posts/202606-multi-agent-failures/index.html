@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Athula Pudhiyidath">
-<meta name="dcterms.date" content="2023-02-23">
-<meta name="description" content="The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.">
+<meta name="author" content="Hongsup Shin">
+<meta name="dcterms.date" content="2026-06-25">
+<meta name="description" content="MAST is an empirically grounded taxonomy of 14 failure modes for multi-agent LLM systems, built from over a thousand annotated traces. We questioned how many of these modes are genuinely multi-agent, since most are reducible to single-agent pathologies. The dataset and taxonomy are carefully built, though the methodology has caveats and the case for multi-agent systems is thin.">
 
-<title>Reviwing a Case Study About Real Estate Market Prediction – Austin ML Journal Club</title>
+<title>Why Do Multi-Agent LLM Systems Fail? – Austin ML Journal Club</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,9 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Reviwing a Case Study About Real Estate Market Prediction – Austin ML Journal Club">
-<meta property="og:description" content="The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.">
-<meta property="og:image" content="table1.png">
+<meta property="og:title" content="Why Do Multi-Agent LLM Systems Fail? – Austin ML Journal Club">
+<meta property="og:description" content="MAST is an empirically grounded taxonomy of 14 failure modes for multi-agent LLM systems, built from over a thousand annotated traces. We questioned how many of these modes are genuinely multi-agent, since most are reducible to single-agent pathologies. The dataset and taxonomy are carefully built, though the methodology has caveats and the case for multi-agent systems is thin.">
+<meta property="og:image" content="main.png">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
@@ -172,16 +172,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Reviwing a Case Study About Real Estate Market Prediction</h1>
+      <h1 class="title">Why Do Multi-Agent LLM Systems Fail?</h1>
                   <div>
         <div class="description">
-          The paper reviewed here attempts to predict outcomes about the real estate market with binary classification. Though the paper’s research design and results were lacking, it gave us a chance to have a discussion about practices for experimental design.
+          MAST is an empirically grounded taxonomy of 14 failure modes for multi-agent LLM systems, built from over a thousand annotated traces. We questioned how many of these modes are genuinely multi-agent, since most are reducible to single-agent pathologies. The dataset and taxonomy are carefully built, though the methodology has caveats and the case for multi-agent systems is thin.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">critique</div>
-                <div class="quarto-category">experimental-design</div>
-                <div class="quarto-category">tabular-data</div>
+                <div class="quarto-category">multi-agent-systems</div>
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">reliability</div>
+                <div class="quarto-category">failure-analysis</div>
               </div>
                   </div>
   </div>
@@ -192,14 +193,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Athula Pudhiyidath </p>
+               <p>Hongsup Shin </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 23, 2023</p>
+        <p class="date">June 25, 2026</p>
       </div>
     </div>
     
@@ -216,10 +217,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why this paper</a></li>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
-  <li><a href="#data-culling" id="toc-data-culling" class="nav-link" data-scroll-target="#data-culling">Data culling</a></li>
-  <li><a href="#algorithm-predictions-and-results" id="toc-algorithm-predictions-and-results" class="nav-link" data-scroll-target="#algorithm-predictions-and-results">Algorithm predictions and results</a></li>
+  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link" data-scroll-target="#paper-summary">Paper summary</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#what-counts-as-a-truly-multi-agent-failure" id="toc-what-counts-as-a-truly-multi-agent-failure" class="nav-link" data-scroll-target="#what-counts-as-a-truly-multi-agent-failure">What counts as a “truly” multi-agent failure?</a></li>
+  <li><a href="#evaluating-multi-agent-systems" id="toc-evaluating-multi-agent-systems" class="nav-link" data-scroll-target="#evaluating-multi-agent-systems">Evaluating multi-agent systems</a></li>
+  <li><a href="#the-missing-why" id="toc-the-missing-why" class="nav-link" data-scroll-target="#the-missing-why">The missing “why”</a></li>
+  <li><a href="#when-is-a-multi-agent-system-worth-it" id="toc-when-is-a-multi-agent-system-worth-it" class="nav-link" data-scroll-target="#when-is-a-multi-agent-system-worth-it">When is a multi-agent system worth it?</a></li>
+  <li><a href="#methodological-caveats" id="toc-methodological-caveats" class="nav-link" data-scroll-target="#methodological-caveats">Methodological caveats</a></li>
   <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final thoughts</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -241,61 +248,80 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Paper: <a href="https://arxiv.org/pdf/2008.09922.pdf"><em>“Machine Learning Approaches to Real Estate Market Prediction Problem: A Case Study</em></a></li>
-<li>Presenter: <a href="https://www.linkedin.com/in/athula-pudhiyidath/">Athula</a></li>
-<li>Attendees: <a href="https://www.linkedin.com/in/hannah-peeler-a4751bb2/">Hannah</a>, <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup</a>,<a href="https://www.linkedin.com/in/kate-behrman/">Kate</a></li>
+<li>Article: <a href="https://arxiv.org/abs/2503.13657"><em>Why Do Multi-Agent LLM Systems Fail?</em></a></li>
+<li>Presenter: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/aaron-foote-ph-d-76b0803a/">Aaron Foote</a>, <a href="https://www.linkedin.com/in/chunshan-liu-5b832b104/">Chunshan Liu</a>, <a href="https://www.linkedin.com/in/meghann-agarwal/">Meghann Agarwal</a>, <a href="https://www.linkedin.com/in/nicholas-legendre/">Nicholas Legendre</a></li>
 </ul>
 </div>
 </div>
 <section id="why-this-paper" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-paper">Why this paper</h2>
-<p>In my work, I deal with real estate data. The data consists of various attributes of real estate properites, some of which follow the ebbs and flows of the mutable economy. I came across this paper while perusing arxiv, and I was compelled by its abstract: using real estate data that spanned 10 years from a single county in Florida, the research compares four ML models that make predictions about whether or not a property’s appraised price matches its eventually listed price. Since the data spans such a long time, the researchers accounted for fluctuations in socio-economic factors over time in the model; this facet was of particular interest to me to conceptualize my own work and I was interested to learn about the authors incorporated these factors in machine learning algorithms to make predictions about the real estate market.</p>
-<p>While this abstract seemed reasonably promising to understand the application of ML in real estate evaluation, when I read the paper more closely, I found myself questioning many of the approaches the authors took to answer their central question. Therefore, this blog is structured such that it summarizes the authors’ work as outlined in this paper and offers alternative considerations from our group’s discussion.</p>
+<p>Agent reliability comes up often in our discussions, though we usually focus on whether systems work. This paper takes the opposite angle: it catalogs the ways multi-agent LLM systems (MAS) break down. We expected a structured account of failure modes to be educational in its own right, on the premise that understanding <em>how</em> these systems fail is a prerequisite for designing better ones.</p>
+<p>Multi-agent architectures are increasingly promoted as a way to scale LLM capabilities, yet their gains over single-agent baselines are frequently modest. A taxonomy of failures grounded in real execution traces offers a vocabulary for diagnosing where, and why, the added complexity does not pay off.</p>
 </section>
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The data</h2>
-<p>The authors wanted to build and compare models for predicting home prices. They posit that previous literature addressed home pricing with hedonic regression models, which are linear regression models with specific focus on price of goods, i.e.&nbsp;property price, but that this work did not necessarily account for broader socio-economic factors in their models. With the modeling conducted in this paper, the authors attempted to model home pricing accounting for such factors. However, instead of predicting home pricing as a continous variable as with regression, the authors chose to make home prediction a binary classification problem. The data used in this research consist of ~94,000 rows of publicly available real estate sale data from a single county in Florida, Volusia County.</p>
-<section id="outcome-variable" class="level4">
-<h4 class="anchored" data-anchor-id="outcome-variable">Outcome variable</h4>
-<p>The way the authors defined the binary outcome variable for this research was interesting: they took the final sale price of the home and compared it to the appraised government price of the home, assigning the variable 1 if the property’s selling price is above the appraised price (which they call <code>high price</code>), and 0 if not (called <code>low price</code>); reasoning on why this designation was useful to classify was left unsaid. More importantly there was no information on how or when the properties were initially appraised by the government, which makes the comparison to final sale price unclear. Government appraisals are technically known as a home’s <a href="https://www.rocketmortgage.com/learn/assessed-value">assessed values</a> and differ from appraised values. Assessed valuations are made to determine yearly property tax rates for a home in a given area; this is generally determined by the broad characteristics of a home and the taxed values of homes in the region. An appraised valuation of a home, on the other hand, is done by an appraiser who does a more thorough check of the features of a home, like its style and appliances, and determines a price for the <a href="https://www.rocketmortgage.com/learn/appraisal-vs-assessment">current market price of your home</a>. Thus, it is possible the authors of the paper were using home assessment prices instead of appraisal prices. The authors don’t provide a tally on how many of the properties are classified as high price, though the authors do show a plot (see paper Fig. 2) that suggests that the total count of high price properties have steadily increased in the 10 years of this data. But despite this fact, appraisal year or sale year are not predictor variables the authors considered.</p>
-<p>Another way the author could have approached the outcome variables was to have compared the initial listing price to the final sale price. In fact, in the abstract the authors tout that the listing price is baseline against which the final sale price would be compared, but the final models differ from this initial assertion. Regardless, this binary outcome variable falls short because the magnitude of difference between any two price comparisons would be lost; a high price differential of $100k would be treated the same as a lower price differential of $5k.</p>
+<section id="paper-summary" class="level2">
+<h2 class="anchored" data-anchor-id="paper-summary">Paper summary</h2>
+<p>The paper introduces MAST, the Multi-Agent System Failure Taxonomy, together with MAST-Data, a dataset of over a thousand annotated execution traces drawn from seven popular MAS frameworks across coding, math, and general-agent tasks. The authors build the taxonomy bottom-up using Grounded Theory: six human experts closely read an initial set of 150 traces (each running to many thousands of lines) and let the failure categories emerge from the data itself. The result is 14 fine-grained failure modes grouped into three categories (system design issues, inter-agent misalignment, and task verification), with definitions refined across inter-annotator agreement rounds until annotators reached high consensus (Cohen’s κ = 0.88). To scale annotation beyond what humans could label by hand, they calibrate an LLM-as-a-judge (OpenAI’s o1) against the human labels and apply it to the full dataset.</p>
+<p><img src="fig1.png" class="img-fluid"></p>
+<p>Across the seven systems, the authors report failure rates ranging from roughly 40% to nearly 90%, and the three categories appear in roughly balanced proportions, with no single cause dominating. Their central claim is that these failures stem largely from how the systems are designed and coordinated: poorly specified roles, breakdowns in inter-agent communication, and inadequate verification. The weakness of the underlying model is only part of the story. To support this, they run intervention case studies on ChatDev and AG2, showing that targeted changes, such as clarifying role specifications, enforcing hierarchy, or adding a high-level verification step, raise task success without changing the base model (for example, reported gains of roughly 9% and 16% on ChatDev).</p>
+<p>From these results the authors argue that improvements in base models alone will not resolve MAS failures, drawing an analogy to high-reliability human organizations: even capable individuals fail when the organizational structure is flawed. They position MAST as both a descriptive taxonomy and a practical debugging tool, released as a pip-installable library, that lets developers profile which failure modes dominate a given system and check whether an intervention actually reduces them.</p>
 </section>
-<section id="predictor-variables" class="level4">
-<h4 class="anchored" data-anchor-id="predictor-variables">Predictor variables</h4>
-<p>For the predictor variables, the authors chose 21 features or columns from the data for consideration for the models. However, some of the variables were not considered in the right format: <code>parid</code> (property identifier), <code>nbhd</code> (neighborhood code), <code>yrblt</code> (year built), <code>zip21</code> (ZIP code of area), <code>sale_date</code> (sale date), and <code>luc</code> (property class) were all variables that the authors encoded as continuous variables but should have been treated as categorical variables (see Table 1). Furthermore, the variable <code>sale_date</code> (sale date of the property) was not separated into its component month or year values and instead was used as a single datetime value. From our group’s discussion about this paper, it was also suggested that the authors could have considered time variables in terms of seasons or quarters, as home sales typically vary by such cadences.</p>
-<p>Because, this data spanned approximately 10 years, the authors attempted to account for the market fluctuations in those years by incorporating economic factors of gross domestic product (GDP), consumer price index (CPI), producer price index (PPI), housing price index (HPI), and effective federal funds rate (EFFR). But, it was unclear where the authors collected these values from and how exactly they matched this collected information to the real estate data. There was little discussion about why these variables were chosen out of the many other indices available, and little information about how these indices were good markers for the central question. Furthermore, it was unclear whether all of these ecoonimic factors were actually available at the time of prediction when the model is used for prediction.</p>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>We found this an unusually careful paper. Failure analysis is underrepresented in the MAS literature, and the authors approach it with real methodological discipline: Grounded Theory is an appropriate choice for building a taxonomy without a predefined hypothesis, the inter-annotator agreement studies are a genuine effort at reproducibility, and releasing the dataset, taxonomy, and annotator pipeline lowers the barrier for others to build on the work. The taxonomy is also immediately useful as shared vocabulary: having precise names for modes such as “disobey role specification” or “incorrect verification” makes it easier to say what went wrong in a system. Most of our discussion, accordingly, concerned the scope of its central question.</p>
+<section id="what-counts-as-a-truly-multi-agent-failure" class="level3">
+<h3 class="anchored" data-anchor-id="what-counts-as-a-truly-multi-agent-failure">What counts as a “truly” multi-agent failure?</h3>
+<p>The bulk of our conversation concerned the title itself: what makes a failure <em>multi-agent</em>? The paper’s definitions are broad. An agent is essentially any LLM call with a system prompt and tools, and a MAS is any collection of such agents interacting through orchestration, a definition that admits both genuinely multi-agent systems and what are really multi-step single-agent pipelines. Under that umbrella, many of the 14 modes describe pathologies a lone agent exhibits just as readily. Step repetition, premature termination, task derailment, and incorrect verification all occur in single-agent settings; placing them inside a MAS does not make them multi-agent failures.</p>
+<p>When we stress-tested the taxonomy against this distinction, only a small fraction of the modes appear <em>irreducible</em>: failures that cannot occur in a single agent given the same task, tools, and information. By the paper’s own prevalence numbers, the two modes whose definitions explicitly require another agent (information withholding and ignoring another agent’s input) account for under 3% of observed failures; a generous reading that also counts the instance-dependent “mixed” modes still lands below roughly 18%. The large majority of what MAST catalogs is, in effect, single-agent failure observed inside a multi-agent costume.</p>
+<p><img src="fig3.png" class="img-fluid"></p>
+<p>We attribute this to the sampling frame itself. MAST was built from cooperative, mostly sequential, hierarchical frameworks on coding and math benchmarks. Those architectures rarely exhibit true concurrency, include no adversarial agents, and impose no privacy partitions, so failures unique to such settings could not surface. Several classes that strike us as genuinely irreducible are absent from the taxonomy entirely:</p>
+<ul>
+<li><strong>Deadlock under shared resources.</strong> Two or more agents wait on each other in a circular chain, each holding a resource the next needs, and the system freezes. A single agent holding its own resource never waits on itself. Recent work operationalizes the classic dining-philosophers setup with LLM agents and measures deadlock rates from 25% to 90%, finding that the coordination protocol drives the outcome far more than the model’s capability (<a href="https://arxiv.org/abs/2602.13255">Hasan &amp; BusiReddyGari, 2026</a>).</li>
+<li><strong>Mandatory information partitions.</strong> One agent holds data another is contractually barred from seeing, and the task is to collaborate while keeping that partition intact, so it cannot be reduced to handing a single super-agent all the information. A dedicated benchmark for this setting finds leading models leak a large share of sensitive information even when explicitly told not to (<a href="https://arxiv.org/abs/2510.15186">Juneja et al., 2025</a>).</li>
+<li><strong>Adversarial agents with opposed objectives.</strong> When agents have genuinely conflicting incentives (buyer versus seller, or competitors), they can collude against the principal or exploit one another, behavior a single optimizer cannot exhibit against itself. LLM pricing agents have been shown to autonomously reach supracompetitive, collusive prices in simulated markets (<a href="https://arxiv.org/abs/2404.00806">Fish et al., 2024</a>).</li>
+<li><strong>Information cascades and false consensus.</strong> One agent states a confident but wrong claim, others build on it, and a third reads the apparent agreement as independent corroboration, so a guess locks in as “consensus.” Manufacturing independent-looking confirmation takes more than one agent. LLM agents have been shown to abandon correct independent answers to conform to the group (<a href="https://arxiv.org/abs/2501.13381">Weng et al., 2025</a>), and seeded errors can propagate through message dependencies into system-level false consensus (<a href="https://arxiv.org/abs/2603.04474">Xie et al., 2026</a>).</li>
+<li><strong>Lossy decomposition and recomposition.</strong> When an orchestrator splits a task across agents that communicate only through narrow language interfaces, decision-relevant information can be lost in the hand-offs and never recovered when the pieces are recombined. A recent analysis proves such delegated networks are dominated by a centralized decision-maker with the same information, and shows accuracy degrading as a task is relayed across more agents (<a href="https://arxiv.org/abs/2603.26993">Ao et al., 2026</a>).</li>
+</ul>
+<p>These are not exotic: they are the failures that appear precisely <em>because</em> a system is more than one agent. The scenarios above are illustrative, but the underlying mechanisms are documented in a separate strand of literature, one that a taxonomy built on cooperative coding and math pipelines is structurally unable to surface.</p>
 </section>
+<section id="evaluating-multi-agent-systems" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-multi-agent-systems">Evaluating multi-agent systems</h3>
+<p>A related question was how one should evaluate a MAS in the first place, and here we were sympathetic to the difficulty. Unlike traditional software, MAS failures rarely have a single identifiable root cause, and ground truth for <em>why</em> a run failed is hard to establish. The paper’s own answer, an LLM-as-a-judge calibrated against human labels, is pragmatic, and the reported agreement (κ = 0.77) is reasonable, though it inherits weaknesses we note below. The paper is not alone in tackling this. Complementary efforts frame evaluation as failure <em>attribution</em> (the <a href="https://arxiv.org/abs/2505.00212">Who&amp;When</a> dataset asks which agent erred and at which step), as automatically derived multi-dimensional criteria (<a href="https://arxiv.org/abs/2405.02178">AgentEval</a>), or as interactive debugging (<a href="https://arxiv.org/abs/2503.02068">AGDebugger</a> lets developers replay and edit agent message histories). We came away thinking that failure-mode taxonomies like MAST and attribution-style tooling are complementary: robust MAS evaluation will likely need both a shared vocabulary and trace-level attribution, and neither alone is sufficient.</p>
 </section>
-<section id="data-culling" class="level2">
-<h2 class="anchored" data-anchor-id="data-culling">Data culling</h2>
-<p>The authors took their initial dataset and used a myriad of approaches to reduce and refactor the data. First, the authors correlated the predictor variables to the outcome variables and excluded variables which were not correlated; however, they did not account for variables that are highly correlated with one another (see paper Fig. 5) which is cause for multicollinearity in how the authors interpret the importance of features in the models subsequently. Furthermore, later on when the authors introduce the voting classifier, they deem that “the method performs best when the predictors are as independent from each another as possible.”</p>
-<p>Next, the authors perform a set of preliminary modeling, using the dataset in random forest and XGBoost models and examining the resulting feature importance of those model predictions to make decisions about which of the variables are used in the final models. Every step of this interim modeling process was unclear, thus making it hard to give any credit to the authors’ interpretations of the variable importance charts (Fig. 6-8). Regardless, the authors used these outcomes to further enmesh the predictor variables, using a technique called ‘mean encoding’ to merge together highly ranked variables, creating two new variables which they term F1 and F2. Mean encoding seems to be a technique for encoding variable identities into a model that accounts for how those variables interact with the outcome variables. This type of encoding of variables, in addition to the method of feature selection of predictor variables through interim modeling of the data before processing those select features to a bigger model, is an approach that is teeming with <a href="https://austinmljournalclub.github.io/posts/20230126/">data leakage</a>.</p>
+<section id="the-missing-why" class="level3">
+<h3 class="anchored" data-anchor-id="the-missing-why">The missing “why”</h3>
+<p>Our main substantive critique is that the paper is strong on <em>what</em> fails but thin on <em>why</em>. The taxonomy and prevalence statistics are descriptive, and the explanatory passages, particularly the later sections arguing that design matters more than model capability, read as plausible but largely speculative, with mechanisms asserted but not demonstrated. The appeal to a collapse of “theory of mind” for inter-agent misalignment, for instance, is evocative but untested. We saw this as a missed opportunity: understanding the mechanism behind a failure is what points to a remedy. Knowing that incorrect verification is common is useful; knowing <em>why</em> verifiers settle for superficial checks (a capability ceiling, shallow compliance with the literal prompt, or missing grounding and tools) is what tells you how to fix it. Without that causal account, the proposed interventions remain tactical, and the paper’s own results reflect this: the fixes help but leave overall task-completion rates low.</p>
 </section>
-<section id="algorithm-predictions-and-results" class="level2">
-<h2 class="anchored" data-anchor-id="algorithm-predictions-and-results">Algorithm predictions and results</h2>
-<p>Finally, the authors get to their model comparison stage. At this point of the paper it was unclear why exactly these models were being compared against one another. The ultimate question the authors laid out was out of focus and it was unclear what exactly model comparison of the data-leaked dataset would bring.</p>
-<p>The authors went on to compare the dataset with random forest, XGBoost, voting classifier, and logistic regression classifiers. The authors said they used a 10-fold cross validation method (separate to the 5-fold cross validation method they did for the preliminary modeling for the feature selection step). While hyperparameter tuning is briefly discussed, the authors don’t provide any details on what models were tuned or the parameters. The authors evaluate differences between these classifiers namely by using accuracy, precision, and recall. However, why the authors chose these metrics to evaluate their high-low classifier is unclear, and how it served their goals. Is it more important for the classifier to catch correctly labeled lower labels, or higher labels? And if it’s better at one rather than the other, what impact would it have for the market?</p>
-<p>By this point, the research question was not sufficiently motivated, and the data was ‘double-dipped’ and overly engineered. In fact, in presenting the comparisons between algorithm performance, the authors showcase how the engineered data performs better at classification of the task, which is of no surprise because the data features were initially chosen because they were better at classifying the task (see paper Fig. 20, 21).</p>
-<p>The seeming conclusion the authors draw from this section that XGBoost was a superior classifier, but considering all of these factors above, this conclusion did not follow logic. Perhaps a more logical conclusion could have been reached had the authors employed a linear regression model instead; in this way they could have predicted the final sale price as a continous variable instead of a binary variable one as they attempt to do here.</p>
+<section id="when-is-a-multi-agent-system-worth-it" class="level3">
+<h3 class="anchored" data-anchor-id="when-is-a-multi-agent-system-worth-it">When is a multi-agent system worth it?</h3>
+<p>This led to a broader debate about when a multi-agent design earns its keep, and two schools of thought surfaced. One holds that hand-built agent scaffolds are a liability: the next model generation tends to obsolete them, and the brittleness and maintenance cost outweigh the benefit. The other holds that reliability, observability, cost control, and compound-error management need explicit structure no matter how capable the model becomes. The paper sits firmly in the second camp, and its organizational analogy is the strongest statement of that view.</p>
+<p>The evidence we know of suggests the answer depends on the task. For deep, sequential, multi-hop reasoning, a single capable agent with a large thinking budget often matches or beats a multi-agent pipeline under the same token budget (<a href="https://arxiv.org/abs/2604.02460">single-agent vs.&nbsp;multi-agent on multi-hop reasoning</a>), and the orchestration mostly adds the coordination failures MAST catalogs. For breadth, where a task fans out into many independent subtasks that each need their own context, multi-agent designs pay off through parallel compute and aggregated context. Anthropic’s 2025 account of its research system is a clear example of the breadth case: a lead agent spawns parallel subagents for wide, source-heavy search, at a large token cost (<a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">Anthropic, 2025</a>).</p>
+<p>Seen this way, the paper’s framing is slightly off-target. Many of the failures it documents are the price of using multi-agent structure where a single agent would do, so the first question is whether the orchestration was warranted at all, before asking how to harden it.</p>
 </section>
-<section id="final-thoughts" class="level2">
-<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
-<p>This paper’s central question is unclear, and deviated from the beginning to end. The paper switched from comparing listing home prices to sold home prices, to appraisal home prices (which were likely assessed home prices) to sold home prices, to figuring out which model is best. If the authors had a more structured story on the questions they wanted to answer, the baseline with which they wanted to compare outcomes, and shored up methods on those comparisons, this would have been a more compelling read. As it stands, however, it is not possible to draw any conclusions from this paper.</p>
+<section id="methodological-caveats" class="level3">
+<h3 class="anchored" data-anchor-id="methodological-caveats">Methodological caveats</h3>
+<p>A few smaller concerns came up around the empirical scaffolding. The inter-annotator agreement, while welcome, is measured on a small sample (15 traces, three annotators) and on the same traces used to refine the taxonomy definitions, which tends to inflate it: after tuning definitions toward consensus, a high κ is close to guaranteed. A single aggregate κ can also mask disagreement on individual modes, and it cannot detect a <em>missing</em> category, which matters here precisely because we are not confident the Grounded Theory pass covered the full failure space. We also noted a latent same-family bias: in several configurations the traces and the LLM judge come from related model families, and the paper does not compare alternative judges (for example o1-mini or a Claude model) to rule out affinity effects. None of this undermines the contribution, but it argues for treating the precise percentages as indicative only.</p>
+</section>
+<section id="final-thoughts" class="level3">
+<h3 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h3>
+<p>Overall, this is a careful and rigorously built piece of work, and the pedigree shows. It comes out of Berkeley’s Sky Computing group, which has a long track record of durable systems infrastructure such as Ray and Spark, and that engineering sensibility is visible in how MAST-Data and the annotation pipeline are constructed and released. The taxonomy gives the field a shared vocabulary it lacked, and the dataset is a genuine contribution.</p>
+<p>Our two reservations are the ones above. The methodology has real caveats, and the central framing is the weakest part: by the paper’s own numbers, most of the catalogued modes are single-agent pathologies, and the failures unique to multi-agent systems lie outside the sample it drew from. We would treat MAST as a useful map of where cooperative LLM pipelines break, while remembering that the genuinely multi-agent failure space is still mostly uncharted.</p>
 <hr>
 <p><em>If you found this post useful, you can cite it as:</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2023</span>-<span class="ot">real</span>-<span class="ot">estate</span>-<span class="ot">prediction</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Athula Pudhiyidath},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {Reviwing a Case Study About Real Estate Market Prediction},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2023},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {02},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {23},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {rl{https://austinmljournalclub.github.io}},</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2026</span>-<span class="ot">multi</span>-<span class="ot">agent</span>-<span class="ot">failures</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Hongsup Shin},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {Why Do Multi-Agent LLM Systems Fail?},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2026},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {06},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {25},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://austinmljournalclub.github.io}},</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Austin ML Journal Club},</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20230223/},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/202606-multi-agent-failures/},</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
