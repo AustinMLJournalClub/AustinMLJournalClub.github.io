@@ -3,8 +3,14 @@ title: "Archives"
 toc: true
 ---
 
+## 2026
+
+- [Why Do Multi-Agent LLM Systems Fail?](posts/202606-multi-agent-failures/index.qmd)
+- [SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training](posts/20260129-sft-rl/index.qmd)
+
 ## 2025
 
+- [Efficient GPT-4V Level Multimodal Large Language Model for Deployment on Edge Devices](posts/20251218_minicpm_v/index.qmd)
 - [The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity](posts/20251120_illusion_of_thinking/index.qmd)
 - [AI as Normal Technology](posts/20251023_ai_normal_tech/index.qmd)
 - [On the Theoretical Limitations of Embedding-Based Retrieval](posts/20250925/index.qmd)

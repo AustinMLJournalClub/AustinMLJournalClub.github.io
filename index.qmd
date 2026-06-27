@@ -10,7 +10,7 @@ title-block-banner: true
 toc: false
 ---
 
-The **Austin ML Journal Club** brings together ML/AI practitioners for monthly deep dives into seminal research. We read papers in advance, meet virtually for 90 minutes under Chatham House Rule, and critically examine methodologies, experimental design, and real-world applicability. 
+The **Austin ML Journal Club** brings together ML/AI practitioners for monthly deep dives into seminal research. We read papers in advance, meet virtually under Chatham House Rule, and critically examine methodologies, experimental design, and real-world applicability. 
 
 ::: {style="margin-top: 1.5rem;"}
 [Learn more →](about.qmd){.btn .btn-outline-secondary}
