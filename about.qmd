@@ -44,7 +44,7 @@ We maintain a welcoming environment for practitioners at all experience levels -
 
 ## Schedule & Participation
 
-We typically meet late in the month on Thursday evenings at 5:00 PM CT. Registration opens before each session and closes 48 hours prior to maintain focused group dynamics. The club is free and open to anyone interested in advancing their understanding of ML/AI.
+We typically meet on a weekday evening late in the month at 5:00 PM CT. Registration opens before each session and closes 48 hours prior to maintain focused group dynamics. The club is free and open to anyone interested in advancing their understanding of ML/AI.
 
 ## Our Story
 
