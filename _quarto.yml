@@ -10,6 +10,7 @@ website:
       - about.qmd
       - reading_list.qmd
       - archives.qmd
+      - code_of_conduct.qmd
     right:
       - icon: github
         href: https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io

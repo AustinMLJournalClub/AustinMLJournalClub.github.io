@@ -1,0 +1,93 @@
+---
+title: "Code of Conduct"
+toc: true
+---
+
+## Why we have this
+
+The club works best when everyone can take part comfortably and focus on the research. That depends on how we treat each other. This document says what we expect, what we won't accept, and what happens when something goes wrong. It applies to everyone, including the organizer.
+
+## Where it applies
+
+Live sessions and their chat, the Google Group, the club's LinkedIn page and its comment threads, the blog repository, and private contact that starts in one of those places.
+
+## What we expect
+
+- **Keep criticism about the work.** Sharp critique of a paper is the point of the club, but it shouldn't turn into criticism of the people in the room, or of the authors, who aren't here to respond.
+- **Welcome questions.** Nobody arrives having understood everything, and treating a question as a nuisance discourages the next one.
+- **Share the floor** so a range of people get to speak.
+- **Take correction gracefully** when a remark lands badly.
+
+These are meant to be lightweight. Everyone slips sometimes, including the organizer. A quick "sorry, my bad" and moving on is all it takes, and anyone can offer the nudge.
+
+## What we won't accept
+
+- **Harassment**. Unwanted contact or attention after being asked to stop; following someone across our spaces.
+- **Personal attacks or demeaning conduct.**
+- **Discrimination or bias**, overt or in the form of small remarks that make someone question whether they belong.
+- **Sexualized conduct or attention.**
+- **Sharing private information** about a participant, including screenshots of the session or chat.
+- **Threats or intimidation**, including implied professional consequences for a technical disagreement.
+- **False identity**, or returning after removal under a new one.
+- **Sales pitches, or recruiting from the registration list.** Sharing that your team is hiring is okay.
+- **Retaliation** against anyone who raises a concern.
+
+## Recording and AI notetakers
+
+We use the **Chatham House Rule**: use what you learn, but don't identify who said it or where they work. That's what makes candid discussion of your own workplace possible.
+
+No recording, transcription, or screenshots without the room's consent, and **no AI notetakers or meeting assistants**. If your calendar tool joins meetings automatically, turn it off before this one.
+
+Reporting a concern is never a breach of the Chatham House Rule. You can name names to the contact below.
+
+## Joining
+
+Registration is free and open and closes 24-48 hours before each session, and attendees are admitted from the registration list. **Registration may be declined at the organizer's discretion, without a stated reason.** No one is owed a seat, and writing this down is more honest than implying a right that doesn't exist. Deciding who comes in carries no process; removing someone already here does.
+
+## If something goes wrong
+
+Tell us whether or not you're sure it's a violation.
+
+- **Organizer:** Hongsup Shin (austin-ml-journal-club@googlegroups.com)
+
+Nothing is required, but useful: what happened, when, who, whether it's ongoing, and whether you want us to act or just to know.
+
+Then:
+
+1. We acknowledge within 3-7 business days.
+2. We ask what outcome you want, and won't act against your wishes unless someone else is at risk, in which case we tell you first.
+3. We hear from the other person before deciding.
+4. We tell you what we decided.
+5. Your identity stays between the two of us unless you say otherwise.
+
+**In session:** message the organizer in the meeting chat. Anything disruptive gets handled immediately, with discussion after.
+
+**If a report is about me**, I can't be the one to weigh it. With your consent I'll ask a neutral person from outside the club to handle it instead, and I'll stay out entirely — not consulted, not told who reported.
+
+I'm one volunteer with no legal authority or investigative resources. If you need more than that, I'll help you find it.
+
+## Removal
+
+Being removed takes away something you had, so it comes with reasons in writing.
+
+| | |
+|---|---|
+| **Private word** | Something landed badly; don't repeat it. Most things end here. |
+| **Written warning** | A record of what happened and what has to change. |
+| **Session removal** | Out of the meeting in progress. Immediate, for anything disruptive or unsafe. |
+| **Suspension** | Registration declined for a stated number of sessions, with conditions for return. |
+| **Permanent exclusion** | Registration declined indefinitely, removal from the Google Group, blocked on our channels. Rare. |
+
+Steps get skipped when the conduct warrants it. When the affected person would rather have things repaired than escalated — an apology, or a change in behavior — we'll favor that over a heavier sanction. But it's their call: we won't pressure anyone to reconcile with someone who hurt them.
+
+**Disagree with a removal?** Tell me within 30 days and I'll reconsider. Since it's just me, this isn't a truly independent appeal. But if you'd like a second view, I'll invite a neutral person from outside the club to look before I finalize.
+
+## Transparency
+
+Once a year we'll publish a count on the blog: reports received, actions taken, no names.
+
+## About this document
+
+Version 0.1, 2026-07-18. Lives in the blog repository; propose changes by opening an issue.
+
+Written for this club, informed by the [Contributor Covenant 3.0](https://www.contributor-covenant.org/version/3/0/code_of_conduct/), the [NumFOCUS](https://numfocus.org/code-of-conduct) and [NeurIPS](https://neurips.cc/public/CodeOfConduct) codes of conduct, and the [Recurse Center's social rules](https://www.recurse.com/social-rules).
