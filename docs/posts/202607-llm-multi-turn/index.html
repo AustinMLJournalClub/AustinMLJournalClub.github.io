@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hongsup Shin">
+<meta name="dcterms.date" content="2026-07-29">
+<meta name="description" content="The authors shard fully specified benchmark instructions into pieces, reveal one piece per simulated turn, and measure an average 39% performance drop across 15 LLMs, driven mostly by a collapse in reliability rather than ability. We valued the rigor of the within-instruction design but found the sharded user simulation rigid and unrealistic, and we wanted more from the paper on how models fail once degradation begins.">
+
+<title>LLMs Get Lost in Multi-Turn Conversation – Austin ML Journal Club</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-510e90d5290213db49adf6b6d1eb74e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="LLMs Get Lost in Multi-Turn Conversation – Austin ML Journal Club">
+<meta property="og:description" content="The authors shard fully specified benchmark instructions into pieces, reveal one piece per simulated turn, and measure an average 39% performance drop across 15 LLMs, driven mostly by a collapse in reliability rather than ability. We valued the rigor of the within-instruction design but found the sharded user simulation rigid and unrealistic, and we wanted more from the paper on how models fail once degradation begins.">
+<meta property="og:image" content="fig5b.png">
+<meta property="og:site_name" content="Austin ML Journal Club">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.jpeg" alt="" class="navbar-logo light-content">
+    <img src="../../logo.jpeg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Austin ML Journal Club</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reading_list.html"> 
+<span class="menu-text">Reading List</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../archives.html"> 
+<span class="menu-text">Archives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../code_of_conduct.html"> 
+<span class="menu-text">Code of Conduct</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/austin-ml-journal-club"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://groups.google.com/g/austin-ml-journal-club/"> <i class="bi bi-people-fill" role="img" aria-label="Google Group">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">LLMs Get Lost in Multi-Turn Conversation</h1>
+                  <div>
+        <div class="description">
+          The authors shard fully specified benchmark instructions into pieces, reveal one piece per simulated turn, and measure an average 39% performance drop across 15 LLMs, driven mostly by a collapse in reliability rather than ability. We valued the rigor of the within-instruction design but found the sharded user simulation rigid and unrealistic, and we wanted more from the paper on how models fail once degradation begins.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">evaluation</div>
+                <div class="quarto-category">multi-turn</div>
+                <div class="quarto-category">reliability</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Hongsup Shin </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 29, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why this paper</a></li>
+  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link" data-scroll-target="#paper-summary">Paper summary</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#the-sharded-user-does-not-listen" id="toc-the-sharded-user-does-not-listen" class="nav-link" data-scroll-target="#the-sharded-user-does-not-listen">The sharded user does not listen</a></li>
+  <li><a href="#underspecification-cuts-both-ways" id="toc-underspecification-cuts-both-ways" class="nav-link" data-scroll-target="#underspecification-cuts-both-ways">Underspecification cuts both ways</a></li>
+  <li><a href="#the-response-classifier-was-built-but-rarely-used" id="toc-the-response-classifier-was-built-but-rarely-used" class="nav-link" data-scroll-target="#the-response-classifier-was-built-but-rarely-used">The response classifier was built but rarely used</a></li>
+  <li><a href="#a-failure-taxonomy-is-missing" id="toc-a-failure-taxonomy-is-missing" class="nav-link" data-scroll-target="#a-failure-taxonomy-is-missing">A failure taxonomy is missing</a></li>
+  <li><a href="#experiments-we-would-like-to-see" id="toc-experiments-we-would-like-to-see" class="nav-link" data-scroll-target="#experiments-we-would-like-to-see">Experiments we would like to see</a></li>
+  <li><a href="#measurement-caveats" id="toc-measurement-caveats" class="nav-link" data-scroll-target="#measurement-caveats">Measurement caveats</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final thoughts</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Article: <a href="https://arxiv.org/abs/2505.06120"><em>LLMs Get Lost in Multi-Turn Conversation</em></a> (ICLR 2026 Oral, Outstanding Paper Award)</li>
+<li>Presenter: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a></li>
+<li>Attendees: <a href="https://www.linkedin.com/in/chunshan-liu-5b832b104/">Chunshan Liu</a>, <a href="https://www.linkedin.com/in/ericabelson">Eric Abelson</a>, <a href="https://www.linkedin.com/in/shounak-datta-phd-94782a169/">Shounak Datta</a></li>
+</ul>
+</div>
+</div>
+<section id="why-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper</h2>
+<p>Everyone in the club has personally experienced a chat model that nails a task when the request is written out completely, then falls apart when the same information arrives piece by piece over a conversation. This paper quantifies that gap at scale, and it won an Outstanding Paper Award at ICLR 2026 for it.</p>
+<p>It also continues threads from our recent sessions. In <a href="https://austinmljournalclub.github.io/posts/202606-multi-agent-failures/index.html">June</a> we argued that most of MAST’s “multi-agent” failure modes reduce to single-agent pathologies such as context loss and derailment. This paper produces those same pathologies with a single model, a simulated user, and information arriving in pieces, so it serves as the single-agent substrate for our reducibility argument. Like <a href="https://austinmljournalclub.github.io/posts/20251120_illusion_of_thinking/index.html"><em>The Illusion of Thinking</em></a> from our November session, it is also a headline capability collapse whose magnitude depends on choices baked into the evaluation apparatus, which our club enjoys examining.</p>
+</section>
+<section id="paper-summary" class="level2">
+<h2 class="anchored" data-anchor-id="paper-summary">Paper summary</h2>
+<p>The authors (Laban and Hayashi as equal-contribution first authors, with Zhou and Neville, from Microsoft Research and Salesforce Research) start from the observation that real users frequently <strong>underspecify</strong> their requests, while LLM benchmarks almost always evaluate single-turn, fully specified instructions. Their solution is <em>sharding</em>: a semi-automatic process that splits an existing benchmark instruction into a set of smaller “shards,” each carrying a single piece of information, which jointly preserve the content of the original. Most of the sharding process was done by LLMs (see the prompt below). A simulated conversation then reveals at most one shard per turn. <strong>The user is played by GPT-4o-mini</strong>, which holds the full instruction and picks which shard to reveal next; separate GPT-4o-mini modules classify each assistant response into one of seven strategies (answer attempt, clarification, interrogation, discussion, hedging, refusal, missing) and extract answer attempts for scoring. A conversation’s score is the maximum over all of its answer attempts, which gives the multi-turn setting a structural advantage over single-turn runs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="appendix_o1.png" class="img-fluid figure-img"></p>
+<figcaption>The prompt used to shard a fully specified instruction into decontextualized pieces (Appendix O.1).</figcaption>
+</figure>
+</div>
+<p>The main experiment covers six generation tasks (code, text-to-SQL, API calls, math word problems, table captioning, and multi-document summarization), each with roughly 100 sharded instructions, run against 15 models from eight families, with 10 simulations per condition, for a total of more than 200,000 simulated conversations. Three settings are compared: FULL (the original single-turn instruction), CONCAT (all shards concatenated into one turn, a control for the rephrasing introduced by sharding), and SHARDED (one shard per turn).</p>
+<p><img src="fig1.png" class="img-fluid"></p>
+<p>The headline result: average performance drops from about 90 in FULL to about 65 in SHARDED, a 39% average relative decline, and the effect appears in every model tested, from Llama3.1-8B-Instruct to Gemini 2.5 Pro. CONCAT performance stays around 95% of FULL, so <em>the drop comes from the multi-turn</em>, underspecified delivery itself and cannot be explained by information loss or rephrasing. The paper’s sharpest move is decomposing the drop into two components: <strong>aptitude</strong>, the 90th-percentile score across repeated runs, falls modestly (roughly 15%), while <strong>unreliability</strong>, the gap between the 90th and 10th percentile scores on the same instruction, more than doubles (+112%). The authors summarize this as the “lost in conversation” phenomenon: when a model takes a wrong turn early, it does not recover. Qualitative analyses point to four behaviors: models attempt full answers prematurely, they over-rely on their own earlier (incorrect) attempts and produce increasingly bloated answers, they over-weight the first and last turns at the expense of middle turns, and longer responses correlate with worse outcomes.</p>
+<p>Remedies mostly fail. <em>Reasoning</em> models (o3, DeepSeek-R1) degrade like everyone else. Setting <em>temperature</em> to zero leaves multi-turn unreliability around 30%. A <em>system-prompt</em> warning that the conversation may be underspecified adds about 1%. Agent-style recapitulation (RECAP, SNOWBALL) recovers some performance but stays below single-turn baselines. A seventh task, document translation, shows no degradation because each turn is a self-contained subtask, which helps delimit the phenomenon: it lives in generative, sufficiently complex, non-decomposable tasks. For users, the authors offer two workarounds: if time allows, start over, and consolidate all requirements into a single instruction before retrying. For model builders, they call for jointly optimizing aptitude and reliability at standard temperature.</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>We agreed the paper’s main value is rigor. The within-instruction comparison is the right design, the CONCAT control is clean, the max-over-attempts scoring works against the headline finding rather than for it, and the limitations section is unusually candid. Our reservations concern how far the simulation is from real conversation and how little the paper says about the mechanics of failure.</p>
+<section id="the-sharded-user-does-not-listen" class="level3">
+<h3 class="anchored" data-anchor-id="the-sharded-user-does-not-listen">The sharded user does not listen</h3>
+<p><img src="fig10.png" class="img-fluid"></p>
+<p>Most of our discussion targeted the sharding paradigm itself. The simulated user reveals shards on a schedule that is essentially indifferent to what the assistant is doing. Figure 10 in the paper, a walkthrough of a math conversation, illustrates this well: in the first turn the assistant invents 4 pastries that were never mentioned and never asks what the actual pastries are, and the <em>user simply continues dripping shards as if the hallucination had not happened</em>. A real user watching a model fabricate the premise of their question would intervene, correct, or abandon the conversation. The simulator does none of these, so the setup measures degradation under a user who never pushes back.</p>
+<p>This rigidity is partly by design. The sharding properties require shards (after the first) to be order-insensitive and decontextualized, which excludes corrections, revisions, and anaphora (i.e., “actually, change that”) from the conversation space entirely. What remains is pure information aggregation across turns, one narrow slice of real multi-turn interaction. We suspect this same rigidity helps explain the gradual sharding experiment, where degradation appears at two shards and barely worsens through eight. If the user never adapts to the assistant regardless of granularity, the damage comes from the drip-feeding itself, and shard count matters little. The authors separately concede a complexity confound in that experiment (only instructions complex enough to yield eight shards were selected), which further weakens the “any two-turn conversation triggers this” soundbite.</p>
+<p>The paradigm is also strictly top-down because it starts from one fully specified prompt and decomposes it. We wondered what a <em>bottom-up version</em> would look like, where real users build up a task through interaction without a complete specification existing in advance. That setting would sacrifice the within-instruction comparison, but it is much closer to how underspecified conversations actually arise.</p>
+</section>
+<section id="underspecification-cuts-both-ways" class="level3">
+<h3 class="anchored" data-anchor-id="underspecification-cuts-both-ways">Underspecification cuts both ways</h3>
+<p>The paper frames the phenomenon as a model deficiency, and we spent some time on whether that framing is complete. The same data can be read as evidence that humans communicate with LLMs poorly, and we suspected the answer is both. This raises a design question: whether the fix should be an intermediary, an “LLM whisperer” that rewrites human input into model-friendly form, or a single model that handles underspecification natively. We want the latter in principle, and the paper argues for it explicitly. In practice, though, all of us already do the conversion manually. When we ask a model to draft a skill or a prompt that we then use, instead of writing it ourselves from scratch, we are running the mediator pattern by hand. The gap between what we want models to do and how we actually compensate for them was one of the session’s more telling observations.</p>
+</section>
+<section id="the-response-classifier-was-built-but-rarely-used" class="level3">
+<h3 class="anchored" data-anchor-id="the-response-classifier-was-built-but-rarely-used">The response classifier was built but rarely used</h3>
+<p>The seven-way <em>response classification</em> (clarification, refusal, hedging, and so on) struck us as one of the paper’s most interesting instruments, and the paper barely uses it. It exists in the pipeline mainly to detect answer attempts for scoring. But the classification is where the more interesting failure story should live. For instance, when a model starts hallucinating assumptions, clarification and refusal are the behaviors we would want to see instead, and the paper says almost nothing about how the distribution of response strategies relates to getting lost. It never examines which strategy profiles precede recovery versus collapse, or whether forcing a clarification turn at the right moment could rescue a lost conversation. The instrument to answer these questions was built and validated, then left on the shelf.</p>
+</section>
+<section id="a-failure-taxonomy-is-missing" class="level3">
+<h3 class="anchored" data-anchor-id="a-failure-taxonomy-is-missing">A failure taxonomy is missing</h3>
+<p>This connects to our critique of the MAST paper: strong on what and when, thin on how and why. Appendix F identifies four aggregate behaviors, which is a start, but they are corpus-level correlations. What we wanted is a taxonomy of failure trajectories. For instance, when a conversation starts degrading, we want to know what actually happens, in what order, and through which response types. The paper demonstrates that models do not recover from a wrong turn without ever characterizing the wrong turns themselves.</p>
+</section>
+<section id="experiments-we-would-like-to-see" class="level3">
+<h3 class="anchored" data-anchor-id="experiments-we-would-like-to-see">Experiments we would like to see</h3>
+<p>Two concrete extensions came up. First, <em>consolidation timing</em>. The authors recommend consolidating requirements and retrying, but they test consolidation only implicitly (CONCAT uses consolidation written by the authors in advance). It would be informative to trigger <em>consolidation at different points in the conversation</em>, say turn 2 versus turn 8, and measure how recovery depends on when it happens. We also noted the paper offers no evidence that a lost model can consolidate its own conversation faithfully; asking a model that has already accumulated wrong assumptions to summarize the requirements may just launder those assumptions into the new prompt.</p>
+<p>Second, a <em>conditional, turn-level analysis</em>. The paper aggregates over whole conversations; modeling the dynamics directly would be more informative: given the state at turn k (response type, whether the last attempt was scored correct, user feedback), estimate the distribution of outcomes at turn k+1. A Markov-style view of conversations would turn the paper’s descriptive aggregates into a mechanism, and the response classifier already provides the state variable.</p>
+</section>
+<section id="measurement-caveats" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-caveats">Measurement caveats</h3>
+<p>One technical concern from the presentation is worth recording. <em>Aptitude and reliability are separable in principle</em>: a model that fails 40% of instructions every single time is perfectly reliable, and a model that solves every instruction 60% of the time is highly unreliable. But on the 4 binary-scored tasks with 10 runs per condition, <em>the metrics nearly collapse into each other</em>. Aptitude at the 90th percentile reduces to roughly “solved at least 2 of 10,” and unreliability reduces to “outcomes were mixed,” a quantity that is zero both when the model always fails and when it always succeeds, peaking when success probability is near one half. Making a task harder therefore raises measured unreliability mechanically, which <em>confounds the measurement property with the behavioral claim</em> that is the paper’s centerpiece. The claim may well be true, and the direction of the effect is robust, but the paper asserts where the degradation sits without ever showing the underlying score distributions, and it reports percentile metrics from 10 samples with no uncertainty quantification anywhere.</p>
+</section>
+<section id="final-thoughts" class="level3">
+<h3 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h3>
+<p>This is a careful measurement paper about a real and widely felt phenomenon, and the design choices that matter most (within-instruction comparison, the CONCAT control, scoring that favors the multi-turn setting) are the right ones. Our reservations are about scope and depth. The sharded simulation is a narrow, rigid slice of multi-turn interaction, the “why” behind getting lost is described rather than explained, and the most promising analytical instrument in the pipeline goes unused. Even so, the core message survives the caveats: single-turn benchmarks overestimate how these models behave in the conversations people actually have with them, and reliability deserves a place next to aptitude in how we evaluate and choose models.</p>
+<hr>
+<p><em>If you found this post useful, you can cite it as:</em></p>
+<pre><code>@article{
+    austinmljc-2026-lost-in-conversation,
+    author = {Hongsup Shin},
+    title = {LLMs Get Lost in Multi-Turn Conversation},
+    year = {2026},
+    month = {07},
+    day = {29},
+    howpublished = {\url{https://austinmljournalclub.github.io}},
+    journal = {Austin ML Journal Club},
+    url = {https://austinmljournalclub.github.io/posts/202607-lost-in-conversation/},
+}</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2022-2025 Austin ML Journal Club | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

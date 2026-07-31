@@ -5,6 +5,7 @@ toc: true
 
 ## 2026
 
+- [LLMs Get Lost in Multi-Turn Conversation](posts/202607-llm-multi-turn/index.qmd)
 - [Why Do Multi-Agent LLM Systems Fail?](posts/202606-multi-agent-failures/index.qmd)
 - [SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training](posts/20260129-sft-rl/index.qmd)
 
