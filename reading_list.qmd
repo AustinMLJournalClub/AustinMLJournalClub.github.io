@@ -10,7 +10,6 @@ This page collects papers, books, articles, videos, and other resources suggeste
 
 Papers we have already discussed are listed on the [Archives](archives.qmd) page.
 
-- [LLMs Get Lost In Multi-Turn Conversation](https://openreview.net/pdf?id=VKGTGGcwl6) (ICLR 2026)
 - [Benchmarking Empirical Privacy Protection for Adaptations of Large Language Models](https://openreview.net/pdf?id=jY7fAo9rfK) (ICLR 2026)
 - [In-the-Flow Agentic System Optimization for Effective Planning and Tool Use (AgentFlow)](https://openreview.net/pdf?id=Mf5AleTUVK) (ICLR 2026)
 - [Position: When AI Decides Who Gets an Organ — Multi-Agentic AI Systems in Transplant Medicine Risk Amplifying Disparities](https://icml.cc/virtual/2026/poster/67102)
