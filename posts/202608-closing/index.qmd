@@ -1,6 +1,6 @@
 ---
 title: "The Austin ML Journal Club Has Concluded"
-description: "After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. Everything the club produced stays online."
+description: "After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. The write-ups, the reading list, and the repository stay online."
 author: "Hongsup Shin"
 date: "2026-08-30"
 categories: [news]
@@ -8,9 +8,11 @@ categories: [news]
 
 After four years, the Austin ML Journal Club has concluded. There will be no further sessions.
 
-The club began as a small group of Austin-based ML practitioners who wanted to read papers closely instead of reading summaries of them. It later moved to a virtual format to accommodate schedules and to include participants outside Austin. Over four years we ran 22 sessions under the Chatham House Rule, covering multi-agent systems, reasoning claims, evaluation methodology, and a number of papers whose headline findings did not survive a careful look at their tables.
+The club began in October 2022 as a small group of Austin-based ML practitioners who wanted to read papers closely instead of reading summaries of them. It later moved to a virtual format to accommodate schedules and to include participants outside Austin. Over four years we ran 22 sessions under the Chatham House Rule, covering multi-agent systems, reasoning claims, evaluation methodology, and a number of papers whose headline findings did not survive a careful look at their tables.
 
-That last part was the point. The club's standing questions settled into the same few: do the measures actually support the claims, were the annotations or judges validated, what is the benchmark confounded with, and is the reported phenomenon genuinely emergent or reducible to something simpler. Applying those questions consistently to well-reviewed work turned out to be more productive than chasing whatever was new that month.
+That last part was the point. The club's standing questions settled into the same few: *do the measures actually support the claims*, *were the annotations or judges validated*, *what is the benchmark confounded with*, and *is the reported phenomenon genuinely emergent or reducible to something simpler*. They earned their place by returning verdicts. [Emergent abilities](https://austinmljournalclub.github.io/posts/20240229/index.html) tracked the choice of evaluation metric rather than anything about the model. [MAST's](https://austinmljournalclub.github.io/posts/202606-multi-agent-failures/index.html) fourteen multi-agent failure modes were, by the paper's own prevalence numbers, mostly single-agent pathologies in multi-agent dress. [The Illusion of Thinking](https://austinmljournalclub.github.io/posts/20251120_illusion_of_thinking/index.html) drew its easy, moderate, and hard regimes post-hoc from the very model performance they were meant to explain. And the [multi-turn collapse](https://austinmljournalclub.github.io/posts/202607-llm-multi-turn/index.html) was reported through two metrics that, on binary-scored tasks with ten runs, nearly collapse into each other. Applying those questions consistently to well-reviewed work turned out to be more productive than chasing whatever was new that month.
+
+None of those questions required the paper to be bad, or new, or in anyone's subfield. They only required reading the tables before the abstract, which is most of what a journal club is for.
 
 The reason for closing is ordinary. Preparing a session properly takes a substantial share of each month, and I am moving to Seattle with a job that already occupies the rest of it. I paused the club once this year, and I would rather end it than pause it again and carry an open question about when to restart.
 
