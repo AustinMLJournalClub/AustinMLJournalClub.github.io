@@ -1,0 +1,21 @@
+---
+title: "The Austin ML Journal Club Has Concluded"
+description: "After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. Everything the club produced stays online."
+author: "Hongsup Shin"
+date: "2026-08-30"
+categories: [news]
+---
+
+After four years, the Austin ML Journal Club has concluded. There will be no further sessions.
+
+The club began as a small group of Austin-based ML practitioners who wanted to read papers closely instead of reading summaries of them. It later moved to a virtual format to accommodate schedules and to include participants outside Austin. Over four years we ran 22 sessions under the Chatham House Rule, covering multi-agent systems, reasoning claims, evaluation methodology, and a number of papers whose headline findings did not survive a careful look at their tables.
+
+That last part was the point. The club's standing questions settled into the same few: do the measures actually support the claims, were the annotations or judges validated, what is the benchmark confounded with, and is the reported phenomenon genuinely emergent or reducible to something simpler. Applying those questions consistently to well-reviewed work turned out to be more productive than chasing whatever was new that month.
+
+The reason for closing is ordinary. Preparing a session properly takes a substantial share of each month, and I am moving to Seattle with a job that already occupies the rest of it. I paused the club once this year, and I would rather end it than pause it again and carry an open question about when to restart.
+
+Everything the club produced stays here. The [session write-ups](https://austinmljournalclub.github.io/archives.html), the [reading list](https://austinmljournalclub.github.io/reading_list.html), and the repository remain online.
+
+Thanks to everyone who presented, argued, corrected me, and showed up on a weekday evening. Particular thanks to [Anil Kamat](https://www.linkedin.com/in/anil-kamat-6383a314b/), [Satish K C](https://www.linkedin.com/in/satishkc7/), [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), and [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), who helped establish how this club worked in its earlier phases.
+
+Hongsup

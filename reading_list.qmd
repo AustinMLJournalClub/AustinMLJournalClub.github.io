@@ -4,11 +4,15 @@ about:
   template: solana
 ---
 
-This page collects papers, books, articles, videos, and other resources suggested by our community for potential future discussions. We welcome suggestions that align with our focus on impactful and seminal machine learning content.
+::: {.callout-note}
+The Austin ML Journal Club concluded in August 2026. This list is kept as a record and is no longer accepting suggestions. See the [closing announcement](posts/202608-closing/index.qmd).
+:::
 
-## Current Suggestions
+This page collects papers, books, articles, videos, and other resources that community members suggested for future discussions. The club has concluded, so this list is now a frozen record of what was proposed but never discussed.
 
-Papers we have already discussed are listed on the [Archives](archives.qmd) page.
+## Suggestions at the Time of Closing
+
+Papers the club discussed are listed on the [Archives](archives.qmd) page.
 
 - [Benchmarking Empirical Privacy Protection for Adaptations of Large Language Models](https://openreview.net/pdf?id=jY7fAo9rfK) (ICLR 2026)
 - [In-the-Flow Agentic System Optimization for Effective Planning and Tool Use (AgentFlow)](https://openreview.net/pdf?id=Mf5AleTUVK) (ICLR 2026)
@@ -31,16 +35,6 @@ Papers we have already discussed are listed on the [Archives](archives.qmd) page
 - [Holistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation](https://arxiv.org/abs/2510.11977)
 - [Alignment Faking in Large Language Models](https://arxiv.org/abs/2412.14093)
 - [MolmoAct: Action Reasoning Models that can Reason in Space](https://arxiv.org/abs/2508.07917)
-
-## How to Suggest Papers
-
-Have a paper, book chapter, news article, lecture, or other resource you think would spark great discussion? You can:
-
-- Contact the organizer directly
-- Submit a suggestion via [GitHub issue](https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io/issues)
-- Bring it up during our monthly meetings
-
-We look for content that is impactful, thought-provoking, or offers practical insights into how ML/AI works in practice, regardless of format or technical complexity.
 
 ## Previously Suggested Papers
 

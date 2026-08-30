@@ -4,63 +4,65 @@ about:
   template: solana
 ---
 
-The Austin ML Journal Club brings together ML/AI practitioners to explore cutting-edge research through focused discussion and collaborative learning. 
+::: {.callout-note}
+The Austin ML Journal Club concluded in August 2026. There will be no further sessions. This page is kept as a record of how the club worked. See the [closing announcement](posts/202608-closing/index.qmd).
+:::
 
-Though "Austin" remains in our name as a nod to our origins, we meet virtually via Zoom—welcoming participants regardless of location. 
+The Austin ML Journal Club brought together ML/AI practitioners to explore cutting-edge research through focused discussion and collaborative learning.
 
-We meet monthly(ish) to dive deep into papers that are shaping our rapidly evolving field. We aim to nurture deep conversations and practitioner insights that reveal how the sausages get made.
+Though "Austin" remained in our name as a nod to our origins, we met virtually via Zoom—welcoming participants regardless of location.
 
-## Join Us
+We met monthly(ish) to dive deep into papers that were shaping our rapidly evolving field. We aimed to nurture deep conversations and practitioner insights that reveal how the sausages get made.
 
-Interested in joining our discussions? Join our [Google Group](https://groups.google.com/g/austin-ml-journal-club/) and follow our [LinkedIn page](https://www.linkedin.com/company/austin-ml-journal-club) for meeting announcements and registration details. Registration opens before each session and closes 48 hours prior to the meeting.
+## Where to Find Us
 
-Want to present a paper? Fill out our [presenter volunteer form](https://docs.google.com/forms/d/e/1FAIpQLSd8i5kla7LMwN61OPNXCpkyU63qOo2pzgjxhONpPmywLP2yoQ/viewform).
+The club is closed, but its record stays online: 22 [session write-ups](archives.qmd), the [reading list](reading_list.qmd), and the [repository](https://github.com/AustinMLJournalClub/AustinMLJournalClub.github.io). Our [Google Group](https://groups.google.com/g/austin-ml-journal-club/) and [LinkedIn page](https://www.linkedin.com/company/austin-ml-journal-club) remain up as an archive of past announcements.
 
-## How We Work
+## How the Club Worked
 
 ### Meeting Format
 
-We gather virtually via Zoom for 90-minute sessions designed to fit busy professional schedules. Originally meeting in person in Austin, we transitioned to virtual format to address logistical challenges and serve the growing community of interested participants beyond Austin. Each session centers on a single paper that participants read in advance, allowing for substantive technical discussion rather than surface-level summaries.
+We gathered virtually via Zoom for 90-minute sessions designed to fit busy professional schedules. Originally meeting in person in Austin, we transitioned to a virtual format to address logistical challenges and serve the growing community of interested participants beyond Austin. Each session centered on a single paper that participants read in advance, allowing for substantive technical discussion rather than surface-level summaries.
 
 ### Paper Selection
 
-We choose papers that are impactful and seminal in ML/AI, ranging from highly technical research to influential pieces that shape our field's thinking. Our selections prioritize work that offers both theoretical insights and practical relevance, sparking meaningful debate and learning regardless of technical complexity.
+We chose papers that were impactful and seminal in ML/AI, ranging from highly technical research to influential pieces that shaped our field's thinking. Our selections prioritized work that offered both theoretical insights and practical relevance, sparking meaningful debate and learning regardless of technical complexity.
 
 ### Presentation Format
 
-Sessions are led by volunteer presenters from our community, encouraging diverse perspectives and expertise sharing. The format is entirely up to the presenter - we've never required formal slidedecks or PowerPoints, as sharing the paper itself and guiding discussion is sufficient. This approach reduces preparation barriers and keeps our focus on substantive conversation rather than presentation polish. To ensure sustainability and consistency, **the organizer serves as a backup presenter when needed**, maintaining our regular meeting schedule while fostering community ownership of the learning process.
+Sessions were led by volunteer presenters from our community, encouraging diverse perspectives and expertise sharing. The format was entirely up to the presenter - we never required formal slidedecks or PowerPoints, as sharing the paper itself and guiding discussion was sufficient. This approach reduced preparation barriers and kept our focus on substantive conversation rather than presentation polish. To ensure sustainability and consistency, **the organizer served as a backup presenter when needed**, maintaining our regular meeting schedule while fostering community ownership of the learning process.
 
 ### Discussion Philosophy
 
-We operate under the **Chatham House Rule** - participants are free to use information shared during meetings, but cannot reveal the source or identity of speakers. This creates a safe space for open intellectual exchange where practitioners can explore ideas, ask questions, and engage in constructive criticism without professional concerns.
+We operated under the **Chatham House Rule** - participants were free to use information shared during meetings, but could not reveal the source or identity of speakers. This created a safe space for open intellectual exchange where practitioners could explore ideas, ask questions, and engage in constructive criticism without professional concerns.
 
 ### Knowledge Sharing
 
-We publish summaries of our discussions on this blog, capturing key insights and diverse perspectives that emerge from our conversations. These summaries serve both as records for participants and resources for the broader ML community. Our blog is built using Quarto and hosted on GitHub Pages, with pull requests automatically published via GitHub Actions, ensuring a streamlined process for sharing our collective insights. See our [quarto guideline](quarto.md) for blogging tips.
+We published summaries of our discussions on this blog, capturing key insights and diverse perspectives that emerged from our conversations. These summaries serve both as records for participants and resources for the broader ML community. Our blog is built using Quarto and hosted on GitHub Pages. See our [quarto guideline](quarto.md) for how posts were produced.
 
 ### Community Standards
 
-We maintain a welcoming environment for practitioners at all experience levels - from industry engineers to academic researchers to passionate learners. Our community represents diverse industry domains including hardware, software, fintech, and healthcare, as well as academic backgrounds spanning neuroscience, statistics, electrical engineering, astrophysics, biology, and more. This diversity enriches our discussions by bringing varied perspectives to how machine learning intersects with different fields and problem domains.
+We maintained a welcoming environment for practitioners at all experience levels - from industry engineers to academic researchers to passionate learners. Our community represented diverse industry domains including hardware, software, fintech, and healthcare, as well as academic backgrounds spanning neuroscience, statistics, electrical engineering, astrophysics, biology, and more. This diversity enriched our discussions by bringing varied perspectives to how machine learning intersects with different fields and problem domains.
 
 ## Schedule & Participation
 
-We typically meet on a weekday evening late in the month at 5:00 PM CT. Registration opens before each session and closes 48 hours prior to maintain focused group dynamics. The club is free and open to anyone interested in advancing their understanding of ML/AI.
+We typically met on a weekday evening late in the month at 5:00 PM CT. The club was free and open to anyone interested in advancing their understanding of ML/AI.
 
 ## Our Story
 
 The Austin ML Journal Club emerged from a simple recognition: the ML field moves so quickly that staying current with meaningful research is challenging for individual practitioners. While numerous newsletters and articles provide summaries, there's real value in reading papers deeply, examining methodologies critically, and understanding what actually works in practice.
 
-A journal club creates the structure and accountability for this kind of sustained engagement while transforming what could be isolated study into collaborative learning. What began as a group of Austin-based ML practitioners gathering to critique papers and share workplace insights has evolved to serve a broader community of engineers and researchers who value rigorous discussion over surface-level summaries.
+A journal club creates the structure and accountability for this kind of sustained engagement while transforming what could be isolated study into collaborative learning. What began as a group of Austin-based ML practitioners gathering to critique papers and share workplace insights grew to serve a broader community of engineers and researchers who valued rigorous discussion over surface-level summaries. From October 2022 to July 2026 we ran 22 sessions.
 
 ## Team
 
 ### Organizer
 
-[Hongsup Shin](https://www.linkedin.com/in/hongsupshin/) organizes the Austin ML Journal Club, managing meeting coordination, paper selection, and blog maintenance. He is a Senior AI & LLM Engineer at NVIDIA with a background in computational neuroscience and behavioral ecology. His interests span AI engineering, MLOps, responsible AI, and AI ethics. Previously, he contributed as a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin. He current volunteers as a co-chair of the SciPy conference Proceedings Committee.
+[Hongsup Shin](https://www.linkedin.com/in/hongsupshin/) organized the Austin ML Journal Club, managing meeting coordination, paper selection, and blog maintenance. He is a Senior AI & LLM Engineer at NVIDIA with a background in computational neuroscience and behavioral ecology. His interests span AI engineering, MLOps, responsible AI, and AI ethics. Previously, he contributed as a volunteer data scientist at Texas Justice Initiative, a criminal justice non-profit in Austin. He currently volunteers as a co-chair of the SciPy conference Proceedings Committee.
 
 ### Community Contributors
 
-The Austin ML Journal Club has evolved over time with contributions from many dedicated participants. We're grateful to [Anil Kamat](https://www.linkedin.com/in/anil-kamat-6383a314b/), [Satish K C](https://www.linkedin.com/in/satishkc7/), [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), and other community members who helped establish the foundations of our collaborative learning environment during the club's earlier phases.
+The Austin ML Journal Club evolved over time with contributions from many dedicated participants. We're grateful to [Anil Kamat](https://www.linkedin.com/in/anil-kamat-6383a314b/), [Satish K C](https://www.linkedin.com/in/satishkc7/), [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan), and other community members who helped establish the foundations of our collaborative learning environment during the club's earlier phases.
 
 ## License
 

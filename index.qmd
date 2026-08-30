@@ -10,14 +10,13 @@ title-block-banner: true
 toc: false
 ---
 
-The **Austin ML Journal Club** brings together ML/AI practitioners for monthly deep dives into seminal research. We read papers in advance, meet virtually under Chatham House Rule, and critically examine methodologies, experimental design, and real-world applicability. 
+**The Austin ML Journal Club has concluded. There will be no further sessions.** See the [closing announcement](posts/202608-closing/index.qmd).
+
+From 2022 to 2026, the club brought together ML/AI practitioners for monthly deep dives into seminal research. We read papers in advance, met virtually under Chatham House Rule, and critically examined methodologies, experimental design, and real-world applicability. All 22 session write-ups remain online.
 
 ::: {style="margin-top: 1.5rem;"}
-[Learn more →](about.qmd){.btn .btn-outline-secondary}
-[Join our Google Group](https://groups.google.com/g/austin-ml-journal-club/){.btn .btn-primary}
-[LinkedIn](https://www.linkedin.com/company/austin-ml-journal-club){.btn .btn-outline-primary}
+[About the club →](about.qmd){.btn .btn-outline-secondary}
+[Archives](archives.qmd){.btn .btn-outline-secondary}
 :::
 
 ---
-
-

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Hongsup Shin">
-<meta name="dcterms.date" content="2026-01-29">
-<meta name="description" content="This paper compares supervised fine-tuning (SFT) versus reinforcement learning (RL) for foundation model post-training, demonstrating that RL with outcome-based rewards generalizes across rule-based textual and visual tasks while SFT tends to memorize training data and struggles with out-of-distribution scenarios.">
+<meta name="dcterms.date" content="2026-08-30">
+<meta name="description" content="After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. Everything the club produced stays online.">
 
-<title>SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training – Austin ML Journal Club</title>
+<title>The Austin ML Journal Club Has Concluded – Austin ML Journal Club</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,9 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training – Austin ML Journal Club">
-<meta property="og:description" content="This paper compares supervised fine-tuning (SFT) versus reinforcement learning (RL) for foundation model post-training, demonstrating that RL with outcome-based rewards generalizes across rule-based textual and visual tasks while SFT tends to memorize training data and struggles with out-of-distribution scenarios.">
-<meta property="og:image" content="fig1.png">
+<meta property="og:title" content="The Austin ML Journal Club Has Concluded – Austin ML Journal Club">
+<meta property="og:description" content="After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. Everything the club produced stays online.">
 <meta property="og:site_name" content="Austin ML Journal Club">
 </head>
 
@@ -181,17 +145,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training</h1>
+      <h1 class="title">The Austin ML Journal Club Has Concluded</h1>
                   <div>
         <div class="description">
-          This paper compares supervised fine-tuning (SFT) versus reinforcement learning (RL) for foundation model post-training, demonstrating that RL with outcome-based rewards generalizes across rule-based textual and visual tasks while SFT tends to memorize training data and struggles with out-of-distribution scenarios.
+          After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. Everything the club produced stays online.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">reinforcement-learning</div>
-                <div class="quarto-category">fine-tuning</div>
-                <div class="quarto-category">llm</div>
-                <div class="quarto-category">generalization</div>
+                <div class="quarto-category">news</div>
               </div>
                   </div>
   </div>
@@ -209,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 29, 2026</p>
+        <p class="date">August 30, 2026</p>
       </div>
     </div>
     
@@ -220,24 +181,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#why-this-paper" id="toc-why-this-paper" class="nav-link active" data-scroll-target="#why-this-paper">Why this paper</a></li>
-  <li><a href="#paper-summary" id="toc-paper-summary" class="nav-link" data-scroll-target="#paper-summary">Paper summary</a>
-  <ul class="collapse">
-  <li><a href="#behavioral-vs.-storage-level-memorization" id="toc-behavioral-vs.-storage-level-memorization" class="nav-link" data-scroll-target="#behavioral-vs.-storage-level-memorization">Behavioral vs.&nbsp;storage-level memorization</a></li>
-  <li><a href="#experimental-setup" id="toc-experimental-setup" class="nav-link" data-scroll-target="#experimental-setup">Experimental setup</a></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key findings</a></li>
-  </ul></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
-  <ul class="collapse">
-  <li><a href="#limitations-and-open-questions" id="toc-limitations-and-open-questions" class="nav-link" data-scroll-target="#limitations-and-open-questions">Limitations and open questions</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -246,99 +191,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Article: <a href="https://arxiv.org/pdf/2501.17161"><em>SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training</em></a></li>
-<li>Presenter: <a href="https://www.linkedin.com/in/hongsupshin/">Hongsup Shin</a></li>
-<li>Attendees: <a href="https://www.linkedin.com/in/anil-kamat-6383a314b/">Anil Kamat</a>, <a href="https://www.linkedin.com/in/chunshan-liu-5b832b104/">Chunshan Liu</a>, <a href="https://www.linkedin.com/in/ericabelson">Eric Abelson</a>, <a href="https://www.linkedin.com/in/satishkc7/">Satish K C</a></li>
-</ul>
-</div>
-</div>
-<section id="why-this-paper" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-paper">Why this paper</h2>
-<p>The question of whether LLMs can actually reason has become increasingly contentious. Modern post-training pipelines commonly stack different paradigms:</p>
-<ul>
-<li><strong>SFT</strong>: “Learn from demonstrations” via cross-entropy on next tokens</li>
-<li><strong>DPO</strong>: “Prefer this over that” via binary classification on log-probability ratios</li>
-<li><strong>PPO</strong>: “Optimize for outcomes” via policy gradients</li>
-</ul>
-<p>However, train and test distributions are often very similar. In large models, this makes it difficult to determine whether performance gains come from learning transferable rules or simply memorizing solution patterns. Critically, <em>memorization and performance can improve at the same time</em>, especially in large models.</p>
-<p>This paper addresses a fundamental question: <em>Good performance ≠ good reasoning.</em> As practitioners, we often observe that models achieve impressive benchmark scores while failing on slight variations of the same problem. The authors tackle this by designing experiments that deliberately expose whether models have learned generalizable rules or merely memorized surface forms. The experimental philosophy is intentionally strict: <em>make the rule change as small as possible, then see if the model breaks</em>.</p>
-<p>The paper is particularly timely given recent developments like DeepSeek-R1 and OpenAI’s o1, which heavily emphasize RL-based training. Understanding when and why RL outperforms SFT has direct implications for how we should approach post-training in production systems.</p>
-</section>
-<section id="paper-summary" class="level2">
-<h2 class="anchored" data-anchor-id="paper-summary">Paper summary</h2>
-<p>The authors compare SFT and RL on two tasks designed to test generalization: <code>GeneralPoints</code>, an arithmetic card game, and <code>V-IRL</code>, a real-world navigation environment. Both tasks have rule-based and visual variants, allowing systematic evaluation of out-of-distribution (OOD) performance.</p>
-<section id="behavioral-vs.-storage-level-memorization" class="level3">
-<h3 class="anchored" data-anchor-id="behavioral-vs.-storage-level-memorization">Behavioral vs.&nbsp;storage-level memorization</h3>
-<p>An important conceptual distinction in this paper is between <em>behavioral memorization</em> and <em>storage-level memorization</em>:</p>
-<ul>
-<li><strong>Behavioral memorization</strong>: Near-identical outputs or solution traces. Brittle behavior under rule or input changes. This is what the paper studies.</li>
-<li><strong>Storage-level memorization</strong>: Literal storage of training data in model weights. Bitwise or near-verbatim reproduction. Typically studied in privacy or model-extraction attacks.</li>
-</ul>
-<p>The authors focus on the <em>behavioral memorization</em>. This framing is useful because it shifts the conversation from “did the model see this exact example?” to “did the model learn the underlying rule?”</p>
-</section>
-<section id="experimental-setup" class="level3">
-<h3 class="anchored" data-anchor-id="experimental-setup">Experimental setup</h3>
-<p>The paper uses Llama-3.2-Vision-11B as the backbone model. Following standard post-training pipelines, they initialize the model with SFT before running RL. The key innovation (used in the past by one of the authors) is the <strong>multi-step RL with verification</strong> framework:</p>
-<ol type="1">
-<li>Model produces an answer</li>
-<li>A verifier evaluates the output</li>
-<li>Feedback is appended to the prompt</li>
-<li>Model revises its answer</li>
-<li>Repeat for N steps</li>
-</ol>
-<p>This is not single-shot RLHF. It’s a sequential revision formulation that allows the model to learn from its mistakes during both training and inference, and all the revisions are concatenated and used in the next training step. The RL used in the paper uses PPO (on-policy training), and their appendix describes how much compute has been used for RL, which includes compute for the replay buffer, which acts like short-term memory. Finally, the paper finds that outcome-based rewards plus verification work, consistent with prior work by Cobbe et al.</p>
-</section>
-<section id="key-findings" class="level3">
-<h3 class="anchored" data-anchor-id="key-findings">Key findings</h3>
-<p><strong>RL generalizes, SFT memorizes.</strong> Across all settings (except for one (see below)), RL consistently improves OOD performance while SFT degrades, often dramatically. Even when SFT achieves strong in-distribution performance, it collapses under rule or visual shifts. In contrast, RL shows smoother, more monotonic improvements as compute and inference-time reasoning increase. Inference-time reasoning actually makes SFT OOD performance much worse, similar to how model overfitting manifests. The pattern holds for both text-only and vision-language tasks.</p>
-<p><img src="fig8.png" class="img-fluid"></p>
-<p><strong>RL improves visual recognition as a byproduct.</strong> In the vision-language setting (GP-VL), scaling RL compute improved both task success and <em>visual recognition accuracy</em>. SFT showed the opposite effect. Scaling up training actually degraded visual recognition capabilities. This emergent improvement in visual understanding, achieved without explicit visual supervision, is one of the paper’s strongest (and possibly the most interesting) arguments for RL as a capability-learning mechanism, not just an alignment tool. Prior SFT-based fixes have included multiple encoders with different architectures/resolutions, heavy data curation, unfreezing visual encoders during SFT, and so on. These approaches are expensive and often lead to overfitting. RL, by contrast, improves visual recognition, task success, and OOD robustness without explicit visual supervision, suggesting that task-level feedback can shape perception indirectly in VLMs. Their multi-turn RL approach also achieved state-of-the-art on the V-IRL VLN mini benchmark, significantly outperforming the previous best which relied on a two-stage VLM-LLM collaboration with GPT-4.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig20.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 20: Example model outputs without SFT initialization. The model fails to follow instructions and starts rambling.</figcaption>
-</figure>
-</div>
-<p><strong>SFT is necessary but not sufficient.</strong> Without SFT initialization, RL fails because the base model doesn’t follow instructions well enough to generate usable rewards. RL collapses due to unusable reward signals. However, RL cannot rescue overfitted SFT checkpoints. This leads to one of the most interesting open questions: <em>“Is RL powerful enough to rescue an overfitted model?”</em> Apparently not. SFT is best viewed as a format stabilizer, not a capability learner.</p>
-<p><strong>Inference-time compute matters.</strong> More verification steps lead to better generalization. RL generalizes substantially better with more verification iterations, while single-step verification shows only marginal OOD improvement. The authors do not disclose the qualitative nature of the longer reasoning traces, but we can assume that they include the following: chain-of-thought, search and branching, self-evaluation, iterative refinement, re-ranking, etc. Importantly, in alignment with recent research, the paper suggests that reasoning may happen before token emission, not just as visible chain-of-thought.</p>
-</section>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>The experimental design is clean and the core insight is valuable. By using minimal rule changes, the authors create a rigorous test of whether models truly learn rules or memorize surface forms. The finding that RL improves visual recognition as an emergent byproduct of task optimization is particularly compelling and has practical implications for multimodal systems. We also appreciated that the authors thoroughly investigated SFT hyperparameters to explain the SFT failure on GP-VL. Rather than dismissing it as an anomaly, they ran extensive ablations across different learning rates and tunable components, which strengthens their conclusion that SFT’s poor performance is fundamental rather than a tuning issue.</p>
-<section id="limitations-and-open-questions" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-and-open-questions">Limitations and open questions</h3>
-<p><strong>SFT failure on GP-VL deserved deeper investigation.</strong> The authors acknowledge that SFT fails to achieve comparable in-distribution performance with RL on the vision-language variant of GeneralPoints (Fig.1: row 1, column 3), even after extensive hyperparameter tuning. Their hypothesis is that SFT overfits to reasoning tokens while neglecting recognition tokens due to frequency imbalance. This is plausible, but beyond tuning hyperparameters, they didn’t do much to actually verify this hypothesis. We wish they had done more to understand <em>why</em> this happens. This is unfortunately a common pattern in AI research papers. The discussion section is brief, mechanistic explanations remain speculative, and everything is punted to “future work.”</p>
-<p><strong>Task complexity concerns.</strong> We questioned whether the chosen tasks are complex enough to support broad claims about reasoning. In GeneralPoints, the “visual recognition” challenge is simply reading printed numbers on cards, not actual counting or visual reasoning. The arithmetic itself is straightforward once the numbers are identified. Similarly, V-IRL navigation follows explicit turn-by-turn instructions rather than requiring spatial planning or inference. Both tasks have deterministic rules and clear-cut success criteria. While this makes the experiments clean, it’s unclear whether findings generalize to tasks requiring genuine multi-step reasoning, ambiguous inputs, or compositional generalization.</p>
-<p><strong>Model scale and architecture.</strong> The experiments use Llama-3.2-Vision-11B, a relatively large model, but it’s unclear how results would change with smaller or differently architected models. Smaller models might struggle more with SFT due to limited capacity, potentially exaggerating the observed differences. Conversely, larger models might mitigate some SFT issues through sheer capacity. Testing across a range of model sizes would strengthen the conclusions.</p>
-<hr>
-<p><em>If you found this post useful, you can cite it as:</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ot">austinmljc</span>-<span class="ot">2026</span>-<span class="ot">sft</span>-<span class="ot">rl</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Hongsup Shin},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2026},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {01},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">day</span> = {29},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://austinmljournalclub.github.io}},</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Austin ML Journal Club},</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span> = {https://austinmljournalclub.github.io/posts/20260129-sft-rl/},</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After four years, the Austin ML Journal Club has concluded. There will be no further sessions.</p>
+<p>The club began as a small group of Austin-based ML practitioners who wanted to read papers closely instead of reading summaries of them. It later moved to a virtual format to accommodate schedules and to include participants outside Austin. Over four years we ran 22 sessions under the Chatham House Rule, covering multi-agent systems, reasoning claims, evaluation methodology, and a number of papers whose headline findings did not survive a careful look at their tables.</p>
+<p>That last part was the point. The club’s standing questions settled into the same few: do the measures actually support the claims, were the annotations or judges validated, what is the benchmark confounded with, and is the reported phenomenon genuinely emergent or reducible to something simpler. Applying those questions consistently to well-reviewed work turned out to be more productive than chasing whatever was new that month.</p>
+<p>The reason for closing is ordinary. Preparing a session properly takes a substantial share of each month, and I am moving to Seattle with a job that already occupies the rest of it. I paused the club once this year, and I would rather end it than pause it again and carry an open question about when to restart.</p>
+<p>Everything the club produced stays here. The <a href="https://austinmljournalclub.github.io/archives.html">session write-ups</a>, the <a href="https://austinmljournalclub.github.io/reading_list.html">reading list</a>, and the repository remain online.</p>
+<p>Thanks to everyone who presented, argued, corrected me, and showed up on a weekday evening. Particular thanks to <a href="https://www.linkedin.com/in/anil-kamat-6383a314b/">Anil Kamat</a>, <a href="https://www.linkedin.com/in/satishkc7/">Satish K C</a>, <a href="https://www.linkedin.com/in/athula-pudhiyidath">Athula Pudhiyidath</a>, <a href="https://www.linkedin.com/in/ivanperezav/">Ivan Perez Avellaneda</a>, <a href="https://www.linkedin.com/in/joelafriyie">Joel Afriyie</a>, <a href="https://www.linkedin.com/in/brianking387/">Brian King</a>, <a href="https://www.linkedin.com/in/kshitij13/">Kshitij Aggarwal</a>, <a href="https://www.linkedin.com/in/meghann-agarwal/">Meghann Agarwal</a>, <a href="https://www.linkedin.com/in/saina199/">Saina Lajevardi</a>, and <a href="https://www.linkedin.com/in/akshata-mohan">Akshata Mohan</a>, who helped establish how this club worked in its earlier phases.</p>
+<p>Hongsup</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/202608-closing/index.html",
       "/posts/202607-llm-multi-turn/index.html",
       "/posts/202606-multi-agent-failures/index.html",
       "/posts/20260129-sft-rl/index.html",

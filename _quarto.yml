@@ -22,7 +22,7 @@ website:
   open-graph: true
   favicon: logo.jpeg
   page-footer:
-    center: "© 2022-2025 Austin ML Journal Club | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    center: "© 2022-2026 Austin ML Journal Club | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
 format:
   html:
     theme: cosmo
