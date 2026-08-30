@@ -1,0 +1,26 @@
+---
+title: "The Austin ML Journal Club Has Concluded"
+description: "After four years and 22 sessions, the Austin ML Journal Club has concluded. There will be no further sessions. The write-ups, the reading list, and the repository stay online."
+author: "Hongsup Shin"
+date: "2026-08-30"
+categories: [news]
+---
+
+After four years, the Austin ML Journal Club has concluded. There will be no further sessions.
+
+The club began in October 2022 as a small group of Austin-based ML practitioners who wanted to read papers closely to understand how "the sausages get made". It later moved to a virtual format to include participants outside Austin. Over four years we ran 22 sessions under the Chatham House Rule, covering multi-agent systems, reasoning claims, evaluation methodology, and a number of papers whose headline findings did not survive a careful look at their results.
+
+That last part was important to us, and we often asked critical questions such as:
+
+- Do the measures actually support the claims?
+- Were the annotations or judges validated?
+- What is the benchmark confounded with?
+- Is the reported phenomenon genuinely emergent or reducible to something simpler?
+
+Those questions returned verdicts. [Emergent abilities](https://austinmljournalclub.github.io/posts/20240229/index.html) tracked the choice of evaluation metric rather than anything about the model. [MAST's](https://austinmljournalclub.github.io/posts/202606-multi-agent-failures/index.html) 14 multi-agent failure modes were, by the paper's own prevalence numbers, mostly single-agent pathologies in multi-agent dress. [*The Illusion of Thinking*](https://austinmljournalclub.github.io/posts/20251120_illusion_of_thinking/index.html) drew its easy, moderate, and hard regimes post-hoc from the very model performance they were meant to explain. And the [multi-turn collapse](https://austinmljournalclub.github.io/posts/202607-llm-multi-turn/index.html) was reported through two metrics that, on binary-scored tasks with ten runs, nearly collapse into each other. Asking these of well-regarded papers was more useful than chasing whatever was new that month. None of those questions required the paper to be bad, or in anyone's subfield. They required reading the papers carefully, which is most of what a journal club is for.
+
+Everything the club produced stays here. The [session write-ups](https://austinmljournalclub.github.io/archives.html), the [reading list](https://austinmljournalclub.github.io/reading_list.html), and the repository remain online.
+
+Thanks to everyone who showed up on a weekday evening. Particular thanks to [Anil Kamat](https://www.linkedin.com/in/anil-kamat-6383a314b/), [Satish K C](https://www.linkedin.com/in/satishkc7/), [Athula Pudhiyidath](https://www.linkedin.com/in/athula-pudhiyidath), [Ivan Perez Avellaneda](https://www.linkedin.com/in/ivanperezav/), [Joel Afriyie](https://www.linkedin.com/in/joelafriyie), [Brian King](https://www.linkedin.com/in/brianking387/), [Kshitij Aggarwal](https://www.linkedin.com/in/kshitij13/), [Meghann Agarwal](https://www.linkedin.com/in/meghann-agarwal/), [Saina Lajevardi](https://www.linkedin.com/in/saina199/), and [Akshata Mohan](https://www.linkedin.com/in/akshata-mohan).
+
+Hongsup

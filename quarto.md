@@ -1,5 +1,7 @@
 # Blogging tips
 
+> The Austin ML Journal Club concluded in August 2026 and is no longer accepting session write-ups. This guide is kept as a record of how posts were produced, and still describes how to rebuild or correct the archive.
+
 Our blog uses [quarto](https://quarto.org/) platform and it is hosted via [GitHub Pages](https://pages.github.com/). This is a short guide for uploading blog posts using quarto.
 
 ## Set up

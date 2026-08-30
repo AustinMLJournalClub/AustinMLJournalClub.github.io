@@ -3,6 +3,10 @@ title: "Code of Conduct"
 toc: true
 ---
 
+::: {.callout-note}
+The Austin ML Journal Club concluded in August 2026. This document is kept as a record of the standards that applied while sessions ran. The reporting contact below remains valid for anything arising from that period. See the [closing announcement](posts/202608-closing/index.qmd).
+:::
+
 ## Why we have this
 
 The club works best when everyone can take part comfortably and focus on the research. That depends on how we treat each other. This document says what we expect, what we won't accept, and what happens when something goes wrong. It applies to everyone, including the organizer.

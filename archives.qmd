@@ -3,6 +3,8 @@ title: "Archives"
 toc: true
 ---
 
+The club concluded in August 2026 after 22 sessions. See the [closing announcement](posts/202608-closing/index.qmd).
+
 ## 2026
 
 - [LLMs Get Lost in Multi-Turn Conversation](posts/202607-llm-multi-turn/index.qmd)
